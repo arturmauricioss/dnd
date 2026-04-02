@@ -47,6 +47,12 @@ label, option{
 .t8{
     width: 400px;
 }
+
+.f{
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
 input,select, textarea{
     border: none;
     border-bottom: 1px solid black;
@@ -73,4 +79,7 @@ header{
     gap: 10px;
     justify-content: space-between;
     align-items: flex-end;
+}
+#ability{
+    max-width: 300px;
 }
