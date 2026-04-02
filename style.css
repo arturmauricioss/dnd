@@ -68,9 +68,9 @@ header{
 }
 #cabeçalho_conteudo{
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
     width: 100%;
-    gap: 10px 50px;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
 }
