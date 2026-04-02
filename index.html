@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ficha de Personagem</h1>
+    <header id="cabeçalho_geral">
+        <div id="cabeçalho_conteudo">
+            <div class="fc t6">
+                <input type="text" id="character_name">
+                <label for="character_name">Nome do Personagem</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="player">
+                <label for="player">Jogador</label>
+            </div>
+            <div class="fr">
+                <div class="fc t3">
+                    <select name="" id="class">
+                        <option value="selecione" selected>SELECIONE...</option>
+                        <option value="barbaro">BÁRBARO</option>
+                        <option value="bardo">BARDO</option>
+                        <option value="clerigo">CLÉRIGO</option>
+                        <option value="druida">DRUIDA</option>
+                        <option value="feiticeiro">FEITICEIRO</option>
+                        <option value="guerreiro">GUERREIRO</option>
+                        <option value="ladino">LADINO</option>
+                        <option value="mago">MAGO</option>
+                        <option value="monge">MONGE</option>
+                        <option value="paladino">PALADINO</option>
+                        <option value="ranger">RANGER</option>
+
+                    </select>
+                    <label for="class">classe</label>
+                </div>
+                <div class="fc t1">
+                    <select name="" id="level_class" class="lvl">
+                        <option value="selecione" selected>SELECIONE...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <label for="level_class">Level</label>
+                </div>
+            </div>
+            <div class="fr">
+                <div class="fc t3">
+                    <input type="text" id="profession">
+                    <label for="profession">Profissão</label>
+                </div>
+                <div class="fc t1">
+                    <select name="" id="level_profession"class="lvl">
+                        <option value="selecione" selected>SELECIONE...</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <label for="level_profession">Level</label>
+                </div>
+            </div>
+            <div class="fc t3">
+                <select name="" id="race">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="humano">HUMANO</option>
+                    <option value="elfo">ELFO</option>
+                    <option value="anao">ANÃO</option>
+                    <option value="gnomo">GNOMO</option>
+                    <option value="meio-elfo">MEIO-ELFO</option>
+                    <option value="meio-orc">MEIO-ORC</option>
+                    <option value="halfling">HALFLING</option>
+                </select>
+                <label for="race">Raça</label>
+            </div>
+            <div class="fc t4">
+                <select name="" id="alignment">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="lawful_good">LEAL BOM</option>
+                    <option value="neutral_good">NEUTRAL BOM</option>
+                    <option value="chaotic_good">CAÓTICO BOM</option>
+                    <option value="lawful_neutral">LEAL NEUTRAL</option>
+                    <option value="true_neutral">NEUTRAL VERDADEIRO</option>
+                    <option value="chaotic_neutral">CAÓTICO NEUTRAL</option>
+                    <option value="lawful_evil">LEAL MALIGNO</option>
+                    <option value="neutral_evil">NEUTRAL MALIGNO</option>
+                    <option value="chaotic_evil">CAÓTICO MALIGNO</option>
+                </select>
+                <label for="alignment">Tendência</label>
+            </div>
+            <div class="fc t4">
+                <select id="deity">
+                    <option value="selecione">SELECIONE...</option>
+                </select>
+                <label for="deity">Divindade</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="size" readonly>
+                <label for="size">Tamanho</label>
+            </div>
+            <div class="fc t2">
+                <input 
+                    type="number" 
+                    id="idade" 
+                    min="0" 
+                    max="9999" 
+                    step="1" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4)"
+                    >
+                <label for="idade">Idade</label>
+            </div>
+            <div class="fc t3">
+                <select name="sexo" id="sex">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="masculino">MASCULINO</option>
+                    <option value="feminino">FEMININO</option>
+                </select>
+                <label for="sex">Sexo</label>
+            </div>
+            <div class="fc t2">
+                <input type="number" id="height">
+                <label for="height">Altura</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="weight">
+                <label for="weight">Peso</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="eyes">
+                <label for="eyes">Olhos</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="hair">
+                <label for="hair">cabelo</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="skin">
+                <label for="skin">pele</label>
+            </div>
+        </div>
+        <div id="logo">
+            <img src="./dungeons-dragons-5th-edition-seeklogo.svg" alt="">
+        </div>
+    </header>
+    <main>
+        
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
