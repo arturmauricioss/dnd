@@ -1,6 +1,8 @@
-#Atualizações futuras
+# Atualizações futuras
 
-##Idiomas
+## Geral
+
+### Idiomas
 
 Todos - comum.
 Um anão, elfo, gnomo,
@@ -16,20 +18,22 @@ Clérigo: Abissal, Celestial, Infernal.
 Druida: Silvestre.
 Mago: Dracônico.
 
-humanos idiomas adicionais adicionais: Qualquer um (exceto lin-
-guagens secretas, como o Druídico).
 
-#Ler e Escrever: 
+### Ler e Escrever: 
 
 Todos os personagens, exceto os bárbaros, sabem ler e escrever
 em todos os idiomas que conheçam. Um bárbaro analfabeto seria capaz de aprender a ler e escrever gastando 2 pontos de perícia; veja Analfabetismo.
 
-#Talentos
+## Humanos
+
+humanos idiomas adicionais adicionais: Qualquer um (exceto lin-
+guagens secretas, como o Druídico).
+
 
 Humanos recebem 1 talento adicional no 1º nivel
 
 
-#Pericia
+### Pericia
 
 Os humanos recebem 4 pontos adicionais de perícia no 1° nível e 1 ponto
 adicional de perícia a cada nível de experiência, pois são versáteis e competentes.
@@ -38,8 +42,11 @@ não são multiplicados.
 
 
 
-##ANOES
-#Visão no Escuro: 
+
+
+## ANOES
+
+### Visão no Escuro: 
 
 Os anões conseguem enxergar até 18 metros no escuro.
 A visão no escuro somente permite enxergar imagens em preto e branco, mas é
@@ -47,7 +54,7 @@ idêntica à visão normal em todos os demais aspectos e pode ser utilizada mesm
 na escuridão completa.
 
 
-Ligação com Pedras: 
+### Ligação com Pedras: 
 Essa habilidade concede +2 de bônus racial aos anões
 em testes de Procurar para identificar trabalhos incomuns de alvenaria, como paredes
 deslizantes, armadilhas de pedra, construções recentes (mesmo
@@ -67,7 +74,7 @@ também é capaz de utilizar essa perícia
 para localizar armadilhas construídas com
 pedras como um ladino.
 
-Familiaridade com Armas: 
+### amiliaridade com Armas: 
 Os anões
 consideram o machado de guerra anão e o
 
