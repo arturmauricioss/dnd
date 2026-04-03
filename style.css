@@ -136,7 +136,7 @@ main{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 8px;
-    max-width: 590px;
+    max-width: 100%;
     border: 1px solid black;
     padding: 8px;
     margin-top: 8px;
@@ -171,9 +171,11 @@ input[value="X"] {
 #inventory{
     display: flex;
     flex-direction: column;
+    max-width: 100%;
     gap: 50px;
     justify-content: space-between;
 }
+
 .inventory, #final_equipament_info>*{
     h3{
         width:fit-content;
@@ -184,6 +186,7 @@ input[value="X"] {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-between;
+    max-width: 100%;
 }
 .weapon{
     display: grid;
@@ -198,6 +201,9 @@ input[value="X"] {
     margin-top: 18px;
     font-size: 10px;
     column-gap: 12px;
+    input, span{
+        width: 100%;
+    }
 
 }
 #armours{
@@ -205,6 +211,8 @@ input[value="X"] {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
 
 }
 .armour{
