@@ -74,7 +74,7 @@ também é capaz de utilizar essa perícia
 para localizar armadilhas construídas com
 pedras como um ladino.
 
-### amiliaridade com Armas: 
+### Familiaridade com Armas: 
 Os anões
 consideram o machado de guerra anão e o
 
@@ -264,3 +264,15 @@ cionais: Anão, Élfico, Gnomo, Goblin e orc. Os halflings
 
 aprendem os idiomas de seus aliados e inimigos.
 
+
+## Classes
+
+Ainda é necessarioadicionar os bonus base de resistencia e bonus basee de ataque
+
+Graduação Máxima em Perícias de Classe
+
+Graduação Máxima em Perícias de Outra Classe
+
+Talentos por nivel
+
+Aumento de habilidade

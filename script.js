@@ -283,58 +283,89 @@ function getMod(valor) {
     return Math.floor((valor - 10) / 2);
 }
 function atualizarTudo() {
-    calcularAtributos(); // Roda sua lógica já existente
+    calcularAtributos();
     
     const raca = raceSelect.value;
     const classe = classeSelect.value;
-    
-    // ==========================
-    // 1. DESLOCAMENTO & TAMANHO
-    // ==========================
-    const deslocInput = document.getElementById("deslocamento");
-    if (deslocamentoPorRaca[raca]) {
-        deslocInput.value = `${deslocamentoPorRaca[raca]}m`;
-    } else {
-        deslocInput.value = "";
-    }
 
     // ==========================
-    // 2. PONTOS DE VIDA (HP)
+    // 1. DESLOCAMENTO
+    // ==========================
+    const deslocInput = document.getElementById("deslocamento");
+    deslocInput.value = deslocamentoPorRaca[raca] 
+        ? `${deslocamentoPorRaca[raca]}m` 
+        : "";
+
+    // ==========================
+    // 2. VIDA (HP)
     // ==========================
     const vidaInput = document.getElementById("vida");
     const totalCon = parseInt(document.getElementById("total_constituicao").value) || 0;
     const modCon = getMod(totalCon);
     const dadoVida = dadosVidaPorClasse[classe] || 0;
 
-    if (dadoVida > 0 && totalCon >= 3) {
-        // Vida = Dado Cheio + Modificador de CON
-        vidaInput.value = dadoVida + modCon;
-    } else {
-        vidaInput.value = "";
-    }
+    vidaInput.value = (dadoVida > 0 && totalCon >= 3)
+        ? dadoVida + modCon
+        : "";
 
     // ==========================
-    // 3. CLASSE DE ARMADURA (CA)
+    // 3. CA (BASE)
     // ==========================
     const caBase = 10;
+
     const totalDex = parseInt(document.getElementById("total_destreza").value) || 0;
     const modDex = getMod(totalDex);
-    
-    // Modificador de Tamanho na CA (Pequeno +1, Médio 0)
+
     let modTamanho = 0;
     if (raca === "gnomo" || raca === "halfling") modTamanho = 1;
 
-    // Preenchendo os campos da CA
-    document.getElementById("ca_dex").value = modDex;
-    document.getElementById("ca_size").value = modTamanho;
-    document.getElementById("ca_armor").value = 0; // Inicialmente sem armadura
-    document.getElementById("ca_shield").value = 0; // Inicialmente sem escudo
-    document.getElementById("ca_natural").value = 0; // Inicialmente 0
+    // futuros (equipamento etc)
+    const armor = 0;
+    const shield = 0;
+    const natural = 0;
 
-    // CA Final = 10 + DEX + TAM + ARMOR + SHIELD + NATURAL
-    if (totalDex >= 3) {
-        document.getElementById("ca_final").value = caBase + modDex + modTamanho;
-    } else {
-        document.getElementById("ca_final").value = "";
-    }
+    // ==========================
+    // PREENCHER COLUNAS
+    // ==========================
+    document.querySelectorAll(".ca_base").forEach(el => el.value = caBase);
+    document.querySelectorAll(".ca_armor").forEach(el => el.value = armor);
+    document.querySelectorAll(".ca_shield").forEach(el => el.value = shield);
+    document.querySelectorAll(".ca_natural").forEach(el => el.value = natural);
+    document.querySelectorAll(".ca_dex").forEach(el => el.value = modDex);
+    document.querySelectorAll(".ca_size").forEach(el => el.value = modTamanho);
+
+    // ==========================
+    // TOQUE (ignora armadura, escudo, natural)
+    // ==========================
+    document.querySelectorAll(".ca_toque_armor").forEach(el => el.value = "X");
+    document.querySelectorAll(".ca_toque_shield").forEach(el => el.value = "X");
+    document.querySelectorAll(".ca_toque_natural").forEach(el => el.value = "X");
+
+    // ==========================
+    // SURPRESA (perde DEX)
+    // ==========================
+    document.querySelectorAll(".ca_surpresa_dex").forEach(el => el.value = "X");
+
+    // ==========================
+    // TOTAIS
+    // ==========================
+    const caNormal = caBase + armor + shield + natural + modDex + modTamanho;
+    const caToque = caBase + modDex + modTamanho;
+    const caSurpresa = caBase + armor + shield + natural + modTamanho;
+
+    document.getElementById("ca_final").value = caNormal;
+    document.getElementById("ca_toque_total").value = caToque;
+    document.getElementById("ca_surpresa_total").value = caSurpresa;
+
+
+    // ==========================
+    // Iniciativa
+    // ==========================
+
+    document.getElementById("iniciativa").value = modDex;
+}
+function marcarInativo(id) {
+    const el = document.getElementById(id);
+    el.value = "X";
+    el.classList.add("inativo");
 }

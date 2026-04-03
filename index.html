@@ -234,9 +234,13 @@
                 <input type="text" id="vida">
                 <label for="vida">Pontos de Vida</label>
             </div>
-            <div class="fc t4">
+            <div class="fc t3">
                 <input type="text" id="deslocamento">
                 <label for="deslocamento">Deslocamento</label>
+            </div>
+            <div class="fc t3">
+                <input id="iniciativa" readonly>
+                <label for="iniciativa">Iniciativa</label>
             </div>
             <div class="ag7">
                 <!-- cabeçalho -->
@@ -248,19 +252,48 @@
                 <span>Destreza</span>
                 <span>Tamanho</span>
                 <span>Natural</span>
-                
-                
+
+                <!-- ===================== -->
+                <!-- CA NORMAL -->
+                <!-- ===================== -->
                 <span>CA</span>
-                <input type="text" id="ca_final" readonly>
-                <input type="text" id="ca_base" value="10" readonly>
-                <input type="text" id="ca_armor" readonly>
-                <input type="text" id="ca_shield" readonly>
-                <input type="text" id="ca_dex" readonly>
-                <input type="text" id="ca_size" readonly>
-                 <input type="text" id="ca_natural" readonly>
+                <input id="ca_final">
 
+                <input class="ca_base">
+                <input class="ca_armor">
+                <input class="ca_shield">
+                <input class="ca_dex">
+                <input class="ca_size">
+                <input class="ca_natural">
 
+                <!-- ===================== -->
+                <!-- TOQUE -->
+                <!-- ===================== -->
+                <span>Toque</span>
+                <input id="ca_toque_total">
+
+                <input class="ca_base">
+                <input class="ca_toque_armor">
+                <input class="ca_toque_shield">
+                <input class="ca_dex">
+                <input class="ca_size">
+                <input class="ca_toque_natural">
+
+                <!-- ===================== -->
+                <!-- SURPRESA -->
+                <!-- ===================== -->
+                <span>Surpresa</span>
+                <input id="ca_surpresa_total">
+
+                <input class="ca_base">
+                <input class="ca_armor">
+                <input class="ca_shield">
+                <input class="ca_surpresa_dex">
+                <input class="ca_size">
+                <input class="ca_natural">
             </div>
+
+            
         </section>
 
     </main>

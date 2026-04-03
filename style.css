@@ -120,12 +120,14 @@ main{
     grid-template-columns: repeat(8, 1fr);
     gap: 8px;
     max-width: 590px;
-    max-height: 60px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
+    padding: 8px;
+    margin-top: 8px;
 }
 .ag7 span {
-    font-weight: bold;
+    /* font-weight: bold; */
     text-align: center;
+    font-size: 10px;
 }
 
 .ag7 span:first-child {
@@ -135,4 +137,13 @@ main{
 .ag7 input {
     width: 100%;
     text-align: center;
+}
+input[value="X"] {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+.inativo {
+    color: red;
+    font-weight: bold;
 }
