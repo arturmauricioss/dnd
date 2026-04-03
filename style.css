@@ -287,3 +287,6 @@ input[value="X"] {
     }
 
 }
+input:focus, select:focus {
+    outline: none;
+}
