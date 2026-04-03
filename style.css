@@ -47,6 +47,12 @@ label, option, span{
 .t8{
     width: 400px;
 }
+
+.f{
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
 input,select, textarea{
     border: none;
     border-bottom: 1px solid black;
@@ -69,11 +75,14 @@ header, main{
 }
 #cabeçalho_conteudo, #stats{
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
     width: 100%;
-    gap: 10px 50px;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+#ability{
+    max-width: 300px;
 }
 main{
     display: flex;
