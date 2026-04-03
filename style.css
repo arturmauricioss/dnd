@@ -10,7 +10,7 @@ h1{
     background-color:black;
     padding-block: 25px;
 }
-label, option{
+label, option, span{
     text-transform:uppercase;
 }
 .fc{
@@ -50,6 +50,7 @@ label, option{
 input,select, textarea{
     border: none;
     border-bottom: 1px solid black;
+    padding: 4px 8px;
 }
 input[type="number"], .lvl{
     text-align: center;
@@ -59,18 +60,78 @@ img{
     max-width: 350px;
     object-fit: cover;
 }
-header{
+header, main{
     display: flex;
     width: 100%;
     max-width: 1000px;
     padding: 25px;
     margin: auto;
 }
-#cabeçalho_conteudo{
+#cabeçalho_conteudo, #stats{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
     gap: 10px 50px;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    gap:auto;
+}
+#ability{
+    h2{
+        max-width: 390px;
+    }
+}
+.ability-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(3, 1fr);
+    gap: 8px;
+    max-width: 380px;
+    max-height: 120px;
+    span{
+        width: 60px;
+    }
+}
+
+.ability-grid span {
+    font-weight: bold;
+    text-align: center;
+}
+
+.ability-grid span:first-child {
+    text-align: left;
+}
+
+.ability-grid input {
+    width: 100%;
+    text-align: center;
+}
+
+/* cabeçalho */
+.ability-grid span:nth-child(-n+4) {
+    border-bottom: 2px solid black;
+}
+.ag7{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    max-width: 590px;
+    max-height: 60px;
+    border: 1px solid black;
+}
+.ag7 span {
+    font-weight: bold;
+    text-align: center;
+}
+
+.ag7 span:first-child {
+    text-align: left;
+}
+
+.ag7 input {
+    width: 100%;
+    text-align: center;
 }

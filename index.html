@@ -181,6 +181,89 @@
     </header>
     <main>
         
+       <section id="ability">
+            <h2>Habilidades</h2>
+
+            <div class="ability-grid">
+                <!-- cabeçalho -->
+                <strong></strong>
+                <span>Base</span>
+                <span>Racial</span>
+                <span>Total</span>
+
+                <!-- FOR -->
+                <span>Força</span>
+                <input type="number" id="forca">
+                <input type="number" id="mod_racial_forca" readonly>
+                <input type="number" id="total_forca" readonly>
+
+                <!-- DES -->
+                <span>Destreza</span>
+                <input type="number" id="destreza">
+                <input type="number" id="mod_racial_destreza" readonly>
+                <input type="number" id="total_destreza" readonly>
+
+                <!-- CON -->
+                <span>Constituição</span>
+                <input type="number" id="constituicao">
+                <input type="number" id="mod_racial_constituicao" readonly>
+                <input type="number" id="total_constituicao" readonly>
+
+                <!-- INT -->
+                <span>Inteligência</span>
+                <input type="number" id="inteligencia">
+                <input type="number" id="mod_racial_inteligencia" readonly>
+                <input type="number" id="total_inteligencia" readonly>
+
+                <!-- SAB -->
+                <span>Sabedoria</span>
+                <input type="number" id="sabedoria">
+                <input type="number" id="mod_racial_sabedoria" readonly>
+                <input type="number" id="total_sabedoria" readonly>
+
+                <!-- CAR -->
+                <span>Carisma</span>
+                <input type="number" id="carisma">
+                <input type="number" id="mod_racial_carisma" readonly>
+                <input type="number" id="total_carisma" readonly>
+            </div>
+        </section>
+        
+        <section id="stats">
+            
+            <div class="fc t4">
+                <input type="text" id="vida">
+                <label for="vida">Pontos de Vida</label>
+            </div>
+            <div class="fc t4">
+                <input type="text" id="deslocamento">
+                <label for="deslocamento">Deslocamento</label>
+            </div>
+            <div class="ag7">
+                <!-- cabeçalho -->
+                <strong></strong>
+                <span>Total</span>
+                <span>Base</span>
+                <span>Armadura</span>
+                <span>Escudo</span>
+                <span>Destreza</span>
+                <span>Tamanho</span>
+                <span>Natural</span>
+                
+                
+                <span>CA</span>
+                <input type="number" id="ca_final" readonly>
+                <input type="number" id="ca_base" value="10" readonly>
+                <input type="number" id="ca_armor" readonly>
+                <input type="number" id="ca_shield" readonly>
+                <input type="number" id="ca_dex" readonly>
+                <input type="number" id="ca_size" readonly>
+                 <input type="number" id="ca_natural" readonly>
+
+
+            </div>
+        </section>
+
     </main>
     <script type="module" src="script.js"></script>
 </body>
