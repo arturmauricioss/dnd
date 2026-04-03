@@ -48,11 +48,6 @@ label, option, span{
     width: 400px;
 }
 
-.f{
-    display:grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    gap: 10px;
-}
 input,select, textarea{
     border: none;
     border-bottom: 1px solid black;
@@ -76,18 +71,15 @@ header, main{
 #cabeçalho_conteudo, #stats{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     width: 100%;
-    gap: 10px;
     justify-content: space-between;
-    align-items: flex-end;
 }
-#ability{
-    max-width: 300px;
-}
+
 main{
     display: flex;
     flex-direction: row;
-    gap:auto;
+    gap:32px;
 }
 #ability{
     h2{
@@ -129,7 +121,7 @@ main{
     gap: 8px;
     max-width: 590px;
     max-height: 60px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 .ag7 span {
     font-weight: bold;
