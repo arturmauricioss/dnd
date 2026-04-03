@@ -1,5 +1,5 @@
 export const divindades = [
-    {//
+    {
         nome: "PELOR",
         value: "pelor",
         alinhamentos: ["neutral_good", "lawful_good", "chaotic_good"]

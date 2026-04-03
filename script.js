@@ -73,6 +73,8 @@ classeSelect.addEventListener("change", () => {
 
     // limpa divindade
     deitySelect.innerHTML = '<option value="selecione">SELECIONE...</option>';
+    limparItens();
+    preencherItensClasse(classe);
     atualizarTudo();
 });
 
@@ -368,4 +370,90 @@ function marcarInativo(id) {
     const el = document.getElementById(id);
     el.value = "X";
     el.classList.add("inativo");
+}
+
+const itensPorClasse = {
+    barbaro: {
+        armas: [
+            {
+                nome: "Machado grande",
+                bonus: "",
+                dano: "1d12",
+                critico: "x3",
+                alcance: "-",
+                tipo: "Cortante",
+                peso: "6kg"
+            },
+            {
+                nome: "Arco curto",
+                bonus: "",
+                dano: "1d6",
+                critico: "x3",
+                alcance: "18m",
+                tipo: "Perfurante",
+                peso: "1kg"
+            },
+            {
+                nome: "Adaga",
+                bonus: "",
+                dano: "1d4",
+                critico: "19-20/x2",
+                alcance: "3m",
+                tipo: "Perfurante",
+                peso: "0.5kg"
+            }
+        ],
+        armadura: {
+            nome: "Corselete de couro batido",
+            tipo: "Leve",
+            bonus_ca: 3,
+            penalidade: -1,
+            deslocamento: "12m",
+            peso: "10kg"
+        }
+    }
+};
+
+function preencherItensClasse(classe) {
+    const dados = itensPorClasse[classe];
+
+    if (!dados) return;
+
+    // =====================
+    // ARMAS
+    // =====================
+    const armas = document.querySelectorAll("#weapons .weapon");
+
+    dados.armas.forEach((arma, index) => {
+        if (!armas[index]) return;
+
+        const container = armas[index];
+
+        container.querySelector(".wp_atack").value = arma.nome;
+        container.querySelector(".wp_bonus_atack").value = arma.bonus;
+        container.querySelector(".wp_damage").value = arma.dano;
+        container.querySelector(".wp_decisive_success").value = arma.critico;
+        container.querySelector(".wp_range").value = arma.alcance;
+        container.querySelector(".wp_type").value = arma.tipo;
+        container.querySelector(".wp_weight").value = arma.peso;
+    });
+
+    // =====================
+    // ARMADURA
+    // =====================
+    const armadura = document.querySelector("#armory");
+
+    if (dados.armadura && armadura) {
+        armadura.querySelector(".ar_armour").value = dados.armadura.nome;
+        armadura.querySelector(".ar_type").value = dados.armadura.tipo;
+        armadura.querySelector(".ar_bonus_ca").value = dados.armadura.bonus_ca;
+        armadura.querySelector(".ar_penal_armour").value = dados.armadura.penalidade;
+        armadura.querySelector(".ar_moviment").value = dados.armadura.deslocamento;
+        armadura.querySelector(".ar_weight").value = dados.armadura.peso;
+    }
+}
+
+function limparItens() {
+    document.querySelectorAll("#weapons input").forEach(el => el.value = "");
+    document.querySelectorAll("#armours input").forEach(el => el.value = "");
 }

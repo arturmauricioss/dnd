@@ -155,7 +155,7 @@
                 <label for="sex">Sexo</label>
             </div>
             <div class="fc t2">
-                <input type="number" id="height">
+                <input type="text" id="height">
                 <label for="height">Altura</label>
             </div>
             <div class="fc t2">
@@ -192,37 +192,37 @@
 
                 <!-- FOR -->
                 <span>Força</span>
-                <input type="number" id="forca">
+                <input type="number" id="forca" placeholder="3-18">
                 <input type="number" id="mod_racial_forca" readonly>
                 <input type="number" id="total_forca" readonly>
 
                 <!-- DES -->
                 <span>Destreza</span>
-                <input type="number" id="destreza">
+                <input type="number" id="destreza" placeholder="3-18">
                 <input type="number" id="mod_racial_destreza" readonly>
                 <input type="number" id="total_destreza" readonly>
 
                 <!-- CON -->
                 <span>Constituição</span>
-                <input type="number" id="constituicao">
+                <input type="number" id="constituicao" placeholder="3-18">
                 <input type="number" id="mod_racial_constituicao" readonly>
                 <input type="number" id="total_constituicao" readonly>
 
                 <!-- INT -->
                 <span>Inteligência</span>
-                <input type="number" id="inteligencia">
+                <input type="number" id="inteligencia" placeholder="3-18">
                 <input type="number" id="mod_racial_inteligencia" readonly>
                 <input type="number" id="total_inteligencia" readonly>
 
                 <!-- SAB -->
                 <span>Sabedoria</span>
-                <input type="number" id="sabedoria">
+                <input type="number" id="sabedoria" placeholder="3-18">
                 <input type="number" id="mod_racial_sabedoria" readonly>
                 <input type="number" id="total_sabedoria" readonly>
 
                 <!-- CAR -->
                 <span>Carisma</span>
-                <input type="number" id="carisma">
+                <input type="number" id="carisma" placeholder="3-18">
                 <input type="number" id="mod_racial_carisma" readonly>
                 <input type="number" id="total_carisma" readonly>
             </div>
@@ -230,7 +230,7 @@
         
         <section id="stats">
             
-            <div class="fc t4">
+            <div class="fc t3">
                 <input type="text" id="vida">
                 <label for="vida">Pontos de Vida</label>
             </div>
@@ -256,7 +256,8 @@
                 <!-- ===================== -->
                 <!-- CA NORMAL -->
                 <!-- ===================== -->
-                <span>CA</span>
+
+                <strong><span>CA</span></strong>
                 <input id="ca_final">
 
                 <input class="ca_base">
@@ -269,7 +270,7 @@
                 <!-- ===================== -->
                 <!-- TOQUE -->
                 <!-- ===================== -->
-                <span>Toque</span>
+                <strong><span>Toque</span></strong>
                 <input id="ca_toque_total">
 
                 <input class="ca_base">
@@ -282,7 +283,7 @@
                 <!-- ===================== -->
                 <!-- SURPRESA -->
                 <!-- ===================== -->
-                <span>Surpresa</span>
+                <strong><span>Surpresa</span></strong>
                 <input id="ca_surpresa_total">
 
                 <input class="ca_base">
@@ -293,9 +294,259 @@
                 <input class="ca_natural">
             </div>
 
+            <!-- Aqui deve ser adicionado ainda testes de resistencia, bonus base de ataque, resistencia a magia e agarrar e experiencia -->
             
         </section>
+        <section id="inventory">
+            <div>
+                <br>
+                <h3>Armas</h3>
+                <div id="weapons">
+                    <div class="weapon">
+                        <input type="text" class="wp_atack">
+                        <input type="text" class="wp_bonus_atack">
+                        <input type="text" class="wp_damage">
+                        <input type="text" class="wp_decisive_success">
+                        <input type="text" class="wp_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type">
+                        <input type="text" class="wp_weight">
+                        <input type="text" class="wp_ammo">
+                        <input type="text" class="wp_quantity">
+                        <input type="text" class="wp_observation">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack">
+                        <input type="text" class="wp_bonus_atack">
+                        <input type="text" class="wp_damage">
+                        <input type="text" class="wp_decisive_success">
+                        <input type="text" class="wp_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type">
+                        <input type="text" class="wp_weight">
+                        <input type="text" class="wp_ammo">
+                        <input type="text" class="wp_quantity">
+                        <input type="text" class="wp_observation">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack">
+                        <input type="text" class="wp_bonus_atack">
+                        <input type="text" class="wp_damage">
+                        <input type="text" class="wp_decisive_success">
+                        <input type="text" class="wp_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type">
+                        <input type="text" class="wp_weight">
+                        <input type="text" class="wp_ammo">
+                        <input type="text" class="wp_quantity">
+                        <input type="text" class="wp_observation">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack">
+                        <input type="text" class="wp_bonus_atack">
+                        <input type="text" class="wp_damage">
+                        <input type="text" class="wp_decisive_success">
+                        <input type="text" class="wp_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type">
+                        <input type="text" class="wp_weight">
+                        <input type="text" class="wp_ammo">
+                        <input type="text" class="wp_quantity">
+                        <input type="text" class="wp_observation">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                </div>
+                </div>
+                <div>
+                <br>
+                <h3>Armaduras, Escudos e Equipamentos de Proteção</h3>
+                <div id="armours">
+                    <div class="armour" id="armory">
+                        <input type="text" class="ar_armour">
+                        <input type="text" class="ar_type">
+                        <input type="text" class="ar_bonus_ca">
+                        <span>Armadura</span>
+                        <span>Tipo</span>
+                        <span>Bonus na CA</span>
+                        <input type="text" class="ar_dex_max">
+                        <input type="text" class="ar_penal_armour">
+                        <input type="text" class="ar_chance_mag_fail">
+                        <span>Des MAX.</span>
+                        <span>Penal Armadura</span>
+                        <span>Chance Falh Mag</span>
+                        <input type="text" class="ar_moviment">
+                        <input type="text" class="ar_weight">
+                        <input type="text" class="ar_proprieties">
+                        <span>deslocamento</span>
+                        <span>peso</span>
+                        <span>propriedades Esp</span>
+                    </div>
+                    <div class="armour" id="shield">
+                        <input type="text" class="ar_shield">
+                        <input type="text" class="ar_bonus_ca">
+                        <input type="text" class="ar_weight">
+                        <span>Escudo</span>
+                        <span>Bonus na CA</span>
+                        <span>peso</span>
+                        <input type="text" class="ar_penal_armour">
+                        <input type="text" class="ar_chance_mag_fail">
+                        <input type="text" class="ar_proprieties">
+                        <span>Penal Armadura</span>
+                        <span>Chance Falh Mag</span>
+                        <span>props Especiais</span>
+                    </div>
+                    <div id="protect">
+                        <div class="armour protect">
+                            <input type="text" class="ar_protection">
+                            <input type="text" class="ar_bonus_ca">
+                            <input type="text" class="ar_weight">
+                            <input type="text" class="ar_proprieties">
+                            <span>Item de Proteção</span>
+                            <span>Bonus na CA</span>
+                            <span>peso</span>
+                            <span>props Especiais</span>
+                        </div>
+                        <div class="armour protect">
+                            <input type="text" class="ar_protection">
+                            <input type="text" class="ar_bonus_ca">
+                            <input type="text" class="ar_weight">
+                            <input type="text" class="ar_proprieties">
+                            <span>Item de Proteção</span>
+                            <span>Bonus na CA</span>
+                            <span>peso</span>
+                            <span>props Especiais</span>
+                        </div>
+                    </div>
 
+                </div>
+                </div>
+        </section>
+        <div class="bag">
+            <br>
+            <h3>Outros Itens</h3>
+            <div id="other_itens">
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+            </div>
+            <br>
+            <div id="final_equipament_info">
+                <br>
+                    <h3>Peso Final</h3>
+                    <div class="final_equipament_weight">
+                        <input type="text" id="weight_total_carried">
+                        <input type="text" id="weight_light">
+                        <input type="text" id="weight_medium">
+                        <input type="text" id="weight_hard">
+                        <input type="text" id="weight_over_head">
+                        <input type="text" id="weight_over_ground">
+                        <input type="text" id="weight_pull_push">
+                        <span>Peso Total Carregado</span>
+                        <span>Carga Leve</span>
+                        <span>Carga Média</span>
+                        <span>Carga Pesada</span>
+                        <span>Erguer Sobre a Cabeça</span>
+                        <span>Erguer do Chão</span>
+                        <span>Empurrar ou Arrastar</span>
+                    </div>
+                    <br>
+                    <h3>Dinheiro</h3>
+                    <div class="money">
+                        <input type="text" class="pl_money">
+                        <input type="text" class="po_money">
+                        <input type="text" class="pp_money">
+                        <input type="text" class="pc_money">
+                        <span>Peça de Platina</span>
+                        <span>Peça de Ouro</span>
+                        <span>Peça de Prata</span>
+                        <span>Peça de Cobre</span>
+                        
+
+                    </div>
+            </div>
+        </div>
+        
     </main>
     <script type="module" src="script.js"></script>
 </body>
