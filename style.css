@@ -67,7 +67,7 @@ img{
     max-width: 350px;
     object-fit: cover;
 }
-header, main{
+header, main, footer{
     display: flex;
     width: 100%;
     max-width: 1000px;
