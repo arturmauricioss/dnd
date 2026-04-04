@@ -1,0 +1,26 @@
+{
+  "chat.tools.terminal.outputLocation": "chat",
+  "chat.fontSize": 18,
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "editor.lineHeight": 1.6,
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "on",
+  "editor.glyphMargin": false,
+  "files.autoSave": "afterDelay",
+  "zenMode.fullScreen": false,
+  "zenMode.centerLayout": false,
+  "zenMode.showTabs": "none",
+  "zenMode.hideActivityBar": true,
+  "zenMode.hideLineNumbers": true,
+  "zenMode.silentNotifications": true,
+  "github.copilot": {
+    "enable": false,
+    "inlineSuggest": {
+      "enable": false
+    }
+  },
+  "editor.inlineSuggest.enabled": false,
+  "liveServer.settings.donotShowInfoMsg": true
+}

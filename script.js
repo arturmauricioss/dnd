@@ -1,4 +1,6 @@
 import { divindades } from "./divindades.js";
+import { itensPorClasse } from "./itensporclasse.js";
+import { mapeamentoCompleto } from "./mapeamentocompleto.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -225,14 +227,15 @@ function calcularAtributos(event) {
         const inputBase = document.getElementById(hab);
         const inputRacial = document.getElementById(`mod_racial_${hab}`);
         const inputTotal = document.getElementById(`total_${hab}`);
+        
+        // --- SEU NOVO PADRÃO DE ID ---
+        const inputModificador = document.getElementById(`mod_habilidade_${hab}`); 
 
         if (!inputBase) return;
 
         let valorBase = parseInt(inputBase.value);
 
-        // --- CORREÇÃO DA REGRA DO MÍNIMO 3 ---
-        // Só forçamos o "3" se o evento for 'blur' (perda de foco).
-        // No 'input' (digitação), deixamos o usuário digitar livremente.
+        // Regra do mínimo 3 no blur (perda de foco)
         if (event && event.type === "blur") {
             if (!isNaN(valorBase) && valorBase < 3 && inputBase.value !== "") {
                 valorBase = 3;
@@ -242,18 +245,35 @@ function calcularAtributos(event) {
 
         const valorBaseCalculo = valorBase || 0;
         const valorRacial = bonusDaRaca[hab] || 0;
-        inputRacial.value = valorRacial;
+        
+        if (inputRacial) inputRacial.value = valorRacial;
 
         let soma = valorBaseCalculo + valorRacial;
+        let valorFinal = 0;
 
         if (valorBaseCalculo > 0) {
-            if (hab === "inteligencia") {
-                inputTotal.value = Math.max(3, soma);
-            } else {
-                inputTotal.value = soma;
+            // Regra de inteligência mínima
+            valorFinal = (hab === "inteligencia") ? Math.max(3, soma) : soma;
+            if (inputTotal) inputTotal.value = valorFinal;
+            
+            // --- CÁLCULO E EXIBIÇÃO DO MODIFICADOR ---
+            const modificador = getMod(valorFinal);
+            
+            if (inputModificador) {
+                const modificador = getMod(valorFinal);
+
+                // Se o input for do tipo TEXT, ele aceita o +
+                // Se for do tipo NUMBER, ele só aceita o número puro
+                if (inputModificador.type === "text") {
+                    inputModificador.value = modificador > 0 ? `+${modificador}` : modificador;
+                } else {
+                    inputModificador.value = modificador;
+                }
             }
         } else {
-            inputTotal.value = 0;
+            // Limpa os campos se não houver valor base
+            if (inputTotal) inputTotal.value = "";
+            if (inputModificador) inputModificador.value = "";
         }
     });
 }
@@ -361,58 +381,80 @@ function atualizarTudo() {
 
 
     // ==========================
-    // Iniciativa
+    // 4. Iniciativa
     // ==========================
+    const iniciativaTotalInput = document.getElementById("iniciativa_total");
+    const iniciativaHiddenInput = document.getElementById("iniciativa");    
+    const iniciativaOutrosHiddenInput = document.getElementById("iniciativa_outros");
 
-    document.getElementById("iniciativa").value = modDex;
-}
+    if (iniciativaTotalInput && iniciativaHiddenInput && iniciativaOutrosHiddenInput) {
+        // 1. Pegamos o valor de 'outros'. Se estiver vazio ou não for número, vira 0
+        const outros = parseInt(iniciativaOutrosHiddenInput.value) || 0;
+        
+        // 2. Somamos o modificador de Destreza (que já é número) com o bônus de outros
+        const somaTotal = modDex + outros;
+
+        // 3. Formatamos para exibição (colocando o + se for positivo)
+        const valFormatado = somaTotal > 0 ? `+${somaTotal}` : somaTotal;
+        
+        // 4. Distribuímos os valores
+        iniciativaTotalInput.value = valFormatado; // Visível no HTML
+        iniciativaHiddenInput.value = modDex > 0 ? `+${modDex}` : modDex; // Modificador puro para o PDF
+        
+        // Se você quiser que o 'outros' também tenha o sinal no PDF:
+        // iniciativaOutrosHiddenInput.value = outros; 
+    }
+} // <--- Fecha a função atualizarTudo aqui
+
 function marcarInativo(id) {
     const el = document.getElementById(id);
-    el.value = "X";
-    el.classList.add("inativo");
+    if (el) {
+        el.value = "X";
+        el.classList.add("inativo");
+    }
 }
 
-const itensPorClasse = {
-    barbaro: {
-        armas: [
-            {
-                nome: "Machado grande",
-                bonus: "",
-                dano: "1d12",
-                critico: "x3",
-                alcance: "-",
-                tipo: "Cortante",
-                peso: "6kg"
-            },
-            {
-                nome: "Arco curto",
-                bonus: "",
-                dano: "1d6",
-                critico: "x3",
-                alcance: "18m",
-                tipo: "Perfurante",
-                peso: "1kg"
-            },
-            {
-                nome: "Adaga",
-                bonus: "",
-                dano: "1d4",
-                critico: "19-20/x2",
-                alcance: "3m",
-                tipo: "Perfurante",
-                peso: "0.5kg"
-            }
-        ],
-        armadura: {
-            nome: "Corselete de couro batido",
-            tipo: "Leve",
-            bonus_ca: 3,
-            penalidade: -1,
-            deslocamento: "12m",
-            peso: "10kg"
-        }
-    }
-};
+// const itensPorClasse = {
+//     barbaro: {
+//         armas: [
+//             {
+//                 nome: "Machado grande",
+//                 bonus: "",
+//                 dano: "1d12",
+//                 critico: "x3",
+//                 alcance: "-",
+//                 tipo: "Cortante",
+//                 peso: "6kg"
+//             },
+//             {
+//                 nome: "Arco curto",
+//                 bonus: "",
+//                 dano: "1d6",
+//                 critico: "x3",
+//                 alcance: "18m",
+//                 tipo: "Perfurante",
+//                 peso: "1kg"
+//             },
+//             {
+//                 nome: "Adaga",
+//                 bonus: "",
+//                 dano: "1d4",
+//                 critico: "19-20/x2",
+//                 alcance: "3m",
+//                 tipo: "Perfurante",
+//                 peso: "0.5kg"
+//             }
+//         ],
+//         armadura: {
+//             nome: "Corselete de couro batido",
+//             tipo: "Leve",
+//             bonus_ca: 3,
+//             penalidade: -1,
+//             deslocamento: "12m",
+//             peso: "10kg"
+//         }
+//     }
+// };
 
 function preencherItensClasse(classe) {
     const dados = itensPorClasse[classe];
@@ -527,44 +569,3 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
 });
-// Este objeto traduz: ID DO HTML -> NOME EXATO NO PDF
-const mapeamentoCompleto = {
-    // --- CABEÇALHO / IDENTIDADE ---
-    'character_name': 'Nome do Personagem',
-    'player': 'Jogador',
-    'class': 'Classe',
-    'level_class': 'Nível',
-    'race': 'Raça',
-    'alignment': 'Tendência',
-    'sex': 'Sexo',
-    'idade': 'Idade',
-    'height': 'Altura',
-    'weight': 'Peso',
-    'eyes': 'Olhos',
-    'hair': 'Cabelo',
-    'skin': 'Pele',
-    'profession': 'Profissão',
-    'level_profession': 'Nível Profissão', // Verifique se o nome no PDF é esse
-
-    // --- ATRIBUTOS (Habilidades) ---
-    'total_forca': 'For',
-    'total_destreza': 'Des',
-    'total_constituicao': 'Con',
-    'total_inteligencia': 'Int',
-    'total_sabedoria': 'Sab',
-    'total_carisma': 'Car',
-
-    // --- STATUS DE COMBATE ---
-    'vida': 'PV',
-    'deslocamento': 'Deslocamento',
-    'iniciativa': 'Iniciativa',
-    'ca_final': 'CA',
-    'ca_toque_total': 'Toque',
-    'ca_surpresa_total': 'Surpresa',
-
-    // --- CARGA E DINHEIRO ---
-    'weight_total_carried': 'Peso Total',
-    'weight_light': 'Carga Leve',
-    'weight_medium': 'Carga Média',
-    'weight_hard': 'Carga Pesada'
-};

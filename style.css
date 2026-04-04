@@ -106,7 +106,7 @@ main{
 }
 .ability-grid {
     display: grid;
-    grid-template-columns: 140px repeat(3, 1fr);
+    grid-template-columns: 140px repeat(4, 1fr);
     gap: 8px;
     max-width: 380px;
     span{
@@ -129,9 +129,7 @@ main{
 }
 
 /* cabeçalho */
-.ability-grid span:nth-child(-n+4) {
-    border-bottom: 2px solid black;
-}
+
 .ag7{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
