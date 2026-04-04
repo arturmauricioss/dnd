@@ -341,10 +341,34 @@ function atualizarTudo() {
     let modTamanho = 0;
     if (raca === "gnomo" || raca === "halfling") modTamanho = 1;
 
-    // futuros (equipamento etc)
-    const armor = 0;
-    const shield = 0;
+    // ==========================
+    // EQUIPAMENTO (ARMADURA / ESCUDO)
+    // ==========================
+    function parseBonus(valor) {
+        if (!valor) return 0;
+
+        // remove qualquer coisa que não seja número ou sinal
+        const numero = parseInt(valor.toString().replace(/[^\d-]/g, ""));
+        
+        return isNaN(numero) ? 0 : numero;
+    }
+    // ARMADURA
+    const armorInput = document.querySelector("#armory .ar_bonus_ca");
+    const armor = parseBonus(armorInput?.value);
+    
+
+    // ESCUDO
+    const shieldInput = document.querySelector("#shield .ar_bonus_ca");
+    const shield = parseBonus(shieldInput?.value);
     const natural = 0;
+
+    const protecoes = document.querySelectorAll(".protect .ar_bonus_ca");
+
+    let bonusProtecao = 0;
+
+    protecoes.forEach(el => {
+        bonusProtecao += parseBonus(el.value);
+    });
 
     // ==========================
     // PREENCHER COLUNAS
@@ -371,9 +395,9 @@ function atualizarTudo() {
     // ==========================
     // TOTAIS
     // ==========================
-    const caNormal = caBase + armor + shield + natural + modDex + modTamanho;
+    const caNormal = caBase + armor + shield + natural + modDex + modTamanho + bonusProtecao;
     const caToque = caBase + modDex + modTamanho;
-    const caSurpresa = caBase + armor + shield + natural + modTamanho;
+    const caSurpresa = caBase + armor + shield + natural + modTamanho + bonusProtecao;
 
     document.getElementById("ca_final").value = caNormal;
     document.getElementById("ca_toque_total").value = caToque;
@@ -414,48 +438,6 @@ function marcarInativo(id) {
     }
 }
 
-// const itensPorClasse = {
-//     barbaro: {
-//         armas: [
-//             {
-//                 nome: "Machado grande",
-//                 bonus: "",
-//                 dano: "1d12",
-//                 critico: "x3",
-//                 alcance: "-",
-//                 tipo: "Cortante",
-//                 peso: "6kg"
-//             },
-//             {
-//                 nome: "Arco curto",
-//                 bonus: "",
-//                 dano: "1d6",
-//                 critico: "x3",
-//                 alcance: "18m",
-//                 tipo: "Perfurante",
-//                 peso: "1kg"
-//             },
-//             {
-//                 nome: "Adaga",
-//                 bonus: "",
-//                 dano: "1d4",
-//                 critico: "19-20/x2",
-//                 alcance: "3m",
-//                 tipo: "Perfurante",
-//                 peso: "0.5kg"
-//             }
-//         ],
-//         armadura: {
-//             nome: "Corselete de couro batido",
-//             tipo: "Leve",
-//             bonus_ca: 3,
-//             penalidade: -1,
-//             deslocamento: "12m",
-//             peso: "10kg"
-//         }
-//     }
-// };
-
 function preencherItensClasse(classe) {
     const dados = itensPorClasse[classe];
 
@@ -466,18 +448,22 @@ function preencherItensClasse(classe) {
     // =====================
     const armas = document.querySelectorAll("#weapons .weapon");
 
-    dados.armas.forEach((arma, index) => {
-        if (!armas[index]) return;
-
+     dados.armas.forEach((arma, index) => {
         const container = armas[index];
+        if (!container) return;
 
-        container.querySelector(".wp_atack").value = arma.nome;
-        container.querySelector(".wp_bonus_atack").value = arma.bonus;
-        container.querySelector(".wp_damage").value = arma.dano;
-        container.querySelector(".wp_decisive_success").value = arma.critico;
-        container.querySelector(".wp_range").value = arma.alcance;
-        container.querySelector(".wp_type").value = arma.tipo;
-        container.querySelector(".wp_weight").value = arma.peso;
+        container.querySelector(".wp_atack").value = arma.nome || "";
+        container.querySelector(".wp_bonus_atack").value = arma.bonus || "";
+        container.querySelector(".wp_damage").value = arma.dano || "";
+        container.querySelector(".wp_decisive_success").value = arma.critico || "";
+        container.querySelector(".wp_range").value = arma.alcance || "";
+        container.querySelector(".wp_type").value = arma.tipo || "";
+        container.querySelector(".wp_weight").value = arma.peso || "";
+
+        // 🔥 CAMPOS QUE FALTAVAM
+        container.querySelector(".wp_ammo").value = arma.municao || "";
+        container.querySelector(".wp_quantity").value = arma.quantidade || "";
+        container.querySelector(".wp_observation").value = arma.observacao || "";
     });
 
     // =====================
@@ -486,27 +472,87 @@ function preencherItensClasse(classe) {
     const armadura = document.querySelector("#armory");
 
     if (dados.armadura && armadura) {
-        armadura.querySelector(".ar_armour").value = dados.armadura.nome;
-        armadura.querySelector(".ar_type").value = dados.armadura.tipo;
-        armadura.querySelector(".ar_bonus_ca").value = dados.armadura.bonus_ca;
-        armadura.querySelector(".ar_penal_armour").value = dados.armadura.penalidade;
-        armadura.querySelector(".ar_moviment").value = dados.armadura.deslocamento;
-        armadura.querySelector(".ar_weight").value = dados.armadura.peso;
+        armadura.querySelector(".ar_armour").value = dados.armadura.nome || "";
+        armadura.querySelector(".ar_type").value = dados.armadura.tipo || "";
+        armadura.querySelector(".ar_bonus_ca").value = dados.armadura.bonus_ca || "";
+        armadura.querySelector(".ar_dex_max").value = dados.armadura.dex_max || "";
+        armadura.querySelector(".ar_penal_armour").value = dados.armadura.penalidade || "";
+        armadura.querySelector(".ar_chance_mag_fail").value = dados.armadura.falha_magia || "";
+        armadura.querySelector(".ar_moviment").value = dados.armadura.deslocamento || "";
+        armadura.querySelector(".ar_weight").value = dados.armadura.peso || "";
+        armadura.querySelector(".ar_proprieties").value = dados.armadura.propriedades || "";
+    }
+
+    // ESCUDO
+    const escudo = document.querySelector("#shield");
+
+    if (dados.escudo && escudo) {
+        escudo.querySelector(".ar_shield").value = dados.escudo.nome || "";
+        escudo.querySelector(".ar_bonus_ca").value = dados.escudo.bonus_ca || "";
+        escudo.querySelector(".ar_weight").value = dados.escudo.peso || "";
+        escudo.querySelector(".ar_penal_armour").value = dados.escudo.penalidade || "";
+        escudo.querySelector(".ar_chance_mag_fail").value = dados.escudo.falha_magia || "";
+        escudo.querySelector(".ar_proprieties").value = dados.escudo.propriedades || "";
+    }
+
+    // ITENS DE PROTEÇÃO
+    const protecoes = document.querySelectorAll(".protect");
+
+    if (dados.protecoes) {
+        dados.protecoes.forEach((item, index) => {
+            const container = protecoes[index];
+            if (!container) return;
+
+            container.querySelector(".ar_protection").value = item.nome || "";
+            container.querySelector(".ar_bonus_ca").value = item.bonus_ca || "";
+            container.querySelector(".ar_weight").value = item.peso || "";
+            container.querySelector(".ar_proprieties").value = item.propriedades || "";
+        });
+    }
+
+    const itens = document.querySelectorAll("#other_itens .item");
+
+    if (dados.itens) {
+        dados.itens.forEach((item, index) => {
+            const container = itens[index];
+            if (!container) return;
+
+            container.querySelector(".ot_item").value = item.nome || "";
+            container.querySelector(".ot_page").value = item.pagina || "";
+            container.querySelector(".ot_weight").value = item.peso || "";
+        });
+    }
+    // =====================
+    // DINHEIRO
+    // =====================
+    const dinheiro = dados.dinheiro;
+
+    if (dinheiro) {
+        const setMoney = (selector, value) => {
+            const el = document.querySelector(selector);
+            if (el) el.value = value || "";
+        };
+
+        setMoney(".pl_money", dinheiro.pl);
+        setMoney(".po_money", dinheiro.po);
+        setMoney(".pp_money", dinheiro.pp);
+        setMoney(".pc_money", dinheiro.pc);
     }
 }
 
 function limparItens() {
+    // Armas
     document.querySelectorAll("#weapons input").forEach(el => el.value = "");
+
+    // Armaduras (corrigido)
     document.querySelectorAll("#armours input").forEach(el => el.value = "");
+
+    // Bag
+    document.querySelectorAll("#other_itens input").forEach(el => el.value = "");
 }
 
 // script.js
 
-const btnExportar = document.getElementById('btn_exportar');
-
-if (btnExportar) {
-    btnExportar.addEventListener('click', exportarFicha);
-}
 
 // 1. Defina a função (certifique-se que o nome é este)
 async function exportarFicha() {
@@ -543,6 +589,31 @@ async function exportarFicha() {
             }
         }
 
+        function marcarMunicao(ataqueIndex, quantidade) {
+            const qtd = parseInt(quantidade) || 0;
+
+            for (let i = 0; i < 30; i++) {
+                try {
+                    const campo = form.getCheckBox(`Zbox Ataque ${ataqueIndex} Munição ${i}`);
+                    
+                    if (i < qtd) {
+                        campo.check();
+                    } else {
+                        campo.uncheck();
+                    }
+
+                } catch (err) {
+                    console.warn(`Checkbox não encontrado: Ataque ${ataqueIndex} Munição ${i}`);
+                }
+            }
+        }
+        const armas = document.querySelectorAll("#weapons .weapon");
+
+        armas.forEach((armaEl, index) => {
+            const quantidade = armaEl.querySelector(".wp_quantity")?.value;
+
+            marcarMunicao(index + 1, quantidade);
+        });
         // 2. Gerar e baixar o arquivo
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: "application/pdf" });

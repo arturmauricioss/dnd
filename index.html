@@ -407,55 +407,55 @@
                 <h3>Armaduras, Escudos e Equipamentos de Proteção</h3>
                 <div id="armours">
                     <div class="armour" id="armory">
-                        <input type="text" class="ar_armour">
-                        <input type="text" class="ar_type">
-                        <input type="text" class="ar_bonus_ca">
+                        <input type="text" class="ar_armour" id="armor_name">
+                        <input type="text" class="ar_type" id="armor_type">
+                        <input type="text" class="ar_bonus_ca" id="armor_bonus">
                         <span>Armadura</span>
                         <span>Tipo</span>
                         <span>Bonus na CA</span>
-                        <input type="text" class="ar_dex_max">
-                        <input type="text" class="ar_penal_armour">
-                        <input type="text" class="ar_chance_mag_fail">
+                        <input type="text" class="ar_dex_max" id="armor_dex_max">
+                        <input type="text" class="ar_penal_armour" id="armor_penalty">
+                        <input type="text" class="ar_chance_mag_fail" id="armor_spell_fail">
                         <span>Des MAX.</span>
                         <span>Penal Armadura</span>
                         <span>Chance Falh Mag</span>
-                        <input type="text" class="ar_moviment">
-                        <input type="text" class="ar_weight">
-                        <input type="text" class="ar_proprieties">
+                        <input type="text" class="ar_moviment" id="armor_speed">
+                        <input type="text" class="ar_weight" id="armor_weight">
+                        <input type="text" class="ar_proprieties" id="armor_notes">
                         <span>deslocamento</span>
                         <span>peso</span>
                         <span>propriedades Esp</span>
                     </div>
                     <div class="armour" id="shield">
-                        <input type="text" class="ar_shield">
-                        <input type="text" class="ar_bonus_ca">
-                        <input type="text" class="ar_weight">
+                        <input type="text" class="ar_shield" id="shield_name">
+                        <input type="text" class="ar_bonus_ca" id="shield_bonus">
+                        <input type="text" class="ar_weight" id="shield_weight">
                         <span>Escudo</span>
                         <span>Bonus na CA</span>
                         <span>peso</span>
-                        <input type="text" class="ar_penal_armour">
-                        <input type="text" class="ar_chance_mag_fail">
-                        <input type="text" class="ar_proprieties">
+                        <input type="text" class="ar_penal_armour" id="shield_penalty">
+                        <input type="text" class="ar_chance_mag_fail" id="shield_spell_fail">
+                        <input type="text" class="ar_proprieties" id="shield_notes">
                         <span>Penal Armadura</span>
                         <span>Chance Falh Mag</span>
                         <span>props Especiais</span>
                     </div>
                     <div id="protect">
                         <div class="armour protect">
-                            <input type="text" class="ar_protection">
-                            <input type="text" class="ar_bonus_ca">
-                            <input type="text" class="ar_weight">
-                            <input type="text" class="ar_proprieties">
+                            <input type="text" class="ar_protection" id="item_1">
+                            <input type="text" class="ar_bonus_ca" id="item_1_bonus">
+                            <input type="text" class="ar_weight" id="item_1_weight">
+                            <input type="text" class="ar_proprieties" id="item_1_props">
                             <span>Item de Proteção</span>
                             <span>Bonus na CA</span>
                             <span>peso</span>
                             <span>props Especiais</span>
                         </div>
                         <div class="armour protect">
-                            <input type="text" class="ar_protection">
-                            <input type="text" class="ar_bonus_ca">
-                            <input type="text" class="ar_weight">
-                            <input type="text" class="ar_proprieties">
+                            <input type="text" class="ar_protection" id="item_2">
+                            <input type="text" class="ar_bonus_ca" id="item_2_bonus">
+                            <input type="text" class="ar_weight" id="item_2_weight">
+                            <input type="text" class="ar_proprieties" id="item_2_props">
                             <span>Item de Proteção</span>
                             <span>Bonus na CA</span>
                             <span>peso</span>
@@ -471,7 +471,7 @@
             <h3>Outros Itens</h3>
             <div id="other_itens">
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_0">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>
@@ -479,7 +479,7 @@
                     <span>Peso</span>
                 </div>
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_1">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>
@@ -488,7 +488,7 @@
                 </div>
 
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_2">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>
@@ -496,7 +496,7 @@
                     <span>Peso</span>
                 </div>
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_3">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>
@@ -504,7 +504,7 @@
                     <span>Peso</span>
                 </div>
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_4">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>
@@ -512,7 +512,55 @@
                     <span>Peso</span>
                 </div>
                 <div class="item">
-                    <input class="ot_item">
+                    <input class="ot_item" id="itens_5">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_6">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_7">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_8">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_9">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_10">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_11">
                     <input class="ot_page">
                     <input class="ot_weight">
                     <span>Item</span>

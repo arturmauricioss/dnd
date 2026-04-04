@@ -179,6 +179,20 @@ export const mapeamentoCompleto = {
     'item_2_weight': 'Item 2 Peso',
     'item_2_props': 'Item 2 Propriedades',
 
+     // --- ITENS GERAIS ---
+
+    'itens_0': 'Itens0',
+    'itens_1': 'Itens1',
+    'itens_2': 'Itens2',
+    'itens_3': 'Itens3',
+    'itens_4': 'Itens4',
+    'itens_5': 'Itens5',
+    'itens_6': 'Itens6',
+    'itens_7': 'Itens7',
+    'itens_8': 'Itens8',
+    'itens_9': 'Itens9',
+    'itens_10': 'Itens10',
+    'itens_11': 'Itens11',
 
     // --- DINHEIRO ---
     'money_pp': 'Platina',
