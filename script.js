@@ -457,3 +457,114 @@ function limparItens() {
     document.querySelectorAll("#weapons input").forEach(el => el.value = "");
     document.querySelectorAll("#armours input").forEach(el => el.value = "");
 }
+
+// script.js
+
+const btnExportar = document.getElementById('btn_exportar');
+
+if (btnExportar) {
+    btnExportar.addEventListener('click', exportarFicha);
+}
+
+// 1. Defina a função (certifique-se que o nome é este)
+async function exportarFicha() {
+    console.log("Iniciando exportação...");
+    try {
+        const url = './ficha.pdf'; 
+        const bytes = await fetch(url).then(res => res.arrayBuffer());
+        const pdfDoc = await PDFLib.PDFDocument.load(bytes);
+        const form = pdfDoc.getForm();
+
+        // 1. IMPORTANTE: Usar o mapeamentoCompleto aqui!
+        for (const [idHtml, nomePdf] of Object.entries(mapeamentoCompleto)) {
+            const elemento = document.getElementById(idHtml);
+            
+            if (elemento) {
+                let valor = "";
+
+                // Lógica para pegar o texto de SELECTs ou o valor de INPUTs
+                if (elemento.tagName === 'SELECT') {
+                    valor = elemento.options[elemento.selectedIndex].text;
+                    if (valor.includes("SELECIONE")) valor = ""; 
+                } else {
+                    valor = elemento.value;
+                }
+
+                // Tenta inserir no PDF
+                try {
+                    const campoPdf = form.getTextField(nomePdf);
+                    campoPdf.setText(valor.toString());
+                } catch (err) {
+                    // Isso ajuda a debugar: se o nome no PDF estiver errado, ele avisa no console
+                    console.warn(`Campo PDF "${nomePdf}" não encontrado. Verifique o nome no PDF.`);
+                }
+            }
+        }
+
+        // 2. Gerar e baixar o arquivo
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        
+        const nomeChar = document.getElementById('character_name').value || "Ficha_D&D";
+        link.download = `${nomeChar}.pdf`;
+        link.click();
+        
+        console.log("Exportação concluída!");
+    } catch (error) {
+        console.error("Erro detalhado na exportação:", error);
+    }
+}
+
+// 2. O PULO DO GATO: Ligue o botão do seu HTML à função aqui no JS
+// No seu HTML o id é "btn_exportar"
+document.addEventListener('DOMContentLoaded', () => {
+    const botao = document.getElementById('btn_exportar');
+    if (botao) {
+        botao.addEventListener('click', exportarFicha);
+    } else {
+        console.error("Não achei o botão com id 'btn_exportar'");
+    }
+});
+// Este objeto traduz: ID DO HTML -> NOME EXATO NO PDF
+const mapeamentoCompleto = {
+    // --- CABEÇALHO / IDENTIDADE ---
+    'character_name': 'Nome do Personagem',
+    'player': 'Jogador',
+    'class': 'Classe',
+    'level_class': 'Nível',
+    'race': 'Raça',
+    'alignment': 'Tendência',
+    'sex': 'Sexo',
+    'idade': 'Idade',
+    'height': 'Altura',
+    'weight': 'Peso',
+    'eyes': 'Olhos',
+    'hair': 'Cabelo',
+    'skin': 'Pele',
+    'profession': 'Profissão',
+    'level_profession': 'Nível Profissão', // Verifique se o nome no PDF é esse
+
+    // --- ATRIBUTOS (Habilidades) ---
+    'total_forca': 'For',
+    'total_destreza': 'Des',
+    'total_constituicao': 'Con',
+    'total_inteligencia': 'Int',
+    'total_sabedoria': 'Sab',
+    'total_carisma': 'Car',
+
+    // --- STATUS DE COMBATE ---
+    'vida': 'PV',
+    'deslocamento': 'Deslocamento',
+    'iniciativa': 'Iniciativa',
+    'ca_final': 'CA',
+    'ca_toque_total': 'Toque',
+    'ca_surpresa_total': 'Surpresa',
+
+    // --- CARGA E DINHEIRO ---
+    'weight_total_carried': 'Peso Total',
+    'weight_light': 'Carga Leve',
+    'weight_medium': 'Carga Média',
+    'weight_hard': 'Carga Pesada'
+};
