@@ -306,6 +306,7 @@ function getMod(valor) {
 }
 function atualizarTudo() {
     calcularAtributos();
+    atualizarIdiomas();
     
     const raca = raceSelect.value;
     const classe = classeSelect.value;
@@ -639,4 +640,152 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
+});
+
+function atualizarIdiomas() {
+    const raca = raceSelect.value;
+    const classe = classeSelect.value;
+
+    const leitura = document.getElementById("leitura_escrita");
+
+    const idioma1 = document.getElementById("idioma_1");
+    const idioma2 = document.getElementById("idioma_2");
+    const idioma3 = document.getElementById("idioma_3");
+
+    // =========================
+    // LEITURA / ESCRITA
+    // =========================
+    leitura.value = (classe === "barbaro")
+        ? "Analfabeto"
+        : "Alfabetizado";
+
+    // =========================
+    // IDIOMA 1 → COMUM
+    // =========================
+    idioma1.value = "Comum";
+    idioma1.readOnly = true;
+
+    // =========================
+    // IDIOMA RACIAL
+    // =========================
+    const idiomasPorRaca = {
+        humano: null,
+        elfo: "Élfico",
+        anao: "Anão",
+        halfling: "Halfling",
+        gnomo: "Gnomo",
+        "meio-elfo": "Élfico",
+        "meio-orc": "Orc"
+    };
+
+    const racial = idiomasPorRaca[raca];
+
+    // =========================
+    // POOL BASE (SEM EXCLUSIVOS)
+    // =========================
+    let pool = [
+        "Anão", "Élfico", "Gnomo", "Halfling", "Orc"
+    ];
+
+    // =========================
+    // BONUS DE CLASSE
+    // =========================
+    const idiomasClasse = {
+        clerigo: ["Abissal", "Celestial", "Infernal"],
+        druida: ["Silvestre"],
+        mago: ["Dracônico"]
+    };
+
+    if (idiomasClasse[classe]) {
+        pool = [...pool, ...idiomasClasse[classe]];
+    }
+
+    // remove duplicados
+    pool = [...new Set(pool)];
+
+    // remove comum e racial
+    pool = pool.filter(id => id !== "Comum" && id !== racial);
+
+    // =========================
+    // FUNÇÃO SELECT
+    // =========================
+    function preencherSelect(select, pool) {
+        select.innerHTML = "";
+
+        const opDefault = document.createElement("option");
+        opDefault.value = "";
+        opDefault.textContent = "Selecione";
+        select.appendChild(opDefault);
+
+        pool.forEach(id => {
+            const opt = document.createElement("option");
+            opt.value = id;
+            opt.textContent = id;
+            select.appendChild(opt);
+        });
+    }
+
+    // =========================
+    // IDIOMA 2 (RACIAL)
+    // =========================
+    let poolIdioma2 = [...pool];
+
+    // garante que o racial está presente
+    if (racial && !poolIdioma2.includes(racial)) {
+        poolIdioma2.push(racial);
+    }
+
+    preencherSelect(idioma2, poolIdioma2);
+
+    if (racial) {
+        idioma2.value = racial;
+        idioma2.disabled = true;
+    } else {
+        idioma2.disabled = false;
+    }
+    // =========================
+    // IDIOMA 3 (SEMPRE LIVRE)
+    // =========================
+    preencherSelect(idioma3, pool);
+    idioma3.disabled = false;
+    idioma3.value = "";
+
+    // =========================
+    // INT (CORRETO)
+    // =========================
+    const totalInt = parseInt(document.getElementById("total_inteligencia").value) || 0;
+    const modInt = getMod(totalInt);
+
+    const qtdExtras = Math.max(0, modInt);
+
+    // =========================
+    // LIMPAR TODOS EXTRAS
+    // =========================
+    for (let i = 4; i <= 7; i++) {
+        const select = document.getElementById(`idioma_${i}`);
+        if (!select) continue;
+
+        select.innerHTML = "";
+        select.disabled = true;
+    }
+
+    // =========================
+    // PREENCHER EXTRAS
+    // =========================
+    for (let i = 0; i < qtdExtras; i++) {
+        const select = document.getElementById(`idioma_${4 + i}`);
+        if (!select) break;
+
+        preencherSelect(select, pool);
+        select.disabled = false;
+    }
+}
+raceSelect.addEventListener("change", atualizarIdiomas);
+classeSelect.addEventListener("change", atualizarIdiomas);
+document.getElementById("inteligencia").addEventListener("input", () => {
+    atualizarTudo();
+});
+
+document.getElementById("inteligencia").addEventListener("blur", () => {
+    atualizarTudo();
 });
