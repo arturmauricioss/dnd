@@ -1,6 +1,9 @@
 import { divindades } from "./divindades.js";
 import { itensPorClasse } from "./itensporclasse.js";
 import { mapeamentoCompleto } from "./mapeamentocompleto.js";
+import { getMod } from "./calculos/utils.js";
+import { calcularAtributos } from "./calculos/atributos.js";
+import { atualizarIdiomas } from "./calculos/idiomas.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -15,68 +18,50 @@ const idadeInput = document.getElementById("idade");
 classeSelect.addEventListener("change", () => {
     const classe = classeSelect.value;
 
-    // libera tudo
+    const restricoes = {
+        paladino: ["lawful_good"],
+        monge: ["lawful_good", "lawful_neutral", "lawful_evil"],
+        barbaro: ["non_lawful"],
+        bardo: ["non_lawful"],
+        druida: ["neutral_only"]
+    };
+
     for (let option of alignmentSelect.options) {
+        if (option.value === "selecione") {
+            option.disabled = false;
+            continue;
+        }
+
+        // padrão: tudo liberado
         option.disabled = false;
-    }
 
-    function disableAllExcept(valids) {
-        for (let option of alignmentSelect.options) {
-            if (!valids.includes(option.value) && option.value !== "selecione") {
-                option.disabled = true;
-            }
+        const regra = restricoes[classe];
+
+        if (!regra) continue;
+
+        // regras especiais
+        if (regra[0] === "non_lawful") {
+            if (option.value.includes("lawful")) option.disabled = true;
+        }
+        else if (regra[0] === "neutral_only") {
+            if (!option.value.includes("neutral")) option.disabled = true;
+        }
+        else {
+            if (!regra.includes(option.value)) option.disabled = true;
         }
     }
 
-    function disable(values) {
-        for (let option of alignmentSelect.options) {
-            if (values.includes(option.value)) {
-                option.disabled = true;
-            }
-        }
-    }
-
-    // regras
-    if (classe === "paladino") {
-        disableAllExcept(["lawful_good"]);
-    }
-
-    else if (classe === "monge") {
-        disableAllExcept([
-            "lawful_good",
-            "lawful_neutral",
-            "lawful_evil"
-        ]);
-    }
-
-    else if (classe === "barbaro" || classe === "bardo") {
-        disable([
-            "lawful_good",
-            "lawful_neutral",
-            "lawful_evil"
-        ]);
-    }
-
-    else if (classe === "druida") {
-        disableAllExcept([
-            "lawful_neutral",
-            "true_neutral",
-            "chaotic_neutral",
-            "neutral_good",
-            "neutral_evil"
-        ]);
-    }
-
-    // limpa alinhamento inválido
+    // limpa inválido
     const selected = alignmentSelect.selectedOptions[0];
     if (selected && selected.disabled) {
         alignmentSelect.value = "selecione";
     }
 
-    // limpa divindade
     deitySelect.innerHTML = '<option value="selecione">SELECIONE...</option>';
+
     limparItens();
     preencherItensClasse(classe);
+
     atualizarTudo();
 });
 
@@ -205,8 +190,9 @@ function atualizarFisico() {
         weightInput.placeholder = "";
     }
 }
-raceSelect.addEventListener("change", atualizarFisico);
+
 sexoSelect.addEventListener("change", atualizarFisico);
+classeSelect.addEventListener("change", () => atualizarIdiomas(raceSelect, classeSelect));
 
 const bonusRacial = {
     humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
@@ -219,72 +205,17 @@ const bonusRacial = {
 };
 const habilidades = ["forca", "destreza", "constituicao", "inteligencia", "sabedoria", "carisma"];
 
-function calcularAtributos(event) {
-    const raca = raceSelect.value;
-    const bonusDaRaca = bonusRacial[raca] || {};
-
-    habilidades.forEach(hab => {
-        const inputBase = document.getElementById(hab);
-        const inputRacial = document.getElementById(`mod_racial_${hab}`);
-        const inputTotal = document.getElementById(`total_${hab}`);
-        
-        // --- SEU NOVO PADRÃO DE ID ---
-        const inputModificador = document.getElementById(`mod_habilidade_${hab}`); 
-
-        if (!inputBase) return;
-
-        let valorBase = parseInt(inputBase.value);
-
-        // Regra do mínimo 3 no blur (perda de foco)
-        if (event && event.type === "blur") {
-            if (!isNaN(valorBase) && valorBase < 3 && inputBase.value !== "") {
-                valorBase = 3;
-                inputBase.value = 3;
-            }
-        }
-
-        const valorBaseCalculo = valorBase || 0;
-        const valorRacial = bonusDaRaca[hab] || 0;
-        
-        if (inputRacial) inputRacial.value = valorRacial;
-
-        let soma = valorBaseCalculo + valorRacial;
-        let valorFinal = 0;
-
-        if (valorBaseCalculo > 0) {
-            // Regra de inteligência mínima
-            valorFinal = (hab === "inteligencia") ? Math.max(3, soma) : soma;
-            if (inputTotal) inputTotal.value = valorFinal;
-            
-            // --- CÁLCULO E EXIBIÇÃO DO MODIFICADOR ---
-            const modificador = getMod(valorFinal);
-            
-            if (inputModificador) {
-                const modificador = getMod(valorFinal);
-
-                // Se o input for do tipo TEXT, ele aceita o +
-                // Se for do tipo NUMBER, ele só aceita o número puro
-                if (inputModificador.type === "text") {
-                    inputModificador.value = modificador > 0 ? `+${modificador}` : modificador;
-                } else {
-                    inputModificador.value = modificador;
-                }
-            }
-        } else {
-            // Limpa os campos se não houver valor base
-            if (inputTotal) inputTotal.value = "";
-            if (inputModificador) inputModificador.value = "";
-        }
-    });
-}
-
 // Listeners
-raceSelect.addEventListener("change", calcularAtributos);
+raceSelect.addEventListener("change", () => {
+    atualizarFisico();
+    atualizarTudo();
+});
+
 habilidades.forEach(hab => {
     const el = document.getElementById(hab);
     // 'input' calcula enquanto digita, 'blur' garante a correção visual ao sair do campo
-    el.addEventListener("input", atualizarTudo); // <--- Mudado aqui
-    el.addEventListener("blur", atualizarTudo);  // <--- Mudado aqui
+    el.addEventListener("input", atualizarTudo);
+    el.addEventListener("blur", atualizarTudo);  
 });
 
 const dadosVidaPorClasse = {
@@ -300,13 +231,9 @@ const deslocamentoPorRaca = {
     humano: 9, elfo: 9, "meio-elfo": 9, "meio-orc": 9,
     anao: 6, gnomo: 6, halfling: 6
 };
-function getMod(valor) {
-    if (!valor || valor < 1) return 0;
-    return Math.floor((valor - 10) / 2);
-}
 function atualizarTudo() {
-    calcularAtributos();
-    atualizarIdiomas();
+    calcularAtributos(null, raceSelect);
+    atualizarIdiomas(raceSelect, classeSelect);
     
     const raca = raceSelect.value;
     const classe = classeSelect.value;
@@ -374,24 +301,27 @@ function atualizarTudo() {
     // ==========================
     // PREENCHER COLUNAS
     // ==========================
-    document.querySelectorAll(".ca_base").forEach(el => el.value = caBase);
-    document.querySelectorAll(".ca_armor").forEach(el => el.value = armor);
-    document.querySelectorAll(".ca_shield").forEach(el => el.value = shield);
-    document.querySelectorAll(".ca_natural").forEach(el => el.value = natural);
-    document.querySelectorAll(".ca_dex").forEach(el => el.value = modDex);
-    document.querySelectorAll(".ca_size").forEach(el => el.value = modTamanho);
+    function setAll(selector, value) {
+        document.querySelectorAll(selector).forEach(el => el.value = value);
+    }
+    setAll(".ca_base", caBase);
+    setAll(".ca_armor", armor);
+    setAll(".ca_shield", shield);
+    setAll(".ca_natural", natural);
+    setAll(".ca_dex", modDex);
+    setAll(".ca_size", modTamanho);
 
     // ==========================
     // TOQUE (ignora armadura, escudo, natural)
     // ==========================
-    document.querySelectorAll(".ca_toque_armor").forEach(el => el.value = "X");
-    document.querySelectorAll(".ca_toque_shield").forEach(el => el.value = "X");
-    document.querySelectorAll(".ca_toque_natural").forEach(el => el.value = "X");
+    setAll(".ca_toque_armor", "X");
+    setAll(".ca_toque_shield", "X");
+    setAll(".ca_toque_natural", "X");
 
     // ==========================
     // SURPRESA (perde DEX)
     // ==========================
-    document.querySelectorAll(".ca_surpresa_dex").forEach(el => el.value = "X");
+    setAll(".ca_surpresa_dex", "X");
 
     // ==========================
     // TOTAIS
@@ -645,174 +575,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
 });
-function atualizarIdiomas() {
-    const raca = raceSelect.value;
-    const classe = classeSelect.value;
 
-    const leitura = document.getElementById("leitura_escrita");
 
-    const idioma1 = document.getElementById("idioma_1");
-
-    // TODOS selects do 2 ao 7
-    const selects = [];
-    for (let i = 2; i <= 5; i++) {
-        selects.push(document.getElementById(`idioma_${i}`));
-    }
-
-    // =========================
-    // LEITURA / ESCRITA
-    // =========================
-    leitura.value = (classe === "barbaro")
-        ? "Analfabeto"
-        : "Alfabetizado";
-
-    // =========================
-    // IDIOMA 1 → COMUM
-    // =========================
-    idioma1.value = "Comum";
-    idioma1.readOnly = true;
-
-    // =========================
-    // IDIOMA RACIAL
-    // =========================
-    const idiomasPorRaca = {
-        humano: null,
-        elfo: "Élfico",
-        anao: "Anão",
-        halfling: "Halfling",
-        gnomo: "Gnomo",
-        "meio-elfo": "Élfico",
-        "meio-orc": "Orc"
-    };
-
-    const racial = idiomasPorRaca[raca];
-
-    // =========================
-    // POOL BASE
-    // =========================
-    let pool = [
-
-        'Comum',
-        'Anão',
-        'Gnomo',
-        'Goblin',
-        'Gigante',
-        'Terran',
-        'Ore',
-        'Gnoll',
-        'Halfling',
-        'Élfico',
-        'Aquan',
-        'Subterrânea',
-        'Auran',
-        'Ignan'
-    ];
-
-    const idiomasClasse = {
-        clerigo: ["Abissal", "Celestial", "Infernal"],
-        druida: ["Silvestre"],
-        mago: ["Dracônico"]
-    };
-
-    if (idiomasClasse[classe]) {
-        pool.push(...idiomasClasse[classe]);
-    }
-
-    pool = [...new Set(pool)];
-
-    // REMOVE idiomas já fixos
-    pool = pool.filter(id => id !== "Comum");
-
-    if (racial) {
-        pool = pool.filter(id => id !== racial);
-    }
-    // =========================
-    // FUNÇÃO DE SELECT
-    // =========================
-    function preencherSelect(select, opcoes) {
-        select.innerHTML = "";
-
-        const opDefault = document.createElement("option");
-        opDefault.value = "";
-        opDefault.textContent = "Selecione";
-        select.appendChild(opDefault);
-
-        opcoes.forEach(id => {
-            const opt = document.createElement("option");
-            opt.value = id;
-            opt.textContent = id;
-            select.appendChild(opt);
-        });
-    }
-
-    // =========================
-    // INT + RACIAL (LÓGICA FINAL)
-    // =========================
-    const totalInt = parseInt(document.getElementById("total_inteligencia").value) || 0;
-    const modInt = getMod(totalInt);
-
-    const temRacial = !!racial;
-    const qtdExtras = Math.max(0, modInt);
-
-    // =========================
-    // RESET
-    // =========================
-    selects.forEach(select => {
-        select.innerHTML = "";
-        select.disabled = true;
-    });
-
-    // =========================
-    // DISTRIBUIÇÃO
-    // =========================
-    let slotIndex = 0;
-
-    // 👉 1. RACIAL ocupa idioma_2 (se existir)
-    if (temRacial) {
-        const select = selects[slotIndex];
-
-        preencherSelect(select, [racial]);
-        select.value = racial;
-        select.disabled = true;
-
-        slotIndex++;
-    }
-
-    // 👉 2. Idiomas de INT (inclui humano aqui)
-    for (let i = 0; i < qtdExtras; i++) {
-        const select = selects[slotIndex];
-        if (!select) break;
-
-        preencherSelect(select, pool);
-        select.disabled = false;
-
-        slotIndex++;
-    }
-
-    // =========================
-    // BLOQUEAR DUPLICADOS
-    // =========================
-    selects.forEach(select => {
-        select.onchange = () => {
-            const selecionados = selects.map(s => s.value).filter(v => v);
-
-            selects.forEach(s => {
-                if (s.disabled) return;
-
-                const valorAtual = s.value;
-
-                preencherSelect(
-                    s,
-                    pool.filter(id => !selecionados.includes(id) || id === valorAtual)
-                );
-
-                s.value = valorAtual;
-            });
-        };
-    });
-}
-raceSelect.addEventListener("change", atualizarIdiomas);
-classeSelect.addEventListener("change", atualizarIdiomas);
 document.getElementById("inteligencia").addEventListener("input", () => {
     atualizarTudo();
 });
