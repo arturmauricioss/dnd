@@ -195,10 +195,10 @@ export const mapeamentoCompleto = {
     'itens_11': 'Itens11',
 
     // --- DINHEIRO ---
-    'money_pl': 'Platina',
-    'money_po': 'Ouro',
-    'money_pp': 'Prata',
-    'money_pc': 'Cobre',
+    'pl_money': 'Peças de Platina',
+    'po_money': 'Peças de Ouro',
+    'pp_money': 'Peças de Prata',
+    'pc_money': 'Peças de Cobre',
 
      // --- PESO ---
     'weight_total_carried': 'Peso Total',
