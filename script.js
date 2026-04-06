@@ -720,6 +720,12 @@ function atualizarIdiomas() {
 
     pool = [...new Set(pool)];
 
+    // REMOVE idiomas já fixos
+    pool = pool.filter(id => id !== "Comum");
+
+    if (racial) {
+        pool = pool.filter(id => id !== racial);
+    }
     // =========================
     // FUNÇÃO DE SELECT
     // =========================
