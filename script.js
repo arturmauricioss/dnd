@@ -641,7 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
 });
-
 function atualizarIdiomas() {
     const raca = raceSelect.value;
     const classe = classeSelect.value;
@@ -649,8 +648,12 @@ function atualizarIdiomas() {
     const leitura = document.getElementById("leitura_escrita");
 
     const idioma1 = document.getElementById("idioma_1");
-    const idioma2 = document.getElementById("idioma_2");
-    const idioma3 = document.getElementById("idioma_3");
+
+    // TODOS selects do 2 ao 7
+    const selects = [];
+    for (let i = 2; i <= 7; i++) {
+        selects.push(document.getElementById(`idioma_${i}`));
+    }
 
     // =========================
     // LEITURA / ESCRITA
@@ -681,15 +684,26 @@ function atualizarIdiomas() {
     const racial = idiomasPorRaca[raca];
 
     // =========================
-    // POOL BASE (SEM EXCLUSIVOS)
+    // POOL BASE
     // =========================
     let pool = [
-        "Anão", "Élfico", "Gnomo", "Halfling", "Orc"
+
+        'Comum', // Humanos, halflings, meio-elfos, meio-orcs Comum
+        'Anão', // Anões Anão
+        'Gnomo', // Gnomos Anão
+        'Goblin', // Goblins, robgoblins, bugbears Anão
+        'Gigante', // Ettins, ogros, gigantes Anão
+        'Terran', // Xorn e outras criaturas terrestres Anão
+        'Ore', // Orcs Anão
+        'Gnoll', // Gnoll Comum
+        'Halfling', // Halflings Comum
+        'Élfico', // Elfos Élfico
+        'Aquan', // Criaturas aquáticas Élfico
+        'Subterrânea', // Drow, ilitíde Élfico
+        'Auran', // Criaturas aéreas Dracônico
+        'Ignan' // Criaturas do fogo Dracônico   
     ];
 
-    // =========================
-    // BONUS DE CLASSE
-    // =========================
     const idiomasClasse = {
         clerigo: ["Abissal", "Celestial", "Infernal"],
         druida: ["Silvestre"],
@@ -697,19 +711,15 @@ function atualizarIdiomas() {
     };
 
     if (idiomasClasse[classe]) {
-        pool = [...pool, ...idiomasClasse[classe]];
+        pool.push(...idiomasClasse[classe]);
     }
 
-    // remove duplicados
     pool = [...new Set(pool)];
 
-    // remove comum e racial
-    pool = pool.filter(id => id !== "Comum" && id !== racial);
-
     // =========================
-    // FUNÇÃO SELECT
+    // FUNÇÃO DE SELECT
     // =========================
-    function preencherSelect(select, pool) {
+    function preencherSelect(select, opcoes) {
         select.innerHTML = "";
 
         const opDefault = document.createElement("option");
@@ -717,7 +727,7 @@ function atualizarIdiomas() {
         opDefault.textContent = "Selecione";
         select.appendChild(opDefault);
 
-        pool.forEach(id => {
+        opcoes.forEach(id => {
             const opt = document.createElement("option");
             opt.value = id;
             opt.textContent = id;
@@ -726,59 +736,70 @@ function atualizarIdiomas() {
     }
 
     // =========================
-    // IDIOMA 2 (RACIAL)
-    // =========================
-    let poolIdioma2 = [...pool];
-
-    // garante que o racial está presente
-    if (racial && !poolIdioma2.includes(racial)) {
-        poolIdioma2.push(racial);
-    }
-
-    preencherSelect(idioma2, poolIdioma2);
-
-    if (racial) {
-        idioma2.value = racial;
-        idioma2.disabled = true;
-    } else {
-        idioma2.disabled = false;
-    }
-    // =========================
-    // IDIOMA 3 (SEMPRE LIVRE)
-    // =========================
-    preencherSelect(idioma3, pool);
-    idioma3.disabled = false;
-    idioma3.value = "";
-
-    // =========================
-    // INT (CORRETO)
+    // INT + RACIAL (LÓGICA FINAL)
     // =========================
     const totalInt = parseInt(document.getElementById("total_inteligencia").value) || 0;
     const modInt = getMod(totalInt);
 
+    const temRacial = !!racial;
     const qtdExtras = Math.max(0, modInt);
 
     // =========================
-    // LIMPAR TODOS EXTRAS
+    // RESET
     // =========================
-    for (let i = 4; i <= 7; i++) {
-        const select = document.getElementById(`idioma_${i}`);
-        if (!select) continue;
-
+    selects.forEach(select => {
         select.innerHTML = "";
         select.disabled = true;
-    }
+    });
 
     // =========================
-    // PREENCHER EXTRAS
+    // DISTRIBUIÇÃO
     // =========================
+    let slotIndex = 0;
+
+    // 👉 1. RACIAL ocupa idioma_2 (se existir)
+    if (temRacial) {
+        const select = selects[slotIndex];
+
+        preencherSelect(select, [racial]);
+        select.value = racial;
+        select.disabled = true;
+
+        slotIndex++;
+    }
+
+    // 👉 2. Idiomas de INT (inclui humano aqui)
     for (let i = 0; i < qtdExtras; i++) {
-        const select = document.getElementById(`idioma_${4 + i}`);
+        const select = selects[slotIndex];
         if (!select) break;
 
         preencherSelect(select, pool);
         select.disabled = false;
+
+        slotIndex++;
     }
+
+    // =========================
+    // BLOQUEAR DUPLICADOS
+    // =========================
+    selects.forEach(select => {
+        select.onchange = () => {
+            const selecionados = selects.map(s => s.value).filter(v => v);
+
+            selects.forEach(s => {
+                if (s.disabled) return;
+
+                const valorAtual = s.value;
+
+                preencherSelect(
+                    s,
+                    pool.filter(id => !selecionados.includes(id) || id === valorAtual)
+                );
+
+                s.value = valorAtual;
+            });
+        };
+    });
 }
 raceSelect.addEventListener("change", atualizarIdiomas);
 classeSelect.addEventListener("change", atualizarIdiomas);
