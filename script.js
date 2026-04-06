@@ -573,7 +573,11 @@ async function exportarFicha() {
 
                 // Lógica para pegar o texto de SELECTs ou o valor de INPUTs
                 if (elemento.tagName === 'SELECT') {
-                    valor = elemento.options[elemento.selectedIndex].text;
+                    if (elemento.selectedIndex >= 0) {
+                        valor = elemento.options[elemento.selectedIndex].text;
+                    } else {
+                        valor = "";
+                    }
                     if (valor.includes("SELECIONE")) valor = ""; 
                 } else {
                     valor = elemento.value;
@@ -651,7 +655,7 @@ function atualizarIdiomas() {
 
     // TODOS selects do 2 ao 7
     const selects = [];
-    for (let i = 2; i <= 7; i++) {
+    for (let i = 2; i <= 5; i++) {
         selects.push(document.getElementById(`idioma_${i}`));
     }
 
@@ -688,20 +692,20 @@ function atualizarIdiomas() {
     // =========================
     let pool = [
 
-        'Comum', // Humanos, halflings, meio-elfos, meio-orcs Comum
-        'Anão', // Anões Anão
-        'Gnomo', // Gnomos Anão
-        'Goblin', // Goblins, robgoblins, bugbears Anão
-        'Gigante', // Ettins, ogros, gigantes Anão
-        'Terran', // Xorn e outras criaturas terrestres Anão
-        'Ore', // Orcs Anão
-        'Gnoll', // Gnoll Comum
-        'Halfling', // Halflings Comum
-        'Élfico', // Elfos Élfico
-        'Aquan', // Criaturas aquáticas Élfico
-        'Subterrânea', // Drow, ilitíde Élfico
-        'Auran', // Criaturas aéreas Dracônico
-        'Ignan' // Criaturas do fogo Dracônico   
+        'Comum',
+        'Anão',
+        'Gnomo',
+        'Goblin',
+        'Gigante',
+        'Terran',
+        'Ore',
+        'Gnoll',
+        'Halfling',
+        'Élfico',
+        'Aquan',
+        'Subterrânea',
+        'Auran',
+        'Ignan'
     ];
 
     const idiomasClasse = {

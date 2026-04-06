@@ -195,10 +195,10 @@ export const mapeamentoCompleto = {
     'itens_11': 'Itens11',
 
     // --- DINHEIRO ---
-    'money_pp': 'Platina',
-    'money_gp': 'Ouro',
-    'money_sp': 'Prata',
-    'money_cp': 'Cobre',
+    'money_pl': 'Platina',
+    'money_po': 'Ouro',
+    'money_pp': 'Prata',
+    'money_pc': 'Cobre',
 
      // --- PESO ---
     'weight_total_carried': 'Peso Total',
@@ -206,9 +206,20 @@ export const mapeamentoCompleto = {
     'weight_medium': 'Carga Média',
     'weight_hard': 'Carga Pesada',
 
-        // --- PERÍCIAS ---
+    // --- IDIOMAS ---
+
+    'leitura_escrita': 'Idiomas0',
+    'idioma_1': 'Idiomas1',
+    'idioma_2': 'Idiomas2',
+    'idioma_3': 'Idiomas3',
+    'idioma_4': 'Idiomas4',
+    'idioma_5': 'Idiomas5',
+
+
+    // --- PERÍCIAS ---
     'skill_acrobacia': 'Perícia Acrobacia',
     'skill_acrobacia_dex': 'Perícia Acrobacia M Des',
     'skill_acrobacia_ranks': 'Perícia Acrobacia Grad',
     'skill_acrobacia_other': 'Perícia Acrobacia Outros',
+
 };
