@@ -28,9 +28,17 @@ export function calcularAtributos(event, raceSelect) {
         let valorBase = parseInt(inputBase.value);
 
         if (event && event.type === "blur") {
-            if (!isNaN(valorBase) && valorBase < 3 && inputBase.value !== "") {
-                valorBase = 3;
-                inputBase.value = 3;
+            if (!isNaN(valorBase) && inputBase.value !== "") {
+
+                if (valorBase < 3) {
+                    valorBase = 3;
+                }
+
+                if (valorBase > 18) {
+                    valorBase = 18;
+                }
+
+                inputBase.value = valorBase;
             }
         }
 

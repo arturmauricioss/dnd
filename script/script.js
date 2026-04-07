@@ -192,7 +192,6 @@ function atualizarFisico() {
 }
 
 sexoSelect.addEventListener("change", atualizarFisico);
-classeSelect.addEventListener("change", () => atualizarIdiomas(raceSelect, classeSelect));
 
 const bonusRacial = {
     humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
@@ -215,8 +214,8 @@ raceSelect.addEventListener("change", () => {
 habilidades.forEach(hab => {
     const el = document.getElementById(hab);
     // 'input' calcula enquanto digita, 'blur' garante a correção visual ao sair do campo
-    el.addEventListener("input", atualizarTudo);
-    el.addEventListener("blur", atualizarTudo);  
+    el.addEventListener("input", (e) => calcularAtributos(e, raceSelect));
+    el.addEventListener("blur", (e) => atualizarTudo(e));
 });
 
 const dadosVidaPorClasse = {
@@ -232,8 +231,8 @@ const deslocamentoPorRaca = {
     humano: 9, elfo: 9, "meio-elfo": 9, "meio-orc": 9,
     anao: 6, gnomo: 6, halfling: 6
 };
-function atualizarTudo() {
-    calcularAtributos(null, raceSelect);
+function atualizarTudo(event) {
+    calcularAtributos(event, raceSelect);
     atualizarIdiomas(raceSelect, classeSelect);
     
     const raca = raceSelect.value;
@@ -626,13 +625,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
-});
-
-
-document.getElementById("inteligencia").addEventListener("input", () => {
-    atualizarTudo();
-});
-
-document.getElementById("inteligencia").addEventListener("blur", () => {
-    atualizarTudo();
 });

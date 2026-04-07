@@ -1,20 +1,7 @@
 ## Elfos
 
-Imunidade à magias e efeitos de sono e +2 de bônus racial nos testes de
-resistência contra magias ou efeitos similares de Encantamento.
-Visão na Penumbra: Os elfos enxergam duas vezes mais longe que os seres
-humanos sob a luz das estrelas, da lua, de tochas ou outras condições de iluminação
-precária. Nessas situações, eles ainda conseguem distinguir e orcs e detalhes.
-Usar Armas: Os elfos recebem o talento Usar Arma Comum para espada
-longa, sabre, arco longo (inclusive arco longo composto) e arco curto (inclusive arco
-curto composto) como um talento adicional.Os elfos apreciam a arte do manejo
-de espada e a arquearia, portanto todos os membros da raça estão familiarizados
-com essas armas.
-+2 de Bônus racial nos testes de Ouvir, Procurar e Observar. Um elfo que
-passar a 1,5 metro de uma porta secreta ou escondida pode realizar um teste de
-Procurar como se estivesse procurando ativamente. Os sentidos de um elfo são tão
-aguçados que ele praticamente desenvolve um sexto sentido para detectar passagens
-secretas e camufladas.
+
+
 Idiomas Básicos: Comum e Élfico. Idiomas Adicionais: Dracônico, Gnoll,
 Gnomo, Goblin, orc e Silvestre. Os elfos normalmente conhecem os idiomas de
 seus aliados e inimigos, além do Dracônico, normalmente encontrado em antigos

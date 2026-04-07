@@ -12,46 +12,85 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
         selects.push(document.getElementById(`idioma_${i}`));
     }
 
+    // 📖 Alfabetização
     leitura.value = (classe === "barbaro")
         ? "Analfabeto"
         : "Alfabetizado";
 
-    idioma1.value = "Comum";
-    idioma1.readOnly = true;
-
-    const idiomasPorRaca = {
-        humano: null,
-        elfo: "Élfico",
-        anao: "Anão",
-        halfling: "Halfling",
-        gnomo: "Gnomo",
-        "meio-elfo": "Élfico",
-        "meio-orc": "Orc"
+    // 🌍 Idiomas raciais
+    const idiomasRaciais = {
+        humano: {
+            base: ["Comum"],
+            extras: []
+        },
+        elfo: {
+            base: ["Comum", "Élfico"],
+            extras: ["Dracônico", "Gnoll", "Gnomo", "Goblin", "Orc", "Silvestre"]
+        },
+        anao: {
+            base: ["Comum", "Anão"],
+            extras: ["Gigante", "Gnomo", "Goblin", "Orc", "Terran", "Subterrâneo"]
+        },
+        halfling: {
+            base: ["Comum", "Halfling"],
+            extras: ["Anão", "Élfico", "Gnomo", "Goblin", "Orc"]
+        },
+        gnomo: {
+            base: ["Comum", "Gnomo"],
+            extras: ["Dracônico", "Anão", "Élfico", "Gigante", "Goblin", "Orc"]
+        },
+        "meio-elfo": {
+            base: ["Comum", "Élfico"],
+            extras: ["Dracônico", "Gnoll", "Gnomo", "Goblin", "Orc", "Silvestre"]
+        },
+        "meio-orc": {
+            base: ["Comum", "Orc"],
+            extras: ["Dracônico", "Gigante", "Gnoll", "Goblin"]
+        }
     };
 
-    const racial = idiomasPorRaca[raca];
+    // 🌿 Idiomas fixos de classe
+    const idiomaClasseFixo = {
+        druida: ["Druídico"]
+    };
 
-    let pool = [
-        'Comum','Anão','Gnomo','Goblin','Gigante','Terran','Orc',
-        'Gnoll','Halfling','Élfico','Aquan','Subterrâneo','Auran','Ignan'
+    // 🌐 TODOS idiomas válidos (pra humano)
+    const TODOS_IDIOMAS = [
+        'Anão','Gnomo','Goblin','Gigante','Terran','Orc',
+        'Gnoll','Halfling','Élfico','Aquan','Subterrâneo',
+        'Auran','Ignan','Dracônico','Celestial','Infernal','Abissal','Silvestre'
     ];
 
-    const idiomasClasse = {
+    const dadosRaca = idiomasRaciais[raca] || { base: ["Comum"], extras: [] };
+    const base = dadosRaca.base;
+
+    // 🧠 Pool inicial
+    let pool = [...dadosRaca.extras];
+
+    // 📚 Idiomas extras por classe
+    const idiomasClasseExtras = {
         clerigo: ["Abissal", "Celestial", "Infernal"],
-        druida: ["Silvestre"],
         mago: ["Dracônico"]
     };
 
-    if (idiomasClasse[classe]) {
-        pool.push(...idiomasClasse[classe]);
+    if (idiomasClasseExtras[classe]) {
+        pool.push(...idiomasClasseExtras[classe]);
     }
 
+    // 👤 Regra especial: humano
+    if (raca === "humano") {
+        pool = [...TODOS_IDIOMAS];
+    }
+
+    const fixosClasse = idiomaClasseFixo[classe] || [];
+
+    // 🔁 Remove duplicados
     pool = [...new Set(pool)];
 
-    // REMOVE duplicados fixos
-    pool = pool.filter(id => id !== "Comum");
-    if (racial) pool = pool.filter(id => id !== racial);
+    // ❌ Remove idiomas base e fixos do pool
+    pool = pool.filter(id => !base.includes(id) && !fixosClasse.includes(id));
 
+    // 🧩 Função auxiliar
     function preencherSelect(select, opcoes) {
         select.innerHTML = "";
 
@@ -68,27 +107,46 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
         });
     }
 
+    // 🧠 Inteligência
     const totalInt = parseInt(document.getElementById("total_inteligencia").value) || 0;
     const modInt = getMod(totalInt);
-
-    const temRacial = !!racial;
     const qtdExtras = Math.max(0, modInt);
 
+    // 🔄 Reset
     selects.forEach(select => {
         select.innerHTML = "";
         select.disabled = true;
     });
 
+    // 🗣️ Idioma principal
+    idioma1.value = base[0] || "Comum";
+    idioma1.readOnly = true;
+
     let slotIndex = 0;
 
-    if (temRacial) {
+    // 🧬 Idiomas base adicionais
+    for (let i = 1; i < base.length; i++) {
         const select = selects[slotIndex];
-        preencherSelect(select, [racial]);
-        select.value = racial;
+        if (!select) break;
+
+        preencherSelect(select, [base[i]]);
+        select.value = base[i];
         select.disabled = true;
         slotIndex++;
     }
 
+    // 🌿 Idiomas fixos da classe (Druídico)
+    for (let i = 0; i < fixosClasse.length; i++) {
+        const select = selects[slotIndex];
+        if (!select) break;
+
+        preencherSelect(select, [fixosClasse[i]]);
+        select.value = fixosClasse[i];
+        select.disabled = true;
+        slotIndex++;
+    }
+
+    // ➕ Idiomas extras por INT
     for (let i = 0; i < qtdExtras; i++) {
         const select = selects[slotIndex];
         if (!select) break;
@@ -98,7 +156,7 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
         slotIndex++;
     }
 
-    // bloqueio de duplicados
+    // 🚫 Bloqueio de duplicados
     selects.forEach(select => {
         select.onchange = () => {
             const selecionados = selects.map(s => s.value).filter(v => v);
