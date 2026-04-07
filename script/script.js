@@ -4,6 +4,7 @@ import { mapeamentoCompleto } from "./mapeamentocompleto.js";
 import { getMod } from "./calculos/utils.js";
 import { calcularAtributos } from "./calculos/atributos.js";
 import { atualizarIdiomas } from "./calculos/idiomas.js";
+import { calcularResistencias } from "./calculos/resistencias.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -231,12 +232,26 @@ const deslocamentoPorRaca = {
     humano: 9, elfo: 9, "meio-elfo": 9, "meio-orc": 9,
     anao: 6, gnomo: 6, halfling: 6
 };
+
+function parseBonus(valor) {
+    if (!valor) return 0;
+
+    // remove qualquer coisa que não seja número ou sinal
+    const numero = parseInt(valor.toString().replace(/[^\d-]/g, ""));
+    
+    return isNaN(numero) ? 0 : numero;
+}
+
+
 function atualizarTudo(event) {
     calcularAtributos(event, raceSelect);
     atualizarIdiomas(raceSelect, classeSelect);
-    
+
     const raca = raceSelect.value;
     const classe = classeSelect.value;
+    const nivel = 1; // por enquanto fixo
+
+    calcularResistencias(classe, nivel, raca);
 
     // ==========================
     // 1. DESLOCAMENTO
@@ -254,9 +269,8 @@ function atualizarTudo(event) {
     const modCon = getMod(totalCon);
     const dadoVida = dadosVidaPorClasse[classe] || 0;
 
-    vidaInput.value = (dadoVida > 0 && totalCon >= 3)
-        ? dadoVida + modCon
-        : "";
+    const hp = dadoVida + modCon;
+    vidaInput.value = dadoVida > 0 ? Math.max(1, hp) : "";
 
     // ==========================
     // 3. CA (BASE)
@@ -272,14 +286,7 @@ function atualizarTudo(event) {
     // ==========================
     // EQUIPAMENTO (ARMADURA / ESCUDO)
     // ==========================
-    function parseBonus(valor) {
-        if (!valor) return 0;
-
-        // remove qualquer coisa que não seja número ou sinal
-        const numero = parseInt(valor.toString().replace(/[^\d-]/g, ""));
-        
-        return isNaN(numero) ? 0 : numero;
-    }
+    
     // ARMADURA
     const armorInput = document.querySelector("#armory .ar_bonus_ca");
     const armor = parseBonus(armorInput?.value);
@@ -613,11 +620,6 @@ function atualizarHabilidadesEspeciais() {
 }
 
 
-
-
-
-// 2. O PULO DO GATO: Ligue o botão do seu HTML à função aqui no JS
-// No seu HTML o id é "btn_exportar"
 document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('btn_exportar');
     if (botao) {
@@ -625,4 +627,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error("Não achei o botão com id 'btn_exportar'");
     }
+});
+
+
+function getSaveBase(tipo, nivel) {
+    if (tipo === "bom") {
+        return 2 + Math.floor(nivel / 2);
+    } else {
+        return Math.floor(nivel / 3);
+    }
+}
+
+
+["fort", "ref", "von"].forEach(tipo => {
+    ["magico", "outros", "temp"].forEach(campo => {
+        const el = document.getElementById(`${tipo}_${campo}`);
+        if (el) {
+            el.addEventListener("input", atualizarTudo);
+        }
+    });
 });
