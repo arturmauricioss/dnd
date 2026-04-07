@@ -61,7 +61,7 @@ classeSelect.addEventListener("change", () => {
 
     limparItens();
     preencherItensClasse(classe);
-
+    atualizarHabilidadesEspeciais();
     atualizarTudo();
 });
 
@@ -208,6 +208,7 @@ const habilidades = ["forca", "destreza", "constituicao", "inteligencia", "sabed
 // Listeners
 raceSelect.addEventListener("change", () => {
     atualizarFisico();
+    atualizarHabilidadesEspeciais();
     atualizarTudo();
 });
 
@@ -564,6 +565,59 @@ async function exportarFicha() {
         console.error("Erro detalhado na exportação:", error);
     }
 }
+
+const habilidadesEspeciaisData = {
+    classes: {
+        barbaro: ["Fúria 1/dia (Ext)", "Movimento Rápido (Ext)"],
+        bardo: ["Conhecimento de Bardo", "Música de Bardo", "*Música de Proteção", "*Fascinar (Psi)", "*Inspirar Coragem +1 (Sob)", "**Atuação minimo 3"],
+        clerigo: ["Expul/Fasci Mortos-Vivos (Su)", "Aura (Ext)"],
+        druida: ["Senso da Natureza (Ext)", "Empatia com Animais (Ext)", "Companheiro Animal", "Idioma Druídico Adicional"],
+        guerreiro: ["+Talento Guerreiro"],
+        ladino: ["Ataque Furtivo +1d6", "Encontrar Armadilhas (Ext)"],
+        monge: ["Bônus na CA (Sab)", "Rajada de Golpes (Ext)", "Dano Desarmado 1d6", "+Talento Monge"],
+        paladino: ["Aura do Bem (Ext)", "Detectar o Mal (Psi)", "Destruir o Mal 1/dia (Su)"],
+        ranger: ["1º Inimigo Favorito (Ext)", "Rastrear (Talento)", "Empatia com Natureza (Ext)"],
+        mago: ["Invocação de Familiar", "Escrever Pergaminho (Talento)"],
+        feiticeiro: ["Invocação de Familiar"]
+    },
+    racas: {
+        anao: ["Visão no Escuro 18m", "Estabilidade (+4 vs Derrubar)", "Afinidade com Pedras"],
+        elfo: ["Imunidade a Sono", "+2 vs Encantamentos", "Visão na Penumbra"],
+        gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "Conversar com Animais (1/dia)"],
+        halfling: ["+1 em Resistências", "+2 vs Medo", "+1 Ataque (Arremesso)"],
+        "meio-elfo": ["Sangue Élfico", "Visão na Penumbra", "+2 em Diplomacia/Obter Informação"],
+        "meio-orc": ["Visão no Escuro 18m"],
+        humano: ["+Talento Humano", "+1 Perícia por Nível"]
+    }
+};
+
+function atualizarHabilidadesEspeciais() {
+    const raca = raceSelect.value;
+    const classe = classeSelect.value;
+    
+    const habsRaca = habilidadesEspeciaisData.racas[raca] || [];
+    const habsClasse = habilidadesEspeciaisData.classes[classe] || [];
+    const listaFinal = [...habsRaca, ...habsClasse];
+
+    // 2. Limpa TODOS os 12 inputs (de 0 a 11)
+    for (let i = 0; i <= 22; i++) {
+        const input = document.getElementById(`hab_especial_${i}`);
+        if (input) input.value = "";
+    }
+
+    // 3. Preenche sequencialmente começando do 0
+    listaFinal.forEach((texto, index) => {
+        const input = document.getElementById(`hab_especial_${index}`);
+        if (input) {
+            // Adicionamos espaços ou quebra de linha para forçar o PDF a reajustar o tamanho
+            input.value = texto + "\n"; 
+        }
+    });
+}
+
+
+
+
 
 // 2. O PULO DO GATO: Ligue o botão do seu HTML à função aqui no JS
 // No seu HTML o id é "btn_exportar"

@@ -215,6 +215,21 @@ export const mapeamentoCompleto = {
     'idioma_4': 'Idiomas4',
     'idioma_5': 'Idiomas5',
 
+    // Vínculo das Habilidades Especiais (1 a 12)
+    "hab_especial_0": "Habilidades0",
+    "hab_especial_1": "Habilidades1",
+    "hab_especial_2": "Habilidades2",
+    "hab_especial_3": "Habilidades3",
+    "hab_especial_4": "Habilidades4",
+    "hab_especial_5": "Habilidades5",
+    "hab_especial_6": "Habilidades6",
+    "hab_especial_7": "Habilidades7",
+    "hab_especial_8": "Habilidades8",
+    "hab_especial_9": "Habilidades9",
+    "hab_especial_10": "Habilidades10",
+    "hab_especial_11": "Habilidades11",
+
+
 
     // --- PERÍCIAS ---
     'skill_acrobacia': 'Perícia Acrobacia',

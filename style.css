@@ -315,6 +315,21 @@ input[value="X"] {
     }
 
 }
+.habilidades-container{
+    display: grid;
+    justify-content:space-between;
+    grid-template-columns:repeat(3, 1fr);
+    column-gap: 40px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 1px 1px 5px black;
+    padding: 18px 40px;
+    margin-top: 18px;
+    font-size: 10px;
+    span, input{
+        width: 100%;
+    }
+}
 input:focus, select:focus {
     outline: none;
 }
