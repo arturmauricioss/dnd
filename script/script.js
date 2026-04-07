@@ -592,25 +592,23 @@ const habilidadesEspeciaisData = {
 };
 
 function atualizarHabilidadesEspeciais() {
+    // 1. Pegar dados
     const raca = raceSelect.value;
     const classe = classeSelect.value;
-    
-    const habsRaca = habilidadesEspeciaisData.racas[raca] || [];
-    const habsClasse = habilidadesEspeciaisData.classes[classe] || [];
-    const listaFinal = [...habsRaca, ...habsClasse];
+    const listaFinal = [...(habilidadesEspeciaisData.racas[raca] || []), ...(habilidadesEspeciaisData.classes[classe] || [])];
 
-    // 2. Limpa TODOS os 12 inputs (de 0 a 11)
-    for (let i = 0; i <= 22; i++) {
+    // 2. LIMPEZA TOTAL (Use o ID máximo que você tem no HTML)
+    // Se o seu HTML vai até o 11, limpe até o 11.
+    for (let i = 0; i <= 11; i++) {
         const input = document.getElementById(`hab_especial_${i}`);
         if (input) input.value = "";
     }
 
-    // 3. Preenche sequencialmente começando do 0
+    // 3. PREENCHIMENTO
     listaFinal.forEach((texto, index) => {
         const input = document.getElementById(`hab_especial_${index}`);
         if (input) {
-            // Adicionamos espaços ou quebra de linha para forçar o PDF a reajustar o tamanho
-            input.value = texto + "\n"; 
+            input.value = texto;
         }
     });
 }
