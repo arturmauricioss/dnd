@@ -32,8 +32,8 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
     const racial = idiomasPorRaca[raca];
 
     let pool = [
-        'Comum','Anão','Gnomo','Goblin','Gigante','Terran','Ore',
-        'Gnoll','Halfling','Élfico','Aquan','Subterrânea','Auran','Ignan'
+        'Comum','Anão','Gnomo','Goblin','Gigante','Terran','Orc',
+        'Gnoll','Halfling','Élfico','Aquan','Subterrâneo','Auran','Ignan'
     ];
 
     const idiomasClasse = {
