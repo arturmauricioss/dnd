@@ -2,6 +2,7 @@
 
 # Remover values que foram usados para testes
 
+-- Falta principalmente, Testes de resistencia, bonus base de ataque, resistencia a magia, agarrar, pericias, talentos, magia, e peso
 
 ## Geral
 
