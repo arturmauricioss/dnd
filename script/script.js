@@ -582,10 +582,10 @@ const habilidadesEspeciaisData = {
     racas: {
         anao: ["Visão no Escuro 18m", "Estabilidade (+4 vs Derrubar)", "Afinidade com Pedras"],
         elfo: ["Imunidade a Sono", "+2 vs Encantamentos", "Visão na Penumbra"],
-        gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "Conversar com Animais (1/dia)"],
+        gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "+1 CD Ilusões","Falar com Animais (1/dia)"],
         halfling: ["+1 em Resistências", "+2 vs Medo", "+1 Ataque (Arremesso)"],
         "meio-elfo": ["Sangue Élfico", "Visão na Penumbra", "+2 em Diplomacia/Obter Informação"],
-        "meio-orc": ["Visão no Escuro 18m"],
+        "meio-orc": ["Visão no Escuro 18m", "Sangue Orc"],
         humano: ["+Talento Humano", "+1 Perícia por Nível"]
     }
 };
