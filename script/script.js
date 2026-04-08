@@ -5,6 +5,7 @@ import { getMod } from "./calculos/utils.js";
 import { calcularAtributos } from "./calculos/atributos.js";
 import { atualizarIdiomas } from "./calculos/idiomas.js";
 import { calcularResistencias } from "./calculos/resistencias.js";
+import { inicializarBBA, calcularBBA } from "./calculos/bba.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -113,12 +114,18 @@ raceSelect.addEventListener("change", () => {
     // =================
     if (raca === "halfling" || raca === "gnomo") {
         sizeInput.value = "PEQUENO";
+        modTamanhoAgarrar = -4; // Penalidade por ser Pequeno
     } else if (raca === "selecione") {
         sizeInput.value = "";
+        modTamanhoAgarrar = 0;
     } else {
         sizeInput.value = "MÉDIO";
+        modTamanhoAgarrar = 0; // Bônus 0 para Médio
     }
-
+    const agarrarTamanhoInput = document.getElementById("agarrar_tamanho");
+    if (agarrarTamanhoInput) {
+        agarrarTamanhoInput.value = modTamanhoAgarrar;
+    }
     // =================
     // IDADE (min/max)
     // =================
@@ -211,12 +218,13 @@ raceSelect.addEventListener("change", () => {
     atualizarHabilidadesEspeciais();
     atualizarTudo();
 });
-
+document.getElementById("level_class").addEventListener("change", atualizarTudo);
 habilidades.forEach(hab => {
     const el = document.getElementById(hab);
     // 'input' calcula enquanto digita, 'blur' garante a correção visual ao sair do campo
     el.addEventListener("input", (e) => calcularAtributos(e, raceSelect));
     el.addEventListener("blur", (e) => atualizarTudo(e));
+    
 });
 
 const dadosVidaPorClasse = {
@@ -249,10 +257,43 @@ function atualizarTudo(event) {
 
     const raca = raceSelect.value;
     const classe = classeSelect.value;
-    const nivel = 1; // por enquanto fixo
+    const nivel = parseInt(document.getElementById("level_class").value) || 1;
 
     calcularResistencias(classe, nivel, raca);
 
+    calcularBBA(classe);
+    // ==========================
+// CÁLCULO DE AGARRAR (GRAPPLE)
+// ==========================
+const agarrarTotalInput = document.getElementById("agarrar_total");
+const agarrarBaseInput = document.getElementById("agarrar_base");
+const agarrarModInput = document.getElementById("agarrar_mod");
+const agarrarTamanhoInput = document.getElementById("agarrar_tamanho");
+const agarrarOutrosInput = document.getElementById("agarrar_outros");
+
+if (agarrarTotalInput) {
+    // 1. Pega os valores base
+    const bba = parseInt(document.getElementById("bba_total")?.value) || 0;
+    const modFor = getMod(parseInt(document.getElementById("total_forca")?.value) || 0);
+    
+    // 2. Define o modificador de tamanho (Halfling/Gnomo = -4, outros = 0)
+    let modTamAgarrar = 0;
+    if (raca === "halfling" || raca === "gnomo") {
+        modTamAgarrar = -4;
+    }
+
+    // 3. Pega bônus de outros (se o usuário digitar algo)
+    const outrosAgarrar = parseInt(agarrarOutrosInput?.value) || 0;
+
+    // 4. Soma tudo
+    const totalAgarrar = bba + modFor + modTamAgarrar + outrosAgarrar;
+
+    // 5. Distribui nos campos do HTML
+    agarrarBaseInput.value = bba;
+    agarrarModInput.value = modFor >= 0 ? `+${modFor}` : modFor;
+    agarrarTamanhoInput.value = modTamAgarrar;
+    agarrarTotalInput.value = totalAgarrar >= 0 ? `+${totalAgarrar}` : totalAgarrar;
+}
     // ==========================
     // 1. DESLOCAMENTO
     // ==========================
@@ -619,9 +660,10 @@ function atualizarHabilidadesEspeciais() {
     });
 }
 
-
+document.getElementById("agarrar_outros")?.addEventListener("input", atualizarTudo);
 document.addEventListener('DOMContentLoaded', () => {
     const botao = document.getElementById('btn_exportar');
+    inicializarBBA();
     if (botao) {
         botao.addEventListener('click', exportarFicha);
     } else {

@@ -315,6 +315,10 @@ input[value="X"] {
     }
 
 }
+#testes{
+    display: flex;
+    justify-content: space-between;
+}
 .habilidades-container{
     display: grid;
     justify-content:space-between;
@@ -332,7 +336,7 @@ input[value="X"] {
 }
 .resistencias{
     display: grid;
-    width: 50%;
+    width: 35%;
     justify-content:space-between;
     grid-template-columns:repeat(7,1fr);
     column-gap: 10px;
@@ -347,6 +351,45 @@ input[value="X"] {
         width: 100%;
         text-align: center;
     }
+}
+
+.combate-grid2{
+    display: grid;
+    width:40%;
+    justify-content:space-between;
+    grid-template-columns:repeat(6,1fr);
+    column-gap: 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 1px 1px 5px black;
+    text-align: center;
+    padding: 40px 20px 18px;
+    margin-top: 18px;
+    font-size: 10px;
+    span, input{
+        width: 100%;
+        text-align: center;
+    }
+
+}
+.combate-grid1{
+    display: grid;
+    width: 18%;
+    justify-content:space-between;
+    grid-template-columns:repeat(1,1fr);
+    column-gap: 10px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    box-shadow: 1px 1px 5px black;
+    text-align: center;
+    padding: 18px 20px;
+    margin-top: 18px;
+    font-size: 10px;
+    span, input{
+        width: 100%;
+        text-align: center;
+    }
+
 }
 input:focus, select:focus {
     outline: none;

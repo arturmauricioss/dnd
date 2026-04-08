@@ -51,14 +51,6 @@ export const mapeamentoCompleto = {
     'iniciativa_outros': 'Iniciativa Outros',
 
 
-    'wound_0': 'Fer0',
-    'wound_1': 'Fer1',
-    'wound_2': 'Fer2',
-    'wound_3': 'Fer3',
-    'wound_4': 'Fer4',
-    'wound_5': 'Fer5',
-    'wound_6': 'Fer6',
-    'wound_7': 'Fer7',
 
      // --- COMBATE ---
     'ca_final': 'CA',
@@ -75,34 +67,34 @@ export const mapeamentoCompleto = {
 
 
     // --- TESTES DE RESISTÊNCIA ---
-    'save_fortitude': 'Fortitude',
-    'save_fortitude_base': 'Fortitude Bônus Base',
-    'save_fortitude_con': 'Fortitude M Con',
-    'save_fortitude_magic': 'Fortitude Mod Mágico',
-    'save_fortitude_other': 'Fortitude Outros',
+    'fort_total': 'Fortitude',
+    'fort_base': 'Fortitude Bônus Base',
+    'fort_mod': 'Fortitude M Con',
+    'fort_magico': 'Fortitude Mod Mágico',
+    'fort_outros': 'Fortitude Outros',
 
-    'save_reflex': 'Reflexos',
-    'save_reflex_base': 'Reflexos Bônus Base',
-    'save_reflex_dex': 'Reflexos M Des',
-    'save_reflex_magic': 'Reflexos Mod Mágico',
-    'save_reflex_other': 'Reflexos Outros',
+    'ref_total': 'Reflexos',
+    'ref_base': 'Reflexos Bônus Base',
+    'ref_mod': 'Reflexos M Des',
+    'ref_magico': 'Reflexos Mod Mágico',
+    'ref_outros': 'Reflexos Outros',
 
-    'save_will': 'Vontade',
-    'save_will_base': 'Vontade Bônus Base',
-    'save_will_wis': 'Vontade M Sab',
-    'save_will_magic': 'Vontade Mod Mágico',
-    'save_will_other': 'Vontade Outros',
+    'von_total': 'Vontade',
+    'von_base': 'Vontade Bônus Base',
+    'von_mod': 'Vontade M Sab',
+    'von_magico': 'Vontade Mod Mágico',
+    'von_outros': 'Vontade Outros',
 
       // --- ATAQUE ---
-    'base_attack_bonus': 'BBA',
+    'bonus_base_de_ataque': 'BBA',
 
-    'grapple': 'Agarrar',
-    'grapple_bab': 'Agarrar BBA',
-    'grapple_str': 'Agarrar M For',
-    'grapple_size': 'Agarrar Mod Tamanho',
-    'grapple_other': 'Agarrar Outros',
+    'agarrar_total': 'Agarrar',
+    'agarrar_base': 'Agarrar BBA',
+    'agarrar_mod': 'Agarrar M For',
+    'agarrar_tamanho': 'Agarrar Mod Tamanho',
+    'agarrar_outros': 'Agarrar Outros',
 
-    'spell_resistance': 'Resistência à Magia',
+    'resistencia_a_magia': 'Resistência à Magia',
     'damage_reduction': 'Redução de Dano',
 
 
