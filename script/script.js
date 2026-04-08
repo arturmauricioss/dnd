@@ -108,7 +108,7 @@ const idadePorRaca = {
 
 raceSelect.addEventListener("change", () => {
     const raca = raceSelect.value;
-
+    let modTamanhoAgarrar = 0;
     // =================
     // TAMANHO
     // =================
@@ -258,6 +258,7 @@ function atualizarTudo(event) {
     const raca = raceSelect.value;
     const classe = classeSelect.value;
     const nivel = parseInt(document.getElementById("level_class").value) || 1;
+    const levelEl = document.getElementById("level_class");
 
     calcularResistencias(classe, nivel, raca);
 
@@ -535,81 +536,74 @@ function limparItens() {
 
 // 1. Defina a função (certifique-se que o nome é este)
 async function exportarFicha() {
-    console.log("Iniciando exportação...");
+    console.log("Iniciando processo de exportação para PDF...");
     try {
         const url = './ficha.pdf'; 
-        const bytes = await fetch(url).then(res => res.arrayBuffer());
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Arquivo ficha.pdf não encontrado.");
+        
+        const bytes = await response.arrayBuffer();
         const pdfDoc = await PDFLib.PDFDocument.load(bytes);
         const form = pdfDoc.getForm();
 
-        // 1. IMPORTANTE: Usar o mapeamentoCompleto aqui!
+        // 1. Preenchimento via Mapeamento
         for (const [idHtml, nomePdf] of Object.entries(mapeamentoCompleto)) {
             const elemento = document.getElementById(idHtml);
-            
-            if (elemento) {
-                let valor = "";
+            if (!elemento) continue;
 
-                // Lógica para pegar o texto de SELECTs ou o valor de INPUTs
-                if (elemento.tagName === 'SELECT') {
-                    if (elemento.selectedIndex >= 0) {
-                        valor = elemento.options[elemento.selectedIndex].text;
-                    } else {
-                        valor = "";
-                    }
-                    if (valor.includes("SELECIONE")) valor = ""; 
-                } else {
-                    valor = elemento.value;
-                }
+            let valor = "";
+            if (elemento.tagName === 'SELECT') {
+                // Se for nível, pega o valor numérico, senão o texto
+                valor = (idHtml === "level_class") ? elemento.value : elemento.options[elemento.selectedIndex]?.text;
+                if (!valor || valor.includes("SELECIONE")) valor = ""; 
+            } else {
+                valor = elemento.value || "";
+            }
 
-                // Tenta inserir no PDF
-                try {
-                    const campoPdf = form.getTextField(nomePdf);
-                    campoPdf.setText(valor.toString());
-                } catch (err) {
-                    // Isso ajuda a debugar: se o nome no PDF estiver errado, ele avisa no console
-                    console.warn(`Campo PDF "${nomePdf}" não encontrado. Verifique o nome no PDF.`);
-                }
+            try {
+                const campoPdf = form.getTextField(nomePdf);
+                campoPdf.setText(valor.toString());
+            } catch (err) {
+                console.warn(`Campo PDF "${nomePdf}" não encontrado.`);
             }
         }
 
-        function marcarMunicao(ataqueIndex, quantidade) {
-            const qtd = parseInt(quantidade) || 0;
-
-            for (let i = 0; i < 30; i++) {
-                try {
-                    const campo = form.getCheckBox(`Zbox Ataque ${ataqueIndex} Munição ${i}`);
-                    
-                    if (i < qtd) {
-                        campo.check();
-                    } else {
-                        campo.uncheck();
-                    }
-
-                } catch (err) {
-                    console.warn(`Checkbox não encontrado: Ataque ${ataqueIndex} Munição ${i}`);
+        // 2. Lógica de Munição
+        try {
+            const armas = document.querySelectorAll("#weapons .weapon");
+            armas.forEach((armaEl, index) => {
+                const qtd = parseInt(armaEl.querySelector(".wp_quantity")?.value) || 0;
+                for (let i = 0; i < 30; i++) {
+                    try {
+                        const cb = form.getCheckBox(`Zbox Ataque ${index + 1} Munição ${i}`);
+                        i < qtd ? cb.check() : cb.uncheck();
+                    } catch(e) {}
                 }
-            }
-        }
-        const armas = document.querySelectorAll("#weapons .weapon");
+            });
+        } catch(e) {}
 
-        armas.forEach((armaEl, index) => {
-            const quantidade = armaEl.querySelector(".wp_quantity")?.value;
+        // --- A CORREÇÃO AQUI ---
+        // Esse é o método correto da biblioteca para atualizar o visual dos campos
+        form.updateFieldAppearances(); 
 
-            marcarMunicao(index + 1, quantidade);
-        });
-        // 2. Gerar e baixar o arquivo
+        // 3. Gerar e baixar
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         
-        const nomeChar = document.getElementById('character_name').value || "Ficha_D&D";
-        link.download = `${nomeChar}.pdf`;
-        link.click();
+        const nomeChar = document.getElementById('character_name')?.value || "Ficha_D&D";
+        link.download = `${nomeChar.replace(/\s+/g, '_')}.pdf`;
         
-        console.log("Exportação concluída!");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        console.log("Exportação finalizada com sucesso!");
+
     } catch (error) {
-        console.error("Erro detalhado na exportação:", error);
+        console.error("ERRO NA EXPORTAÇÃO:", error);
+        alert("Falha ao exportar: " + error.message);
     }
 }
 
@@ -660,14 +654,25 @@ function atualizarHabilidadesEspeciais() {
     });
 }
 
-document.getElementById("agarrar_outros")?.addEventListener("input", atualizarTudo);
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM carregado. Inicializando sistemas...");
+    
+    // Inicializa lógica de BBA
+    if (typeof inicializarBBA === "function") {
+        inicializarBBA();
+    }
+
     const botao = document.getElementById('btn_exportar');
-    inicializarBBA();
     if (botao) {
-        botao.addEventListener('click', exportarFicha);
+        console.log("Botão 'btn_exportar' encontrado e pronto.");
+        // Usamos uma função anônima para facilitar o debug
+        botao.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log("Clique no botão exportar detectado!");
+            exportarFicha();
+        });
     } else {
-        console.error("Não achei o botão com id 'btn_exportar'");
+        console.error("ERRO: O botão com id 'btn_exportar' não existe no HTML.");
     }
 });
 

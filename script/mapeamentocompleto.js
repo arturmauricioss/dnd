@@ -193,7 +193,7 @@ export const mapeamentoCompleto = {
     'pc_money': 'Peças de Cobre',
 
      // --- PESO ---
-    'weight_total_carried': 'Peso Total',
+    'weight_total_carried': 'Itens Peso Total',
     'weight_light': 'Carga Leve',
     'weight_medium': 'Carga Média',
     'weight_hard': 'Carga Pesada',
