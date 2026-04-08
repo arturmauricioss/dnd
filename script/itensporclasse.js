@@ -1,590 +1,399 @@
+// ==========================
+// BASE DE ITENS (REUTILIZÁVEL)
+// ==========================
+
+const itensBase = {
+  mochila: { nome: "Mochila" },
+  cantil: { nome: "Cantil" },
+  racao: { nome: "Rações (1 dia)" },
+  sacoDormir: { nome: "Saco de Dormir" },
+  saco: { nome: "Saco" },
+  pederneira: { nome: "Pederneira e Isqueiro" },
+  tochas: { nome: "3 Tochas" },
+  lanterna: { nome: "Lanterna Coberta" },
+  oleo300: { nome: "Óleo (300 ml)" },
+  oleo500: { nome: "Óleo (500 ml)" },
+
+  // extras (pra evitar hardcode nas classes)
+  grimorio: { nome: "Grimório" },
+  ferramentasLadrao: { nome: "Ferramentas de ladrão" },
+  simboloSagrado: { nome: "Símbolo sagrado" },
+  alaude: { nome: "Alaúde" },
+  bolsaComponentes: { nome: "Bolsa de componentes de magia" },
+  azevinho: { nome: "Azevinho e visco" }
+};
+
+// ==========================
+// FUNÇÃO PADRÃO DE ARMAS
+// ==========================
+
+function armaPadrao(data) {
+  return {
+    nome: data.nome,
+    dano: data.dano,
+    critico: data.critico,
+    alcance: data.alcance || "",
+    categoria: data.categoria,
+    tipo_dano: data.tipo_dano,
+    peso: data.peso,
+    municao: data.municao || "",
+    quantidade: data.quantidade || "",
+    tipo_ataque: data.tipo_ataque,
+    subtipo: data.subtipo || null
+  };
+}
+
+// ==========================
+// BASE DE ARMAS (ÚNICA)
+// ==========================
+
+const armasBase = {
+  machadoGrande: armaPadrao({
+    nome: "Machado Grande",
+    dano: "1d12",
+    critico: "x3",
+    categoria: "duas_maos",
+    tipo_dano: "cortante",
+    peso: "6 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  arcoCurto: armaPadrao({
+    nome: "Arco Curto",
+    dano: "1d6",
+    critico: "x3",
+    alcance: "18 m",
+    categoria: "duas_maos",
+    tipo_dano: "perfurante",
+    peso: "1 kg",
+    municao: "Flechas",
+    quantidade: "20",
+    tipo_ataque: "distancia",
+    subtipo: "disparo"
+  }),
+
+  arcoLongo: armaPadrao({
+    nome: "Arco Longo",
+    dano: "1d8",
+    critico: "x3",
+    alcance: "30 m",
+    categoria: "duas_maos",
+    tipo_dano: "perfurante",
+    peso: "1,5 kg",
+    municao: "Flechas",
+    quantidade: "20",
+    tipo_ataque: "distancia",
+    subtipo: "disparo"
+  }),
+
+  adaga: armaPadrao({
+    nome: "Adaga",
+    dano: "1d4",
+    critico: "19-20/x2",
+    alcance: "3 m",
+    categoria: "leve",
+    tipo_dano: "perfurante",
+    peso: "0,5 kg",
+    tipo_ataque: "corpo",
+    subtipo: "arremesso"
+  }),
+
+  bestaLeve: armaPadrao({
+    nome: "Besta Leve",
+    dano: "1d8",
+    critico: "19-20/x2",
+    alcance: "24 m",
+    categoria: "duas_maos",
+    tipo_dano: "perfurante",
+    peso: "2 kg",
+    municao: "Virotes",
+    quantidade: "10",
+    tipo_ataque: "distancia",
+    subtipo: "disparo"
+  }),
+
+  espadaLonga: armaPadrao({
+    nome: "Espada Longa",
+    dano: "1d8",
+    critico: "19-20/x2",
+    categoria: "uma_mao",
+    tipo_dano: "cortante",
+    peso: "2 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  espadaCurta: armaPadrao({
+    nome: "Espada Curta",
+    dano: "1d6",
+    critico: "19-20/x2",
+    categoria: "leve",
+    tipo_dano: "perfurante",
+    peso: "1 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  bordao: armaPadrao({
+    nome: "Bordão",
+    dano: "1d6/1d6",
+    critico: "x2",
+    categoria: "duas_maos",
+    tipo_dano: "concussao",
+    peso: "2 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  funda: armaPadrao({
+    nome: "Funda",
+    dano: "1d4",
+    critico: "x2",
+    alcance: "15 m",
+    categoria: "uma_mao",
+    tipo_dano: "concussao",
+    peso: "0,5 kg",
+    municao: "Balas",
+    quantidade: "10",
+    tipo_ataque: "distancia",
+    subtipo: "arremesso"
+  }),
+
+  cimitarra: armaPadrao({
+    nome: "Cimitarra",
+    dano: "1d6",
+    critico: "18-20/x2",
+    categoria: "uma_mao",
+    tipo_dano: "cortante",
+    peso: "2 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  clava: armaPadrao({
+    nome: "Clava",
+    dano: "1d6",
+    critico: "x2",
+    categoria: "uma_mao",
+    tipo_dano: "concussao",
+    peso: "1,5 kg",
+    tipo_ataque: "corpo"
+  }),
+
+  lancaCurta: armaPadrao({
+    nome: "Lança Curta",
+    dano: "1d6",
+    critico: "x2",
+    alcance: "6 m",
+    categoria: "uma_mao",
+    tipo_dano: "perfurante",
+    peso: "1,5 kg",
+    tipo_ataque: "corpo",
+    subtipo: "arremesso"
+  }),
+
+  macaPesada: armaPadrao({
+    nome: "Maça Pesada",
+    dano: "1d8",
+    critico: "x2",
+    categoria: "uma_mao",
+    tipo_dano: "concussao",
+    peso: "4 kg",
+    tipo_ataque: "corpo"
+  })
+};
+
+// ==========================
+// ARMADURAS / ESCUDOS
+// ==========================
+
+const armadurasBase = {
+  couro: {
+    nome: "Corselete de Couro",
+    tipo: "Leve",
+    bonus_ca: "+2",
+    dex_max: "+6",
+    penalidade: "0",
+    falha_magia: "10%",
+    deslocamento: "9 m",
+    peso: "7,5 kg",
+    propriedades: ""
+  },
+
+  couroBatido: {
+    nome: "Corselete de Couro Batido",
+    tipo: "Leve",
+    bonus_ca: "+3",
+    dex_max: "+5",
+    penalidade: "-1",
+    falha_magia: "15%",
+    deslocamento: "9 m",
+    peso: "10 kg",
+    propriedades: ""
+  },
+
+  peles: {
+    nome: "Gibão de Peles",
+    tipo: "Leve",
+    bonus_ca: "+3",
+    dex_max: "+4",
+    penalidade: "-3",
+    falha_magia: "20%",
+    deslocamento: "9 m",
+    peso: "11,5 kg",
+    propriedades: ""
+  },
+
+  brunea: {
+    nome: "Brunea",
+    tipo: "Média",
+    bonus_ca: "+4",
+    dex_max: "+3",
+    penalidade: "-4",
+    falha_magia: "25%",
+    deslocamento: "6 m",
+    peso: "20 kg",
+    propriedades: ""
+  }
+};
+
+const escudosBase = {
+  madeiraLeve: {
+    nome: "Escudo Leve de Madeira",
+    bonus_ca: "+1",
+    penalidade: "-1",
+    falha_magia: "5%",
+    peso: "2,5 kg",
+    propriedades: ""
+  },
+
+  madeiraPesado: {
+    nome: "Escudo Pesado de Madeira",
+    bonus_ca: "+2",
+    penalidade: "-2",
+    falha_magia: "15%",
+    peso: "5 kg",
+    propriedades: ""
+  },
+
+  metalLeve: {
+    nome: "Escudo Leve de Aço",
+    bonus_ca: "+1",
+    penalidade: "-1",
+    falha_magia: "5%",
+    peso: "3 kg",
+    propriedades: ""
+  },
+
+  metalPesado: {
+    nome: "Escudo Pesado de Aço",
+    bonus_ca: "+2",
+    penalidade: "-2",
+    falha_magia: "15%",
+    peso: "7,5 kg",
+    propriedades: ""
+  }
+};
+
+// ==========================
+// ITENS PADRÃO
+// ==========================
+
+const itensPadrao = () => [
+  itensBase.mochila,
+  itensBase.cantil,
+  itensBase.racao,
+  itensBase.sacoDormir,
+  itensBase.saco,
+  itensBase.pederneira
+];
+
+// ==========================
+// CLASSES (SEM HARDCODE)
+// ==========================
+
 export const itensPorClasse = {
-    barbaro: {
-        // =====================
-        // ARMAS
-        // =====================
-        armas: [
-            {
-                nome: "Machado Grande",
-                bonus: "",
-                dano: "1d12",
-                critico: "x3",
-                alcance: "",
-                tipo: "Cortante (duas mãos)",
-                peso: "6 kg",
-                municao: "",
-                quantidade: "",
-                observacao: ""
-            },
-            {
-                nome: "Arco Curto",
-                bonus: "",
-                dano: "1d6",
-                critico: "x3",
-                alcance: "18 m",
-                tipo: "Perfurante",
-                peso: "1 kg",
-                municao: "Flechas",
-                quantidade: "20",
-                observacao: "Aljava"
-            },
-            {
-                nome: "Adaga",
-                bonus: "",
-                dano: "1d4",
-                critico: "19-20/x2",
-                alcance: "3 m",
-                tipo: "Leve, perfurante",
-                peso: "0,5 kg",
-                municao: "",
-                quantidade: "",
-                observacao: ""
-            }
-        ],
+  barbaro: {
+    armas: [armasBase.machadoGrande, armasBase.arcoCurto, armasBase.adaga],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: itensPadrao(),
+    dinheiro: { po: "2d4" }
+  },
 
-        // =====================
-        // ARMADURA
-        // =====================
-        armadura: {
-            nome: "Corselete de couro batido",
-            tipo: "Leve",
-            bonus_ca: "+3",
-            dex_max: "",
-            penalidade: "-1",
-            falha_magia: "",
-            deslocamento: "12 m",
-            peso: "10 kg",
-            propriedades: ""
-        },
+  bardo: {
+    armas: [armasBase.espadaLonga, armasBase.bestaLeve],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.tochas, itensBase.alaude, itensBase.bolsaComponentes],
+    dinheiro: { po: "2d4" }
+  },
 
-        // =====================
-        // ESCUDO
-        // =====================
-        escudo: null, // não tem no exemplo
+  clerigo: {
+    armas: [armasBase.macaPesada, armasBase.bestaLeve],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: [...itensPadrao(), itensBase.tochas, itensBase.simboloSagrado],
+    dinheiro: { po: "1d4" }
+  },
 
-        // =====================
-        // ITENS DE PROTEÇÃO
-        // =====================
-        protecoes: [],
+  druida: {
+    armas: [armasBase.cimitarra, armasBase.clava, armasBase.funda],
+    armadura: armadurasBase.peles,
+    escudo: escudosBase.madeiraPesado,
+    itens: [...itensPadrao(), itensBase.tochas, itensBase.azevinho],
+    dinheiro: { po: "1d6" }
+  },
 
-        // =====================
-        // BAG (OUTROS ITENS)
-        // =====================
-        itens: [
-            { nome: "Mochila"},
-            { nome: "Cantil"},
-            { nome: "Ração de viagem (1 dia)"},
-            { nome: "Saco de dormir"},
-            { nome: "Sacola"},
-            { nome: "Pederneira e isqueiro"}
-        ],
+  feiticeiro: {
+    armas: [armasBase.lancaCurta, armasBase.bestaLeve],
+    armadura: null,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.lanterna, itensBase.oleo500, itensBase.bolsaComponentes],
+    dinheiro: { po: "3d4" }
+  },
 
-        // =====================
-        // DINHEIRO
-        // =====================
-        dinheiro: {
-            po: "2d4",
-            pp: "",
-            pl: "",
-            pc: ""
-        }
-    },
-        bardo: {
-        armas: [
-            {
-                nome: "Espada longa",
-                dano: "1d6",
-                critico: "19-20/x2",
-                alcance: "",
-                tipo: "Cortante (uma mão)",
-                peso: "1 kg"
-            },
-            {
-                nome: "Besta leve",
-                dano: "1d6",
-                critico: "19-20/x2",
-                alcance: "24 m",
-                tipo: "Perfurante",
-                peso: "1 kg",
-                municao: "Virotes",
-                quantidade: "10"
-            }
-        ],
+  guerreiro: {
+    armas: [armasBase.machadoGrande, armasBase.arcoCurto],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: itensPadrao(),
+    dinheiro: { po: "2d4" }
+  },
 
-        armadura: {
-            nome: "Corselete de couro batido",
-            tipo: "Leve",
-            bonus_ca: "+3",
-            penalidade: "-1",
-            deslocamento: "6 m",
-            peso: "5 kg",
-            falha_magia: "0%"
-        },
+  ladino: {
+    armas: [armasBase.espadaCurta, armasBase.bestaLeve, armasBase.adaga],
+    armadura: armadurasBase.couro,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.ferramentasLadrao],
+    dinheiro: { po: "4d4" }
+  },
 
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "3 tochas" },
-            { nome: "Alaúde" },
-            { nome: "Bolsa de componentes de magia" }
-        ],
+  mago: {
+    armas: [armasBase.bordao, armasBase.bestaLeve],
+    armadura: null,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.grimorio],
+    dinheiro: { po: "3d6" }
+  },
 
-        dinheiro: { po: "2d4" }
-    },
-        clerigo: {
-        armas: [
-            {
-                nome: "Maça pesada",
-                dano: "1d8",
-                critico: "x2",
-                tipo: "Concussão",
-                peso: "4 kg"
-            },
-            {
-                nome: "Besta leve",
-                dano: "1d8",
-                critico: "19-20/x2",
-                alcance: "24 m",
-                tipo: "Perfurante",
-                peso: "2 kg",
-                municao: "Virotes",
-                quantidade: "10"
-            }
-        ],
+  monge: {
+    armas: [armasBase.bordao, armasBase.funda],
+    armadura: null,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.tochas],
+    dinheiro: { po: "2d4" }
+  },
 
-        armadura: {
-            nome: "Brunea",
-            bonus_ca: "+4",
-            penalidade: "-4",
-            deslocamento: "6 m",
-            peso: "15 kg"
-        },
+  paladino: {
+    armas: [armasBase.espadaLonga, armasBase.arcoCurto, armasBase.funda],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: [...itensPadrao(), itensBase.lanterna, itensBase.oleo300, itensBase.simboloSagrado],
+    dinheiro: { po: "6d4" }
+  },
 
-        escudo: {
-            nome: "Escudo grande de madeira",
-            bonus_ca: "+2",
-            penalidade: "-2",
-            peso: "5 kg"
-        },
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "Símbolo sagrado (Pelor)" },
-            { nome: "3 tochas" }
-        ],
-
-        dinheiro: { po: "1d4" }
-    },
-        druida: {
-        armas: [
-            {
-                nome: "Cimitarra",
-                dano: "1d6",
-                critico: "18-20/x2",
-                tipo: "Cortante",
-                peso: "2 kg"
-            },
-            {
-                nome: "Clava",
-                dano: "1d6",
-                critico: "x2",
-                alcance: "3 m",
-                tipo: "Concussão",
-                peso: "1,5 kg"
-            },
-            {
-                nome: "Funda",
-                dano: "1d4",
-                critico: "x2",
-                alcance: "15 m",
-                tipo: "Concussão",
-                municao: "Balas",
-                quantidade: "10"
-            }
-        ],
-
-        armadura: {
-            nome: "Gibão de peles",
-            bonus_ca: "+3",
-            penalidade: "-3",
-            deslocamento: "6 m",
-            peso: "12,5 kg"
-        },
-
-        escudo: {
-            nome: "Escudo grande de madeira",
-            bonus_ca: "+2",
-            penalidade: "-2",
-            peso: "5 kg"
-        },
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "Azevinho e visco" },
-            { nome: "3 tochas" }
-        ],
-
-        dinheiro: { po: "1d6" }
-    },
-        feiticeiro: {
-        armas: [
-            {
-                nome: "Lança curta",
-                dano: "1d6",
-                critico: "x2",
-                alcance: "6 m",
-                tipo: "Perfurante",
-                peso: "1,5 kg"
-            },
-            {
-                nome: "Besta leve",
-                dano: "1d8",
-                critico: "19-20/x2",
-                alcance: "24 m",
-                tipo: "Perfurante",
-                peso: "2 kg",
-                municao: "Virotes",
-                quantidade: "10"
-            }
-        ],
-
-        armadura: null,
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "Lanterna coberta" },
-            { nome: "Óleo (500 ml)" },
-            { nome: "Bolsa de componentes de magia" }
-        ],
-
-        dinheiro: { po: "3d4" }
-    },
-        guerreiro: {
-        // =====================
-        // ARMAS
-        // =====================
-        armas: [
-            {
-                nome: "Machado de guerra anão",
-                dano: "1d10",
-                critico: "x3",
-                alcance: "",
-                tipo: "Cortante (uma mão)",
-                peso: "4 kg",
-                municao: "",
-                quantidade: "",
-                observacao: ""
-            },
-            {
-                nome: "Arco curto",
-                dano: "1d6",
-                critico: "x3",
-                alcance: "18 m",
-                tipo: "Perfurante",
-                peso: "1 kg",
-                municao: "Flechas",
-                quantidade: "20",
-                observacao: "Aljava"
-            }
-        ],
-
-        // =====================
-        // ARMADURA
-        // =====================
-        armadura: {
-            nome: "Brunea",
-            tipo: "Média",
-            bonus_ca: "+4",
-            penalidade: "-4",
-            deslocamento: "6 m",
-            peso: "15 kg",
-            dex_max: "",
-            falha_magia: "",
-            propriedades: ""
-        },
-
-        // =====================
-        // ESCUDO
-        // =====================
-        escudo: {
-            nome: "Escudo grande de madeira",
-            bonus_ca: "+2",
-            penalidade: "-2",
-            peso: "",
-            falha_magia: "",
-            propriedades: ""
-        },
-
-        // =====================
-        // PROTEÇÕES
-        // =====================
-        protecoes: [],
-
-        // =====================
-        // BAG (OUTROS ITENS)
-        // =====================
-        itens: [
-            { nome: "Mochila"},
-            { nome: "Cantil"},
-            { nome: "Rações de viagem (1 dia)"},
-            { nome: "Saco de dormir"},
-            { nome: "Saco"},
-            { nome: "Pederneira e isqueiro"}
-        ],
-
-        // =====================
-        // DINHEIRO
-        // =====================
-        dinheiro: {
-            po: "2d4",
-            pp: "",
-            pl: "",
-            pc: ""
-        }
-    },
-        ladino: {
-        armas: [
-            {
-                nome: "Espada curta",
-                dano: "1d4",
-                critico: "19-20/x2",
-                tipo: "Leve, perfurante",
-                peso: "0,5 kg"
-            },
-            {
-                nome: "Besta leve",
-                dano: "1d8",
-                critico: "19-20/x2",
-                alcance: "24 m",
-                tipo: "Perfurante",
-                peso: "1 kg",
-                municao: "Virotes",
-                quantidade: "10"
-            },
-            {
-                nome: "Adaga",
-                dano: "1d3",
-                critico: "19-20/x2",
-                alcance: "3 m",
-                tipo: "Leve, perfurante",
-                peso: "0,25 kg"
-            }
-        ],
-
-        armadura: {
-            nome: "Corselete de couro",
-            bonus_ca: "+2",
-            deslocamento: "6 m",
-            peso: "3 kg"
-        },
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "Ferramentas de ladrão" },
-            { nome: "Lanterna coberta" },
-            { nome: "Óleo (300 ml)" }
-        ],
-
-        dinheiro: { po: "4d4" }
-    },
-        mago: {
-        armas: [
-            {
-                nome: "Bordão",
-                dano: "1d6/1d6",
-                critico: "x2",
-                tipo: "Duas mãos",
-                peso: "2 kg"
-            },
-            {
-                nome: "Besta leve",
-                dano: "1d8",
-                critico: "19-20/x2",
-                alcance: "24 m",
-                tipo: "Perfurante",
-                peso: "2 kg",
-                municao: "Virotes",
-                quantidade: "10"
-            }
-        ],
-
-        armadura: null,
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "10 velas" },
-            { nome: "Porta-mapas" },
-            { nome: "Pergaminhos" },
-            { nome: "Tinta e caneta" },
-            { nome: "Grimório" }
-        ],
-
-        dinheiro: { po: "3d6" }
-    },
-        monge: {
-        armas: [
-            {
-                nome: "Bordão",
-                dano: "1d6/1d6",
-                critico: "x2",
-                tipo: "Duas mãos",
-                peso: "2 kg"
-            },
-            {
-                nome: "Funda",
-                dano: "1d4",
-                critico: "x2",
-                alcance: "15 m",
-                tipo: "Concussão",
-                municao: "Balas",
-                quantidade: "10"
-            }
-        ],
-
-        armadura: null,
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Saco" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "3 tochas" }
-        ],
-
-        dinheiro: { po: "2d4" }
-    },
-        paladino: {
-        armas: [
-            {
-                nome: "Espada longa",
-                dano: "1d8",
-                critico: "19-20/x2",
-                tipo: "Cortante",
-                peso: "2 kg"
-            },
-            {
-                nome: "Arco curto",
-                dano: "1d6",
-                critico: "x3",
-                alcance: "18 m",
-                tipo: "Perfurante",
-                municao: "Flechas",
-                quantidade: "20"
-            },
-            {
-                nome: "Funda",
-                dano: "1d4",
-                critico: "x2",
-                alcance: "15 m",
-                tipo: "Concussão",
-                municao: "Balas",
-                quantidade: "10"
-            }
-        ],
-
-        armadura: {
-            nome: "Brunea",
-            bonus_ca: "+4",
-            penalidade: "-6",
-            deslocamento: "6 m",
-            peso: "15 kg"
-        },
-
-        escudo: {
-            nome: "Escudo grande de madeira",
-            bonus_ca: "+2",
-            penalidade: "-2",
-            peso: "5 kg"
-        },
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "Lanterna coberta" },
-            { nome: "Óleo (300 ml)" },
-            { nome: "Símbolo sagrado" }
-        ],
-
-        dinheiro: { po: "6d4" }
-    },
-        ranger: {
-        armas: [
-            {
-                nome: "Espada longa",
-                dano: "1d8",
-                critico: "19-20/x2",
-                tipo: "Cortante",
-                observacao: "-4 ao atacar com duas armas"
-            },
-            {
-                nome: "Espada curta",
-                dano: "1d6",
-                critico: "19-20/x2",
-                tipo: "Leve, perfurante",
-                observacao: "Mão inábil (-8)"
-            },
-            {
-                nome: "Arco longo",
-                dano: "1d8",
-                critico: "x3",
-                alcance: "30 m",
-                tipo: "Perfurante",
-                municao: "Flechas",
-                quantidade: "20"
-            }
-        ],
-
-        armadura: {
-            nome: "Corselete de couro batido",
-            bonus_ca: "+3",
-            penalidade: "-1",
-            deslocamento: "9 m",
-            peso: "10 kg"
-        },
-
-        itens: [
-            { nome: "Mochila" },
-            { nome: "Cantil" },
-            { nome: "Rações (1 dia)" },
-            { nome: "Saco de dormir" },
-            { nome: "Pederneira e isqueiro" },
-            { nome: "3 tochas" }
-        ],
-
-        dinheiro: { po: "2d4" }
-    }
+  ranger: {
+    armas: [armasBase.espadaLonga, armasBase.espadaCurta, armasBase.arcoLongo],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: [...itensPadrao(), itensBase.tochas],
+    dinheiro: { po: "2d4" }
+  }
 };

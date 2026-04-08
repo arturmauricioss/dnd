@@ -336,7 +336,7 @@ input[value="X"] {
 }
 .resistencias{
     display: grid;
-    width: 35%;
+    width: 38%;
     justify-content:space-between;
     grid-template-columns:repeat(7,1fr);
     column-gap: 10px;

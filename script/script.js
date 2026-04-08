@@ -240,6 +240,9 @@ const deslocamentoPorRaca = {
     humano: 9, elfo: 9, "meio-elfo": 9, "meio-orc": 9,
     anao: 6, gnomo: 6, halfling: 6
 };
+const bonusDeslocamentoPorClasse = {
+    barbaro: 3
+};
 
 function parseBonus(valor) {
     if (!valor) return 0;
@@ -263,45 +266,80 @@ function atualizarTudo(event) {
     calcularResistencias(classe, nivel, raca);
 
     calcularBBA(classe);
-    // ==========================
-// CÁLCULO DE AGARRAR (GRAPPLE)
-// ==========================
-const agarrarTotalInput = document.getElementById("agarrar_total");
-const agarrarBaseInput = document.getElementById("agarrar_base");
-const agarrarModInput = document.getElementById("agarrar_mod");
-const agarrarTamanhoInput = document.getElementById("agarrar_tamanho");
-const agarrarOutrosInput = document.getElementById("agarrar_outros");
-
-if (agarrarTotalInput) {
-    // 1. Pega os valores base
-    const bba = parseInt(document.getElementById("bba_total")?.value) || 0;
-    const modFor = getMod(parseInt(document.getElementById("total_forca")?.value) || 0);
     
-    // 2. Define o modificador de tamanho (Halfling/Gnomo = -4, outros = 0)
-    let modTamAgarrar = 0;
-    if (raca === "halfling" || raca === "gnomo") {
-        modTamAgarrar = -4;
+    // ==========================
+    // CÁLCULO DE ATAQUE DAS ARMAS
+    // ==========================
+
+    const totalFor = parseInt(document.getElementById("total_forca")?.value) || 0;
+    const totalDex = parseInt(document.getElementById("total_destreza")?.value) || 0;
+
+    const modFor = getMod(totalFor);
+    const modDex = getMod(totalDex);
+
+    // ==========================
+    // CÁLCULO DE ATAQUE
+    // ==========================
+    const armas = document.querySelectorAll("#weapons .weapon");
+    const bba = parseInt(document.getElementById("bonus_base_de_ataque")?.value) || 0;
+
+    const dadosClasse = itensPorClasse[classe];
+
+    if (dadosClasse && dadosClasse.armas) {
+        armas.forEach((container, index) => {
+            const arma = dadosClasse.armas[index];
+            if (!arma) return;
+
+            let bonus = bba;
+
+            // FOR ou DES
+            if (arma.tipo_ataque === "corpo") {
+                bonus += modFor;
+            } else {
+                bonus += modDex;
+            }
+
+            // 🎯 REGRA DO HALFLING (AQUI!)
+            if (raca === "halfling" && arma.subtipo === "arremesso") {
+                bonus += 1;
+            }
+
+            // coloca no campo
+            const inputBonus = container.querySelector(".wp_bonus_atack");
+            if (inputBonus) {
+                inputBonus.value = bonus >= 0 ? `+${bonus}` : bonus;
+            }
+        });
+
     }
+    // ==========================
+    // CÁLCULO DE AGARRAR (GRAPPLE)
+    // ==========================
+    const agarrarTotalInput = document.getElementById("agarrar_total");
+    const agarrarBaseInput = document.getElementById("agarrar_base");
+    const agarrarModInput = document.getElementById("agarrar_mod");
+    const agarrarTamanhoInput = document.getElementById("agarrar_tamanho");
+    const agarrarOutrosInput = document.getElementById("agarrar_outros");
 
-    // 3. Pega bônus de outros (se o usuário digitar algo)
-    const outrosAgarrar = parseInt(agarrarOutrosInput?.value) || 0;
-
-    // 4. Soma tudo
-    const totalAgarrar = bba + modFor + modTamAgarrar + outrosAgarrar;
-
-    // 5. Distribui nos campos do HTML
-    agarrarBaseInput.value = bba;
-    agarrarModInput.value = modFor >= 0 ? `+${modFor}` : modFor;
-    agarrarTamanhoInput.value = modTamAgarrar;
-    agarrarTotalInput.value = totalAgarrar >= 0 ? `+${totalAgarrar}` : totalAgarrar;
-}
     // ==========================
     // 1. DESLOCAMENTO
     // ==========================
     const deslocInput = document.getElementById("deslocamento");
-    deslocInput.value = deslocamentoPorRaca[raca] 
-        ? `${deslocamentoPorRaca[raca]}m` 
-        : "";
+
+    const deslocBase = deslocamentoPorRaca[raca] || 0;
+    let bonusClasse = bonusDeslocamentoPorClasse[classe] || 0;
+
+    // pega armadura equipada
+    const armorType = document.querySelector("#armory .ar_type")?.value;
+
+    // 🚫 bloqueio do bárbaro
+    if (classe === "barbaro") {
+        if (armorType === "Média" || armorType === "Pesada") {
+            bonusClasse = 0;
+        }
+    }
+    const deslocFinal = deslocBase + bonusClasse;
+    deslocInput.value = deslocFinal ? `${deslocFinal}m` : "";
 
     // ==========================
     // 2. VIDA (HP)
@@ -318,9 +356,6 @@ if (agarrarTotalInput) {
     // 3. CA (BASE)
     // ==========================
     const caBase = 10;
-
-    const totalDex = parseInt(document.getElementById("total_destreza").value) || 0;
-    const modDex = getMod(totalDex);
 
     let modTamanho = 0;
     if (raca === "gnomo" || raca === "halfling") modTamanho = 1;
@@ -428,22 +463,33 @@ function preencherItensClasse(classe) {
     // =====================
     const armas = document.querySelectorAll("#weapons .weapon");
 
-     dados.armas.forEach((arma, index) => {
+    const setValue = (container, selector, value) => {
+        const el = container.querySelector(selector);
+        if (el) el.value = value || "";
+    };
+
+    const formatar = (txt) =>
+        txt.charAt(0).toUpperCase() + txt.slice(1).replace("_", " ");
+
+    dados.armas.forEach((arma, index) => {
         const container = armas[index];
         if (!container) return;
 
-        container.querySelector(".wp_atack").value = arma.nome || "";
-        container.querySelector(".wp_bonus_atack").value = arma.bonus || "";
-        container.querySelector(".wp_damage").value = arma.dano || "";
-        container.querySelector(".wp_decisive_success").value = arma.critico || "";
-        container.querySelector(".wp_range").value = arma.alcance || "";
-        container.querySelector(".wp_type").value = arma.tipo || "";
-        container.querySelector(".wp_weight").value = arma.peso || "";
+        setValue(container, ".wp_atack", arma.nome);
+        setValue(container, ".wp_damage", arma.dano);
+        setValue(container, ".wp_decisive_success", arma.critico);
+        setValue(container, ".wp_range", arma.alcance);
+        setValue(container, ".wp_type", arma.tipo_dano);
+        setValue(container, ".wp_weight", arma.peso);
+        setValue(container, ".wp_ammo", arma.municao);
+        setValue(container, ".wp_quantity", arma.quantidade);
 
-        // 🔥 CAMPOS QUE FALTAVAM
-        container.querySelector(".wp_ammo").value = arma.municao || "";
-        container.querySelector(".wp_quantity").value = arma.quantidade || "";
-        container.querySelector(".wp_observation").value = arma.observacao || "";
+        const obs = [];
+
+        if (arma.categoria) obs.push(formatar(arma.categoria));
+        if (arma.subtipo) obs.push(formatar(arma.subtipo));
+
+        setValue(container, ".wp_observation", obs.join(", "));
     });
 
     // =====================
@@ -625,7 +671,7 @@ const habilidadesEspeciaisData = {
         anao: ["Visão no Escuro 18m", "Estabilidade (+4 vs Derrubar)", "Afinidade com Pedras"],
         elfo: ["Imunidade a Sono", "+2 vs Encantamentos", "Visão na Penumbra"],
         gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "+1 CD Ilusões","Falar com Animais (1/dia)"],
-        halfling: ["+1 em Resistências", "+2 vs Medo", "+1 Ataque (Arremesso)"],
+        halfling: ["+1 em Resistências*", "+2 vs Medo", "+1 Ataque (Arremesso)*"],
         "meio-elfo": ["Sangue Élfico", "Visão na Penumbra", "+2 em Diplomacia/Obter Informação"],
         "meio-orc": ["Visão no Escuro 18m", "Sangue Orc"],
         humano: ["+Talento Humano", "+1 Perícia por Nível"]
