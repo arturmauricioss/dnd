@@ -7,7 +7,7 @@ import { atualizarIdiomas } from "./calculos/idiomas.js";
 import { calcularResistencias } from "./calculos/resistencias.js";
 import { inicializarBBA, calcularBBA } from "./calculos/bba.js";
 import { calcularCA } from "./calculos/ca.js";
-import { ajustarDanoPorTamanho } from "./calculos/danoportamanho.js";
+import { calcularAtaque, calcularDanoCompleto } from "./calculos/combate.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -248,34 +248,6 @@ const bonusDeslocamentoPorClasse = {
     barbaro: 3
 };
 
-
-function calcularDanoFinal(arma, modFor, modDex, raca) {
-    let mod = 0;
-
-    if (arma.tipo_ataque === "corpo") {
-        // 🪓 arma corpo a corpo
-        if (arma.categoria === "duas_maos") {
-            mod = Math.floor(modFor * 1.5);
-        } else {
-            mod = modFor;
-        }
-    } else {
-        // 🎯 distância
-        if (arma.subtipo === "arremesso") {
-            mod = modFor; // arremesso usa FOR
-        } else {
-            mod = 0; // arco/besta não soma atributo
-        }
-    }
-
-    // bônus halfling
-    if (raca === "halfling" && arma.subtipo === "arremesso") {
-        mod += 1;
-    }
-
-    return mod;
-}
-
 function atualizarTudo(event) {
     // 1. Cálculos de Base (Atributos, Idiomas, Resistências e BBA)
     calcularAtributos(event, raceSelect);
@@ -307,6 +279,7 @@ function atualizarTudo(event) {
         const inputNome = container.querySelector(".wp_atack");
         const inputBonus = container.querySelector(".wp_bonus_atack");
         const inputDano = container.querySelector(".wp_damage");
+        if (!inputBonus || !inputDano) return;
 
         // Se estiver em modo "apenas dinheiro" ou o campo estiver vazio, limpa e pula
         if (!usarKit || !inputNome || !inputNome.value) {
@@ -319,22 +292,15 @@ function atualizarTudo(event) {
         const dadosClasse = itensPorClasse[classe];
         const armaDados = dadosClasse?.armas ? dadosClasse.armas[index] : null;
 
-        if (armaDados) {
-            // Bônus de Ataque
-            let bonusAtk = bba + (armaDados.tipo_ataque === "corpo" ? modFor : modDex);
-            if (raca === "halfling" && armaDados.subtipo === "arremesso") bonusAtk += 1;
-            inputBonus.value = bonusAtk >= 0 ? `+${bonusAtk}` : bonusAtk;
+        if (!armaDados) return;
 
-            // Dano
-            const modDano = calcularDanoFinal(armaDados, modFor, modDex, raca);
-            let danoBaseAjustado = ajustarDanoPorTamanho(armaDados.dano, raca);
-            let danoTexto = danoBaseAjustado;
-            if (modDano !== 0) {
-                danoTexto += modDano > 0 ? ` +${modDano}` : ` ${modDano}`;
-            }
-            inputDano.value = danoTexto;
-        }
-    });
+        // Bônus de Ataque
+        let bonusAtk = calcularAtaque(armaDados, bba, modFor, modDex, raca);
+        inputBonus.value = bonusAtk >= 0 ? `+${bonusAtk}` : bonusAtk;
+
+        // Dano
+        inputDano.value = calcularDanoCompleto(armaDados, modFor, modDex, raca);
+});
 
     // 4. VIDA (HP)
     const vidaInput = document.getElementById("vida");
