@@ -490,13 +490,20 @@ function preencherItensClasse(classe) {
 
 
 function limparItens() {
-    const seletores = ["#weapons", "#armory", "#shield", ".protect", "#other_itens"];
-    seletores.forEach(seletor => {
-        const container = document.querySelector(seletor);
-        if (container) {
-            container.querySelectorAll("input").forEach(input => input.value = "");
-        }
-    });
+    // Armas
+    document.querySelectorAll("#weapons input").forEach(el => el.value = "");
+
+    // Armadura
+    document.querySelectorAll("#armory input").forEach(el => el.value = "");
+
+    // Escudo
+    document.querySelectorAll("#shield input").forEach(el => el.value = "");
+
+    // Itens de proteção
+    document.querySelectorAll(".protect input").forEach(el => el.value = "");
+
+    // Outros itens
+    document.querySelectorAll("#other_itens input").forEach(el => el.value = "");
 }
 
 async function exportarFicha() {
@@ -602,9 +609,8 @@ function atualizarHabilidadesEspeciais() {
     const classe = classeSelect.value;
     const listaFinal = [...(habilidadesEspeciaisData.racas[raca] || []), ...(habilidadesEspeciaisData.classes[classe] || [])];
 
-    // 2. LIMPEZA TOTAL (Use o ID máximo que você tem no HTML)
-    // Se o seu HTML vai até o 11, limpe até o 11.
-    for (let i = 0; i <= 11; i++) {
+    // 2. LIMPEZA TOTAL (24 habilidades)
+    for (let i = 0; i <= 23; i++) {
         const input = document.getElementById(`hab_especial_${i}`);
         if (input) input.value = "";
     }
