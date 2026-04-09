@@ -4,72 +4,74 @@
     box-sizing: border-box;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+:root {
+    --border-color: black;
+    --border-style: 1px solid var(--border-color);
+    --shadow: 1px 1px 5px var(--border-color);
+    --padding: 18px;
+    --margin-top: 18px;
+    --font-size: 10px;
+    --gap: 10px;
+    --column-gap: 4px;
+}
+
 body{
     min-width: 1000px;
 }
+
 h1{
     text-align: center;
     color: white;
     background-color:black;
     padding-block: 25px;
 }
+
 label, option, span{
     text-transform:uppercase;
 }
+
 .fc{
     display: flex;
     flex-direction: column;
 }
+
 .fr{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-.t1{
-    width: 50px;
-}
-.t2{
-    width: 100px;
 
-}
-.t3{
-    width: 150px;
-}
-.t35{
-    width: 175px;
-}
-.t4{
-    width: 200px;
-}
-.t5{
-    width: 250px;
-}
-.t6{
-    width: 300px;
-}
-.t7{
-    width: 350px;
-}
-.t8{
-    width: 400px;
-}
+.t1{ width: 50px; }
+.t2{ width: 100px; }
+.t3{ width: 150px; }
+.t35{ width: 175px; }
+.t4{ width: 200px; }
+.t5{ width: 250px; }
+.t6{ width: 300px; }
+.t7{ width: 350px; }
+.t8{ width: 400px; }
 
 input, select{
     color: red;
 }
-input,select, textarea{
+
+input, select, textarea{
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: var(--border-style);
     padding: 4px 8px;
 }
+
 input[type="number"], .lvl{
     text-align: center;
 }
+
 img{
     width: 100%;
     max-width: 350px;
     object-fit: cover;
 }
+
 header, main, footer{
     display: flex;
     width: 100%;
@@ -79,18 +81,19 @@ header, main, footer{
     margin: auto;
     justify-content: space-between;
 }
+
 #cabeçalho_conteudo, #stats{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    
 }
-#stats,#ability{
+
+#stats, #ability{
     padding: 10px;
-    
 }
+
 #stats{
     max-width: 500px;
     align-items: end;
@@ -102,22 +105,20 @@ main{
     flex-wrap: wrap;    
     gap:32px;
 }
-#ability{
-    h2{
-        max-width: 390px;
-    }
+
+#ability h2{
+    max-width: 390px;
 }
+
 .ability-grid {
     display: grid;
     grid-template-columns: 140px repeat(4, 1fr);
     gap: 8px;
     max-width: 380px;
-    span{
-        width: 60px;
-    }
 }
 
 .ability-grid span {
+    width: 60px;
     font-weight: bold;
     text-align: center;
 }
@@ -131,25 +132,28 @@ main{
     text-align: center;
 }
 
-/* cabeçalho */
+input[value="X"] {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
 
-.ag7{
+.inativo {
+    color: red;
+    font-weight: bold;
+}
+
+/* Grid com layout específico */
+.ag7 {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 8px;
     max-width: 100%;
-    border: 1px solid black;
-    padding: 8px;
-    margin-top: 8px;
-
 }
+
 .ag7 span {
-    /* font-weight: bold; */
     text-align: center;
     font-size: 10px;
-}
-.ag7 >strong> span{
-        font-size: 12px;
 }
 
 .ag7 span:first-child {
@@ -160,15 +164,8 @@ main{
     width: 100%;
     text-align: center;
 }
-input[value="X"] {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-}
-.inativo {
-    color: red;
-    font-weight: bold;
-}
+
+/* Inventory */
 #inventory{
     display: flex;
     flex-direction: column;
@@ -177,234 +174,167 @@ input[value="X"] {
     justify-content: space-between;
 }
 
-.inventory, #final_equipament_info>*{
-    h3{
-        width:fit-content;
-    }
+.inventory h3, #final_equipament_info h3{
+    width:fit-content;
 }
-#weapons{
+
+#weapons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap);
     justify-content: space-between;
     max-width: 100%;
 }
-.weapon{
+
+.weapon, .armour, .protect, .item, .final_equipament_weight,
+.money, .idiomas, .habilidades-container, .resistencias, .combate-grid2, .combate-grid1 {
     display: grid;
+    justify-content: space-between;
+    border-right: var(--border-style);
+    border-bottom: var(--border-style);
+    box-shadow: var(--shadow);
+    margin-top: var(--margin-top);
+    font-size: var(--font-size);
+}
+
+.weapon, .armour, .protect, .item, .final_equipament_weight {
+    padding: var(--padding);
+}
+
+.weapon {
     width: 100%;
-    justify-content:space-between;
     grid-template-columns: repeat(5,1fr);
-    column-gap: 4px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px;
-    margin-top: 18px;
-    font-size: 10px;
-    column-gap: 12px;
-    input, span{
-        width: 100%;
-    }
-
+    column-gap: var(--column-gap);
 }
-#armours{
+
+#armours {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap);
     justify-content: space-between;
     max-width: 100%;
     width: 100%;
+}
 
-}
-.armour{
-    display: grid;
+.armour {
     width: 100%;
-    justify-content:space-between;
     grid-template-columns: repeat(3,1fr);
-    column-gap: 4px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px;
-    margin-top: 18px;
-    font-size: 10px;
+    column-gap: var(--column-gap);
 }
-#protect{
-    width: 100%;
+
+#protect {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap);
     justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
 }
-.protect{
+
+.protect {
     width: 48%;
     grid-template-columns: repeat(4,1fr);
-    input, span{
-        width: 100%;
-    }
+    column-gap: var(--column-gap);
 }
-.bag{
+
+.bag {
     width: 100%;
 }
-#other_itens{
+
+#other_itens {
     display: flex;
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap);
     margin: auto;
 }
-.item{
-    display: grid;
+
+.item {
     width: 300px;
-    justify-content:space-between;
-    grid-template-columns:120px 50px 50px;
-    column-gap: 4px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px;
-    margin-top: 18px;
-    font-size: 10px;
+    grid-template-columns: 120px 50px 50px;
+    column-gap: var(--column-gap);
 }
-.final_equipament_weight{
-    display: grid;
-    justify-content:space-between;
-    grid-template-columns:repeat(7,1fr);
-    column-gap: 4px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-    }
 
+.final_equipament_weight {
+    grid-template-columns: repeat(7,1fr);
+    column-gap: var(--column-gap);
 }
-.money{
-    display: grid;
-    justify-content:space-between;
-    grid-template-columns:repeat(4,1fr);
-    column-gap: 40px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
+
+.weapon > *, .armour > *, .protect > *, .item > *, .final_equipament_weight > *,
+.final_equipament_weight span, .final_equipament_weight input {
+    width: 100%;
+}
+
+.money, .idiomas, .habilidades-container {
     padding: 18px 40px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-    }
-
 }
-.idiomas{
-    display: grid;
-    justify-content:space-between;
-    grid-template-columns:repeat(3,1fr);
+
+.money {
+    grid-template-columns: repeat(4,1fr);
     column-gap: 40px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px 40px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-    }
-
 }
-#testes{
+
+.idiomas {
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 40px;
+}
+
+.habilidades-container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+}
+
+#testes {
     display: flex;
     justify-content: space-between;
 }
-.habilidades-container{
-    display: grid;
-    justify-content:space-between;
-    grid-template-columns:repeat(3, 1fr);
-    column-gap: 40px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 18px 40px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-    }
+
+.resistencias, .combate-grid2, .combate-grid1 {
+    padding: 18px 20px;
+    text-align: center;
 }
-.resistencias{
-    display: grid;
+
+.resistencias > *, .combate-grid2 > *, .combate-grid1 > *,
+.resistencias span, .resistencias input, .combate-grid2 span, .combate-grid2 input, .combate-grid1 span, .combate-grid1 input {
+    width: 100%;
+    text-align: center;
+}
+
+.resistencias {
     width: 38%;
-    justify-content:space-between;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns: repeat(7,1fr);
     column-gap: 10px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    text-align: center;
-    padding: 18px 20px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-        text-align: center;
-    }
 }
 
-.combate-grid2{
-    display: grid;
-    width:40%;
-    justify-content:space-between;
-    grid-template-columns:repeat(6,1fr);
+.combate-grid2 {
+    width: 40%;
+    grid-template-columns: repeat(6,1fr);
     column-gap: 10px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    text-align: center;
     padding: 40px 20px 18px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-        text-align: center;
-    }
-
 }
-.combate-grid1{
-    display: grid;
+
+.combate-grid1 {
     width: 18%;
-    justify-content:space-between;
-    grid-template-columns:repeat(1,1fr);
+    grid-template-columns: repeat(1,1fr);
     column-gap: 10px;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 5px black;
-    text-align: center;
-    padding: 18px 20px;
-    margin-top: 18px;
-    font-size: 10px;
-    span, input{
-        width: 100%;
-        text-align: center;
-    }
-
 }
+
 input:focus, select:focus {
     outline: none;
 }
-#fastshop{
+
+#fastshop {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    
-    label{
-        color: red;
-        font-size: 16px;
-    }
 }
+
+#fastshop label {
+    color: red;
+    font-size: 16px;
+}
+
 #fastshop input[type="checkbox"] {
     accent-color: darkred;
 }
