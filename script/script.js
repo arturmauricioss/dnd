@@ -248,6 +248,30 @@ const bonusDeslocamentoPorClasse = {
     barbaro: 3
 };
 
+function formatarTexto(valor) {
+  if (!valor) return "";
+
+  const mapa = {
+    duas_maos: "Duas Mãos",
+    uma_mao: "Uma Mão",
+    leve: "Leve",
+    corpo: "Corpo a Corpo",
+    distancia: "À Distância",
+    perfurante: "Perfurante",
+    cortante: "Cortante",
+    concussao: "Concussão",
+    arremesso: "Arremesso",
+    disparo: "Disparo"
+  };
+
+  if (mapa[valor]) return mapa[valor];
+
+  // fallback genérico (capitaliza)
+  return valor
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, l => l.toUpperCase());
+}
+
 function atualizarTudo(event) {
     // 1. Cálculos de Base (Atributos, Idiomas, Resistências e BBA)
     calcularAtributos(event, raceSelect);
@@ -405,14 +429,18 @@ function preencherItensClasse(classe) {
             container.querySelector(".wp_damage").value = arma.dano || "";
             container.querySelector(".wp_decisive_success").value = arma.critico || "";
             container.querySelector(".wp_range").value = arma.alcance || "";
-            container.querySelector(".wp_type").value = arma.tipo_dano || "";
+            container.querySelector(".wp_type").value = formatarTexto(arma.tipo_dano);
             container.querySelector(".wp_weight").value = arma.peso || "";
             container.querySelector(".wp_ammo").value = arma.municao || "";
             container.querySelector(".wp_quantity").value = arma.quantidade || "";
             
             // Observações (Categoria + Subtipo)
-            let obs = arma.categoria || "";
-            if (arma.subtipo) obs += `, ${arma.subtipo}`;
+            let obs = formatarTexto(arma.categoria);
+
+            if (arma.subtipo) {
+                obs += `, ${formatarTexto(arma.subtipo)}`;
+            }
+
             container.querySelector(".wp_observation").value = obs;
         });
     }

@@ -8,7 +8,8 @@ const itensBase = {
   racao: { nome: "Rações (1 dia)" },
   sacoDormir: { nome: "Saco de Dormir" },
   saco: { nome: "Saco" },
-  pederneira: { nome: "Pederneira e Isqueiro" },
+  pederneira: { nome: "Pederneira" },
+  isqueiro: { nome: "Isqueiro" },
   tochas: { nome: "3 Tochas" },
   lanterna: { nome: "Lanterna Coberta" },
   oleo300: { nome: "Óleo (300 ml)" },
@@ -301,7 +302,8 @@ const itensPadrao = () => [
   itensBase.racao,
   itensBase.sacoDormir,
   itensBase.saco,
-  itensBase.pederneira
+  itensBase.pederneira,
+  itensBase.isqueiro
 ];
 
 // ==========================

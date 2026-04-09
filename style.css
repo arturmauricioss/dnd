@@ -394,3 +394,17 @@ input[value="X"] {
 input:focus, select:focus {
     outline: none;
 }
+#fastshop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+    label{
+        color: red;
+        font-size: 16px;
+    }
+}
+#fastshop input[type="checkbox"] {
+    accent-color: darkred;
+}
