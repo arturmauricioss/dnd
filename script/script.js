@@ -251,18 +251,23 @@ const bonusDeslocamentoPorClasse = {
 function calcularDanoFinal(arma, modFor, modDex, raca) {
     let mod = 0;
 
-    // regra base: corpo = FOR / distância = DES (ou FOR se arremesso)
     if (arma.tipo_ataque === "corpo") {
-        mod = modFor;
-    } else {
-        if (arma.subtipo === "arremesso") {
-            mod = modFor; // arremesso usa FOR no dano
+        // 🪓 arma corpo a corpo
+        if (arma.categoria === "duas_maos") {
+            mod = Math.floor(modFor * 1.5);
         } else {
-            mod = 0; // arco/besta normalmente NÃO soma atributo no dano
+            mod = modFor;
+        }
+    } else {
+        // 🎯 distância
+        if (arma.subtipo === "arremesso") {
+            mod = modFor; // arremesso usa FOR
+        } else {
+            mod = 0; // arco/besta não soma atributo
         }
     }
 
-    // 🎯 bônus racial (HALFLING)
+    // bônus halfling
     if (raca === "halfling" && arma.subtipo === "arremesso") {
         mod += 1;
     }
