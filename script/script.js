@@ -6,6 +6,7 @@ import { calcularAtributos } from "./calculos/atributos.js";
 import { atualizarIdiomas } from "./calculos/idiomas.js";
 import { calcularResistencias } from "./calculos/resistencias.js";
 import { inicializarBBA, calcularBBA } from "./calculos/bba.js";
+import { calcularCA } from "./calculos/ca.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -63,7 +64,9 @@ classeSelect.addEventListener("change", () => {
 
     limparItens();
     preencherItensClasse(classe);
+    marcarInativoClasse(classe);
     atualizarHabilidadesEspeciais();
+    atualizarEquipamentos();
     atualizarTudo();
 });
 
@@ -244,343 +247,257 @@ const bonusDeslocamentoPorClasse = {
     barbaro: 3
 };
 
-function parseBonus(valor) {
-    if (!valor) return 0;
 
-    // remove qualquer coisa que não seja número ou sinal
-    const numero = parseInt(valor.toString().replace(/[^\d-]/g, ""));
-    
-    return isNaN(numero) ? 0 : numero;
+function calcularDanoFinal(arma, modFor, modDex, raca) {
+    let mod = 0;
+
+    // regra base: corpo = FOR / distância = DES (ou FOR se arremesso)
+    if (arma.tipo_ataque === "corpo") {
+        mod = modFor;
+    } else {
+        if (arma.subtipo === "arremesso") {
+            mod = modFor; // arremesso usa FOR no dano
+        } else {
+            mod = 0; // arco/besta normalmente NÃO soma atributo no dano
+        }
+    }
+
+    // 🎯 bônus racial (HALFLING)
+    if (raca === "halfling" && arma.subtipo === "arremesso") {
+        mod += 1;
+    }
+
+    return mod;
 }
 
-
 function atualizarTudo(event) {
+    // 1. Cálculos de Base (Atributos, Idiomas, Resistências e BBA)
     calcularAtributos(event, raceSelect);
     atualizarIdiomas(raceSelect, classeSelect);
 
     const raca = raceSelect.value;
     const classe = classeSelect.value;
     const nivel = parseInt(document.getElementById("level_class").value) || 1;
-    const levelEl = document.getElementById("level_class");
 
     calcularResistencias(classe, nivel, raca);
-
     calcularBBA(classe);
-    
-    // ==========================
-    // CÁLCULO DE ATAQUE DAS ARMAS
-    // ==========================
 
+    // 2. Variáveis de Atributos e Modificadores
     const totalFor = parseInt(document.getElementById("total_forca")?.value) || 0;
     const totalDex = parseInt(document.getElementById("total_destreza")?.value) || 0;
-
+    const totalCon = parseInt(document.getElementById("total_constituicao")?.value) || 0;
+    
     const modFor = getMod(totalFor);
     const modDex = getMod(totalDex);
-
-    // ==========================
-    // CÁLCULO DE ATAQUE
-    // ==========================
-    const armas = document.querySelectorAll("#weapons .weapon");
+    const modCon = getMod(totalCon);
+    
     const bba = parseInt(document.getElementById("bonus_base_de_ataque")?.value) || 0;
+    const usarKit = document.getElementById('usarKit')?.checked;
 
-    const dadosClasse = itensPorClasse[classe];
+    // 3. CÁLCULO DE ATAQUE E DANO (Armas)
+    const armasContainers = document.querySelectorAll("#weapons .weapon");
+    
+    armasContainers.forEach((container, index) => {
+        const inputNome = container.querySelector(".wp_atack");
+        const inputBonus = container.querySelector(".wp_bonus_atack");
+        const inputDano = container.querySelector(".wp_damage");
 
-    if (dadosClasse && dadosClasse.armas) {
-        armas.forEach((container, index) => {
-            const arma = dadosClasse.armas[index];
-            if (!arma) return;
+        // Se estiver em modo "apenas dinheiro" ou o campo estiver vazio, limpa e pula
+        if (!usarKit || !inputNome || !inputNome.value) {
+            if (inputBonus) inputBonus.value = "";
+            if (inputDano) inputDano.value = "";
+            return;
+        }
 
-            let bonus = bba;
+        // Recupera os dados da arma da sua base para saber se é corpo ou distância
+        const dadosClasse = itensPorClasse[classe];
+        const armaDados = dadosClasse?.armas ? dadosClasse.armas[index] : null;
 
-            // FOR ou DES
-            if (arma.tipo_ataque === "corpo") {
-                bonus += modFor;
-            } else {
-                bonus += modDex;
+        if (armaDados) {
+            // Bônus de Ataque
+            let bonusAtk = bba + (armaDados.tipo_ataque === "corpo" ? modFor : modDex);
+            if (raca === "halfling" && armaDados.subtipo === "arremesso") bonusAtk += 1;
+            inputBonus.value = bonusAtk >= 0 ? `+${bonusAtk}` : bonusAtk;
+
+            // Dano
+            const modDano = calcularDanoFinal(armaDados, modFor, modDex, raca);
+            let danoTexto = armaDados.dano;
+            if (modDano !== 0) {
+                danoTexto += modDano > 0 ? ` +${modDano}` : ` ${modDano}`;
             }
+            inputDano.value = danoTexto;
+        }
+    });
 
-            // 🎯 REGRA DO HALFLING (AQUI!)
-            if (raca === "halfling" && arma.subtipo === "arremesso") {
-                bonus += 1;
-            }
-
-            // coloca no campo
-            const inputBonus = container.querySelector(".wp_bonus_atack");
-            if (inputBonus) {
-                inputBonus.value = bonus >= 0 ? `+${bonus}` : bonus;
-            }
-        });
-
+    // 4. VIDA (HP)
+    const vidaInput = document.getElementById("vida");
+    const dadoVida = dadosVidaPorClasse[classe] || 0;
+    if (dadoVida > 0) {
+        vidaInput.value = Math.max(1, dadoVida + modCon);
     }
-    // ==========================
-    // CÁLCULO DE AGARRAR (GRAPPLE)
-    // ==========================
-    const agarrarTotalInput = document.getElementById("agarrar_total");
-    const agarrarBaseInput = document.getElementById("agarrar_base");
-    const agarrarModInput = document.getElementById("agarrar_mod");
-    const agarrarTamanhoInput = document.getElementById("agarrar_tamanho");
-    const agarrarOutrosInput = document.getElementById("agarrar_outros");
 
-    // ==========================
-    // 1. DESLOCAMENTO
-    // ==========================
+    // 5. DESLOCAMENTO
     const deslocInput = document.getElementById("deslocamento");
-
     const deslocBase = deslocamentoPorRaca[raca] || 0;
     let bonusClasse = bonusDeslocamentoPorClasse[classe] || 0;
-
-    // pega armadura equipada
     const armorType = document.querySelector("#armory .ar_type")?.value;
 
-    // 🚫 bloqueio do bárbaro
-    if (classe === "barbaro") {
-        if (armorType === "Média" || armorType === "Pesada") {
-            bonusClasse = 0;
-        }
+    if (classe === "barbaro" && (armorType === "Média" || armorType === "Pesada")) {
+        bonusClasse = 0;
     }
     const deslocFinal = deslocBase + bonusClasse;
     deslocInput.value = deslocFinal ? `${deslocFinal}m` : "";
 
-    // ==========================
-    // 2. VIDA (HP)
-    // ==========================
-    const vidaInput = document.getElementById("vida");
-    const totalCon = parseInt(document.getElementById("total_constituicao").value) || 0;
-    const modCon = getMod(totalCon);
-    const dadoVida = dadosVidaPorClasse[classe] || 0;
+    // 6. CA
+    calcularCA({ raca, modDex });
 
-    const hp = dadoVida + modCon;
-    vidaInput.value = dadoVida > 0 ? Math.max(1, hp) : "";
-
-    // ==========================
-    // 3. CA (BASE)
-    // ==========================
-    const caBase = 10;
-
-    let modTamanho = 0;
-    if (raca === "gnomo" || raca === "halfling") modTamanho = 1;
-
-    // ==========================
-    // EQUIPAMENTO (ARMADURA / ESCUDO)
-    // ==========================
-    
-    // ARMADURA
-    const armorInput = document.querySelector("#armory .ar_bonus_ca");
-    const armor = parseBonus(armorInput?.value);
-    
-
-    // ESCUDO
-    const shieldInput = document.querySelector("#shield .ar_bonus_ca");
-    const shield = parseBonus(shieldInput?.value);
-    const natural = 0;
-
-    const protecoes = document.querySelectorAll(".protect .ar_bonus_ca");
-
-    let bonusProtecao = 0;
-
-    protecoes.forEach(el => {
-        bonusProtecao += parseBonus(el.value);
-    });
-
-    // ==========================
-    // PREENCHER COLUNAS
-    // ==========================
-    function setAll(selector, value) {
-        document.querySelectorAll(selector).forEach(el => el.value = value);
-    }
-    setAll(".ca_base", caBase);
-    setAll(".ca_armor", armor);
-    setAll(".ca_shield", shield);
-    setAll(".ca_natural", natural);
-    setAll(".ca_dex", modDex);
-    setAll(".ca_size", modTamanho);
-
-    // ==========================
-    // TOQUE (ignora armadura, escudo, natural)
-    // ==========================
-    setAll(".ca_toque_armor", "X");
-    setAll(".ca_toque_shield", "X");
-    setAll(".ca_toque_natural", "X");
-
-    // ==========================
-    // SURPRESA (perde DEX)
-    // ==========================
-    setAll(".ca_surpresa_dex", "X");
-
-    // ==========================
-    // TOTAIS
-    // ==========================
-    const caNormal = caBase + armor + shield + natural + modDex + modTamanho + bonusProtecao;
-    const caToque = caBase + modDex + modTamanho;
-    const caSurpresa = caBase + armor + shield + natural + modTamanho + bonusProtecao;
-
-    document.getElementById("ca_final").value = caNormal;
-    document.getElementById("ca_toque_total").value = caToque;
-    document.getElementById("ca_surpresa_total").value = caSurpresa;
-
-
-    // ==========================
-    // 4. Iniciativa
-    // ==========================
+    // 7. INICIATIVA
     const iniciativaTotalInput = document.getElementById("iniciativa_total");
-    const iniciativaHiddenInput = document.getElementById("iniciativa");    
-    const iniciativaOutrosHiddenInput = document.getElementById("iniciativa_outros");
-
-    if (iniciativaTotalInput && iniciativaHiddenInput && iniciativaOutrosHiddenInput) {
-        // 1. Pegamos o valor de 'outros'. Se estiver vazio ou não for número, vira 0
-        const outros = parseInt(iniciativaOutrosHiddenInput.value) || 0;
-        
-        // 2. Somamos o modificador de Destreza (que já é número) com o bônus de outros
-        const somaTotal = modDex + outros;
-
-        // 3. Formatamos para exibição (colocando o + se for positivo)
-        const valFormatado = somaTotal > 0 ? `+${somaTotal}` : somaTotal;
-        
-        // 4. Distribuímos os valores
-        iniciativaTotalInput.value = valFormatado; // Visível no HTML
-        iniciativaHiddenInput.value = modDex > 0 ? `+${modDex}` : modDex; // Modificador puro para o PDF
-        
-        // Se você quiser que o 'outros' também tenha o sinal no PDF:
-        // iniciativaOutrosHiddenInput.value = outros; 
-    }
-} // <--- Fecha a função atualizarTudo aqui
-
-function marcarInativo(id) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.value = "X";
-        el.classList.add("inativo");
+    const iniciativaOutrosInput = document.getElementById("iniciativa_outros");
+    const outrosIni = parseInt(iniciativaOutrosInput?.value) || 0;
+    const iniTotal = modDex + outrosIni;
+    
+    if (iniciativaTotalInput) {
+        iniciativaTotalInput.value = iniTotal >= 0 ? `+${iniTotal}` : iniTotal;
     }
 }
+
+// Função auxiliar para "rolar" os dados (opcional, mas útil)
+function rolarDados(expressao) {
+    if (!expressao) return 0;
+    const [qtd, faces] = expressao.split('d').map(Number);
+    let total = 0;
+    for (let i = 0; i < qtd; i++) {
+        total += Math.floor(Math.random() * faces) + 1;
+    }
+    return total * 10; // No D&D 3.5, multiplica-se o resultado por 10 para o ouro inicial
+}
+
+
+function limparCamposEquipamento() {
+    // Limpa armas
+    document.querySelectorAll("#weapons input").forEach(el => el.value = "");
+    // Limpa armaduras
+    document.querySelectorAll("#armory input, #shield input").forEach(el => el.value = "");
+    // Limpa dinheiro para não somar com o novo cálculo
+    document.querySelectorAll(".pl_money, .po_money, .pp_money, .pc_money").forEach(el => el.value = "");
+}
+
+document.getElementById('usarKit').addEventListener('change', () => {
+    const classe = classeSelect.value;
+    if (classe !== "selecione") {
+        preencherItensClasse(classe);
+    }
+    atualizarTudo();
+});
+
 
 function preencherItensClasse(classe) {
     const dados = itensPorClasse[classe];
-
     if (!dados) return;
 
-    // =====================
-    // ARMAS
-    // =====================
-    const armas = document.querySelectorAll("#weapons .weapon");
+    const usarKit = document.getElementById('usarKit')?.checked;
 
-    const setValue = (container, selector, value) => {
-        const el = container.querySelector(selector);
-        if (el) el.value = value || "";
-    };
+    // 1. Limpeza total antes de começar
+    limparItens();
 
-    const formatar = (txt) =>
-        txt.charAt(0).toUpperCase() + txt.slice(1).replace("_", " ");
-
-    dados.armas.forEach((arma, index) => {
-        const container = armas[index];
-        if (!container) return;
-
-        setValue(container, ".wp_atack", arma.nome);
-        setValue(container, ".wp_damage", arma.dano);
-        setValue(container, ".wp_decisive_success", arma.critico);
-        setValue(container, ".wp_range", arma.alcance);
-        setValue(container, ".wp_type", arma.tipo_dano);
-        setValue(container, ".wp_weight", arma.peso);
-        setValue(container, ".wp_ammo", arma.municao);
-        setValue(container, ".wp_quantity", arma.quantidade);
-
-        const obs = [];
-
-        if (arma.categoria) obs.push(formatar(arma.categoria));
-        if (arma.subtipo) obs.push(formatar(arma.subtipo));
-
-        setValue(container, ".wp_observation", obs.join(", "));
-    });
-
-    // =====================
-    // ARMADURA
-    // =====================
-    const armadura = document.querySelector("#armory");
-
-    if (dados.armadura && armadura) {
-        armadura.querySelector(".ar_armour").value = dados.armadura.nome || "";
-        armadura.querySelector(".ar_type").value = dados.armadura.tipo || "";
-        armadura.querySelector(".ar_bonus_ca").value = dados.armadura.bonus_ca || "";
-        armadura.querySelector(".ar_dex_max").value = dados.armadura.dex_max || "";
-        armadura.querySelector(".ar_penal_armour").value = dados.armadura.penalidade || "";
-        armadura.querySelector(".ar_chance_mag_fail").value = dados.armadura.falha_magia || "";
-        armadura.querySelector(".ar_moviment").value = dados.armadura.deslocamento || "";
-        armadura.querySelector(".ar_weight").value = dados.armadura.peso || "";
-        armadura.querySelector(".ar_proprieties").value = dados.armadura.propriedades || "";
+    if (!usarKit) {
+        // ==========================================
+        // MODO: DINHEIRO SEM KIT (Texto: "6d4 x 10")
+        // ==========================================
+        if (dados.dinheiro_sem_kit) {
+            const campoPO = document.querySelector(".po_money");
+            if (campoPO) {
+                // Injeta o texto puro da sua base de dados
+                campoPO.value = dados.dinheiro_sem_kit.po || "";
+            }
+            // Limpa as outras moedas
+            document.querySelectorAll(".pl_money, .pp_money, .pc_money").forEach(el => el.value = "");
+        }
+        return; // Para aqui para não preencher armas
     }
 
-    // ESCUDO
-    const escudo = document.querySelector("#shield");
+    // ==========================================
+    // MODO: KIT PRONTO (Itens + Dinheiro do Kit)
+    // ==========================================
 
-    if (dados.escudo && escudo) {
-        escudo.querySelector(".ar_shield").value = dados.escudo.nome || "";
-        escudo.querySelector(".ar_bonus_ca").value = dados.escudo.bonus_ca || "";
-        escudo.querySelector(".ar_weight").value = dados.escudo.peso || "";
-        escudo.querySelector(".ar_penal_armour").value = dados.escudo.penalidade || "";
-        escudo.querySelector(".ar_chance_mag_fail").value = dados.escudo.falha_magia || "";
-        escudo.querySelector(".ar_proprieties").value = dados.escudo.propriedades || "";
-    }
-
-    // ITENS DE PROTEÇÃO
-    const protecoes = document.querySelectorAll(".protect");
-
-    if (dados.protecoes) {
-        dados.protecoes.forEach((item, index) => {
-            const container = protecoes[index];
+    // 2. PREENCHER ARMAS
+    const armasContainer = document.querySelectorAll("#weapons .weapon");
+    if (dados.armas && dados.armas.length > 0) {
+        dados.armas.forEach((arma, index) => {
+            const container = armasContainer[index];
             if (!container) return;
 
-            container.querySelector(".ar_protection").value = item.nome || "";
-            container.querySelector(".ar_bonus_ca").value = item.bonus_ca || "";
-            container.querySelector(".ar_weight").value = item.peso || "";
-            container.querySelector(".ar_proprieties").value = item.propriedades || "";
+            container.querySelector(".wp_atack").value = arma.nome || "";
+            container.querySelector(".wp_damage").value = arma.dano || "";
+            container.querySelector(".wp_decisive_success").value = arma.critico || "";
+            container.querySelector(".wp_range").value = arma.alcance || "";
+            container.querySelector(".wp_type").value = arma.tipo_dano || "";
+            container.querySelector(".wp_weight").value = arma.peso || "";
+            container.querySelector(".wp_ammo").value = arma.municao || "";
+            container.querySelector(".wp_quantity").value = arma.quantidade || "";
+            
+            // Observações (Categoria + Subtipo)
+            let obs = arma.categoria || "";
+            if (arma.subtipo) obs += `, ${arma.subtipo}`;
+            container.querySelector(".wp_observation").value = obs;
         });
     }
 
-    const itens = document.querySelectorAll("#other_itens .item");
+    // 3. PREENCHER ARMADURA
+    const armaduraEl = document.querySelector("#armory");
+    if (dados.armadura && armaduraEl) {
+        armaduraEl.querySelector(".ar_armour").value = dados.armadura.nome || "";
+        armaduraEl.querySelector(".ar_type").value = dados.armadura.tipo || "";
+        armaduraEl.querySelector(".ar_bonus_ca").value = dados.armadura.bonus_ca || "";
+        armaduraEl.querySelector(".ar_dex_max").value = dados.armadura.dex_max || "";
+        armaduraEl.querySelector(".ar_penal_armour").value = dados.armadura.penalidade || "";
+        armaduraEl.querySelector(".ar_chance_mag_fail").value = dados.armadura.falha_magia || "";
+        armaduraEl.querySelector(".ar_moviment").value = dados.armadura.deslocamento || "";
+        armaduraEl.querySelector(".ar_weight").value = dados.armadura.peso || "";
+    }
 
+    // 4. PREENCHER ESCUDO
+    const escudoEl = document.querySelector("#shield");
+    if (dados.escudo && escudoEl) {
+        escudoEl.querySelector(".ar_shield").value = dados.escudo.nome || "";
+        escudoEl.querySelector(".ar_bonus_ca").value = dados.escudo.bonus_ca || "";
+        escudoEl.querySelector(".ar_weight").value = dados.escudo.peso || "";
+    }
+
+    // 5. PREENCHER DINHEIRO DO KIT (Pode ser string "2d4" ou número)
+    if (dados.dinheiro_kit) {
+        const campoPO = document.querySelector(".po_money");
+        if (campoPO) campoPO.value = dados.dinheiro_kit.po || "";
+        
+        const campoPP = document.querySelector(".pp_money");
+        if (campoPP) campoPP.value = dados.dinheiro_kit.pp || "";
+    }
+
+    // 6. OUTROS ITENS
+    const outrosItensContainer = document.querySelectorAll("#other_itens .item");
     if (dados.itens) {
         dados.itens.forEach((item, index) => {
-            const container = itens[index];
+            const container = outrosItensContainer[index];
             if (!container) return;
-
             container.querySelector(".ot_item").value = item.nome || "";
-            container.querySelector(".ot_page").value = item.pagina || "";
-            container.querySelector(".ot_weight").value = item.peso || "";
+            container.querySelector(".ot_weight").value = item.peso || "---";
         });
     }
-    // =====================
-    // DINHEIRO
-    // =====================
-    const dinheiro = dados.dinheiro;
-
-    if (dinheiro) {
-        const setMoney = (selector, value) => {
-            const el = document.querySelector(selector);
-            if (el) el.value = value || "";
-        };
-
-        setMoney(".pl_money", dinheiro.pl);
-        setMoney(".po_money", dinheiro.po);
-        setMoney(".pp_money", dinheiro.pp);
-        setMoney(".pc_money", dinheiro.pc);
-    }
+    atualizarTudo();
 }
+
 
 function limparItens() {
-    // Armas
-    document.querySelectorAll("#weapons input").forEach(el => el.value = "");
-
-    // Armaduras (corrigido)
-    document.querySelectorAll("#armours input").forEach(el => el.value = "");
-
-    // Bag
-    document.querySelectorAll("#other_itens input").forEach(el => el.value = "");
+    const seletores = ["#weapons", "#armory", "#shield", ".protect", "#other_itens"];
+    seletores.forEach(seletor => {
+        const container = document.querySelector(seletor);
+        if (container) {
+            container.querySelectorAll("input").forEach(input => input.value = "");
+        }
+    });
 }
 
-// script.js
-
-
-// 1. Defina a função (certifique-se que o nome é este)
 async function exportarFicha() {
     console.log("Iniciando processo de exportação para PDF...");
     try {
@@ -668,13 +585,13 @@ const habilidadesEspeciaisData = {
         feiticeiro: ["Invocação de Familiar"]
     },
     racas: {
-        anao: ["Visão no Escuro 18m", "Estabilidade (+4 vs Derrubar)", "Afinidade com Pedras"],
+        anao: ["Visão no Escuro 18m", "Estabilidade (+4 vs Derrubar)", "+2 RES vs Magia", "+2 res vs Veneno", "Sem penal mov. peso/armadura", "+1 BA vs orcs e goblinoides", "+4 CA vs monstros tipo gigante","+2 Procurar alvenaria", "+2 Avaliação obj metal/pedra", "+2 Ofício obj metal/pedra"],
         elfo: ["Imunidade a Sono", "+2 vs Encantamentos", "Visão na Penumbra"],
-        gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "+1 CD Ilusões","Falar com Animais (1/dia)"],
-        halfling: ["+1 em Resistências*", "+2 vs Medo", "+1 Ataque (Arremesso)*"],
-        "meio-elfo": ["Sangue Élfico", "Visão na Penumbra", "+2 em Diplomacia/Obter Informação"],
+        gnomo: ["Visão na Penumbra", "+2 vs Ilusões", "+1 CD Ilusões","Falar com Animais (1/dia)", "+1 BA tamanho", "+4 esconder-se", "armas menores", "lev e carregar peso 3/4", "+1 BA vs Koblods e goblinoides", "+4 CA vs monstros tipo gigante", "+2 Ouvir", "+2 Oficio (Alquimia)"],
+        halfling: ["+1 em Resistências*", "+2 vs Medo", "+1 Ataque (Arremesso)*", "+1 bonus ataque tamanho", "+4 esconder-se", "armas menores", "lev e carregar peso 3/4", "+2 Escalar", "+2 Saltar", "+2 Furtividade", "+2 resistencia contra o medo", "+2 Ouvir"],
+        "meio-elfo": ["Imunidade a Sono", "+2 vs Encantamentos", "Visão na Penumbra", "Sangue Élfico", "+2 em Diplomacia", "+2 Obter Informação", "+1 Ouvir", "+1 Procurar", "+1 Observar"],
         "meio-orc": ["Visão no Escuro 18m", "Sangue Orc"],
-        humano: ["+Talento Humano", "+1 Perícia por Nível"]
+        humano: ["+Talento Humano@", "+4 Perícia Nivel 1","+1 Perícia por Nível adicional@"]
     }
 };
 

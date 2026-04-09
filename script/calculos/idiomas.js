@@ -37,15 +37,15 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
         },
         gnomo: {
             base: ["Comum", "Gnomo"],
-            extras: ["Dracônico", "Anão", "Élfico", "Gigante", "Goblin", "Orc"]
+            extras: ["Dracônico", "Anão", "Élfico", "Gigante", "Goblin", "Orc", "Kobold"]
         },
         "meio-elfo": {
             base: ["Comum", "Élfico"],
-            extras: ["Dracônico", "Gnoll", "Gnomo", "Goblin", "Orc", "Silvestre"]
+            extras: []
         },
         "meio-orc": {
             base: ["Comum", "Orc"],
-            extras: ["Dracônico", "Gigante", "Gnoll", "Goblin"]
+            extras: ["Dracônico", "Gigante", "Gnoll", "Goblin", "Abyssal"]
         }
     };
 
@@ -70,7 +70,8 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
     // 📚 Idiomas extras por classe
     const idiomasClasseExtras = {
         clerigo: ["Abissal", "Celestial", "Infernal"],
-        mago: ["Dracônico"]
+        mago: ["Dracônico"],
+        druida: ["Silvestre"]
     };
 
     if (idiomasClasseExtras[classe]) {
@@ -78,7 +79,7 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
     }
 
     // 👤 Regra especial: humano
-    if (raca === "humano") {
+    if (raca === "humano" || raca === "meio-elfo") {
         pool = [...TODOS_IDIOMAS];
     }
 

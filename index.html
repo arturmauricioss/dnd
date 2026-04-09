@@ -10,16 +10,16 @@
     <h1>Ficha Guia para D&D 3.5</h1>
     <header id="cabeçalho_geral">
         <div id="cabeçalho_conteudo">
-            <div class="fc t5">
+            <div class="fc t4">
                 <input type="text" id="character_name">
                 <label for="character_name">Nome do Personagem</label>
             </div>
-            <div class="fc t3">
+            <div class="fc t2">
                 <input type="text" id="player">
                 <label for="player">Jogador</label>
             </div>
             <div class="fr">
-                <div class="fc t4">
+                <div class="fc t3">
                     <select name="" id="class">
                         <option value="selecione" selected>SELECIONE...</option>
                         <option value="barbaro">BÁRBARO</option>
@@ -36,11 +36,13 @@
 
                     </select>
                     <label for="class">classe</label>
+                    
                 </div>
-                <div class="fc t2">
+                                
+                <div class="fc t1">
                     <select id="level_class" class="lvl">
-                        <option value="selecione" selected>SELECIONE...</option>
-                        <option value="1">1</option>
+                        <option value="selecione">SELECIONE...</option>
+                        <option value="1" selected>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -63,7 +65,14 @@
                     </select>
                     <label for="level_class">Level</label>
                 </div>
+            <div class="fc t3">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer;">
+                        <input type="checkbox" id="usarKit">
+                        Comprar Kit
+                    </label>
+                </div>    
             </div>
+            
             <div class="fr">
                 <div class="fc t4">
                     <input type="text" id="profession">
@@ -193,42 +202,42 @@
 
                 <!-- FOR -->
                 <span>Força</span>
-                <input type="number" id="forca" placeholder="3-18" value="15">
+                <input type="number" id="forca" placeholder="3-18">
                 <input type="number" id="mod_racial_forca" readonly tabindex="-1">
                 <input type="number" id="total_forca" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_forca" readonly tabindex="-1">
 
                 <!-- DES -->
                 <span>Destreza</span>
-                <input type="number" id="destreza" placeholder="3-18" value="14" >
+                <input type="number" id="destreza" placeholder="3-18">
                 <input type="number" id="mod_racial_destreza" readonly tabindex="-1">
                 <input type="number" id="total_destreza" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_destreza" readonly tabindex="-1">
 
                 <!-- CON -->
                 <span>Constituição</span>
-                <input type="number" id="constituicao" placeholder="3-18" value="12">
+                <input type="number" id="constituicao" placeholder="3-18">
                 <input type="number" id="mod_racial_constituicao" readonly tabindex="-1">
                 <input type="number" id="total_constituicao" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_constituicao" readonly tabindex="-1">
 
                 <!-- INT -->
                 <span>Inteligência</span>
-                <input type="number" id="inteligencia" placeholder="3-18" value="13">
+                <input type="number" id="inteligencia" placeholder="3-18">
                 <input type="number" id="mod_racial_inteligencia" readonly tabindex="-1">
                 <input type="number" id="total_inteligencia" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_inteligencia" readonly tabindex="-1">
 
                 <!-- SAB -->
                 <span>Sabedoria</span>
-                <input type="number" id="sabedoria" placeholder="3-18" value="10">
+                <input type="number" id="sabedoria" placeholder="3-18">
                 <input type="number" id="mod_racial_sabedoria" readonly tabindex="-1">
                 <input type="number" id="total_sabedoria" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_sabedoria" readonly tabindex="-1">
 
                 <!-- CAR -->
                 <span>Carisma</span>
-                <input type="number" id="carisma" placeholder="3-18"  value="8">
+                <input type="number" id="carisma" placeholder="3-18">
                 <input type="number" id="mod_racial_carisma" readonly tabindex="-1">
                 <input type="number" id="total_carisma" readonly tabindex="-1">
                 <input type="text" id="mod_habilidade_carisma" readonly tabindex="-1">
@@ -369,9 +378,12 @@
         </section>
   
         <section id="inventory">
+            
             <div class="div_invent">
                 <br>
+
                 <h3>Armas</h3>
+                
                 <div id="weapons">
                     <div class="weapon">
                         <input type="text" class="wp_atack" id="attack_1">
@@ -380,7 +392,7 @@
                         <input type="text" class="wp_decisive_success" id="attack_1_crit">
                         <input type="text" class="wp_range" id="attack_1_range">
                         <span>Ataque</span>
-                        <span>Bonus de Ataque</span>
+                        <span>Bonus de Ataque Final</span>
                         <span>Dano</span>
                         <span>Sucesso Decisivo</span>
                         <span>Alcance</span>
@@ -402,7 +414,7 @@
                         <input type="text" class="wp_decisive_success" id="attack_2_crit">
                         <input type="text" class="wp_range" id="attack_2_range">
                         <span>Ataque</span>
-                        <span>Bonus de Ataque</span>
+                        <span>Bonus de Ataque Final</span>
                         <span>Dano</span>
                         <span>Sucesso Decisivo</span>
                         <span>Alcance</span>
@@ -424,7 +436,7 @@
                         <input type="text" class="wp_decisive_success" id="attack_3_crit">
                         <input type="text" class="wp_range" id="attack_3_range">
                         <span>Ataque</span>
-                        <span>Bonus de Ataque</span>
+                        <span>Bonus de Ataque Final</span>
                         <span>Dano</span>
                         <span>Sucesso Decisivo</span>
                         <span>Alcance</span>
@@ -446,7 +458,7 @@
                         <input type="text" class="wp_decisive_success" id="attack_4_crit">
                         <input type="text" class="wp_range" id="attack_4_range">
                         <span>Ataque</span>
-                        <span>Bonus de Ataque</span>
+                        <span>Bonus de Ataque Final</span>
                         <span>Dano</span>
                         <span>Sucesso Decisivo</span>
                         <span>Alcance</span>
@@ -717,6 +729,30 @@ PESO AOS ITENS -->
                         <span>Habilidade 10</span>
                         <span>Habilidade 11</span>
                         <span>Habilidade 12</span>
+                        <input id="hab_especial_12" readonly>
+                        <input id="hab_especial_13" readonly>
+                        <input id="hab_especial_14" readonly>
+                        <span>Habilidade 13</span>
+                        <span>Habilidade 14</span>
+                        <span>Habilidade 15</span>
+                        <input id="hab_especial_15" readonly>
+                        <input id="hab_especial_16" readonly>
+                        <input id="hab_especial_17" readonly>
+                        <span>Habilidade 16</span>
+                        <span>Habilidade 17</span>
+                        <span>Habilidade 18</span>
+                        <input id="hab_especial_18" readonly>
+                        <input id="hab_especial_19" readonly>
+                        <input id="hab_especial_20" readonly>
+                        <span>Habilidade 19</span>
+                        <span>Habilidade 20</span>
+                        <span>Habilidade 21</span>
+                        <input id="hab_especial_21" readonly>
+                        <input id="hab_especial_22" readonly>
+                        <input id="hab_especial_23" readonly>
+                        <span>Habilidade 22</span>
+                        <span>Habilidade 23</span>
+                        <span>Habilidade 24</span>
                 </div>
             </div>
         </div>
