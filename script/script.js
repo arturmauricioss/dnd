@@ -7,6 +7,7 @@ import { atualizarIdiomas } from "./calculos/idiomas.js";
 import { calcularResistencias } from "./calculos/resistencias.js";
 import { inicializarBBA, calcularBBA } from "./calculos/bba.js";
 import { calcularCA } from "./calculos/ca.js";
+import { ajustarDanoPorTamanho } from "./calculos/danoportamanho.js";
 
 const classeSelect = document.getElementById("class");
 const alignmentSelect = document.getElementById("alignment");
@@ -326,7 +327,8 @@ function atualizarTudo(event) {
 
             // Dano
             const modDano = calcularDanoFinal(armaDados, modFor, modDex, raca);
-            let danoTexto = armaDados.dano;
+            let danoBaseAjustado = ajustarDanoPorTamanho(armaDados.dano, raca);
+            let danoTexto = danoBaseAjustado;
             if (modDano !== 0) {
                 danoTexto += modDano > 0 ? ` +${modDano}` : ` ${modDano}`;
             }
