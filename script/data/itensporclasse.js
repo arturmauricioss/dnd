@@ -3,25 +3,25 @@
 // ==========================
 
 const itensBase = {
-  mochila: { nome: "Mochila" },
-  cantil: { nome: "Cantil" },
-  racao: { nome: "Rações (1 dia)" },
-  sacoDormir: { nome: "Saco de Dormir" },
-  saco: { nome: "Saco" },
-  pederneira: { nome: "Pederneira" },
-  isqueiro: { nome: "Isqueiro" },
-  tochas: { nome: "3 Tochas" },
-  lanterna: { nome: "Lanterna Coberta" },
-  oleo300: { nome: "Óleo (300 ml)" },
-  oleo500: { nome: "Óleo (500 ml)" },
+  mochila: { nome: "- Mochila" },
+  cantil: { nome: "- Cantil" },
+  racao: { nome: "- Rações (1 dia)" },
+  sacoDormir: { nome: "- Saco de Dormir" },
+  saco: { nome: "- Saco" },
+  pederneira: { nome: "- Pederneira" },
+  isqueiro: { nome: "- Isqueiro" },
+  tochas: { nome: "- 3 Tochas" },
+  lanterna: { nome: "- Lanterna Coberta" },
+  oleo300: { nome: "- Óleo (300 ml)" },
+  oleo500: { nome: "- Óleo (500 ml)" },
 
   // extras (pra evitar hardcode nas classes)
-  grimorio: { nome: "Grimório" },
-  ferramentasLadrao: { nome: "Ferramentas de ladrão" },
-  simboloSagrado: { nome: "Símbolo sagrado" },
-  alaude: { nome: "Alaúde" },
-  bolsaComponentes: { nome: "Bolsa de componentes de magia" },
-  azevinho: { nome: "Azevinho e visco" }
+  grimorio: { nome: "- Grimório" },
+  ferramentasLadrao: { nome: "- Ferramentas de ladrão" },
+  simboloSagrado: { nome: "- Símbolo sagrado" },
+  alaude: { nome: "- Alaúde" },
+  bolsaComponentes: { nome: "- Bolsa de componentes de magia" },
+  azevinho: { nome: "- Azevinho e visco" }
 };
 
 // ==========================
@@ -50,7 +50,7 @@ function armaPadrao(data) {
 
 const armasBase = {
   machadoGrande: armaPadrao({
-    nome: "Machado Grande",
+    nome: "- Machado Grande",
     dano: "1d12",
     critico: "x3",
     categoria: "duas_maos",
@@ -60,7 +60,7 @@ const armasBase = {
   }),
 
   arcoCurto: armaPadrao({
-    nome: "Arco Curto",
+    nome: "- Arco Curto",
     dano: "1d6",
     critico: "x3",
     alcance: "18 m",
@@ -74,7 +74,7 @@ const armasBase = {
   }),
 
   arcoLongo: armaPadrao({
-    nome: "Arco Longo",
+    nome: "- Arco Longo",
     dano: "1d8",
     critico: "x3",
     alcance: "30 m",
@@ -88,7 +88,7 @@ const armasBase = {
   }),
 
   adaga: armaPadrao({
-    nome: "Adaga",
+    nome: "- Adaga",
     dano: "1d4",
     critico: "19-20/x2",
     alcance: "3 m",
@@ -100,7 +100,7 @@ const armasBase = {
   }),
 
   bestaLeve: armaPadrao({
-    nome: "Besta Leve",
+    nome: "- Besta Leve",
     dano: "1d8",
     critico: "19-20/x2",
     alcance: "24 m",
@@ -114,7 +114,7 @@ const armasBase = {
   }),
 
   espadaLonga: armaPadrao({
-    nome: "Espada Longa",
+    nome: "- Espada Longa",
     dano: "1d8",
     critico: "19-20/x2",
     categoria: "uma_mao",
@@ -124,7 +124,7 @@ const armasBase = {
   }),
 
   espadaCurta: armaPadrao({
-    nome: "Espada Curta",
+    nome: "- Espada Curta",
     dano: "1d6",
     critico: "19-20/x2",
     categoria: "leve",
@@ -134,7 +134,7 @@ const armasBase = {
   }),
 
   bordao: armaPadrao({
-    nome: "Bordão",
+    nome: "- Bordão",
     dano: "1d6/1d6",
     critico: "x2",
     categoria: "duas_maos",
@@ -144,7 +144,7 @@ const armasBase = {
   }),
 
   funda: armaPadrao({
-    nome: "Funda",
+    nome: "- Funda",
     dano: "1d4",
     critico: "x2",
     alcance: "15 m",
@@ -158,7 +158,7 @@ const armasBase = {
   }),
 
   cimitarra: armaPadrao({
-    nome: "Cimitarra",
+    nome: "- Cimitarra",
     dano: "1d6",
     critico: "18-20/x2",
     categoria: "uma_mao",
@@ -168,7 +168,7 @@ const armasBase = {
   }),
 
   clava: armaPadrao({
-    nome: "Clava",
+    nome: "- Clava",
     dano: "1d6",
     critico: "x2",
     categoria: "uma_mao",
@@ -178,7 +178,7 @@ const armasBase = {
   }),
 
   lancaCurta: armaPadrao({
-    nome: "Lança Curta",
+    nome: "- Lança Curta",
     dano: "1d6",
     critico: "x2",
     alcance: "6 m",
@@ -190,7 +190,7 @@ const armasBase = {
   }),
 
   macaPesada: armaPadrao({
-    nome: "Maça Pesada",
+    nome: "- Maça Pesada",
     dano: "1d8",
     critico: "x2",
     categoria: "uma_mao",
@@ -206,7 +206,7 @@ const armasBase = {
 
 const armadurasBase = {
   couro: {
-    nome: "Corselete de Couro",
+    nome: "- Corselete de Couro",
     tipo: "Leve",
     bonus_ca: "+2",
     dex_max: "+6",
@@ -218,7 +218,7 @@ const armadurasBase = {
   },
 
   couroBatido: {
-    nome: "Corselete de Couro Batido",
+    nome: "- Corselete de Couro Batido",
     tipo: "Leve",
     bonus_ca: "+3",
     dex_max: "+5",
@@ -230,7 +230,7 @@ const armadurasBase = {
   },
 
   peles: {
-    nome: "Gibão de Peles",
+    nome: "- Gibão de Peles",
     tipo: "Leve",
     bonus_ca: "+3",
     dex_max: "+4",
@@ -242,7 +242,7 @@ const armadurasBase = {
   },
 
   brunea: {
-    nome: "Brunea",
+    nome: "- Brunea",
     tipo: "Média",
     bonus_ca: "+4",
     dex_max: "+3",
@@ -256,7 +256,7 @@ const armadurasBase = {
 
 const escudosBase = {
   madeiraLeve: {
-    nome: "Escudo Leve de Madeira",
+    nome: "- Escudo Leve de Madeira",
     bonus_ca: "+1",
     penalidade: "-1",
     falha_magia: "5%",
@@ -265,7 +265,7 @@ const escudosBase = {
   },
 
   madeiraPesado: {
-    nome: "Escudo Pesado de Madeira",
+    nome: "- Escudo Pesado de Madeira",
     bonus_ca: "+2",
     penalidade: "-2",
     falha_magia: "15%",
@@ -274,7 +274,7 @@ const escudosBase = {
   },
 
   metalLeve: {
-    nome: "Escudo Leve de Aço",
+    nome: "- Escudo Leve de Aço",
     bonus_ca: "+1",
     penalidade: "-1",
     falha_magia: "5%",
@@ -283,7 +283,7 @@ const escudosBase = {
   },
 
   metalPesado: {
-    nome: "Escudo Pesado de Aço",
+    nome: "- Escudo Pesado de Aço",
     bonus_ca: "+2",
     penalidade: "-2",
     falha_magia: "15%",
