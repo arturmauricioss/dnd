@@ -9,7 +9,7 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
     const idioma1 = document.getElementById("idioma_1");
 
     const selects = [];
-    for (let i = 2; i <= 5; i++) {
+    for (let i = 2; i <= 8; i++) {
         selects.push(document.getElementById(`idioma_${i}`));
     }
 

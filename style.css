@@ -90,14 +90,14 @@ input[value="X"] { text-align: center; }
 #other_itens { margin: auto; }
 
 .weapon, .armour, .protect, .item, .final_equipament_weight,
-.money, .idiomas, .habilidades-container, .resistencias, .combate-grid2, .combate-grid1 {
+.money, .idiomas, .habilidades-container, .qualidades-container, .talentos-container,.resistencias, .combate-grid2, .combate-grid1 {
     display: grid; justify-content: space-between; border-right: var(--border-style); border-bottom: var(--border-style); 
     box-shadow: var(--shadow); margin-top: var(--margin-top); font-size: var(--font-size);
 }
 
 .weapon, .armour, .protect, .item, .final_equipament_weight { padding: var(--padding); }
 
-.money, .idiomas, .habilidades-container { padding: var(--padding-wide); }
+.money, .idiomas, .qualidades-container, .habilidades-container, .talentos-container { padding: var(--padding-wide); }
 
 .resistencias, .combate-grid2, .combate-grid1 { padding: var(--padding-compact); text-align: center; }
 
@@ -119,7 +119,7 @@ input[value="X"] { text-align: center; }
 
 .idiomas { grid-template-columns: repeat(3,1fr); column-gap: var(--column-gap-wide); }
 
-.habilidades-container { grid-template-columns: repeat(3, 1fr); column-gap: var(--column-gap-wide); }
+.habilidades-container, .qualidades-container, .talentos-container { grid-template-columns: repeat(3, 1fr); column-gap: var(--column-gap-wide); }
 
 #testes { display: flex; justify-content: space-between; }
 
@@ -132,8 +132,7 @@ input[value="X"] { text-align: center; }
 /* Grid children - inherit from parent */
 .weapon > *, .armour > *, .protect > *, .item > *, 
 .final_equipament_weight > *, .money > *, .idiomas > *, 
-.habilidades-container > *, .resistencias > *, 
-.combate-grid2 > *, .combate-grid1 > * { width: var(--width-full); }
+.habilidades-container > *, .resistencias > *, .qualidades-container > *, .talentos-container > *, .combate-grid2 > *, .combate-grid1 > * { width: var(--width-full); }
 
 /* Text alignment for numeric/combat grids */
 .resistencias > *, .combate-grid2 > *, .combate-grid1 > * { text-align: center; }

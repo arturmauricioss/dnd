@@ -68,8 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!nome) return; // slot vazio
 
-            // ⚠️ AQUI ESTÁ O PULO DO GATO
-            // você precisa ter guardado a arma original!
+            // precisa ter guardado a arma original!
             const arma = container._armaData;
             if (!arma) return;
 
