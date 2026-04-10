@@ -1,9 +1,9 @@
 export const habilidadesEspeciaisData = {
     classes: {
-        barbaro: ["Fúria 1/dia (Ext)", "Movimento Rápido (Ext)"],
+        barbaro: ["Fúria 1/dia (Ext)", "Movimento Rápido (Ext)*"],
         bardo: ["Conhecimento de Bardo", "Música de Bardo", "*Música de Proteção", "*Fascinar (Psi)", "*Inspirar Coragem +1 (Sob)", "**Atuação minimo 3"],
         clerigo: ["Expul/Fasci Mortos-Vivos (Su)", "Aura (Ext)"],
-        druida: ["Senso da Natureza (Ext)", "Empatia com Animais (Ext)", "Companheiro Animal", "Idioma Druídico Adicional"],
+        druida: ["Senso da Natureza (Ext)", "Empatia com Animais (Ext)", "Companheiro Animal", "Idioma Druídico*"],
         guerreiro: ["+Talento Guerreiro"],
         ladino: ["Ataque Furtivo +1d6", "Encontrar Armadilhas (Ext)"],
         monge: ["Bônus na CA (Sab)", "Rajada de Golpes (Ext)", "Dano Desarmado 1d6", "+Talento Monge"],
