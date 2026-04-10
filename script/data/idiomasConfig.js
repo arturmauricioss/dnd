@@ -42,5 +42,6 @@ export const idiomasClasseExtras = {
 export const TODOS_IDIOMAS = [
     'Anão', 'Gnomo', 'Goblin', 'Gigante', 'Terran', 'Orc',
     'Gnoll', 'Halfling', 'Élfico', 'Aquan', 'Subterrâneo',
-    'Auran', 'Ignan', 'Dracônico', 'Celestial', 'Infernal', 'Abissal', 'Silvestre'
+    'Auran', 'Ignan', 'Dracônico', 'Celestial', 'Infernal', 
+    'Abissal', 'Silvestre'
 ];

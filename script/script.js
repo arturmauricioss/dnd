@@ -86,16 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    function formatarTexto(valor) {
-      if (!valor) return "";
-
-      if (mapaTextos[valor]) return mapaTextos[valor];
-
-      // fallback genérico (capitaliza)
-      return valor
-        .replace(/_/g, " ")
-        .replace(/\b\w/g, l => l.toUpperCase());
-    }
     
     function atualizarTudo(event = null){
         // 1. Cálculos de Base (Atributos, Idiomas, Resistências e BBA)
@@ -166,25 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return dano; // médio ou não mapeado
-    }
-    // Função auxiliar para "rolar" os dados (opcional, mas útil)
-    function rolarDados(expressao) {
-        if (!expressao) return 0;
-        const [qtd, faces] = expressao.split('d').map(Number);
-        let total = 0;
-        for (let i = 0; i < qtd; i++) {
-            total += Math.floor(Math.random() * faces) + 1;
-        }
-        return total * 10; // No D&D 3.5, multiplica-se o resultado por 10 para o ouro inicial
-    }
-
-    function limparCamposEquipamento() {
-        // Limpa armas
-        document.querySelectorAll("#weapons input").forEach(el => el.value = "");
-        // Limpa armaduras
-        document.querySelectorAll("#armory input, #shield input").forEach(el => el.value = "");
-        // Limpa dinheiro para não somar com o novo cálculo
-        document.querySelectorAll(".pl_money, .po_money, .pp_money, .pc_money").forEach(el => el.value = "");
     }
 
     function preencherItensClasse(classe) {
@@ -546,13 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    function getSaveBase(tipo, nivel) {
-        if (tipo === "bom") {
-            return 2 + Math.floor(nivel / 2);
-        } else {
-            return Math.floor(nivel / 3);
-        }
-    }
+    
     // Inicializa lógica de BBA
     if (typeof inicializarBBA === "function") {
         inicializarBBA();
@@ -569,76 +534,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     async function exportarFicha() {
-    console.log("Iniciando processo de exportação para PDF...");
-    try {
-        const url = './ficha.pdf'; 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Arquivo ficha.pdf não encontrado.");
-        
-        const bytes = await response.arrayBuffer();
-        const pdfDoc = await PDFLib.PDFDocument.load(bytes);
-        const form = pdfDoc.getForm();
-
-        // 1. Preenchimento via Mapeamento
-        for (const [idHtml, nomePdf] of Object.entries(mapeamentoCompleto)) {
-            const elemento = document.getElementById(idHtml);
-            if (!elemento) continue;
-
-            let valor = "";
-            if (elemento.tagName === 'SELECT') {
-                // Se for nível, pega o valor numérico, senão o texto
-                valor = (idHtml === "level_class") ? elemento.value : elemento.options[elemento.selectedIndex]?.text;
-                if (!valor || valor.includes("SELECIONE")) valor = ""; 
-            } else {
-                valor = elemento.value || "";
-            }
-
-            try {
-                const campoPdf = form.getTextField(nomePdf);
-                campoPdf.setText(valor.toString());
-            } catch (err) {
-                console.warn(`Campo PDF "${nomePdf}" não encontrado.`);
-            }
-        }
-
-        // 2. Lógica de Munição
+        console.log("Iniciando processo de exportação para PDF...");
         try {
-            const armas = document.querySelectorAll("#weapons .weapon");
-            armas.forEach((armaEl, index) => {
-                const qtd = parseInt(armaEl.querySelector(".wp_quantity")?.value) || 0;
-                for (let i = 0; i < 30; i++) {
-                    try {
-                        const cb = form.getCheckBox(`Zbox Ataque ${index + 1} Munição ${i}`);
-                        i < qtd ? cb.check() : cb.uncheck();
-                    } catch(e) {}
+            const url = './ficha.pdf'; 
+            const response = await fetch(url);
+            if (!response.ok) throw new Error("Arquivo ficha.pdf não encontrado.");
+            
+            const bytes = await response.arrayBuffer();
+            const pdfDoc = await PDFLib.PDFDocument.load(bytes);
+            const form = pdfDoc.getForm();
+
+            // 1. Preenchimento via Mapeamento
+            for (const [idHtml, nomePdf] of Object.entries(mapeamentoCompleto)) {
+                const elemento = document.getElementById(idHtml);
+                if (!elemento) continue;
+
+                let valor = "";
+                if (elemento.tagName === 'SELECT') {
+                    // Se for nível, pega o valor numérico, senão o texto
+                    valor = (idHtml === "level_class") ? elemento.value : elemento.options[elemento.selectedIndex]?.text;
+                    if (!valor || valor.includes("SELECIONE")) valor = ""; 
+                } else {
+                    valor = elemento.value || "";
                 }
-            });
-        } catch(e) {}
 
-        // --- A CORREÇÃO AQUI ---
-        // Esse é o método correto da biblioteca para atualizar o visual dos campos
-        form.updateFieldAppearances(); 
+                try {
+                    const campoPdf = form.getTextField(nomePdf);
+                    campoPdf.setText(valor.toString());
+                } catch (err) {
+                    console.warn(`Campo PDF "${nomePdf}" não encontrado.`);
+                }
+            }
 
-        // 3. Gerar e baixar
-        const pdfBytes = await pdfDoc.save();
-        const blob = new Blob([pdfBytes], { type: "application/pdf" });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        
-        const nomeChar = document.getElementById('character_name')?.value || "Ficha_D&D";
-        link.download = `${nomeChar.replace(/\s+/g, '_')}.pdf`;
-        
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        console.log("Exportação finalizada com sucesso!");
+            // 2. Lógica de Munição
+            try {
+                const armas = document.querySelectorAll("#weapons .weapon");
+                armas.forEach((armaEl, index) => {
+                    const qtd = parseInt(armaEl.querySelector(".wp_quantity")?.value) || 0;
+                    for (let i = 0; i < 30; i++) {
+                        try {
+                            const cb = form.getCheckBox(`Zbox Ataque ${index + 1} Munição ${i}`);
+                            i < qtd ? cb.check() : cb.uncheck();
+                        } catch(e) {}
+                    }
+                });
+            } catch(e) {}
 
-    } catch (error) {
-        console.error("ERRO NA EXPORTAÇÃO:", error);
-        alert("Falha ao exportar: " + error.message);
+            // --- A CORREÇÃO AQUI ---
+            // Esse é o método correto da biblioteca para atualizar o visual dos campos
+            form.updateFieldAppearances(); 
+
+            // 3. Gerar e baixar
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: "application/pdf" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            
+            const nomeChar = document.getElementById('character_name')?.value || "Ficha_D&D";
+            link.download = `${nomeChar.replace(/\s+/g, '_')}.pdf`;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log("Exportação finalizada com sucesso!");
+
+        } catch (error) {
+            console.error("ERRO NA EXPORTAÇÃO:", error);
+            alert("Falha ao exportar: " + error.message);
+        }
     }
-}
+
 
     console.log("DOM carregado. Inicializando sistemas...");
     
