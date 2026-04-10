@@ -1,11 +1,11 @@
-
 export const mapeamentoCompleto = {
-// Este objeto traduz: ID DO HTML -> NOME EXATO NO PDF
 
-       // --- CABEÇALHO / IDENTIDADE ---
+    // ==========================
+    // CABEÇALHO
+    // ==========================
     'character_name': 'Nome do Personagem',
     'player': 'Jogador',
-    'class': 'Classe',
+    'classe': 'Classe',
     'level_class': 'Nível',
     'race': 'Raça',
     'alignment': 'Tendência',
@@ -17,12 +17,12 @@ export const mapeamentoCompleto = {
     'height': 'Altura',
     'weight': 'Peso',
     'eyes': 'Olhos',
-    'hair': 'Cabelos', // ✅ corrigido
+    'hair': 'Cabelos',
     'skin': 'Pele',
 
-    // ❌ PROFISSÃO NÃO EXISTE NO PDF (removido)
-
-    // --- ATRIBUTOS ---
+    // ==========================
+    // ATRIBUTOS
+    // ==========================
     'total_forca': 'For',
     'total_destreza': 'Des',
     'total_constituicao': 'Con',
@@ -30,43 +30,40 @@ export const mapeamentoCompleto = {
     'total_sabedoria': 'Sab',
     'total_carisma': 'Car',
 
-    // modificadores
     'mod_habilidade_forca': 'M For',
     'mod_habilidade_destreza': 'M Des',
     'mod_habilidade_constituicao': 'M Con',
     'mod_habilidade_inteligencia': 'M Int',
     'mod_habilidade_sabedoria': 'M Sab',
     'mod_habilidade_carisma': 'M Car',
-    
-      // --- VIDA ---
-    'vida': 'PV',
-    'vida_atual': 'PV0',
 
-    // --- DESLOCAMENTO---- 
+    // ==========================
+    // VIDA / STATS
+    // ==========================
+    'vida': 'PV',
     'deslocamento': 'Deslocamento',
 
-    // --- Iniciativa ----
     'iniciativa_total': 'Iniciativa',
     'iniciativa': 'Iniciativa M Des',
     'iniciativa_outros': 'Iniciativa Outros',
 
-
-
-     // --- COMBATE ---
+    // ==========================
+    // CLASSE DE ARMADURA
+    // ==========================
     'ca_final': 'CA',
+    'ca_base': 'CA Base',
     'ca_armor': 'CA0',
     'ca_shield': 'CA1',
     'ca_dex': 'CA2',
     'ca_size': 'CA3',
     'ca_natural': 'CA4',
-    'ca_other': 'CA5',
 
     'ca_toque_total': 'Toque',
-    'ca_surpresa_total': 'Surprese', // nome do PDF mesmo bugado
+    'ca_surpresa_total': 'Surprese',
 
-
-
-    // --- TESTES DE RESISTÊNCIA ---
+    // ==========================
+    // RESISTÊNCIAS
+    // ==========================
     'fort_total': 'Fortitude',
     'fort_base': 'Fortitude Bônus Base',
     'fort_mod': 'Fortitude M Con',
@@ -85,7 +82,9 @@ export const mapeamentoCompleto = {
     'von_magico': 'Vontade Mod Mágico',
     'von_outros': 'Vontade Outros',
 
-      // --- ATAQUE ---
+    // ==========================
+    // COMBATE
+    // ==========================
     'bonus_base_de_ataque': 'BBA',
 
     'agarrar_total': 'Agarrar',
@@ -95,11 +94,10 @@ export const mapeamentoCompleto = {
     'agarrar_outros': 'Agarrar Outros',
 
     'resistencia_a_magia': 'Resistência à Magia',
-    'damage_reduction': 'Redução de Dano',
 
-
-     // --- ATAQUES ---
-    // ATAQUE 1
+    // ==========================
+    // ARMAS
+    // ==========================
     'attack_1': 'Ataque 1',
     'attack_1_bonus': 'Ataque 1 Bônus',
     'attack_1_damage': 'Ataque 1 Dano',
@@ -109,7 +107,6 @@ export const mapeamentoCompleto = {
     'attack_1_notes': 'Ataque 1 Observações',
     'attack_1_ammo': 'Ataque 1 Munição',
 
-    // ATAQUE 2
     'attack_2': 'Ataque 2',
     'attack_2_bonus': 'Ataque 2 Bônus',
     'attack_2_damage': 'Ataque 2 Dano',
@@ -119,7 +116,6 @@ export const mapeamentoCompleto = {
     'attack_2_notes': 'Ataque 2 Observações',
     'attack_2_ammo': 'Ataque 2 Munição',
 
-    // ATAQUE 3
     'attack_3': 'Ataque 3',
     'attack_3_bonus': 'Ataque 3 Bônus',
     'attack_3_damage': 'Ataque 3 Dano',
@@ -129,7 +125,6 @@ export const mapeamentoCompleto = {
     'attack_3_notes': 'Ataque 3 Observações',
     'attack_3_ammo': 'Ataque 3 Munição',
 
-    // ATAQUE 4
     'attack_4': 'Ataque 4',
     'attack_4_bonus': 'Ataque 4 Bônus',
     'attack_4_damage': 'Ataque 4 Dano',
@@ -139,8 +134,9 @@ export const mapeamentoCompleto = {
     'attack_4_notes': 'Ataque 4 Observações',
     'attack_4_ammo': 'Ataque 4 Munição',
 
-
-     // --- ARMADURA ---
+    // ==========================
+    // ARMADURA / ESCUDO
+    // ==========================
     'armor_name': 'Armadura',
     'armor_type': 'Armadura Tipo',
     'armor_bonus': 'Armadura Bônus',
@@ -151,7 +147,6 @@ export const mapeamentoCompleto = {
     'armor_weight': 'Armadura Peso',
     'armor_notes': 'Armadura Observações',
 
-    // --- ESCUDO ---
     'shield_name': 'Escudo',
     'shield_bonus': 'Escudo Bônus',
     'shield_weight': 'Escudo Peso',
@@ -159,8 +154,9 @@ export const mapeamentoCompleto = {
     'shield_spell_fail': 'Escudo CFM',
     'shield_notes': 'Escudo Propriedades',
 
-
-     // --- ITENS ---
+    // ==========================
+    // ITENS DE PROTEÇÃO
+    // ==========================
     'item_1': 'Item 1',
     'item_1_bonus': 'Item 1 Bônus',
     'item_1_weight': 'Item 1 Peso',
@@ -171,8 +167,9 @@ export const mapeamentoCompleto = {
     'item_2_weight': 'Item 2 Peso',
     'item_2_props': 'Item 2 Propriedades',
 
-     // --- ITENS GERAIS ---
-
+    // ==========================
+    // OUTROS ITENS
+    // ==========================
     'itens_0': 'Itens0',
     'itens_1': 'Itens1',
     'itens_2': 'Itens2',
@@ -186,20 +183,25 @@ export const mapeamentoCompleto = {
     'itens_10': 'Itens10',
     'itens_11': 'Itens11',
 
-    // --- DINHEIRO ---
+    // ==========================
+    // DINHEIRO
+    // ==========================
     'pl_money': 'Peças de Platina',
     'po_money': 'Peças de Ouro',
     'pp_money': 'Peças de Prata',
     'pc_money': 'Peças de Cobre',
 
-     // --- PESO ---
+    // ==========================
+    // PESO
+    // ==========================
     'weight_total_carried': 'Itens Peso Total',
     'weight_light': 'Carga Leve',
     'weight_medium': 'Carga Média',
     'weight_hard': 'Carga Pesada',
 
-    // --- IDIOMAS ---
-
+    // ==========================
+    // IDIOMAS
+    // ==========================
     'leitura_escrita': 'Idiomas0',
     'idioma_1': 'Idiomas1',
     'idioma_2': 'Idiomas2',
@@ -207,26 +209,20 @@ export const mapeamentoCompleto = {
     'idioma_4': 'Idiomas4',
     'idioma_5': 'Idiomas5',
 
-    // Vínculo das Habilidades Especiais (1 a 12)
-    "hab_especial_0": "Habilidades0",
-    "hab_especial_1": "Habilidades1",
-    "hab_especial_2": "Habilidades2",
-    "hab_especial_3": "Habilidades3",
-    "hab_especial_4": "Habilidades4",
-    "hab_especial_5": "Habilidades5",
-    "hab_especial_6": "Habilidades6",
-    "hab_especial_7": "Habilidades7",
-    "hab_especial_8": "Habilidades8",
-    "hab_especial_9": "Habilidades9",
-    "hab_especial_10": "Habilidades10",
-    "hab_especial_11": "Habilidades11",
-
-
-
-    // --- PERÍCIAS ---
-    'skill_acrobacia': 'Perícia Acrobacia',
-    'skill_acrobacia_dex': 'Perícia Acrobacia M Des',
-    'skill_acrobacia_ranks': 'Perícia Acrobacia Grad',
-    'skill_acrobacia_other': 'Perícia Acrobacia Outros',
+    // ==========================
+    // HABILIDADES ESPECIAIS
+    // ==========================
+    'hab_especial_0': 'Habilidades0',
+    'hab_especial_1': 'Habilidades1',
+    'hab_especial_2': 'Habilidades2',
+    'hab_especial_3': 'Habilidades3',
+    'hab_especial_4': 'Habilidades4',
+    'hab_especial_5': 'Habilidades5',
+    'hab_especial_6': 'Habilidades6',
+    'hab_especial_7': 'Habilidades7',
+    'hab_especial_8': 'Habilidades8',
+    'hab_especial_9': 'Habilidades9',
+    'hab_especial_10': 'Habilidades10',
+    'hab_especial_11': 'Habilidades11',
 
 };

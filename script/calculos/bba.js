@@ -1,22 +1,6 @@
 // /calculos/bba.js
 import { getMod } from "./utils.js";
-
-// ==========================
-// CONFIGURAÇÕES
-// ==========================
-const bbaPorClasse = {
-    barbaro: "bom",
-    guerreiro: "bom",
-    paladino: "bom",
-    ranger: "bom",
-    monge: "medio",
-    clerigo: "medio",
-    druida: "medio",
-    ladino: "medio",
-    bardo: "medio",
-    mago: "ruim",
-    feiticeiro: "ruim"
-};
+import { bbaPorClasse } from "../data/bbaPorClasse.js";
 
 // ==========================
 // AUXILIARES

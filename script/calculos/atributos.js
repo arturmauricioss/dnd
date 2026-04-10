@@ -1,21 +1,12 @@
 import { getMod } from "./utils.js";
+import { bonusRacialAtributos } from "../data/bonusRaciais.js";
 
 export function calcularAtributos(event, raceSelect) {
     const raca = raceSelect.value;
 
-    const bonusRacial = {
-        humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
-        anao: { constituicao: 2, carisma: -2 },
-        elfo: { destreza: 2, constituicao: -2 },
-        gnomo: { constituicao: 2, forca: -2 },
-        "meio-elfo": { inteligencia: 0},
-        "meio-orc": { forca: 2, inteligencia: -2, carisma: -2},
-        halfling: { destreza: 2, forca: -2 }
-    };
-
     const habilidades = ["forca", "destreza", "constituicao", "inteligencia", "sabedoria", "carisma"];
 
-    const bonusDaRaca = bonusRacial[raca] || {};
+    const bonusDaRaca = bonusRacialAtributos[raca] || {};
 
     habilidades.forEach(hab => {
         const inputBase = document.getElementById(hab);
@@ -45,15 +36,20 @@ export function calcularAtributos(event, raceSelect) {
         const valorBaseCalculo = valorBase || 0;
         const valorRacial = bonusDaRaca[hab] || 0;
 
-        if (inputRacial) inputRacial.value = valorRacial;
+        // SEMPRE mostrar o modificador racial
+        if (inputRacial) {
+            inputRacial.value = valorRacial;
+        }
 
         let soma = valorBaseCalculo + valorRacial;
-        let valorFinal = 0;
 
         if (valorBaseCalculo > 0) {
-            valorFinal = (hab === "inteligencia") ? Math.max(3, soma) : soma;
+            // Se há valor base, calcula total e modificador
+            let valorFinal = (hab === "inteligencia") ? Math.max(3, soma) : soma;
 
-            if (inputTotal) inputTotal.value = valorFinal;
+            if (inputTotal) {
+                inputTotal.value = valorFinal;
+            }
 
             const modificador = getMod(valorFinal);
 
@@ -65,6 +61,7 @@ export function calcularAtributos(event, raceSelect) {
                 }
             }
         } else {
+            // Se não há valor base, limpa total e modificador
             if (inputTotal) inputTotal.value = "";
             if (inputModificador) inputModificador.value = "";
         }

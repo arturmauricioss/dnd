@@ -10,331 +10,138 @@
     --border-style: 1px solid var(--border-color);
     --shadow: 1px 1px 5px var(--border-color);
     --padding: 18px;
+    --padding-wide: 18px 40px;
+    --padding-compact: 18px 20px;
     --margin-top: 18px;
     --font-size: 10px;
     --gap: 10px;
     --column-gap: 4px;
+    --column-gap-wide: 40px;
+    --column-gap-normal: 10px;
+    --width-full: 100%;
+    --width-half: 48%;
+    --width-item: 300px;
 }
 
-body{
-    min-width: 1000px;
+/* Utilitários para padrões comuns */
+.flex-label { display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; }
+.grid-row-header { margin-top: 10px; }
+.export-action { margin: 0 auto 80px; padding: 15px; cursor: pointer; z-index: 999; }
+
+body { min-width: 1000px; }
+
+h1 { text-align: center; color: white; background-color: black; padding-block: 25px; }
+
+label, option, span { text-transform: uppercase; }
+
+.fc { display: flex; flex-direction: column; }
+
+.fr { display: flex; flex-direction: row; gap: 10px; }
+
+.t1{ width: 50px; }.t2{ width: 100px; }.t3{ width: 150px; }.t35{ width: 175px; }
+.t4{ width: 200px; }.t5{ width: 250px; }.t6{ width: 300px; }.t7{ width: 350px; }.t8{ width: 400px; }
+
+input, select { color: red; }
+input, select, textarea { border: none; border-bottom: var(--border-style); padding: 4px 8px; }
+input[type="number"], .lvl { text-align: center; }
+
+img { width: 100%; max-width: 350px; object-fit: cover; }
+
+header, main, footer { display: flex; width: 100%; max-width: 1000px; padding-inline: 25px; padding-top: 25px; margin: auto; justify-content: space-between; }
+
+#cabeçalho_conteudo, #stats { display: flex; flex-wrap: wrap; flex-direction: row; width: 100%; justify-content: space-between; }
+
+#stats, #ability { padding: 10px; }
+
+#stats { max-width: 500px; align-items: end; }
+
+main { display: flex; flex-direction: row; flex-wrap: wrap; gap: 32px; }
+
+#ability h2 { max-width: 390px; }
+
+.ability-grid { display: grid; grid-template-columns: 140px repeat(4, 1fr); gap: 8px; max-width: 380px; }
+
+.ability-grid span { width: 60px; font-weight: bold; text-align: center; }
+
+.ability-grid span:first-child { text-align: left; }
+
+.ability-grid input { width: 100%; text-align: center; }
+
+input[value="X"], .inativo { color: red; font-weight: bold; }
+
+input[value="X"] { text-align: center; }
+
+.ag7 { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; max-width: 100%; }
+
+.ag7 span { text-align: center; font-size: 10px; }
+
+.ag7 span:first-child { text-align: left; }
+
+.ag7 input { width: 100%; text-align: center; }
+
+#inventory { display: flex; flex-direction: column; max-width: 100%; gap: 50px; justify-content: space-between; }
+
+.inventory h3, #final_equipament_info h3 { width: fit-content; }
+
+#weapons, #armours, #protect, #other_itens {
+    display: flex; flex-wrap: wrap; gap: var(--gap); justify-content: space-between; max-width: 100%; width: 100%;
 }
 
-h1{
-    text-align: center;
-    color: white;
-    background-color:black;
-    padding-block: 25px;
-}
-
-label, option, span{
-    text-transform:uppercase;
-}
-
-.fc{
-    display: flex;
-    flex-direction: column;
-}
-
-.fr{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.t1{ width: 50px; }
-.t2{ width: 100px; }
-.t3{ width: 150px; }
-.t35{ width: 175px; }
-.t4{ width: 200px; }
-.t5{ width: 250px; }
-.t6{ width: 300px; }
-.t7{ width: 350px; }
-.t8{ width: 400px; }
-
-input, select{
-    color: red;
-}
-
-input, select, textarea{
-    border: none;
-    border-bottom: var(--border-style);
-    padding: 4px 8px;
-}
-
-input[type="number"], .lvl{
-    text-align: center;
-}
-
-img{
-    width: 100%;
-    max-width: 350px;
-    object-fit: cover;
-}
-
-header, main, footer{
-    display: flex;
-    width: 100%;
-    max-width: 1000px;
-    padding-inline: 25px;
-    padding-top: 25px;
-    margin: auto;
-    justify-content: space-between;
-}
-
-#cabeçalho_conteudo, #stats{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-}
-
-#stats, #ability{
-    padding: 10px;
-}
-
-#stats{
-    max-width: 500px;
-    align-items: end;
-}
-
-main{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;    
-    gap:32px;
-}
-
-#ability h2{
-    max-width: 390px;
-}
-
-.ability-grid {
-    display: grid;
-    grid-template-columns: 140px repeat(4, 1fr);
-    gap: 8px;
-    max-width: 380px;
-}
-
-.ability-grid span {
-    width: 60px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.ability-grid span:first-child {
-    text-align: left;
-}
-
-.ability-grid input {
-    width: 100%;
-    text-align: center;
-}
-
-input[value="X"] {
-    color: red;
-    font-weight: bold;
-    text-align: center;
-}
-
-.inativo {
-    color: red;
-    font-weight: bold;
-}
-
-/* Grid com layout específico */
-.ag7 {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 8px;
-    max-width: 100%;
-}
-
-.ag7 span {
-    text-align: center;
-    font-size: 10px;
-}
-
-.ag7 span:first-child {
-    text-align: left;
-}
-
-.ag7 input {
-    width: 100%;
-    text-align: center;
-}
-
-/* Inventory */
-#inventory{
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    gap: 50px;
-    justify-content: space-between;
-}
-
-.inventory h3, #final_equipament_info h3{
-    width:fit-content;
-}
-
-#weapons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    justify-content: space-between;
-    max-width: 100%;
-}
+#other_itens { margin: auto; }
 
 .weapon, .armour, .protect, .item, .final_equipament_weight,
 .money, .idiomas, .habilidades-container, .resistencias, .combate-grid2, .combate-grid1 {
-    display: grid;
-    justify-content: space-between;
-    border-right: var(--border-style);
-    border-bottom: var(--border-style);
-    box-shadow: var(--shadow);
-    margin-top: var(--margin-top);
-    font-size: var(--font-size);
+    display: grid; justify-content: space-between; border-right: var(--border-style); border-bottom: var(--border-style); 
+    box-shadow: var(--shadow); margin-top: var(--margin-top); font-size: var(--font-size);
 }
 
-.weapon, .armour, .protect, .item, .final_equipament_weight {
-    padding: var(--padding);
-}
+.weapon, .armour, .protect, .item, .final_equipament_weight { padding: var(--padding); }
 
-.weapon {
-    width: 100%;
-    grid-template-columns: repeat(5,1fr);
-    column-gap: var(--column-gap);
-}
+.money, .idiomas, .habilidades-container { padding: var(--padding-wide); }
 
-#armours {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    justify-content: space-between;
-    max-width: 100%;
-    width: 100%;
-}
+.resistencias, .combate-grid2, .combate-grid1 { padding: var(--padding-compact); text-align: center; }
 
-.armour {
-    width: 100%;
-    grid-template-columns: repeat(3,1fr);
-    column-gap: var(--column-gap);
-}
+.combate-grid2 { padding: 40px 20px 18px; }
 
-#protect {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    justify-content: space-between;
-    max-width: 100%;
-    width: 100%;
-}
+.weapon { width: var(--width-full); grid-template-columns: repeat(5,1fr); column-gap: var(--column-gap); }
 
-.protect {
-    width: 48%;
-    grid-template-columns: repeat(4,1fr);
-    column-gap: var(--column-gap);
-}
+.armour { width: var(--width-full); grid-template-columns: repeat(3,1fr); column-gap: var(--column-gap); }
 
-.bag {
-    width: 100%;
-}
+.protect { width: var(--width-half); grid-template-columns: repeat(4,1fr); column-gap: var(--column-gap); }
 
-#other_itens {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    margin: auto;
-}
+.bag { width: var(--width-full); }
 
-.item {
-    width: 300px;
-    grid-template-columns: 120px 50px 50px;
-    column-gap: var(--column-gap);
-}
+.item { width: var(--width-item); grid-template-columns: 120px 50px 50px; column-gap: var(--column-gap); }
 
-.final_equipament_weight {
-    grid-template-columns: repeat(7,1fr);
-    column-gap: var(--column-gap);
-}
+.final_equipament_weight { grid-template-columns: repeat(7,1fr); column-gap: var(--column-gap); }
 
-.weapon > *, .armour > *, .protect > *, .item > *, .final_equipament_weight > *,
-.final_equipament_weight span, .final_equipament_weight input {
-    width: 100%;
-}
+.money { grid-template-columns: repeat(4,1fr); column-gap: var(--column-gap-wide); }
 
-.money, .idiomas, .habilidades-container {
-    padding: 18px 40px;
-}
+.idiomas { grid-template-columns: repeat(3,1fr); column-gap: var(--column-gap-wide); }
 
-.money {
-    grid-template-columns: repeat(4,1fr);
-    column-gap: 40px;
-}
+.habilidades-container { grid-template-columns: repeat(3, 1fr); column-gap: var(--column-gap-wide); }
 
-.idiomas {
-    grid-template-columns: repeat(3,1fr);
-    column-gap: 40px;
-}
+#testes { display: flex; justify-content: space-between; }
 
-.habilidades-container {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 40px;
-}
+.resistance-section, .resistencias { width: 38%; grid-template-columns: repeat(7,1fr); column-gap: var(--column-gap-normal); }
 
-#testes {
-    display: flex;
-    justify-content: space-between;
-}
+.combat-primary, .combate-grid2 { width: 40%; grid-template-columns: repeat(6,1fr); column-gap: var(--column-gap-normal); }
 
-.resistencias, .combate-grid2, .combate-grid1 {
-    padding: 18px 20px;
-    text-align: center;
-}
+.combat-stat, .combate-grid1 { width: 18%; grid-template-columns: repeat(1,1fr); column-gap: var(--column-gap-normal); }
 
-.resistencias > *, .combate-grid2 > *, .combate-grid1 > *,
-.resistencias span, .resistencias input, .combate-grid2 span, .combate-grid2 input, .combate-grid1 span, .combate-grid1 input {
-    width: 100%;
-    text-align: center;
-}
+/* Grid children - inherit from parent */
+.weapon > *, .armour > *, .protect > *, .item > *, 
+.final_equipament_weight > *, .money > *, .idiomas > *, 
+.habilidades-container > *, .resistencias > *, 
+.combate-grid2 > *, .combate-grid1 > * { width: var(--width-full); }
 
-.resistencias {
-    width: 38%;
-    grid-template-columns: repeat(7,1fr);
-    column-gap: 10px;
-}
+/* Text alignment for numeric/combat grids */
+.resistencias > *, .combate-grid2 > *, .combate-grid1 > * { text-align: center; }
 
-.combate-grid2 {
-    width: 40%;
-    grid-template-columns: repeat(6,1fr);
-    column-gap: 10px;
-    padding: 40px 20px 18px;
-}
+input:focus, select:focus { outline: none; }
 
-.combate-grid1 {
-    width: 18%;
-    grid-template-columns: repeat(1,1fr);
-    column-gap: 10px;
-}
+#fastshop { display: flex; align-items: center; justify-content: center; }
 
-input:focus, select:focus {
-    outline: none;
-}
+#fastshop label { color: red; font-size: 16px; }
 
-#fastshop {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#fastshop label {
-    color: red;
-    font-size: 16px;
-}
-
-#fastshop input[type="checkbox"] {
-    accent-color: darkred;
-}
+#fastshop input[type="checkbox"] { accent-color: darkred; }

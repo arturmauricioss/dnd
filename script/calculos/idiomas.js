@@ -1,4 +1,5 @@
 import { getMod } from "./utils.js";
+import { idiomasRaciais, idiomaClasseFixo, idiomasClasseExtras, TODOS_IDIOMAS } from "../data/idiomasConfig.js";
 
 export function atualizarIdiomas(raceSelect, classeSelect) {
     const raca = raceSelect.value;
@@ -17,62 +18,11 @@ export function atualizarIdiomas(raceSelect, classeSelect) {
         ? "Analfabeto"
         : "Alfabetizado";
 
-    // 🌍 Idiomas raciais
-    const idiomasRaciais = {
-        humano: {
-            base: ["Comum"],
-            extras: []
-        },
-        elfo: {
-            base: ["Comum", "Élfico"],
-            extras: ["Dracônico", "Gnoll", "Gnomo", "Goblin", "Orc", "Silvestre"]
-        },
-        anao: {
-            base: ["Comum", "Anão"],
-            extras: ["Gigante", "Gnomo", "Goblin", "Orc", "Terran", "Subterrâneo"]
-        },
-        halfling: {
-            base: ["Comum", "Halfling"],
-            extras: ["Anão", "Élfico", "Gnomo", "Goblin", "Orc"]
-        },
-        gnomo: {
-            base: ["Comum", "Gnomo"],
-            extras: ["Dracônico", "Anão", "Élfico", "Gigante", "Goblin", "Orc", "Kobold"]
-        },
-        "meio-elfo": {
-            base: ["Comum", "Élfico"],
-            extras: []
-        },
-        "meio-orc": {
-            base: ["Comum", "Orc"],
-            extras: ["Dracônico", "Gigante", "Gnoll", "Goblin", "Abyssal"]
-        }
-    };
-
-    // 🌿 Idiomas fixos de classe
-    const idiomaClasseFixo = {
-        druida: ["Druídico"]
-    };
-
-    // 🌐 TODOS idiomas válidos (pra humano)
-    const TODOS_IDIOMAS = [
-        'Anão','Gnomo','Goblin','Gigante','Terran','Orc',
-        'Gnoll','Halfling','Élfico','Aquan','Subterrâneo',
-        'Auran','Ignan','Dracônico','Celestial','Infernal','Abissal','Silvestre'
-    ];
-
     const dadosRaca = idiomasRaciais[raca] || { base: ["Comum"], extras: [] };
     const base = dadosRaca.base;
 
     // 🧠 Pool inicial
     let pool = [...dadosRaca.extras];
-
-    // 📚 Idiomas extras por classe
-    const idiomasClasseExtras = {
-        clerigo: ["Abissal", "Celestial", "Infernal"],
-        mago: ["Dracônico"],
-        druida: ["Silvestre"]
-    };
 
     if (idiomasClasseExtras[classe]) {
         pool.push(...idiomasClasseExtras[classe]);

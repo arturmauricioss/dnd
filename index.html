@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,7 @@
             </div>
             <div class="fr">
                 <div class="fc t3">
-                    <select name="" id="class">
+                    <select name="" id="classe">
                         <option value="selecione" selected>SELECIONE...</option>
                         <option value="barbaro">BÁRBARO</option>
                         <option value="bardo">BARDO</option>
@@ -66,7 +65,7 @@
                     <label for="level_class">Level</label>
                 </div>
                 <div class="fc t3" id="fastshop">
-                    <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer;">
+                    <label class="flex-label">
                         <input type="checkbox" id="usarKit">
                         Comprar Kit
                     </label>
@@ -326,7 +325,7 @@
                 <span>Temp</span>
 
                 <!-- FORTITUDE -->
-                <span style="margin-top: 10px;">Fortitude</span>
+                <span class="grid-row-header">Fortitude</span>
                 <input id="fort_total" readonly>
                 <input id="fort_base" readonly>
                 <input id="fort_mod" readonly>
@@ -335,7 +334,7 @@
                 <input id="fort_temp">
 
                 <!-- REFLEXOS -->
-                <span style="margin-top: 10px;">Reflexos</span>
+                <span class="grid-row-header">Reflexos</span>
                 <input id="ref_total" readonly>
                 <input id="ref_base" readonly>
                 <input id="ref_mod" readonly>
@@ -344,7 +343,7 @@
                 <input id="ref_temp">
 
                 <!-- VONTADE -->
-                <span style="margin-top: 10px;">Vontade</span>
+                <span class="grid-row-header">Vontade</span>
                 <input id="von_total" readonly>
                 <input id="von_base" readonly>
                 <input id="von_mod" readonly>
@@ -361,7 +360,7 @@
             </div>
             <div class="combate-grid2">
                 <!-- AGARRAR -->
-                <span style="margin-top: 10px;">AGARRAR</span>
+                <span class="grid-row-header">AGARRAR</span>
                 <input id="agarrar_total" readonly>
                 <input id="agarrar_base" readonly>
                 <input id="agarrar_mod" readonly>
@@ -400,7 +399,7 @@
                         <input type="text" class="wp_weight" id="attack_1_weight">
                         <input type="text" class="wp_ammo" id="attack_1_ammo">
                         <input type="text" class="wp_quantity" id="attack_1_quantity">
-                        <input type="text" class="wp_observation" id="attack_1_notes">
+                        <input type="text" class="wp_notes" id="attack_1_notes">
                         <span>Tipo</span>
                         <span>Peso</span>
                         <span>Munição</span>
@@ -422,7 +421,7 @@
                         <input type="text" class="wp_weight" id="attack_2_weight">
                         <input type="text" class="wp_ammo" id="attack_2_ammo">
                         <input type="text" class="wp_quantity" id="attack_2_quantity">
-                        <input type="text" class="wp_observation" id="attack_2_notes">
+                        <input type="text" class="wp_notes" id="attack_2_notes">
                         <span>Tipo</span>
                         <span>Peso</span>
                         <span>Munição</span>
@@ -444,7 +443,7 @@
                         <input type="text" class="wp_weight" id="attack_3_weight">
                         <input type="text" class="wp_ammo" id="attack_3_ammo">
                         <input type="text" class="wp_quantity" id="attack_3_quantity">
-                        <input type="text" class="wp_observation" id="attack_3_notes">
+                        <input type="text" class="wp_notes" id="attack_3_notes">
                         <span>Tipo</span>
                         <span>Peso</span>
                         <span>Munição</span>
@@ -466,7 +465,7 @@
                         <input type="text" class="wp_weight" id="attack_4_weight">
                         <input type="text" class="wp_ammo" id="attack_4_ammo">
                         <input type="text" class="wp_quantity" id="attack_4_quantity">
-                        <input type="text" class="wp_observation" id="attack_4_notes">
+                        <input type="text" class="wp_notes" id="attack_4_notes">
                         <span>Tipo</span>
                         <span>Peso</span>
                         <span>Munição</span>
@@ -758,7 +757,7 @@ PESO AOS ITENS -->
         </div>
     </main>
     <footer>
-        <button id="btn_exportar" style="margin:0px auto 80px; padding: 15px; cursor: pointer; z-index: 999;">
+        <button id="btn_exportar" class="export-action">
             Exportar Ficha
         </button>
     </footer>
