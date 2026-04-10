@@ -17,6 +17,7 @@ import { camposInativosPorClasse } from "./data/camposInativosPorClasse.js";
 import { habilidadesEspeciaisData } from "./data/habilidadesEspeciais.js";
 import { tabelaDanoPorTamanho } from "./data/tabelaDano.js";
 import { calcularAtaque, calcularDanoCompleto } from "./calculos/combate.js";
+import { talentosConfig } from "./data/talentosConfig.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM carregado. Inicializando sistemas...");
@@ -143,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (iniciativaTotalInput) {
             iniciativaTotalInput.value = iniTotal >= 0 ? `+${iniTotal}` : iniTotal;
         }
+        // 8. TALENTOS
+        const atributos = { for: modFor, dex: modDex };
+        atualizarTalentos(raca, classe, nivel, atributos);
         atualizarArmas();
     }
     function ajustarDanoPorTamanho(dano, tamanho) {
@@ -346,6 +350,109 @@ document.addEventListener('DOMContentLoaded', () => {
             if (input) {
                 input.value = texto;
             }
+        });
+    }
+
+    function calcularTalentosDisponiveis(nivel, raca, classe) {
+        let talentosBase = 1; // Todos começam com 1 talento no 1º nível
+
+        // Talentos adicionais a cada 3 níveis
+        talentosBase += Math.floor((nivel - 1) / 3);
+
+        // Humanos recebem 1 talento adicional no 1º nível
+        if (raca === "humano") {
+            talentosBase += 1;
+        }
+
+        // Classes podem conceder talentos adicionais (exemplo: guerreiro)
+        const talentosPorClasse = {
+            guerreiro: Math.floor(nivel / 2), // Exemplo: 1 talento a cada 2 níveis
+        };
+
+        talentosBase += talentosPorClasse[classe] || 0;
+
+        return talentosBase;
+    }
+
+    function atualizarTalentos(raca, classe, nivel) {
+        const talentosContainer = document.querySelector(".talentos-container");
+        if (!talentosContainer) return;
+
+        // Obtém os valores dos atributos diretamente dos inputs
+        const atributos = {
+            for: parseInt(document.getElementById("total_forca")?.value) || 0,
+            dex: parseInt(document.getElementById("total_destreza")?.value) || 0,
+            con: parseInt(document.getElementById("total_constituicao")?.value) || 0,
+            int: parseInt(document.getElementById("total_inteligencia")?.value) || 0,
+            sab: parseInt(document.getElementById("total_sabedoria")?.value) || 0,
+            car: parseInt(document.getElementById("total_carisma")?.value) || 0,
+        };
+
+        const talentosDisponiveis = talentosConfig.filter(talento => {
+            const { prerequisitos } = talento;
+            const atendeNivel = prerequisitos.nivel ? nivel >= prerequisitos.nivel : true;
+            const atendeRaca = prerequisitos.raca ? prerequisitos.raca.includes(raca) : true;
+            const atendeClasse = prerequisitos.classe ? prerequisitos.classe.includes(classe) : true;
+            const atendeForca = prerequisitos.forcaMinima ? atributos.for >= prerequisitos.forcaMinima : true;
+            const atendeDestreza = prerequisitos.destrezaMinima ? atributos.dex >= prerequisitos.destrezaMinima : true;
+
+            return atendeNivel && atendeRaca && atendeClasse && atendeForca && atendeDestreza;
+        });
+
+        const talentosPermitidos = calcularTalentosDisponiveis(nivel, raca, classe);
+
+        talentosContainer.querySelectorAll("select").forEach((select, index) => {
+            if (index < talentosPermitidos) {
+                select.style.display = "block"; // Mostra os campos permitidos
+                select.innerHTML = ""; // Limpa as opções existentes
+
+                const optionDefault = document.createElement("option");
+                optionDefault.value = "";
+                optionDefault.textContent = "Selecione um talento";
+                select.appendChild(optionDefault);
+
+                talentosDisponiveis.forEach(talento => {
+                    const option = document.createElement("option");
+                    option.value = talento.nome;
+                    option.textContent = talento.nome;
+                    select.appendChild(option);
+                });
+            } else {
+                select.style.display = "none"; // Esconde os campos extras
+            }
+        });
+
+        talentosContainer.querySelectorAll("select").forEach(select => {
+            select.onchange = () => {
+                const selecionados = Array.from(talentosContainer.querySelectorAll("select"))
+                    .map(s => s.value)
+                    .filter(v => v);
+
+                talentosContainer.querySelectorAll("select").forEach(s => {
+                    if (s.disabled) return;
+
+                    const valorAtual = s.value;
+
+                    const talentosDisponiveisAtualizados = talentosDisponiveis.filter(talento => 
+                        !selecionados.includes(talento.nome) || talento.nome === valorAtual
+                    );
+
+                    s.innerHTML = "";
+                    const optionDefault = document.createElement("option");
+                    optionDefault.value = "";
+                    optionDefault.textContent = "Selecione um talento";
+                    s.appendChild(optionDefault);
+
+                    talentosDisponiveisAtualizados.forEach(talento => {
+                        const option = document.createElement("option");
+                        option.value = talento.nome;
+                        option.textContent = talento.nome;
+                        s.appendChild(option);
+                    });
+
+                    s.value = valorAtual;
+                });
+            };
         });
     }
 
