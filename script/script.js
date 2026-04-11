@@ -1,7 +1,7 @@
 import { divindades } from "./data/divindades.js";
 import { itensPorClasse } from "./data/itensporclasse.js";
 import { mapeamentoCompleto } from "./data/mapeamentocompleto.js";
-import { getMod } from "./calculos/utils.js";
+import { getMod, normalizarTexto } from "./calculos/utils.js";
 import { calcularAtributos } from "./calculos/atributos.js";
 import { atualizarIdiomas } from "./calculos/idiomas.js";
 import { calcularResistencias } from "./calculos/resistencias.js";
@@ -18,6 +18,17 @@ import { habilidadesEspeciaisData } from "./data/habilidadesEspeciais.js";
 import { tabelaDanoPorTamanho } from "./data/tabelaDano.js";
 import { calcularAtaque, calcularDanoCompleto } from "./calculos/combate.js";
 import { talentosConfig } from "./data/talentosConfig.js";
+import { periciasConfig, periciasPorClasse } from "./data/periciasConfig.js";
+import { pontosPorClasse } from "./data/periciaPorClasse.js";
+import { bonusPericiasRaca, bonusPericiasClasse } from "./data/bonusPericias.js";
+
+import {
+    calcularPontosPericia,
+    calcularMaxGraduacao,
+    calcularCustoPericia,
+    calcularTotalPericia
+} from "./calculos/pericias.js";
+
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM carregado. Inicializando sistemas...");
@@ -36,7 +47,251 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const habilidades = ["forca", "destreza", "constituicao", "inteligencia", "sabedoria", "carisma"];
     
-    // ========== FUNÇÕES ==========
+    // Perícias
+const maxPericiaInput = document.getElementById("max_pericia");
+const pontosDisponiveisInput = document.getElementById("pontos_disponiveis");
+const periciasContainer = document.querySelector(".pericias-container");
+
+function inicializarPericias() {
+    // Cabeçalho
+    periciasContainer.innerHTML = `
+        <span>Nome</span>
+        <span>Total</span>
+        <span>Classe</span>
+        <span>Inata</span>
+        <span>Habilidade</span>
+        <span>Mod Hab</span>
+        <span>Graduação</span>
+        <span>ACP</span>
+        <span>Outros</span>
+    `;
+
+    periciasConfig.forEach(pericia => {
+        const isPC = periciasPorClasse[classeSelect.value]?.includes(pericia.nome) || false;
+
+        const periciaDiv = document.createElement('div');
+        periciaDiv.className = 'pericia-item';
+
+        // 🔥 guarda multiplicador direto no elemento
+        periciaDiv.dataset.acpMult = pericia.penalidade || 0;
+
+        periciaDiv.innerHTML = `
+            <span>${pericia.nome}</span>
+            <input type="number" class="pericia-total" readonly>
+            <input type="checkbox" class="pericia-pc-po" ${isPC ? 'checked' : ''} disabled>
+
+            <span class="pericia-treinada">
+                ${pericia.somente_treinado ? '✖' : '✔'}
+            </span>
+
+            <span>${pericia.habilidade.charAt(0).toUpperCase() + pericia.habilidade.slice(1)}</span>
+
+            
+
+            <input type="number" class="pericia-mod-hab" readonly>
+
+            <input type="number" class="pericia-graduacao" min="0" value="0">
+
+            <!-- AGORA É RESULTADO FINAL DA PENALIDADE -->
+            <input type="number" class="pericia-acp" value="0" readonly>
+
+            <input type="number" class="pericia-outros" value="0" data-manual="0">
+        `;
+
+        periciasContainer.appendChild(periciaDiv);
+    });
+
+    atualizarPericias();
+}
+function calcularBonusTalentosPericia(nomePericia) {
+    const talentosContainer = document.querySelector(".talentos-container");
+    if (!talentosContainer) return 0;
+
+    let bonus = 0;
+
+    talentosContainer.querySelectorAll("select").forEach(select => {
+        const nomeTalento = select.value;
+        if (!nomeTalento) return;
+
+        const talento = talentosConfig.find(t => t.nome === nomeTalento);
+        if (!talento?.beneficio?.pericia) return;
+
+        bonus += talento.beneficio.pericia[nomePericia] || 0;
+    });
+
+    return bonus;
+}
+function atualizarPericias(campoAlterado = null) {
+    const classe = normalizarTexto(classeSelect.value);
+    const raca = normalizarTexto(raceSelect.value);
+    const nivel = parseInt(document.getElementById("level_class").value) || 1;
+
+    const intTotal = parseInt(document.getElementById("total_inteligencia")?.value) || 10;
+    const intMod = getMod(intTotal);
+
+    const pontosTotais = calcularPontosPericia({
+        classe,
+        nivel,
+        intMod,
+        raca,
+        pontosPorClasse
+    });
+
+    const maxPorPericia = nivel + 3;
+
+    maxPericiaInput.value = maxPorPericia;
+
+    const periciaItems = periciasContainer.querySelectorAll(".pericia-item");
+
+    // ==========================
+    // 1. SOMA DOS PONTOS GASTOS (exceto campo atual)
+    // ==========================
+    let pontosGastosOutros = 0;
+
+    periciaItems.forEach((item, index) => {
+        const graduacaoInput = item.querySelector(".pericia-graduacao");
+
+        if (graduacaoInput === campoAlterado) return;
+
+        const pericia = periciasConfig[index];
+        const isClasse =
+            periciasPorClasse[classeSelect.value]?.includes(pericia.nome) || false;
+
+        const grad = parseFloat(graduacaoInput.value) || 0;
+
+        pontosGastosOutros += isClasse ? grad : grad * 2;
+    });
+
+    // ==========================
+    // 2. ATUALIZA CADA PERÍCIA
+    // ==========================
+    let pontosGastosTotal = 0;
+
+    periciaItems.forEach((item, index) => {
+        const pericia = periciasConfig[index];
+
+        const isClasse =
+            periciasPorClasse[classeSelect.value]?.includes(pericia.nome) || false;
+
+        const graduacaoInput = item.querySelector(".pericia-graduacao");
+        const modHabInput = item.querySelector(".pericia-mod-hab");
+        const totalInput = item.querySelector(".pericia-total");
+        const acpInput = item.querySelector(".pericia-acp");
+        const outrosInput = item.querySelector(".pericia-outros");
+
+        graduacaoInput.step = isClasse ? "1" : "0.5";
+
+        let graduacao = parseFloat(graduacaoInput.value) || 0;
+
+        // ==========================
+        // LIMITE DE PONTOS TOTAIS
+        // ==========================
+        if (graduacaoInput === campoAlterado) {
+            const custoTentado = isClasse ? graduacao : graduacao * 2;
+
+            if (pontosGastosOutros + custoTentado > pontosTotais) {
+                const pontosDisponiveis = pontosTotais - pontosGastosOutros;
+
+                graduacao = isClasse
+                    ? pontosDisponiveis
+                    : pontosDisponiveis / 2;
+
+                graduacaoInput.value = graduacao;
+            }
+        }
+
+        // ==========================
+        // LIMITE DE GRADUAÇÃO POR NÍVEL
+        // ==========================
+        const limiteNivel = isClasse ? maxPorPericia : maxPorPericia / 2;
+
+        if (graduacao > limiteNivel) {
+            graduacao = limiteNivel;
+            graduacaoInput.value = graduacao;
+        }
+
+        // soma correta
+        pontosGastosTotal += isClasse ? graduacao : graduacao * 2;
+
+        // ==========================
+        // MOD HAB
+        // ==========================
+        const atributoEl = document.getElementById(`total_${pericia.habilidade}`);
+        const atributoTotal = parseInt(atributoEl?.value) || 10;
+        const modHab = getMod(atributoTotal);
+
+        modHabInput.value = modHab;
+
+        // ==========================
+        // ACP
+        // ==========================
+        const armorPenalty =
+            parseInt(document.getElementById("armor_penalty")?.value) || 0;
+
+        const shieldPenalty =
+            parseInt(document.getElementById("shield_penalty")?.value) || 0;
+
+        const mult = parseInt(item.dataset.acpMult) || 0;
+        const penalidade = mult * (armorPenalty + shieldPenalty);
+
+        acpInput.value = penalidade;
+
+        // ==========================
+        // BÔNUS RACIAL / CLASSE / TALENTO
+        // ==========================
+        const nomePericia = normalizarTexto(pericia.nome);
+
+        const bonusRacial =
+            bonusPericiasRaca[raca]?.[nomePericia] || 0;
+
+        const bonusClasse =
+            bonusPericiasClasse[classe]?.[nomePericia] || 0;
+
+        const outrosManual =
+            parseFloat(outrosInput.dataset.manual || 0);
+
+        const bonusTalento =
+            calcularBonusTalentosPericia(nomePericia);
+
+        const bonusAutomatico =
+            bonusRacial +
+            bonusClasse +
+            bonusTalento;
+
+        const outros = outrosManual + bonusAutomatico;
+
+        outrosInput.value = outros;
+
+        // ==========================
+        // TOTAL FINAL
+        // ==========================
+        const total = calcularTotalPericia({
+            pericia,
+            graduacao,
+            isClasse,
+            modHab,
+            outros,
+            penalArmor: armorPenalty,
+            penalShield: shieldPenalty
+        });
+
+        totalInput.value =
+            total === "—" || total === null || Number.isNaN(total)
+                ? "—"
+                : total;
+    });
+
+    // ==========================
+    // 3. SALDO FINAL
+    // ==========================
+    const saldoFinal = Math.max(0, pontosTotais - pontosGastosTotal);
+
+    pontosDisponiveisInput.value =
+        Number.isInteger(saldoFinal)
+            ? saldoFinal
+            : saldoFinal.toFixed(1);
+}
+    
     function atualizarFisico() {
         const raca = raceSelect.value;
         const sexo = sexoSelect.value;
@@ -98,6 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         calcularResistencias(classe, nivel, raca);
         calcularBBA(classe);
+
+        atualizarPericias(); // Atualizar cálculos de perícias
 
         // 2. Variáveis de Atributos e Modificadores
         const totalFor = parseInt(document.getElementById("total_forca")?.value) || 0;
@@ -191,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!usarKit) {
-            // Modo sem kit: mostra apenas ouro
+            atualizarArmas();
             return;
         }
 
@@ -452,8 +709,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     s.value = valorAtual;
                 });
+                 atualizarPericias();
             };
         });
+       
     }
 
     // ========== EVENT LISTENERS ==========
@@ -499,6 +758,7 @@ document.addEventListener('DOMContentLoaded', () => {
         preencherItensClasse(classe);
         marcarInativoClasse(classe);
         atualizarHabilidadesEspeciais();
+        inicializarPericias(); // Re-inicializar perícias quando classe muda
         atualizarTudo();
     });
 
@@ -596,8 +856,7 @@ document.addEventListener('DOMContentLoaded', () => {
     habilidades.forEach(hab => {
         const el = document.getElementById(hab);
         // 'input' calcula enquanto digita, 'blur' garante a correção visual ao sair do campo
-        el.addEventListener("input", (e) => calcularAtributos(e, raceSelect));
-        el.addEventListener("blur", (e) => atualizarTudo(e));
+        el.addEventListener("input", atualizarTudo);
         
         // Se for inteligência, também atualiza idiomas no blur
         if (hab === "inteligencia") {
@@ -628,6 +887,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof inicializarBBA === "function") {
         inicializarBBA();
     }
+
+    // Inicializa perícias
+    inicializarPericias();
+    
+    // Listeners para perícias
+    periciasContainer.addEventListener("input", (e) => {
+        if (e.target.classList.contains("pericia-outros")) {
+            e.target.dataset.manual = e.target.value || 0;
+        }
+
+        if (
+            e.target.classList.contains("pericia-graduacao") ||
+            e.target.classList.contains("pericia-outros")
+        ) {
+            atualizarPericias(e.target);
+        }
+    });
 
     // Listeners para equipamentos que afetam cálculos
     const armorType = document.getElementById("armor_type");
@@ -709,14 +985,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("ERRO NA EXPORTAÇÃO:", error);
             alert("Falha ao exportar: " + error.message);
         }
-    }
-
-
-    console.log("DOM carregado. Inicializando sistemas...");
-    
-    // Inicializa lógica de BBA
-    if (typeof inicializarBBA === "function") {
-        inicializarBBA();
     }
 
     const botao = document.getElementById('btn_exportar');

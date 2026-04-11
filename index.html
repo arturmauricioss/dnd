@@ -759,6 +759,36 @@ PESO AOS ITENS -->
                     <span>Qualidade 24</span>
                 </div>
             </div>
+            <div class="pericias">
+                <br>
+                <p>Daqui pra baixo ainda to mexendo</p>
+                <h2>Perícias</h2>
+                <div class="pericias-controller">
+                    <div class="fc t3">
+                        <input type="number" id="max_pericia" readonly>
+                        <label for="max_pericia">Máximo por Perícia</label>
+                    </div>
+                    <div class="fc t3">
+                        <input type="number" id="pontos_disponiveis" readonly>
+                        <label for="pontos_disponiveis">Pontos Disponíveis</label>
+                    </div>
+                </div>
+                <div class="pericias-container">
+                    <!-- Cabeçalho -->
+                    <span>Nome</span>
+                    <span>Classe</span>
+                    <span>Inata</span>
+                    <span>Habilidade</span>
+                    <span>Total</span>
+                    <span>Mod Hab</span>
+                    <span>Graduação</span>
+                    <span>ACP</span>
+                    <span>Outros</span>
+                    
+                    <!-- Perícias serão inseridas aqui dinamicamente -->
+                </div>
+            </div>
+            
             <div class="talentos">
                 <br>
                 <h2>Talentos</h2>
@@ -792,7 +822,7 @@ PESO AOS ITENS -->
         </div>
     </main>
     <footer>
-        <button id="btn_exportar" class="export-action">
+        <button id="btn_exportar" class="export-action" type="button">
             Exportar Ficha
         </button>
     </footer>

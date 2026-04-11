@@ -90,14 +90,14 @@ input[value="X"] { text-align: center; }
 #other_itens { margin: auto; }
 
 .weapon, .armour, .protect, .item, .final_equipament_weight,
-.money, .idiomas, .habilidades-container, .qualidades-container, .talentos-container,.resistencias, .combate-grid2, .combate-grid1 {
+.money, .idiomas, .habilidades-container, .qualidades-container, .talentos-container,.resistencias, .combate-grid2, .combate-grid1, .pericias-container {
     display: grid; justify-content: space-between; border-right: var(--border-style); border-bottom: var(--border-style); 
     box-shadow: var(--shadow); margin-top: var(--margin-top); font-size: var(--font-size);
 }
 
 .weapon, .armour, .protect, .item, .final_equipament_weight { padding: var(--padding); }
 
-.money, .idiomas, .qualidades-container, .habilidades-container, .talentos-container { padding: var(--padding-wide); }
+.money, .idiomas, .qualidades-container, .habilidades-container, .talentos-container, .pericias-container { padding: var(--padding-wide); }
 
 .resistencias, .combate-grid2, .combate-grid1 { padding: var(--padding-compact); text-align: center; }
 
@@ -121,6 +121,8 @@ input[value="X"] { text-align: center; }
 
 .habilidades-container, .qualidades-container, .talentos-container { grid-template-columns: repeat(3, 1fr); column-gap: var(--column-gap-wide); }
 
+.pericias-container { grid-template-columns:140px 10% 10% 4% 10% 10% 10% 10% 10% ; column-gap: var(--column-gap); }
+
 #testes { display: flex; justify-content: space-between; }
 
 .resistance-section, .resistencias { width: 38%; grid-template-columns: repeat(7,1fr); column-gap: var(--column-gap-normal); }
@@ -132,7 +134,7 @@ input[value="X"] { text-align: center; }
 /* Grid children - inherit from parent */
 .weapon > *, .armour > *, .protect > *, .item > *, 
 .final_equipament_weight > *, .money > *, .idiomas > *, 
-.habilidades-container > *, .resistencias > *, .qualidades-container > *, .talentos-container > *, .combate-grid2 > *, .combate-grid1 > * { width: var(--width-full); }
+.habilidades-container > *, .resistencias > *, .qualidades-container > *, .talentos-container > *, .combate-grid2 > *, .combate-grid1 > *, .pericias-container > * { width: var(--width-full); }
 
 /* Text alignment for numeric/combat grids */
 .resistencias > *, .combate-grid2 > *, .combate-grid1 > * { text-align: center; }
@@ -144,3 +146,22 @@ input:focus, select:focus { outline: none; }
 #fastshop label { color: red; font-size: 16px; }
 
 #fastshop input[type="checkbox"] { accent-color: darkred; }
+
+.pericias-controller { display: flex;gap: 10px;}
+
+.pericia-item { display: contents;}
+.pericias-container > .pericia-item > * {
+    margin-block: 8px;
+    align-items: center;
+    justify-content: center;
+}
+.pericias-container > .pericia-item:first-of-type > * {
+    margin-top: 28px;
+}
+.pericias-container input,
+.pericias-container span {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
