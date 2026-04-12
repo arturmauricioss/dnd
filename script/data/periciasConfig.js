@@ -125,7 +125,7 @@ export const periciasPorClasse = {
     "Ofício (Construção naval)",
     "Ofício (Cantaria)",
     "Ofício (Armadilhas)",
-    "Ofício (Tecelagem)",
+    "Ofício (Tecelagem)"
   ],
 
   bardo: [
@@ -212,7 +212,7 @@ export const periciasPorClasse = {
     "Profissão (Taverneiro)",
     "Saltar",
     "Sentir Motivação",
-    "Usar Instrumento Mágico",
+    "Usar Instrumento Mágico"
   ],
 
   clerigo: [
@@ -267,7 +267,7 @@ export const periciasPorClasse = {
     "Profissão (Mineiro)",
     "Profissão (Pastor)",
     "Profissão (Pescador)",
-    "Profissão (Taverneiro)",
+    "Profissão (Taverneiro)"
   ],
 
   druida: [

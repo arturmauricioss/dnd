@@ -276,7 +276,7 @@ function atualizarPericias(campoAlterado = null) {
 
         totalInput.value =
             total === "—" || total === null || Number.isNaN(total)
-                ? "—"
+                ? ""
                 : total;
     });
 
