@@ -55,15 +55,15 @@ const periciasContainer = document.querySelector(".pericias-container");
 function inicializarPericias() {
     // Cabeçalho
     periciasContainer.innerHTML = `
-        <span>Nome</span>
+        <span>Nome da Perícia</span>
         <span>Total</span>
-        <span>Classe</span>
         <span>Inata</span>
-        <span>Habilidade</span>
-        <span>Mod Hab</span>
-        <span>Graduação</span>
+        <span>Grad</span>
+        <span>Classe</span>
         <span>ACP</span>
         <span>Outros</span>
+        <span>Hab Base</span>
+        <span>Mod</span>
     `;
 
     periciasConfig.forEach(pericia => {
@@ -77,25 +77,24 @@ function inicializarPericias() {
 
         periciaDiv.innerHTML = `
             <span>${pericia.nome}</span>
-            <input type="number" class="pericia-total" readonly>
-            <input type="checkbox" class="pericia-pc-po" ${isPC ? 'checked' : ''} disabled>
 
+            <input type="number" class="pericia-total" readonly>
             <span class="pericia-treinada">
                 ${pericia.somente_treinado ? '✖' : '✔'}
             </span>
-
-            <span>${pericia.habilidade.charAt(0).toUpperCase() + pericia.habilidade.slice(1)}</span>
-
+            <input type="number" class="pericia-graduacao" min="0" value="0">
+            <input type="checkbox" class="pericia-pc-po" ${isPC ? 'checked' : ''} disabled>
             
 
-            <input type="number" class="pericia-mod-hab" readonly>
-
-            <input type="number" class="pericia-graduacao" min="0" value="0">
-
-            <!-- AGORA É RESULTADO FINAL DA PENALIDADE -->
             <input type="number" class="pericia-acp" value="0" readonly>
 
-            <input type="number" class="pericia-outros" value="0" data-manual="0">
+            <input type="number" class="pericia-outros" value="0" data-manual="0"readonly>
+            
+
+
+
+            <span>${pericia.habilidade.charAt(0).toUpperCase() + pericia.habilidade.slice(1)}</span>
+            <input type="number" class="pericia-mod-hab" readonly>
         `;
 
         periciasContainer.appendChild(periciaDiv);

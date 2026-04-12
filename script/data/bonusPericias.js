@@ -7,7 +7,7 @@ export const bonusPericiasRaca = {
         "oficio (cantaria)": 2,
         "oficio (escultura)": 2,
         "oficio (armadilhas)": 2,
-        "oficio (lapidacao)": 2
+        "oficio (lapidação)": 2
     },
 
     elfo: {
