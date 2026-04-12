@@ -853,13 +853,15 @@ function atualizarPericias(campoAlterado = null) {
     
     // Event listeners para habilidades
     habilidades.forEach(hab => {
-        const el = document.getElementById(hab);
-        // 'input' calcula enquanto digita, 'blur' garante a correção visual ao sair do campo
-        el.addEventListener("input", atualizarTudo);
+        const inputBase = document.getElementById(hab);
         
-        // Se for inteligência, também atualiza idiomas no blur
-        if (hab === "inteligencia") {
-            el.addEventListener("blur", () => atualizarIdiomas(raceSelect, classeSelect));
+        if (inputBase) {
+            inputBase.addEventListener('blur', (event) => {
+                atualizarTudo(event); 
+            });
+            inputBase.addEventListener('input', () => {
+                atualizarTudo(); 
+            });
         }
     });
     
