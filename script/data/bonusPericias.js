@@ -1,5 +1,13 @@
 export const bonusPericiasRaca = {
     anao: {
+        "oficio (armeiro)": 2,
+        "oficio (couraceiro)": 2,
+        "oficio (ferraria)": 2,
+        "oficio (serralheria)": 2,
+        "oficio (cantaria)": 2,
+        "oficio (escultura)": 2,
+        "oficio (armadilhas)": 2,
+        "oficio (lapidacao)": 2
     },
 
     elfo: {
