@@ -82,31 +82,13 @@ export default function Combat() {
     <div className="combat-container">
       <h3>Combate</h3>
       
-      <div className="combat-row">
+      {/* PRIMEIRA LINHA: BBA, Iniciativa e Deslocamento */}
+      {/* Forçamos o flex-direction row para não quebrar antes da hora */}
+      <div className="combat-row" style={{ display: 'flex', flexWrap: 'nowrap', marginBottom: '16px' }}>
         <div className="combat-stat">
           <div className="stat-label">BBA</div>
           <div className="stat-value">{bba >= 0 ? `+${bba}` : bba}</div>
           <div className="stat-detail">Base +{bbaBase} · Tam {modTamanho.bba >= 0 ? `+${modTamanho.bba}` : modTamanho.bba}</div>
-        </div>
-
-        <div className="combat-stat">
-          <div className="stat-label">RM</div>
-          <div className="stat-value">0</div>
-          <div className="stat-detail">Inata</div>
-        </div>
-
-        <div className="combat-stat">
-          <div className="stat-label">PV</div>
-          <div className="pv-row">
-            <input
-              type="number"
-              value={personagem.combat?.hp?.atual || hpMax}
-              onChange={(e) => atualizarCampo('combat', { ...personagem.combat, hp: { ...personagem.combat?.hp, atual: parseInt(e.target.value) || 0 } })}
-            />
-            <span>/</span>
-            <span className="stat-value">{hpMax}</span>
-          </div>
-          <div className="stat-detail">d{hpDado} {hpConMod >= 0 ? `+${hpConMod}` : hpConMod}</div>
         </div>
 
         <div className="combat-stat">
@@ -122,49 +104,92 @@ export default function Combat() {
         </div>
       </div>
 
-      <div className="ca-section">
-        <div className="ca-title">CA</div>
-        <div className="ca-grid">
+      <div className="ca-section" style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between', 
+        gap: '30px', 
+        padding: '12px 60px',
+        minHeight: '100px',
+      }}>
+        
+        {/* BLOCO PV */}
+        <div style={{ textAlign: 'center', flexShrink: 0 }}>
+          <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-light)', display: 'block', marginBottom: '4px' }}>PV</span>
+          <div className="pv-row" style={{ background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <input
+              type="number"
+              style={{ 
+                width: '85px', 
+                textAlign: 'center', 
+                fontWeight: 'bold', 
+                padding: '4px', 
+                fontSize: '1.8rem',
+                color: 'var(--primary)',
+                border: 'none',
+                borderBottom: '2px solid #22c55e',
+                background: 'transparent',
+                borderRadius: '4px'
+              }}
+              value={personagem.combat?.hp?.atual || hpMax}
+              onChange={(e) => atualizarCampo('combat', { ...personagem.combat, hp: { ...personagem.combat?.hp, atual: parseInt(e.target.value) || 0 } })}
+            />
+            <strong style={{ fontSize: '1.6rem', marginLeft: '6px', color: 'var(--primary)', opacity: 0.8 }}>/ {hpMax}</strong>
+          </div>
+        </div>
+
+        {/* BLOCO RM */}
+        <div style={{ textAlign: 'center', flexShrink: 0 }}>
+          <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-light)', display: 'block', marginBottom: '4px' }}>RM</span>
+          <strong style={{ fontSize: '1.8rem', color: 'var(--primary)', display: 'block' }}>0</strong>
+        </div>
+
+        {/* GRUPO CA (TOTAL + DETALHES) */}
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', borderLeft: '2px solid rgba(0,0,0,0.05)', paddingLeft: '20px' }}>
+          
+          {/* CA TOTAL */}
           <div 
-            className="ca-card" 
+            style={{ textAlign: 'center', flexShrink: 0, cursor: 'pointer' }}
             onMouseEnter={() => setCaHover('normal')}
             onMouseLeave={() => setCaHover(null)}
-            onTouchStart={() => setCaHover(caHover === 'normal' ? null : 'normal')}
           >
-            <span className="ca-total-value">{caNormal}</span>
+            <span style={{ textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: '800', color: 'var(--text-light)', display: 'block', marginBottom: '4px' }}>CA Total</span>
+            <strong style={{ fontSize: '1.8rem', color: 'var(--primary)', lineHeight: '1' }}>{caNormal}</strong>
           </div>
-          <div 
-            className="ca-card"
-            onMouseEnter={() => setCaHover('toque')}
-            onMouseLeave={() => setCaHover(null)}
-            onTouchStart={() => setCaHover(caHover === 'toque' ? null : 'toque')}
-          >
-            <div className="ca-card-label">Toque</div>
-            <div className="ca-card-value">{caToque}</div>
+
+          {/* Toque e Surpresa */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', background: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem', minWidth: '80px', border: '1px solid var(--border)' }}>
+              <span style={{ color: 'var(--text-light)', fontWeight: '700' }}>Tq:</span>
+              <strong style={{ color: 'var(--primary)' }}>{caToque}</strong>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', background: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem', minWidth: '80px', border: '1px solid var(--border)' }}>
+              <span style={{ color: 'var(--text-light)', fontWeight: '700' }}>Sur:</span>
+              <strong style={{ color: 'var(--primary)' }}>{caSurpresa}</strong>
+            </div>
           </div>
-          <div 
-            className="ca-card"
-            onMouseEnter={() => setCaHover('surpresa')}
-            onMouseLeave={() => setCaHover(null)}
-            onTouchStart={() => setCaHover(caHover === 'surpresa' ? null : 'surpresa')}
-          >
-            <div className="ca-card-label">Surpresa</div>
-            <div className="ca-card-value">{caSurpresa}</div>
-          </div>
-          <div className="ca-breakdown">
-            <div className={`ca-item ${caHover ? 'highlight' : ''}`}><span className="ca-item-label">Base</span><span>{caBase}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}><span className="ca-item-label">Arm</span><span>{caValores.armadura}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}><span className="ca-item-label">Esc</span><span>{caValores.escudo}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'toque') ? 'highlight' : ''}`}><span className="ca-item-label">Dex</span><span>{dexMod >= 0 ? `+${dexMod}` : dexMod}</span></div>
-            <div className={`ca-item ${caHover ? 'highlight' : ''}`}><span className="ca-item-label">Tam</span><span>{modTamanho.ca >= 0 ? `+${modTamanho.ca}` : modTamanho.ca}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}><span className="ca-item-label">Nat</span><span>{caValores.natural}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}><span className="ca-item-label">Def</span><span>{caValores.deflexao}</span></div>
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}><span className="ca-item-label">Out</span><span>{caValores.outros}</span></div>
+
+          {/* Grid de Modificadores */}
+          <div className="ca-breakdown" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(4, 110px)', 
+            gap: '4px', 
+            fontSize: '0.7rem',
+            background: 'transparent'
+          }}>
+            <div className={`ca-item ${caHover ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Bas</span><span>{caBase}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Arm</span><span>{caValores.armadura}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Esc</span><span>{caValores.escudo}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'toque') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Dex</span><span>{dexMod >= 0 ? `+${dexMod}` : dexMod}</span></div>
+            <div className={`ca-item ${caHover ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Tam</span><span>{modTamanho.ca >= 0 ? `+${modTamanho.ca}` : modTamanho.ca}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Nat</span><span>{caValores.natural}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Def</span><span>{caValores.deflexao}</span></div>
+            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`} style={{ padding: '4px 8px' }}><span className="ca-item-label">Out</span><span>{caValores.outros}</span></div>
           </div>
         </div>
       </div>
 
-      <h4>Testes de Resistência</h4>
+      
       <div className="saves-cards">
         <div className="save-card">
           <div className="save-title">Fortitude</div>

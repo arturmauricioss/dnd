@@ -93,6 +93,18 @@ export default function CharacterHeader() {
           <label htmlFor="player">Jogador</label>
           <input type="text" id="player" value={personagem.player} onChange={(e) => atualizarCampo('player', e.target.value)} />
         </div>
+        <div className="field-group">
+          <label htmlFor="race">Raça</label>
+          <select id="race" value={personagem.race} onChange={handleRaceChange}>
+            {racas.map((r) => <option key={r.id} value={r.id}>{r.nome}</option>)}
+          </select>
+        </div>
+        <div className="field-group">
+          <label htmlFor="sex">Sexo</label>
+          <select id="sex" value={personagem.sex} onChange={handleSexChange}>
+            {sexos.map((s) => <option key={s.id} value={s.id}>{s.nome}</option>)}
+          </select>
+        </div>
       </div>
 
       <div className="header-row">
@@ -108,15 +120,6 @@ export default function CharacterHeader() {
             {niveis.map((n) => <option key={n} value={n}>{n}</option>)}
           </select>
         </div>
-      </div>
-
-      <div className="header-row">
-        <div className="field-group">
-          <label htmlFor="race">Raça</label>
-          <select id="race" value={personagem.race} onChange={handleRaceChange}>
-            {racas.map((r) => <option key={r.id} value={r.id}>{r.nome}</option>)}
-          </select>
-        </div>
         <div className="field-group">
           <label htmlFor="alignment">Alinhamento</label>
           <select id="alignment" value={personagem.alignment} onChange={handleAlignmentChange}>
@@ -130,27 +133,24 @@ export default function CharacterHeader() {
             {deusesDisponiveis.map((d) => <option key={d.value} value={d.value}>{d.nome}</option>)}
           </select>
         </div>
-        <div className="field-group">
-          <label htmlFor="sex">Sexo</label>
-          <select id="sex" value={personagem.sex} onChange={handleSexChange}>
-            {sexos.map((s) => <option key={s.id} value={s.id}>{s.nome}</option>)}
-          </select>
-        </div>
-        <div className="field-group">
-          <label htmlFor="tamanho">Tamanho</label>
-          <input type="text" id="tamanho" value={personagem.race && personagem.race !== 'selecione' ? (tamanhoPorRaca[personagem.race] === 'pequena' ? 'PEQUENO' : 'MÉDIO') : ''} readOnly />
-        </div>
+        
+        
       </div>
 
       <div className="header-row">
-        <div className="field-group small">
-          <label htmlFor="idade">Idade</label>
-          <input type="number" id="idade" value={personagem.idade} onChange={(e) => atualizarCampo('idade', e.target.value)} placeholder={placeholderIdade.min ? `${placeholderIdade.min} - ${placeholderIdade.max}` : ''} />
+        <div className="field-group">
+          <label htmlFor="tamanho">Tamanho</label>
+          <input type="text" id="tamanho" value={personagem.race && personagem.race !== 'selecione' ? (tamanhoPorRaca[personagem.race] === 'pequena' ? 'PEQUENO' : 'MÉDIO') : ''} readOnly />
         </div>
         <div className="field-group small">
           <label htmlFor="height">Altura</label>
           <input type="text" id="height" value={personagem.height} onChange={(e) => atualizarCampo('height', e.target.value)} placeholder={placeholderFisico.altura} />
         </div>
+        <div className="field-group small">
+          <label htmlFor="idade">Idade</label>
+          <input type="number" id="idade" value={personagem.idade} onChange={(e) => atualizarCampo('idade', e.target.value)} placeholder={placeholderIdade.min ? `${placeholderIdade.min} - ${placeholderIdade.max}` : ''} />
+        </div>
+        
         <div className="field-group small">
           <label htmlFor="weight">Peso</label>
           <input type="text" id="weight" value={personagem.weight} onChange={(e) => atualizarCampo('weight', e.target.value)} placeholder={placeholderFisico.peso} />

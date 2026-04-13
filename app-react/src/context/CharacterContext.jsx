@@ -22,12 +22,12 @@ const estadoInicial = {
   usarKit: false,
   
   atributos: {
-    forca: 10,
-    destreza: 10,
-    constituicao: 10,
-    inteligencia: 10,
+    forca: 15,
+    destreza: 14,
+    constituicao: 13,
+    inteligencia: 12,
     sabedoria: 10,
-    carisma: 10,
+    carisma: 8,
   },
   
   atributosRacial: {

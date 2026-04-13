@@ -99,6 +99,9 @@ section {
   font-size: 0.95rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   background: var(--card);
+   border:none;
+  background: transparent;
+  border-bottom:2px solid #22c55e;
 }
 
 .field-group input:focus,
@@ -122,6 +125,7 @@ section {
 
 .small-input {
   max-width: 120px;
+  
 }
 
 .checkbox-label {
@@ -161,7 +165,8 @@ section {
 }
 
 .atributo-linha {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
@@ -181,16 +186,22 @@ section {
 .atributo-input {
   width: 70px;
   padding: 6px 10px;
-  border: 2px solid var(--border);
+  /* border: 2px solid var(--border); */
   border-radius: 6px;
   text-align: center;
   font-weight: 600;
   font-size: 1rem;
+  border:none;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-bottom:2px solid #22c55e;
 }
 
 .atributo-value {
   font-weight: 700;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  padding-right: 24px;
 }
 
 .atributo-value.valor-total {
@@ -963,7 +974,8 @@ section {
   .dinheiro-container .money-total {
     background: #3b82f6;
     color: white;
-    padding: 8px 16px;
+    margin: 20px;
+    padding: 16px 16px;
     border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
