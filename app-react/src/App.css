@@ -574,6 +574,11 @@ section {
   font-size: 0.85rem;
 }
 
+.pericias-header > span:nth-child(n+2) {
+  display: flex;
+  justify-content: center;
+}
+
 .pericia-item {
   display: grid;
   grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
@@ -583,6 +588,19 @@ section {
   align-items: center;
   transition: background 0.2s;
 }
+.pericia-graduacao{
+  border:none;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 6px;
+  border-bottom:2px solid #22c55e;
+}
+.pericia-hab{
+  /* border: 1px solid red; */
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
 
 .pericia-total input,
 .pericia-graduacao input,
@@ -591,6 +609,14 @@ section {
   width: 100%;
   box-sizing: border-box;
 }
+.pericia-total input:focus,
+.pericia-hab:focus,
+.pericia-outros input:focus {
+  border: none;       /* Remove a borda se houver */
+  outline: none;      /* Remove a linha de foco do navegador */
+  box-shadow: none;   /* Garante que não apareça sombra/brilho */
+}
+
 
 @media (min-width: 1024px) {
   .pericias-list {
@@ -652,8 +678,8 @@ section {
   font-size: 0.9rem;
 }
 
-.pericia-item input:focus {
-  border-color: var(--primary);
+.pericia-graduacao input:focus {
+  outline:1px solid #22c55e;
 }
 
 .pericia-nome {

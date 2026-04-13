@@ -207,6 +207,7 @@ export default function Pericias() {
 
         <div className="pericia-total">
           <input
+            tabIndex="-1"
             type="text"
             value={total >= 0 ? `+${total}` : total}
             readOnly
@@ -228,11 +229,13 @@ export default function Pericias() {
         </div>
 
         <div className="pericia-hab">
-          <span className="mod">{modHab >= 0 ? `+${modHab}` : modHab}</span>
+          <span tabIndex="-1" className="mod">{modHab >= 0 ? `+${modHab}` : modHab}</span>
         </div>
 
         <div className="pericia-outros">
           <input
+            tabIndex="-1"
+            readOnly
             type="number"
             value={calcularOutrosTotal(pericia)}
             onChange={(e) => {
