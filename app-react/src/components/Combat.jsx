@@ -73,7 +73,11 @@ export default function Combat() {
   const vonTotal = (classe.von || 0) + bonusSaveRacial.von
   const vonBase = classe.von || 0
   const vonRacial = bonusSaveRacial.von
-
+  const detalheDeslocamento = showDeslocamento
+  ? `Raça ${deslocBase}${
+      deslocBonus > 0 ? ` · Classe +${deslocBonus}` : ''
+    }`
+  : ''
   return (
     <div className="combat-container">
       <h3>Combate</h3>
@@ -114,7 +118,7 @@ export default function Combat() {
         <div className="combat-stat">
           <div className="stat-label">Desloc</div>
           <div className="stat-value">{showDeslocamento ? `${deslocamento}m` : '—'}</div>
-          <div className="stat-detail">{showDeslocamento ? `Raça ${deslocBase} Classe ${deslocBonus > 0 ? `+${deslocBonus}` : ''}` : ''}</div>
+          <div className="stat-detail">{detalheDeslocamento}</div>
         </div>
       </div>
 
