@@ -101,13 +101,30 @@ export default function Pericias() {
   }
 
   const handleGraduacaoChange = (nomePericia, valor) => {
-    setPericiasState((prev) => ({
-      ...prev,
-      [nomePericia]: {
-        ...prev[nomePericia],
-        graduacao: valor,
-      },
-    }))
+    setPericiasState((prev) => {
+      const novaState = {
+        ...prev,
+        [nomePericia]: {
+          ...prev[nomePericia],
+          graduacao: valor,
+        },
+      }
+
+      let gastos = 0
+
+      periciasConfig.forEach((p) => {
+        const grad = novaState[p.nome]?.graduacao || 0
+        const isClasse = isPericiaDeClasse(p.nome)
+
+        gastos += isClasse ? grad : grad * 2
+      })
+
+      if (gastos > pontosPericia) {
+        return prev // cancela mudança
+      }
+
+      return novaState
+    })
   }
 
   const handleOutrosChange = (nomePericia, valor) => {
@@ -200,18 +217,13 @@ export default function Pericias() {
           <input
             type="number"
             min="0"
-            max={
-              isClasse
-                ? maxGradPorNivel
-                : Math.floor(maxGradPorNivel / 2)
-            }
+            max={isClasse ? maxGradPorNivel : maxGradPorNivel / 2}
+            step={isClasse ? 1 : 0.5}
             value={estado?.graduacao || 0}
-            onChange={(e) =>
-              handleGraduacaoChange(
-                pericia.nome,
-                parseInt(e.target.value) || 0
-              )
-            }
+            onChange={(e) => {
+              const valor = parseFloat(e.target.value) || 0
+              handleGraduacaoChange(pericia.nome, valor)
+            }}
           />
         </div>
 
