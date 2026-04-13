@@ -202,7 +202,7 @@ export default function Pericias() {
             {pericia.nome} ({habilidadeAbreviada[pericia.habilidade]})
           </span>
           {pericia.somente_treinado && <span className="treinado">X</span>}
-          {isClasse && <span className="classe-icon">*</span>}
+          {isClasse && <span className="classe-icon">🔥</span>}
         </div>
 
         <div className="pericia-total">
