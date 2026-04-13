@@ -3,11 +3,8 @@ import CharacterHeader from './components/CharacterHeader'
 import Atributos from './components/Atributos'
 import Pericias from './components/Pericias'
 import Combat from './components/Combat'
-// import Kit from './components/Kit'
-// import Weapons from './components/Weapons'
-// import Equipment from './components/Equipment'
-// import Talentos from './components/Talentos'
-// import HabilidadesEspeciais from './components/HabilidadesEspeciais'
+import Dinheiro from './components/Dinheiro'
+import Loja from './components/Loja'
 import './App.css'
 
 function App() {
@@ -22,11 +19,8 @@ function App() {
           <Atributos />
           <Combat />
           <Pericias />
-          {/* <Kit /> */}
-          {/* <Weapons /> */}
-          {/* <Equipment /> */}
-          {/* <Talentos /> */}
-          {/* <HabilidadesEspeciais /> */}
+          <Dinheiro />
+          {/* <Loja /> */}
         </div>
       </div>
     </CharacterProvider>

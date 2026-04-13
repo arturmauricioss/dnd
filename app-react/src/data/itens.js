@@ -56,7 +56,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: itensPadrao(),
     dinheiro_kit: { po: '2d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '100' }
   },
   bardo: {
     armas: [armasBase.espadaLonga, armasBase.bestaLeve],
@@ -64,7 +64,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'tochas', 'alaude', 'bolsaComponentes'],
     dinheiro_kit: { po: '2d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '100' }
   },
   clerigo: {
     armas: [armasBase.macaPesada, armasBase.bestaLeve],
@@ -72,7 +72,7 @@ export const itensPorClasse = {
     escudo: escudosBase.madeiraPesado,
     itens: [...itensPadrao(), 'tochas', 'simboloSagrado'],
     dinheiro_kit: { po: '1d4' },
-    dinheiro_sem_kit: { po: '5d4x10' }
+    dinheiro_sem_kit: { po: '125' }
   },
   druida: {
     armas: [armasBase.cimitarra, armasBase.clava, armasBase.funda],
@@ -80,7 +80,7 @@ export const itensPorClasse = {
     escudo: escudosBase.madeiraPesado,
     itens: [...itensPadrao(), 'tochas', 'azevinho'],
     dinheiro_kit: { po: '1d6' },
-    dinheiro_sem_kit: { po: '2d4x10' }
+    dinheiro_sem_kit: { po: '50' }
   },
   feiticeiro: {
     armas: [armasBase.lancaCurta, armasBase.bestaLeve],
@@ -88,7 +88,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'lanterna', 'oleo500', 'bolsaComponentes'],
     dinheiro_kit: { po: '3d4' },
-    dinheiro_sem_kit: { po: '3d4x10' }
+    dinheiro_sem_kit: { po: '75' }
   },
   guerreiro: {
     armas: [armasBase.espadaLonga, armasBase.arcoLongo, armasBase.arcoComposto],
@@ -96,7 +96,7 @@ export const itensPorClasse = {
     escudo: escudosBase.ferro,
     itens: [...itensPadrao(), 'tochas'],
     dinheiro_kit: { po: '3d4' },
-    dinheiro_sem_kit: { po: '5d4x10' }
+    dinheiro_sem_kit: { po: '150' }
   },
   ladino: {
     armas: [armasBase.adaga, armasBase.bestaLeve],
@@ -104,7 +104,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'ferramentasLadrao', 'tochas', 'lanterna'],
     dinheiro_kit: { po: '2d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '125' }
   },
   mago: {
     armas: [armasBase.bestaLeve],
@@ -112,7 +112,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'grimorio', 'bolsaComponentes', 'lanterna', 'oleo500'],
     dinheiro_kit: { po: '3d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '75' }
   },
   monge: {
     armas: [armasBase.ia, armasBase.arcoComposto],
@@ -120,7 +120,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'tochas'],
     dinheiro_kit: { po: '2d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '12', pp: '5'}
   },
   paladino: {
     armas: [armasBase.espadaLonga, armasBase.macaPesada],
@@ -128,7 +128,7 @@ export const itensPorClasse = {
     escudo: escudosBase.ferro,
     itens: [...itensPadrao(), 'simboloSagrado', 'tochas'],
     dinheiro_kit: { po: '1d4' },
-    dinheiro_sem_kit: { po: '5d4x10' }
+    dinheiro_sem_kit: { po: '150' }
   },
   ranger: {
     armas: [armasBase.arcoLongo, armasBase.adaga],
@@ -136,7 +136,7 @@ export const itensPorClasse = {
     escudo: null,
     itens: [...itensPadrao(), 'tochas'],
     dinheiro_kit: { po: '2d4' },
-    dinheiro_sem_kit: { po: '4d4x10' }
+    dinheiro_sem_kit: { po: '150' }
   }
 }
 

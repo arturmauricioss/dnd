@@ -2,14 +2,30 @@ import { useState } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { getItensClasse } from '../data/itens'
 
+function calcularTotalPO(pl, po, pp, pc) {
+  const total = (parseInt(pl) || 0) * 10 + 
+               (parseInt(po) || 0) + 
+               (parseInt(pp) || 0) * 0.1 + 
+               (parseInt(pc) || 0) * 0.01
+  return total.toFixed(2).replace(/\.?0+$/, '').replace(/\.$/, '')
+}
+
 export default function Kit() {
   const { personagem, atualizarCampo } = useCharacter()
   const [usarKit, setUsarKit] = useState(personagem.usarKit || false)
   
   const classe = personagem.classe
   const itensClasse = getItensClasse(classe)
+  const dinheiroClasse = itensClasse?.dinheiro_sem_kit || { po: '0', pl: '0' }
   
-  const handleUsarKitChange = (e) => {
+  const money = personagem.equipment?.money || {}
+  const po = money.po ?? dinheiroClasse.po ?? '0'
+  const pl = money.pl ?? dinheiroClasse.pl ?? '0'
+  const pp = money.pp ?? dinheiroClasse.pp ?? '0'
+  const pc = money.pc ?? dinheiroClasse.pc ?? '0'
+  const totalPO = calcularTotalPO(pl, po, pp, pc)
+  
+const handleUsarKitChange = (e) => {
     const usar = e.target.checked
     setUsarKit(usar)
     atualizarCampo('usarKit', usar)
@@ -22,7 +38,7 @@ export default function Kit() {
       })
     }
   }
-  
+
   const handleChange = (campo, valor) => {
     atualizarCampo('equipment', {
       ...personagem.equipment,
@@ -32,9 +48,7 @@ export default function Kit() {
       }
     })
   }
-  
-  const money = personagem.equipment?.money || {}
-  
+
   if (!itensClasse) {
     return (
       <div className="kit-container">
@@ -43,7 +57,7 @@ export default function Kit() {
       </div>
     )
   }
-  
+
   const dinheiroAtual = usarKit 
     ? itensClasse.dinheiro_kit?.po || ''
     : itensClasse.dinheiro_sem_kit?.po || ''
@@ -70,29 +84,47 @@ export default function Kit() {
         </div>
       )}
       
-      <div>
-        <label>PO</label>
-        <input
-          type="text"
-          value={money.po || ''}
-          onChange={(e) => handleChange('po', e.target.value)}
-          placeholder={dinheiroAtual}
-        />
+      <div className="money-inputs">
+        <label>
+          <span>PL (Platina):</span>
+          <input
+            type="number"
+            value={pl}
+            onChange={(e) => handleChange('pl', e.target.value)}
+            min="0"
+          />
+        </label>
+        <label>
+          <span>PO (Ouro):</span>
+          <input
+            type="number"
+            value={po}
+            onChange={(e) => handleChange('po', e.target.value)}
+            placeholder={dinheiroAtual}
+            min="0"
+          />
+        </label>
+        <label>
+          <span>PP (Prata):</span>
+          <input
+            type="number"
+            value={pp}
+            onChange={(e) => handleChange('pp', e.target.value)}
+            min="0"
+          />
+        </label>
+        <label>
+          <span>PC (Cobre):</span>
+          <input
+            type="number"
+            value={pc}
+            onChange={(e) => handleChange('pc', e.target.value)}
+            min="0"
+          />
+        </label>
       </div>
-      
-      <div className="money-row">
-        <div>
-          <label>PL</label>
-          <input type="text" value={money.pl || ''} onChange={(e) => handleChange('pl', e.target.value)} />
-        </div>
-        <div>
-          <label>PP</label>
-          <input type="text" value={money.pp || ''} onChange={(e) => handleChange('pp', e.target.value)} />
-        </div>
-        <div>
-          <label>Pc</label>
-          <input type="text" value={money.pc || ''} onChange={(e) => handleChange('pc', e.target.value)} />
-        </div>
+      <div className="money-total">
+        <strong>Total: {totalPO} PO</strong>
       </div>
     </div>
   )

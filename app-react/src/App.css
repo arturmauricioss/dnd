@@ -941,4 +941,57 @@ section {
   .pericias-info {
     flex-direction: column;
   }
-}
+
+.dinheiro-container {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  
+  .dinheiro-container h3 {
+    margin-top: 0;
+  }
+  
+  .dinheiro-container .money-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .dinheiro-container .money-total {
+    background: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    min-width: 130px;
+    text-align: center;
+  }
+  
+  .dinheiro-container .money-row label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .dinheiro-container .money-row label span {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+  
+  .dinheiro-container .money-row input {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .dinheiro-container .money-row input:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
