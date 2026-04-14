@@ -7,7 +7,7 @@
 .combat-row {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   flex-wrap: nowrap;
 }
 

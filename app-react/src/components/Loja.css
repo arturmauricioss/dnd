@@ -185,6 +185,9 @@
   border-top: 2px solid var(--border);
   font-size: 1.1rem;
 }
+.loja-aside{
+  padding-left: 40px;
+}
 
 @media (max-width: 900px) {
   .loja-layout {

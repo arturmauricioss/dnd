@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { periciasConfig, periciasPorClasse } from '../data/pericias'
 import { getBonusPericiaRacial } from '../data/bonusPericias'
-import { getPenalidadeTotal } from '../data/armaduras'
+import { todosItens } from '../data/itemDatabase'
 import './Pericias.css'
 
 const pontosPorClasse = {
@@ -60,8 +60,8 @@ export default function Pericias() {
   const base = pontosPorClasse[personagem.classe] || 2
 
   const penalidadeEquip = getPenalidadeTotal(
-    personagem.equipment?.armor || 'nenhum',
-    personagem.equipment?.shield || 'nenhum'
+    personagem.equipment?.armor,
+    personagem.equipment?.shield
   )
 
   const pontosPericia = useMemo(() => {

@@ -1,30 +1,25 @@
-export function converterParaPO({ pl = 0, po = 0, pp = 0, pc = 0 }) {
+// CONVERTE qualquer moeda para COBRE (inteiro)
+export function converterParaCobre(money = {}) {
   return (
-    (Number(pl) || 0) * 10 +
-    (Number(po) || 0) +
-    (Number(pp) || 0) * 0.1 +
-    (Number(pc) || 0) * 0.01
+    (Number(money.pl) || 0) * 1000 +
+    (Number(money.po) || 0) * 100 +
+    (Number(money.pp) || 0) * 10 +
+    (Number(money.pc) || 0)
   )
 }
 
-export function converterDePO(total) {
-  let resto = Number(total) || 0
+// CONVERTE para PO (apenas para exibição)
+export function converterParaPO(money = {}) {
+  return converterParaCobre(money) / 100
+}
 
-  const pl = Math.floor(resto / 10)
-  resto -= pl * 10
-
-  const po = Math.floor(resto)
-  resto -= po
-
-  const pp = Math.floor(resto * 10)
-  resto -= pp / 10
-
-  const pc = Math.round(resto * 100)
+// opcional: quebrar cobre de volta
+export function converterDePO(po = 0) {
+  const totalCobre = Math.floor(po * 100)
 
   return {
-    pl: String(pl),
-    po: String(po),
-    pp: String(pp),
-    pc: String(pc),
+    po: Math.floor(totalCobre / 100),
+    pp: Math.floor((totalCobre % 100) / 10),
+    pc: totalCobre % 10
   }
 }
