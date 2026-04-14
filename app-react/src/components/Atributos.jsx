@@ -22,7 +22,7 @@ export default function Atributos() {
           return (
             <div key={attr.id} className="atributo-card">
               <div className="atributo-nome">{attr.nome}</div>
-              
+                
               <div className="atributo-linha">
                 <span className="atributo-label">Base</span>
                 <input

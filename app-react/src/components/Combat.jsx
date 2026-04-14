@@ -183,7 +183,7 @@ export default function Combat() {
 
       <div className="ca-section">
         <div className="combat-block">
-          <span className="combat-block-label">PV</span>
+          <span className="combat-block-label">Pontos de Vida</span>
 
           <div className="pv-row">
             <input
@@ -208,7 +208,7 @@ export default function Combat() {
         </div>
 
         <div className="combat-block">
-          <span className="combat-block-label">RM</span>
+          <span className="combat-block-label">Res Mágica</span>
           <strong className="rm-value">0</strong>
         </div>
 

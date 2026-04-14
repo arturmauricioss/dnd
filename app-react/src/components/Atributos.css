@@ -4,15 +4,16 @@
 
 .atributos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 16px;
 }
 
 .atributo-card {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   padding: 16px;
-  border-radius: 12px;
+  /* border-radius: 0 0 12px 12px; */
   border: 2px solid var(--border);
+  min-width: 0;
 }
 
 .atributo-nome {
@@ -29,8 +30,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 4px 0;
+  /* border-bottom: 1px solid var(--border); */
 }
 
 .atributo-linha:last-child {
@@ -43,29 +44,12 @@
   font-weight: 500;
 }
 
-.atributo-input {
-  /* width: 70px;
-  padding: 6px 10px;
-  border: none;
-  border-bottom: 2px solid #22c55e;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
-  background: transparent;
-  outline: none; */
-}
-
-.atributo-input:focus {
-  /* background: rgba(34, 197, 94, 0.05); */
-}
-
 .atributo-value {
   font-weight: 700;
   font-size: 1rem;
   display: flex;
   justify-content: center;
-  padding-right: 24px;
+  /* padding-right: 24px; */
 }
 
 .atributo-value.valor-total {
@@ -81,18 +65,37 @@
   color: var(--danger);
 }
 
+/* notebook / telas menores */
+@media (max-width: 1200px) {
+  .atributos-grid {
+    grid-template-columns: repeat(3, 1fr);
+    
+  }
+}
+
+/* tablet */
 @media (max-width: 768px) {
   .atributos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* celular */
 @media (max-width: 480px) {
   .atributos-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .atributo-card {
     padding: 12px;
+  }
+
+  .atributo-nome {
+    font-size: 0.9rem;
+  }
+
+  .atributo-value {
+    padding-right: 0;
   }
 }
