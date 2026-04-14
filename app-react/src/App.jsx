@@ -12,7 +12,7 @@ function App() {
   return (
     <CharacterProvider>
       <div className="app">
-        <h1> ficha D&D 3.5</h1>
+        <h1> Ficha D&D 3.5</h1>
         
         <div className="ficha">
           <CharacterHeader />
