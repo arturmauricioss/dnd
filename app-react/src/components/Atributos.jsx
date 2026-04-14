@@ -27,7 +27,7 @@ export default function Atributos() {
                 <span className="atributo-label">Base</span>
                 <input
                   type="number"
-                  className="input-line"
+                  className="input-line attrib"
                   value={valorBase}
                   onChange={(e) => {
                     const valor = parseInt(e.target.value)

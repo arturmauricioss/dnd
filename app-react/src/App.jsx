@@ -20,7 +20,7 @@ function App() {
           <Combat />
           <Pericias />
           <Dinheiro />
-          {/* <Loja /> */}
+          <Loja />
         </div>
       </div>
     </CharacterProvider>

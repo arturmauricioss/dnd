@@ -6,12 +6,12 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 16px;
+  
 }
 
 .atributo-card {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   padding: 16px;
-  /* border-radius: 0 0 12px 12px; */
   border: 2px solid var(--border);
   min-width: 0;
 }
@@ -31,7 +31,6 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 4px 0;
-  /* border-bottom: 1px solid var(--border); */
 }
 
 .atributo-linha:last-child {
@@ -49,8 +48,17 @@
   font-size: 1rem;
   display: flex;
   justify-content: center;
-  /* padding-right: 24px; */
 }
+.atributo-value>input {
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.attrib{
+  padding-left: 24px !important;
+}
+
 
 .atributo-value.valor-total {
   font-size: 1.25rem;
