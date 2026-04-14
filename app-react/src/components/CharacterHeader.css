@@ -1,0 +1,51 @@
+.character-header {
+  display: grid;
+  gap: 16px;
+}
+
+.header-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  border-bottom-color: var(--primary);
+}
+
+.field-group.small {
+  max-width: 140px;
+}
+
+.field-group input[readonly] {
+  color: var(--text-light);
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .header-row {
+    grid-template-columns: 1fr;
+  }
+
+  .field-group.small {
+    max-width: 100%;
+  }
+}

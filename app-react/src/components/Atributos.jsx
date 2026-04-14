@@ -1,5 +1,6 @@
 import { useCharacter } from '../context/CharacterContext'
 import { atributos, calcularModificador, getBonusRacial } from '../data/opcoes'
+import './Atributos.css'
 
 export default function Atributos() {
   const { personagem, atualizarAtributo } = useCharacter()
@@ -26,7 +27,7 @@ export default function Atributos() {
                 <span className="atributo-label">Base</span>
                 <input
                   type="number"
-                  className="atributo-input"
+                  className="input-line"
                   value={valorBase}
                   onChange={(e) => {
                     const valor = parseInt(e.target.value)

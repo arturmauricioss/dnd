@@ -1,5 +1,6 @@
 import { useCharacter } from '../context/CharacterContext'
 import { getItensClasse } from '../data/itens'
+import './dinheiro.css'
 
 function calcularTotalPO(pl, po, pp, pc) {
   const total = (parseInt(pl) || 0) * 10 + 

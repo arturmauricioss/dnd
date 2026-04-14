@@ -3,6 +3,7 @@ import { useCharacter } from '../context/CharacterContext'
 import { periciasConfig, periciasPorClasse } from '../data/pericias'
 import { getBonusPericiaRacial } from '../data/bonusPericias'
 import { getPenalidadeTotal } from '../data/armaduras'
+import './Pericias.css'
 
 const pontosPorClasse = {
   barbaro: 4,
