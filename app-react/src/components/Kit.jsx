@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useCharacter } from '../context/CharacterContext'
-import { getItensClasse } from '../data/itens'
+import { getItensClasse } from '../data/itemDatabase'
 
 function calcularTotalPO(pl, po, pp, pc) {
   const total = (parseInt(pl) || 0) * 10 + 

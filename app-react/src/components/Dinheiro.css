@@ -1,26 +1,23 @@
 .dinheiro-container {
-  background: var(--card);
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: var(--shadow);
+  width: 100%;
 }
 
-.dinheiro-container h3 {
-  margin-top: 0;
+.dinheiro-container .dinheiro-content {
+  padding: 16px;
 }
 
 .dinheiro-container .money-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .dinheiro-container .money-total {
-  background: #3b82f6;
+  background: #3b82f6 ;
   color: white;
-  margin: 20px;
-  padding: 16px;
+  padding: 10px 16px;
   border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
@@ -54,13 +51,16 @@
 }
 
 @media (max-width: 768px) {
+  .dinheiro-container .dinheiro-content {
+    padding: 12px;
+  }
+
   .dinheiro-container .money-row {
     flex-direction: column;
     align-items: stretch;
   }
 
   .dinheiro-container .money-total {
-    margin: 0 0 12px 0;
     width: 100%;
   }
 }

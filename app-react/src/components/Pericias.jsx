@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { periciasConfig, periciasPorClasse } from '../data/pericias'
 import { getBonusPericiaRacial } from '../data/bonusPericias'
-import { todosItens } from '../data/itemDatabase'
+import { todosItens, getPenalidadeTotal } from '../data/itemDatabase'
 import './Pericias.css'
 
 const pontosPorClasse = {
@@ -40,6 +40,7 @@ const habilidadeAbreviada = {
 }
 
 export default function Pericias() {
+  const [expandido, setExpandido] = useState(true)
   const { personagem, getModificador } = useCharacter()
 
   const [periciasState, setPericiasState] = useState(() => {
@@ -263,56 +264,66 @@ export default function Pericias() {
 
   return (
     <div className="pericias-container">
-      <h3>Perícias</h3>
-
-      <div className="pericias-info">
-        <div className="info-item">
-          <span>Pontos disponíveis:</span>
-          <strong>{pontosPericia}</strong>
-        </div>
-
-        <div className="info-item">
-          <span>Saldo:</span>
-          <strong>{pontosRestantes}</strong>
-        </div>
-
-        <div className="info-item">
-          <span>Máx. graduação:</span>
-          <strong>{maxGradPorNivel}</strong>
-        </div>
+      <div className="section-header">
+        <h3>Perícias</h3>
+        <button className="btn-collapse" onClick={() => setExpandido(!expandido)}>
+          {expandido ? '▼' : '▶'}
+        </button>
       </div>
+      {expandido && (
+        <div className="pericias-info">
+          <div className="info-item">
+            <span>Pontos disponíveis:</span>
+            <strong>{pontosPericia}</strong>
+          </div>
 
-      <div className="pericias-header-mobile">
-        <span>Perícia</span>
-        <span>Total</span>
-        <span>Grad</span>
-        <span>Hab</span>
-        <span>Outros</span>
-      </div>
+          <div className="info-item">
+            <span>Saldo:</span>
+            <strong>{pontosRestantes}</strong>
+          </div>
 
-      <div className="pericias-list">
-        <div className="pericias-coluna">
-          <div className="pericias-header">
+          <div className="info-item">
+            <span>Máx. graduação:</span>
+            <strong>{maxGradPorNivel}</strong>
+          </div>
+</div>
+      )}
+
+      {expandido && (
+        <div>
+          <div className="pericias-header-mobile">
             <span>Perícia</span>
             <span>Total</span>
             <span>Grad</span>
             <span>Hab</span>
             <span>Outros</span>
           </div>
-          {habilidadesOrdenadas.primeira.map(renderPericia)}
-        </div>
 
-        <div className="pericias-coluna">
-          <div className="pericias-header">
-            <span>Perícia</span>
-            <span>Total</span>
-            <span>Grad</span>
-            <span>Hab</span>
-            <span>Outros</span>
+          <div className="pericias-list">
+            <div className="pericias-coluna">
+              <div className="pericias-header">
+                <span>Perícia</span>
+                <span>Total</span>
+                <span>Grad</span>
+                <span>Hab</span>
+                <span>Outros</span>
+              </div>
+              {habilidadesOrdenadas.primeira.map(renderPericia)}
+            </div>
+
+            <div className="pericias-coluna">
+              <div className="pericias-header">
+                <span>Perícia</span>
+                <span>Total</span>
+                <span>Grad</span>
+                <span>Hab</span>
+                <span>Outros</span>
+              </div>
+              {habilidadesOrdenadas.segunda.map(renderPericia)}
+            </div>
           </div>
-          {habilidadesOrdenadas.segunda.map(renderPericia)}
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -1,0 +1,974 @@
+- generic [ref=e3]:
+  - heading "ficha D&D 3.5" [level=1] [ref=e4]
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - generic [ref=e9]: Nome do Personagem
+          - textbox "Nome do Personagem" [ref=e10]
+        - generic [ref=e11]:
+          - generic [ref=e12]: Jogador
+          - textbox "Jogador" [ref=e13]
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e16]: Classe
+          - combobox "Classe" [ref=e17]:
+            - option "SELECIONE..." [selected]
+            - option "BÁRBARO"
+            - option "BARDO"
+            - option "CLÉRIGO"
+            - option "DRUIDA"
+            - option "FEITICEIRO"
+            - option "GUERREIRO"
+            - option "LADINO"
+            - option "MAGO"
+            - option "MONGE"
+            - option "PALADINO"
+            - option "RANGER"
+        - generic [ref=e18]:
+          - generic [ref=e19]: Nível
+          - combobox "Nível" [ref=e20]:
+            - option "0"
+            - option "1" [selected]
+            - option "2"
+            - option "3"
+            - option "4"
+            - option "5"
+            - option "6"
+            - option "7"
+            - option "8"
+            - option "9"
+            - option "10"
+            - option "11"
+            - option "12"
+            - option "13"
+            - option "14"
+            - option "15"
+            - option "16"
+            - option "17"
+            - option "18"
+            - option "19"
+            - option "20"
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: Raça
+          - combobox "Raça" [ref=e24]:
+            - option "SELECIONE..." [selected]
+            - option "HUMANO"
+            - option "ELFO"
+            - option "ANÃO"
+            - option "GNOMO"
+            - option "MEIO-ELFO"
+            - option "MEIO-ORC"
+            - option "HALFLING"
+        - generic [ref=e25]:
+          - generic [ref=e26]: Alinhamento
+          - combobox "Alinhamento" [ref=e27]:
+            - option "SELECIONE..." [selected]
+            - option "LEAL BOM"
+            - option "NEUTRAL BOM"
+            - option "CAÓTICO BOM"
+            - option "LEAL NEUTRAL"
+            - option "NEUTRAL VERDADEIRO"
+            - option "CAÓTICO NEUTRAL"
+            - option "LEAL MALIGNO"
+            - option "NEUTRAL MALIGNO"
+            - option "CAÓTICO MALIGNO"
+        - generic [ref=e28]:
+          - generic [ref=e29]: Deidade
+          - combobox "Deidade" [ref=e30]:
+            - option "Nenhuma" [selected]
+        - generic [ref=e31]:
+          - generic [ref=e32]: Sexo
+          - combobox "Sexo" [ref=e33]:
+            - option "SELECIONE..." [selected]
+            - option "MASCULINO"
+            - option "FEMININO"
+        - generic [ref=e34]:
+          - generic [ref=e35]: Tamanho
+          - textbox "Tamanho" [ref=e36]: MÉDIO
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [ref=e39]: Idade
+          - spinbutton "Idade" [ref=e40]
+        - generic [ref=e41]:
+          - generic [ref=e42]: Altura
+          - textbox "Altura" [ref=e43]:
+            - /placeholder: ""
+        - generic [ref=e44]:
+          - generic [ref=e45]: Peso
+          - textbox "Peso" [ref=e46]:
+            - /placeholder: ""
+    - generic [ref=e47]:
+      - heading "Atributos" [level=3] [ref=e48]
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: FORÇA
+          - generic [ref=e52]:
+            - generic [ref=e53]: Base
+            - spinbutton [ref=e54]: "10"
+          - generic [ref=e55]:
+            - generic [ref=e56]: Racial
+            - generic [ref=e57]: "+0"
+          - generic [ref=e58]:
+            - generic [ref=e59]: Total
+            - generic [ref=e60]: "10"
+          - generic [ref=e61]:
+            - generic [ref=e62]: Mod
+            - generic [ref=e63]: "+0"
+        - generic [ref=e64]:
+          - generic [ref=e65]: DESTREZA
+          - generic [ref=e66]:
+            - generic [ref=e67]: Base
+            - spinbutton [ref=e68]: "10"
+          - generic [ref=e69]:
+            - generic [ref=e70]: Racial
+            - generic [ref=e71]: "+0"
+          - generic [ref=e72]:
+            - generic [ref=e73]: Total
+            - generic [ref=e74]: "10"
+          - generic [ref=e75]:
+            - generic [ref=e76]: Mod
+            - generic [ref=e77]: "+0"
+        - generic [ref=e78]:
+          - generic [ref=e79]: CONSTITUIÇÃO
+          - generic [ref=e80]:
+            - generic [ref=e81]: Base
+            - spinbutton [ref=e82]: "10"
+          - generic [ref=e83]:
+            - generic [ref=e84]: Racial
+            - generic [ref=e85]: "+0"
+          - generic [ref=e86]:
+            - generic [ref=e87]: Total
+            - generic [ref=e88]: "10"
+          - generic [ref=e89]:
+            - generic [ref=e90]: Mod
+            - generic [ref=e91]: "+0"
+        - generic [ref=e92]:
+          - generic [ref=e93]: INTELIGÊNCIA
+          - generic [ref=e94]:
+            - generic [ref=e95]: Base
+            - spinbutton [ref=e96]: "10"
+          - generic [ref=e97]:
+            - generic [ref=e98]: Racial
+            - generic [ref=e99]: "+0"
+          - generic [ref=e100]:
+            - generic [ref=e101]: Total
+            - generic [ref=e102]: "10"
+          - generic [ref=e103]:
+            - generic [ref=e104]: Mod
+            - generic [ref=e105]: "+0"
+        - generic [ref=e106]:
+          - generic [ref=e107]: SABEDORIA
+          - generic [ref=e108]:
+            - generic [ref=e109]: Base
+            - spinbutton [ref=e110]: "10"
+          - generic [ref=e111]:
+            - generic [ref=e112]: Racial
+            - generic [ref=e113]: "+0"
+          - generic [ref=e114]:
+            - generic [ref=e115]: Total
+            - generic [ref=e116]: "10"
+          - generic [ref=e117]:
+            - generic [ref=e118]: Mod
+            - generic [ref=e119]: "+0"
+        - generic [ref=e120]:
+          - generic [ref=e121]: CARISMA
+          - generic [ref=e122]:
+            - generic [ref=e123]: Base
+            - spinbutton [ref=e124]: "10"
+          - generic [ref=e125]:
+            - generic [ref=e126]: Racial
+            - generic [ref=e127]: "+0"
+          - generic [ref=e128]:
+            - generic [ref=e129]: Total
+            - generic [ref=e130]: "10"
+          - generic [ref=e131]:
+            - generic [ref=e132]: Mod
+            - generic [ref=e133]: "+0"
+    - generic [ref=e134]:
+      - heading "Combate" [level=3] [ref=e135]
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]: BBA
+          - generic [ref=e139]: "+0"
+          - generic [ref=e140]:
+            - generic [ref=e141]: "Base: +0"
+            - generic [ref=e142]: "Tam: +0"
+        - generic [ref=e143]:
+          - generic [ref=e144]: PV
+          - generic [ref=e145]:
+            - spinbutton [ref=e146]: "0"
+            - generic [ref=e147]: /
+            - generic [ref=e148]: "0"
+          - generic [ref=e149]:
+            - generic [ref=e150]: "Dado: d0"
+            - generic [ref=e151]: "Con: +0"
+        - generic [ref=e152]:
+          - generic [ref=e153]: Iniciativa
+          - generic [ref=e154]: "+0"
+          - generic [ref=e156]: "Dex: +0"
+        - generic [ref=e157]:
+          - generic [ref=e158]: Deslocamento
+          - generic [ref=e159]: 6m
+          - generic [ref=e161]: "Raça: 6"
+        - generic [ref=e162]:
+          - generic [ref=e163]: CA
+          - generic [ref=e164]: "10"
+          - generic [ref=e165]:
+            - generic [ref=e166]: "Base: 10"
+            - generic [ref=e167]: "Dex: +0"
+            - generic [ref=e168]: "Tam: +0"
+      - heading "Testes de Resistência" [level=4] [ref=e169]
+      - generic [ref=e170]:
+        - generic [ref=e171]:
+          - generic [ref=e172]: Fortitude
+          - generic [ref=e173]: "+0"
+          - generic [ref=e175]: "Base: +0"
+        - generic [ref=e176]:
+          - generic [ref=e177]: Reflexos
+          - generic [ref=e178]: "+0"
+          - generic [ref=e180]: "Base: +0"
+        - generic [ref=e181]:
+          - generic [ref=e182]: Vontade
+          - generic [ref=e183]: "+0"
+          - generic [ref=e185]: "Base: +0"
+    - generic [ref=e186]:
+      - heading "Perícias" [level=3] [ref=e187]
+      - generic [ref=e188]:
+        - generic [ref=e189]:
+          - generic [ref=e190]: "Pontos disponíveis:"
+          - strong [ref=e191]: "0"
+        - generic [ref=e192]:
+          - generic [ref=e193]: "Saldo:"
+          - strong [ref=e194]: "0"
+        - generic [ref=e195]:
+          - generic [ref=e196]: "Máx. graduação:"
+          - strong [ref=e197]: "4"
+      - generic [ref=e198]:
+        - generic [ref=e199]: Perícia
+        - generic [ref=e200]: Total
+        - generic [ref=e201]: Grad
+        - generic [ref=e202]: Hab
+        - generic [ref=e203]: Outros
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - generic [ref=e207]: Abrir Fechaduras
+            - generic [ref=e208]: ✖
+          - spinbutton [ref=e210]: "-1"
+          - spinbutton [ref=e212]: "0"
+          - generic [ref=e213]:
+            - generic [ref=e214]: destreza
+            - generic [ref=e215]: "+0"
+          - spinbutton [ref=e217]: "0"
+        - generic [ref=e218]:
+          - generic [ref=e219]:
+            - generic [ref=e220]: Acrobacia
+            - generic [ref=e221]: ✖
+          - spinbutton [ref=e223]: "-1"
+          - spinbutton [ref=e225]: "0"
+          - generic [ref=e226]:
+            - generic [ref=e227]: destreza
+            - generic [ref=e228]: "+0"
+          - spinbutton [ref=e230]: "0"
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - generic [ref=e233]: Adestrar Animais
+            - generic [ref=e234]: ✖
+          - spinbutton [ref=e236]: "0"
+          - spinbutton [ref=e238]: "0"
+          - generic [ref=e239]:
+            - generic [ref=e240]: carisma
+            - generic [ref=e241]: "+0"
+          - spinbutton [ref=e243]: "0"
+        - generic [ref=e244]:
+          - generic [ref=e246]: Arte da Fuga
+          - spinbutton [ref=e248]: "-1"
+          - spinbutton [ref=e250]: "0"
+          - generic [ref=e251]:
+            - generic [ref=e252]: destreza
+            - generic [ref=e253]: "+0"
+          - spinbutton [ref=e255]: "0"
+        - generic [ref=e256]:
+          - generic [ref=e258]: Avaliação
+          - spinbutton [ref=e260]: "0"
+          - spinbutton [ref=e262]: "0"
+          - generic [ref=e263]:
+            - generic [ref=e264]: inteligencia
+            - generic [ref=e265]: "+0"
+          - spinbutton [ref=e267]: "0"
+        - generic [ref=e268]:
+          - generic [ref=e270]: Blefar
+          - spinbutton [ref=e272]: "0"
+          - spinbutton [ref=e274]: "0"
+          - generic [ref=e275]:
+            - generic [ref=e276]: carisma
+            - generic [ref=e277]: "+0"
+          - spinbutton [ref=e279]: "0"
+        - generic [ref=e280]:
+          - generic [ref=e282]: Cavalgar
+          - spinbutton [ref=e284]: "0"
+          - spinbutton [ref=e286]: "0"
+          - generic [ref=e287]:
+            - generic [ref=e288]: destreza
+            - generic [ref=e289]: "+0"
+          - spinbutton [ref=e291]: "0"
+        - generic [ref=e292]:
+          - generic [ref=e294]: Concentração
+          - spinbutton [ref=e296]: "0"
+          - spinbutton [ref=e298]: "0"
+          - generic [ref=e299]:
+            - generic [ref=e300]: constituicao
+            - generic [ref=e301]: "+0"
+          - spinbutton [ref=e303]: "0"
+        - generic [ref=e304]:
+          - generic [ref=e306]: Cura
+          - spinbutton [ref=e308]: "0"
+          - spinbutton [ref=e310]: "0"
+          - generic [ref=e311]:
+            - generic [ref=e312]: sabedoria
+            - generic [ref=e313]: "+0"
+          - spinbutton [ref=e315]: "0"
+        - generic [ref=e316]:
+          - generic [ref=e317]:
+            - generic [ref=e318]: Decifrar Escrita
+            - generic [ref=e319]: ✖
+          - spinbutton [ref=e321]: "0"
+          - spinbutton [ref=e323]: "0"
+          - generic [ref=e324]:
+            - generic [ref=e325]: inteligencia
+            - generic [ref=e326]: "+0"
+          - spinbutton [ref=e328]: "0"
+        - generic [ref=e329]:
+          - generic [ref=e331]: Diplomacia
+          - spinbutton [ref=e333]: "0"
+          - spinbutton [ref=e335]: "0"
+          - generic [ref=e336]:
+            - generic [ref=e337]: carisma
+            - generic [ref=e338]: "+0"
+          - spinbutton [ref=e340]: "0"
+        - generic [ref=e341]:
+          - generic [ref=e343]: Disfarces
+          - spinbutton [ref=e345]: "0"
+          - spinbutton [ref=e347]: "0"
+          - generic [ref=e348]:
+            - generic [ref=e349]: carisma
+            - generic [ref=e350]: "+0"
+          - spinbutton [ref=e352]: "0"
+        - generic [ref=e353]:
+          - generic [ref=e355]: Equilíbrio
+          - spinbutton [ref=e357]: "-1"
+          - spinbutton [ref=e359]: "0"
+          - generic [ref=e360]:
+            - generic [ref=e361]: destreza
+            - generic [ref=e362]: "+0"
+          - spinbutton [ref=e364]: "0"
+        - generic [ref=e365]:
+          - generic [ref=e367]: Escalar
+          - spinbutton [ref=e369]: "-1"
+          - spinbutton [ref=e371]: "0"
+          - generic [ref=e372]:
+            - generic [ref=e373]: forca
+            - generic [ref=e374]: "+0"
+          - spinbutton [ref=e376]: "0"
+        - generic [ref=e377]:
+          - generic [ref=e379]: Esconder-se
+          - spinbutton [ref=e381]: "-1"
+          - spinbutton [ref=e383]: "0"
+          - generic [ref=e384]:
+            - generic [ref=e385]: destreza
+            - generic [ref=e386]: "+0"
+          - spinbutton [ref=e388]: "0"
+        - generic [ref=e389]:
+          - generic [ref=e390]:
+            - generic [ref=e391]: Falar Idioma
+            - generic [ref=e392]: ✖
+          - spinbutton [ref=e394]: "0"
+          - spinbutton [ref=e396]: "0"
+          - generic [ref=e397]:
+            - generic [ref=e398]: nenhuma
+            - generic [ref=e399]: "+0"
+          - spinbutton [ref=e401]: "0"
+        - generic [ref=e402]:
+          - generic [ref=e404]: Falsificação
+          - spinbutton [ref=e406]: "0"
+          - spinbutton [ref=e408]: "0"
+          - generic [ref=e409]:
+            - generic [ref=e410]: inteligencia
+            - generic [ref=e411]: "+0"
+          - spinbutton [ref=e413]: "0"
+        - generic [ref=e414]:
+          - generic [ref=e416]: Furtividade
+          - spinbutton [ref=e418]: "-1"
+          - spinbutton [ref=e420]: "0"
+          - generic [ref=e421]:
+            - generic [ref=e422]: destreza
+            - generic [ref=e423]: "+0"
+          - spinbutton [ref=e425]: "0"
+        - generic [ref=e426]:
+          - generic [ref=e427]:
+            - generic [ref=e428]: Identificar Magia
+            - generic [ref=e429]: ✖
+          - spinbutton [ref=e431]: "0"
+          - spinbutton [ref=e433]: "0"
+          - generic [ref=e434]:
+            - generic [ref=e435]: inteligencia
+            - generic [ref=e436]: "+0"
+          - spinbutton [ref=e438]: "0"
+        - generic [ref=e439]:
+          - generic [ref=e441]: Intimidação
+          - spinbutton [ref=e443]: "0"
+          - spinbutton [ref=e445]: "0"
+          - generic [ref=e446]:
+            - generic [ref=e447]: carisma
+            - generic [ref=e448]: "+0"
+          - spinbutton [ref=e450]: "0"
+        - generic [ref=e451]:
+          - generic [ref=e453]: Natação
+          - spinbutton [ref=e455]: "-2"
+          - spinbutton [ref=e457]: "0"
+          - generic [ref=e458]:
+            - generic [ref=e459]: forca
+            - generic [ref=e460]: "+0"
+          - spinbutton [ref=e462]: "0"
+        - generic [ref=e463]:
+          - generic [ref=e465]: Observar
+          - spinbutton [ref=e467]: "0"
+          - spinbutton [ref=e469]: "0"
+          - generic [ref=e470]:
+            - generic [ref=e471]: sabedoria
+            - generic [ref=e472]: "+0"
+          - spinbutton [ref=e474]: "0"
+        - generic [ref=e475]:
+          - generic [ref=e477]: Obter Informação
+          - spinbutton [ref=e479]: "0"
+          - spinbutton [ref=e481]: "0"
+          - generic [ref=e482]:
+            - generic [ref=e483]: carisma
+            - generic [ref=e484]: "+0"
+          - spinbutton [ref=e486]: "0"
+        - generic [ref=e487]:
+          - generic [ref=e488]:
+            - generic [ref=e489]: Operar Mecanismo
+            - generic [ref=e490]: ✖
+          - spinbutton [ref=e492]: "0"
+          - spinbutton [ref=e494]: "0"
+          - generic [ref=e495]:
+            - generic [ref=e496]: inteligencia
+            - generic [ref=e497]: "+0"
+          - spinbutton [ref=e499]: "0"
+        - generic [ref=e500]:
+          - generic [ref=e502]: Ouvir
+          - spinbutton [ref=e504]: "0"
+          - spinbutton [ref=e506]: "0"
+          - generic [ref=e507]:
+            - generic [ref=e508]: sabedoria
+            - generic [ref=e509]: "+0"
+          - spinbutton [ref=e511]: "0"
+        - generic [ref=e512]:
+          - generic [ref=e513]:
+            - generic [ref=e514]: Prestidigitação
+            - generic [ref=e515]: ✖
+          - spinbutton [ref=e517]: "-1"
+          - spinbutton [ref=e519]: "0"
+          - generic [ref=e520]:
+            - generic [ref=e521]: destreza
+            - generic [ref=e522]: "+0"
+          - spinbutton [ref=e524]: "0"
+        - generic [ref=e525]:
+          - generic [ref=e527]: Procurar
+          - spinbutton [ref=e529]: "0"
+          - spinbutton [ref=e531]: "0"
+          - generic [ref=e532]:
+            - generic [ref=e533]: inteligencia
+            - generic [ref=e534]: "+0"
+          - spinbutton [ref=e536]: "0"
+        - generic [ref=e537]:
+          - generic [ref=e539]: Saltar
+          - spinbutton [ref=e541]: "-1"
+          - spinbutton [ref=e543]: "0"
+          - generic [ref=e544]:
+            - generic [ref=e545]: forca
+            - generic [ref=e546]: "+0"
+          - spinbutton [ref=e548]: "0"
+        - generic [ref=e549]:
+          - generic [ref=e551]: Sentir Motivação
+          - spinbutton [ref=e553]: "0"
+          - spinbutton [ref=e555]: "0"
+          - generic [ref=e556]:
+            - generic [ref=e557]: sabedoria
+            - generic [ref=e558]: "+0"
+          - spinbutton [ref=e560]: "0"
+        - generic [ref=e561]:
+          - generic [ref=e563]: Sobrevivência
+          - spinbutton [ref=e565]: "0"
+          - spinbutton [ref=e567]: "0"
+          - generic [ref=e568]:
+            - generic [ref=e569]: sabedoria
+            - generic [ref=e570]: "+0"
+          - spinbutton [ref=e572]: "0"
+        - generic [ref=e573]:
+          - generic [ref=e575]: Usar Cordas
+          - spinbutton [ref=e577]: "0"
+          - spinbutton [ref=e579]: "0"
+          - generic [ref=e580]:
+            - generic [ref=e581]: destreza
+            - generic [ref=e582]: "+0"
+          - spinbutton [ref=e584]: "0"
+        - generic [ref=e585]:
+          - generic [ref=e586]:
+            - generic [ref=e587]: Usar Instrumento Mágico
+            - generic [ref=e588]: ✖
+          - spinbutton [ref=e590]: "0"
+          - spinbutton [ref=e592]: "0"
+          - generic [ref=e593]:
+            - generic [ref=e594]: carisma
+            - generic [ref=e595]: "+0"
+          - spinbutton [ref=e597]: "0"
+        - generic [ref=e598]:
+          - generic [ref=e600]: Atuação (Dramaturgia)
+          - spinbutton [ref=e602]: "0"
+          - spinbutton [ref=e604]: "0"
+          - generic [ref=e605]:
+            - generic [ref=e606]: carisma
+            - generic [ref=e607]: "+0"
+          - spinbutton [ref=e609]: "0"
+        - generic [ref=e610]:
+          - generic [ref=e612]: Atuação (Humor)
+          - spinbutton [ref=e614]: "0"
+          - spinbutton [ref=e616]: "0"
+          - generic [ref=e617]:
+            - generic [ref=e618]: carisma
+            - generic [ref=e619]: "+0"
+          - spinbutton [ref=e621]: "0"
+        - generic [ref=e622]:
+          - generic [ref=e624]: Atuação (Dança)
+          - spinbutton [ref=e626]: "0"
+          - spinbutton [ref=e628]: "0"
+          - generic [ref=e629]:
+            - generic [ref=e630]: carisma
+            - generic [ref=e631]: "+0"
+          - spinbutton [ref=e633]: "0"
+        - generic [ref=e634]:
+          - generic [ref=e636]: Atuação (Oratória)
+          - spinbutton [ref=e638]: "0"
+          - spinbutton [ref=e640]: "0"
+          - generic [ref=e641]:
+            - generic [ref=e642]: carisma
+            - generic [ref=e643]: "+0"
+          - spinbutton [ref=e645]: "0"
+        - generic [ref=e646]:
+          - generic [ref=e648]: Atuação (Canto)
+          - spinbutton [ref=e650]: "0"
+          - spinbutton [ref=e652]: "0"
+          - generic [ref=e653]:
+            - generic [ref=e654]: carisma
+            - generic [ref=e655]: "+0"
+          - spinbutton [ref=e657]: "0"
+        - generic [ref=e658]:
+          - generic [ref=e660]: Atuação (Ins. Teclado)
+          - spinbutton [ref=e662]: "0"
+          - spinbutton [ref=e664]: "0"
+          - generic [ref=e665]:
+            - generic [ref=e666]: carisma
+            - generic [ref=e667]: "+0"
+          - spinbutton [ref=e669]: "0"
+        - generic [ref=e670]:
+          - generic [ref=e672]: Atuação (Ins. Percussão)
+          - spinbutton [ref=e674]: "0"
+          - spinbutton [ref=e676]: "0"
+          - generic [ref=e677]:
+            - generic [ref=e678]: carisma
+            - generic [ref=e679]: "+0"
+          - spinbutton [ref=e681]: "0"
+        - generic [ref=e682]:
+          - generic [ref=e684]: Atuação (Ins. Corda)
+          - spinbutton [ref=e686]: "0"
+          - spinbutton [ref=e688]: "0"
+          - generic [ref=e689]:
+            - generic [ref=e690]: carisma
+            - generic [ref=e691]: "+0"
+          - spinbutton [ref=e693]: "0"
+        - generic [ref=e694]:
+          - generic [ref=e696]: Atuação (Ins. Sopro)
+          - spinbutton [ref=e698]: "0"
+          - spinbutton [ref=e700]: "0"
+          - generic [ref=e701]:
+            - generic [ref=e702]: carisma
+            - generic [ref=e703]: "+0"
+          - spinbutton [ref=e705]: "0"
+        - generic [ref=e706]:
+          - generic [ref=e707]:
+            - generic [ref=e708]: Conhecimento (Arcano)
+            - generic [ref=e709]: ✖
+          - spinbutton [ref=e711]: "0"
+          - spinbutton [ref=e713]: "0"
+          - generic [ref=e714]:
+            - generic [ref=e715]: inteligencia
+            - generic [ref=e716]: "+0"
+          - spinbutton [ref=e718]: "0"
+        - generic [ref=e719]:
+          - generic [ref=e720]:
+            - generic [ref=e721]: Conhecimento (Arq. e Eng.)
+            - generic [ref=e722]: ✖
+          - spinbutton [ref=e724]: "0"
+          - spinbutton [ref=e726]: "0"
+          - generic [ref=e727]:
+            - generic [ref=e728]: inteligencia
+            - generic [ref=e729]: "+0"
+          - spinbutton [ref=e731]: "0"
+        - generic [ref=e732]:
+          - generic [ref=e733]:
+            - generic [ref=e734]: Conhecimento (Geografia)
+            - generic [ref=e735]: ✖
+          - spinbutton [ref=e737]: "0"
+          - spinbutton [ref=e739]: "0"
+          - generic [ref=e740]:
+            - generic [ref=e741]: inteligencia
+            - generic [ref=e742]: "+0"
+          - spinbutton [ref=e744]: "0"
+        - generic [ref=e745]:
+          - generic [ref=e746]:
+            - generic [ref=e747]: Conhecimento (História)
+            - generic [ref=e748]: ✖
+          - spinbutton [ref=e750]: "0"
+          - spinbutton [ref=e752]: "0"
+          - generic [ref=e753]:
+            - generic [ref=e754]: inteligencia
+            - generic [ref=e755]: "+0"
+          - spinbutton [ref=e757]: "0"
+        - generic [ref=e758]:
+          - generic [ref=e759]:
+            - generic [ref=e760]: Conhecimento (Local)
+            - generic [ref=e761]: ✖
+          - spinbutton [ref=e763]: "0"
+          - spinbutton [ref=e765]: "0"
+          - generic [ref=e766]:
+            - generic [ref=e767]: inteligencia
+            - generic [ref=e768]: "+0"
+          - spinbutton [ref=e770]: "0"
+        - generic [ref=e771]:
+          - generic [ref=e772]:
+            - generic [ref=e773]: Conhecimento (Masmorras)
+            - generic [ref=e774]: ✖
+          - spinbutton [ref=e776]: "0"
+          - spinbutton [ref=e778]: "0"
+          - generic [ref=e779]:
+            - generic [ref=e780]: inteligencia
+            - generic [ref=e781]: "+0"
+          - spinbutton [ref=e783]: "0"
+        - generic [ref=e784]:
+          - generic [ref=e785]:
+            - generic [ref=e786]: Conhecimento (Natureza)
+            - generic [ref=e787]: ✖
+          - spinbutton [ref=e789]: "0"
+          - spinbutton [ref=e791]: "0"
+          - generic [ref=e792]:
+            - generic [ref=e793]: inteligencia
+            - generic [ref=e794]: "+0"
+          - spinbutton [ref=e796]: "0"
+        - generic [ref=e797]:
+          - generic [ref=e798]:
+            - generic [ref=e799]: Conhecimento (Nob. e Real.)
+            - generic [ref=e800]: ✖
+          - spinbutton [ref=e802]: "0"
+          - spinbutton [ref=e804]: "0"
+          - generic [ref=e805]:
+            - generic [ref=e806]: inteligencia
+            - generic [ref=e807]: "+0"
+          - spinbutton [ref=e809]: "0"
+        - generic [ref=e810]:
+          - generic [ref=e811]:
+            - generic [ref=e812]: Conhecimento (Planos)
+            - generic [ref=e813]: ✖
+          - spinbutton [ref=e815]: "0"
+          - spinbutton [ref=e817]: "0"
+          - generic [ref=e818]:
+            - generic [ref=e819]: inteligencia
+            - generic [ref=e820]: "+0"
+          - spinbutton [ref=e822]: "0"
+        - generic [ref=e823]:
+          - generic [ref=e824]:
+            - generic [ref=e825]: Conhecimento (Religião)
+            - generic [ref=e826]: ✖
+          - spinbutton [ref=e828]: "0"
+          - spinbutton [ref=e830]: "0"
+          - generic [ref=e831]:
+            - generic [ref=e832]: inteligencia
+            - generic [ref=e833]: "+0"
+          - spinbutton [ref=e835]: "0"
+        - generic [ref=e836]:
+          - generic [ref=e838]: Ofício (Alquimia)
+          - spinbutton [ref=e840]: "0"
+          - spinbutton [ref=e842]: "0"
+          - generic [ref=e843]:
+            - generic [ref=e844]: inteligencia
+            - generic [ref=e845]: "+0"
+          - spinbutton [ref=e847]: "0"
+        - generic [ref=e848]:
+          - generic [ref=e849]:
+            - generic [ref=e850]: Profissão (Agricultor)
+            - generic [ref=e851]: ✖
+          - spinbutton [ref=e853]: "0"
+          - spinbutton [ref=e855]: "0"
+          - generic [ref=e856]:
+            - generic [ref=e857]: sabedoria
+            - generic [ref=e858]: "+0"
+          - spinbutton [ref=e860]: "0"
+        - generic [ref=e861]:
+          - generic [ref=e862]:
+            - generic [ref=e863]: Profissão (Caçador)
+            - generic [ref=e864]: ✖
+          - spinbutton [ref=e866]: "0"
+          - spinbutton [ref=e868]: "0"
+          - generic [ref=e869]:
+            - generic [ref=e870]: sabedoria
+            - generic [ref=e871]: "+0"
+          - spinbutton [ref=e873]: "0"
+        - generic [ref=e874]:
+          - generic [ref=e875]:
+            - generic [ref=e876]: Profissão (Carpinteiro)
+            - generic [ref=e877]: ✖
+          - spinbutton [ref=e879]: "0"
+          - spinbutton [ref=e881]: "0"
+          - generic [ref=e882]:
+            - generic [ref=e883]: sabedoria
+            - generic [ref=e884]: "+0"
+          - spinbutton [ref=e886]: "0"
+        - generic [ref=e887]:
+          - generic [ref=e888]:
+            - generic [ref=e889]: Profissão (Cervejeiro)
+            - generic [ref=e890]: ✖
+          - spinbutton [ref=e892]: "0"
+          - spinbutton [ref=e894]: "0"
+          - generic [ref=e895]:
+            - generic [ref=e896]: sabedoria
+            - generic [ref=e897]: "+0"
+          - spinbutton [ref=e899]: "0"
+        - generic [ref=e900]:
+          - generic [ref=e901]:
+            - generic [ref=e902]: Profissão (Ferreiro)
+            - generic [ref=e903]: ✖
+          - spinbutton [ref=e905]: "0"
+          - spinbutton [ref=e907]: "0"
+          - generic [ref=e908]:
+            - generic [ref=e909]: sabedoria
+            - generic [ref=e910]: "+0"
+          - spinbutton [ref=e912]: "0"
+        - generic [ref=e913]:
+          - generic [ref=e914]:
+            - generic [ref=e915]: Profissão (Marinheiro)
+            - generic [ref=e916]: ✖
+          - spinbutton [ref=e918]: "0"
+          - spinbutton [ref=e920]: "0"
+          - generic [ref=e921]:
+            - generic [ref=e922]: sabedoria
+            - generic [ref=e923]: "+0"
+          - spinbutton [ref=e925]: "0"
+        - generic [ref=e926]:
+          - generic [ref=e927]:
+            - generic [ref=e928]: Profissão (Mercador)
+            - generic [ref=e929]: ✖
+          - spinbutton [ref=e931]: "0"
+          - spinbutton [ref=e933]: "0"
+          - generic [ref=e934]:
+            - generic [ref=e935]: sabedoria
+            - generic [ref=e936]: "+0"
+          - spinbutton [ref=e938]: "0"
+        - generic [ref=e939]:
+          - generic [ref=e940]:
+            - generic [ref=e941]: Profissão (Mineiro)
+            - generic [ref=e942]: ✖
+          - spinbutton [ref=e944]: "0"
+          - spinbutton [ref=e946]: "0"
+          - generic [ref=e947]:
+            - generic [ref=e948]: sabedoria
+            - generic [ref=e949]: "+0"
+          - spinbutton [ref=e951]: "0"
+        - generic [ref=e952]:
+          - generic [ref=e953]:
+            - generic [ref=e954]: Profissão (Pescador)
+            - generic [ref=e955]: ✖
+          - spinbutton [ref=e957]: "0"
+          - spinbutton [ref=e959]: "0"
+          - generic [ref=e960]:
+            - generic [ref=e961]: sabedoria
+            - generic [ref=e962]: "+0"
+          - spinbutton [ref=e964]: "0"
+        - generic [ref=e965]:
+          - generic [ref=e966]:
+            - generic [ref=e967]: Profissão (Taverneiro)
+            - generic [ref=e968]: ✖
+          - spinbutton [ref=e970]: "0"
+          - spinbutton [ref=e972]: "0"
+          - generic [ref=e973]:
+            - generic [ref=e974]: sabedoria
+            - generic [ref=e975]: "+0"
+          - spinbutton [ref=e977]: "0"
+    - generic [ref=e978]:
+      - heading "Kit Inicial" [level=3] [ref=e979]
+      - generic [ref=e982]:
+        - checkbox "Usar Kit Inicial da Classe" [ref=e983]
+        - text: Usar Kit Inicial da Classe
+    - generic [ref=e984]:
+      - heading "Armas" [level=3] [ref=e985]
+      - generic [ref=e987]:
+        - generic [ref=e988]:
+          - combobox [ref=e989]:
+            - option "Selecionar arma..." [selected]
+            - option "Adaga"
+            - option "Arco Curto"
+            - option "Arco Longo"
+            - option "Bastao"
+            - option "Espada Curta"
+            - option "Espada Longa"
+            - option "Machado de Guerra"
+            - option "Machado Médio"
+            - option "Maça"
+            - option "Manopla"
+          - button "X" [ref=e990] [cursor=pointer]
+        - generic [ref=e991]:
+          - generic [ref=e992]:
+            - generic [ref=e993]: Tipo
+            - textbox [ref=e994]
+          - generic [ref=e995]:
+            - generic [ref=e996]: Dano
+            - textbox [ref=e997]
+          - generic [ref=e998]:
+            - generic [ref=e999]: Crítico
+            - textbox [ref=e1000]
+          - generic [ref=e1001]:
+            - generic [ref=e1002]: Alcance
+            - textbox [ref=e1003]
+          - generic [ref=e1004]:
+            - generic [ref=e1005]: Peso
+            - textbox [ref=e1006]
+          - generic [ref=e1007]:
+            - generic [ref=e1008]: Qtd
+            - spinbutton [ref=e1009]: "1"
+          - generic [ref=e1010]:
+            - generic [ref=e1011]: Bônus Ataque
+            - spinbutton [ref=e1012]: "0"
+          - generic [ref=e1013]:
+            - generic [ref=e1014]: Bônus Dano
+            - spinbutton [ref=e1015]: "0"
+      - button "+ Adicionar Arma" [ref=e1016]
+    - generic [ref=e1017]:
+      - heading "Equipamentos" [level=3] [ref=e1018]
+      - generic [ref=e1019]:
+        - heading "Dinheiro" [level=4] [ref=e1020]
+        - generic [ref=e1021]:
+          - generic [ref=e1022]:
+            - generic [ref=e1023]: PO (Ouro)
+            - spinbutton [ref=e1024]: "0"
+          - generic [ref=e1025]:
+            - generic [ref=e1026]: PL (Prata)
+            - spinbutton [ref=e1027]: "0"
+          - generic [ref=e1028]:
+            - generic [ref=e1029]: PP (Bronze)
+            - spinbutton [ref=e1030]: "0"
+          - generic [ref=e1031]:
+            - generic [ref=e1032]: PC (Cobre)
+            - spinbutton [ref=e1033]: "0"
+      - generic [ref=e1034]:
+        - heading "Armadura" [level=4] [ref=e1035]
+        - combobox [ref=e1037]:
+          - option "Nenhuma" [selected]
+          - option "Couro (+2)"
+          - option "Couro Hardened (+3)"
+          - option "Camisa de Malha (+4)"
+          - option "Cota de Malha (+5)"
+          - option "Meia Armadura (+6)"
+          - option "Armadura de Placas (+8)"
+      - generic [ref=e1038]:
+        - heading "Escudo" [level=4] [ref=e1039]
+        - combobox [ref=e1041]:
+          - option "Nenhum" [selected]
+          - option "Leve (+1)"
+          - option "Pesado (+2)"
+          - option "Grande (+2)"
+    - generic [ref=e1042]:
+      - heading "Talentos" [level=3] [ref=e1043]
+      - generic [ref=e1044]:
+        - generic [ref=e1045]:
+          - combobox [ref=e1046]:
+            - option "Selecionar talento..." [selected]
+            - option "Academico"
+            - option "Agilidade Felina"
+            - option "Ataque Poderoso"
+            - option "ATAQUE Em FOCO"
+            - option "Combate Defensivo"
+            - option "Esquiva"
+            - option "Foco em Arma (Arma)"
+            - option "Foco em Arma Maior"
+            - option "Grito de Guerra"
+            - option "Iniciativa Aprimorada"
+            - option "Mobilidade"
+            - option "Percepcao Aprimorada"
+            - option "Reflexos de Combate"
+            - option "Robustez"
+            - option "Sangue Frio"
+            - option "Talento de Raça"
+            - option "Treino Aprimorado"
+            - option "Vontade de Ferro"
+          - button "X" [ref=e1047]
+        - generic [ref=e1048]:
+          - combobox [ref=e1049]:
+            - option "Selecionar talento..." [selected]
+            - option "Academico"
+            - option "Agilidade Felina"
+            - option "Ataque Poderoso"
+            - option "ATAQUE Em FOCO"
+            - option "Combate Defensivo"
+            - option "Esquiva"
+            - option "Foco em Arma (Arma)"
+            - option "Foco em Arma Maior"
+            - option "Grito de Guerra"
+            - option "Iniciativa Aprimorada"
+            - option "Mobilidade"
+            - option "Percepcao Aprimorada"
+            - option "Reflexos de Combate"
+            - option "Robustez"
+            - option "Sangue Frio"
+            - option "Talento de Raça"
+            - option "Treino Aprimorado"
+            - option "Vontade de Ferro"
+          - button "X" [ref=e1050]
+        - generic [ref=e1051]:
+          - combobox [ref=e1052]:
+            - option "Selecionar talento..." [selected]
+            - option "Academico"
+            - option "Agilidade Felina"
+            - option "Ataque Poderoso"
+            - option "ATAQUE Em FOCO"
+            - option "Combate Defensivo"
+            - option "Esquiva"
+            - option "Foco em Arma (Arma)"
+            - option "Foco em Arma Maior"
+            - option "Grito de Guerra"
+            - option "Iniciativa Aprimorada"
+            - option "Mobilidade"
+            - option "Percepcao Aprimorada"
+            - option "Reflexos de Combate"
+            - option "Robustez"
+            - option "Sangue Frio"
+            - option "Talento de Raça"
+            - option "Treino Aprimorado"
+            - option "Vontade de Ferro"
+          - button "X" [ref=e1053]
+      - button "+ Adicionar Talento" [ref=e1054]
+    - generic [ref=e1055]:
+      - heading "Habilidades Especiais" [level=3] [ref=e1056]
+      - generic [ref=e1057]:
+        - heading "Padrão da Classe" [level=4] [ref=e1058]
+        - list [ref=e1059]:
+          - listitem [ref=e1060]: Fúria (1/dia) - +4 For, +2 Fort, -2 CA
+          - listitem [ref=e1061]: Movimento Acelerado
+          - listitem [ref=e1062]: Péleve
+          - listitem [ref=e1063]: Escalada Ágil
+      - generic [ref=e1064]:
+        - heading "Adicionais" [level=4] [ref=e1065]
+        - generic [ref=e1066]:
+          - textbox "Nova habilidade..." [ref=e1067]
+          - button "+" [ref=e1068] [cursor=pointer]

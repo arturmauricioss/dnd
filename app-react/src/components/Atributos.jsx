@@ -1,16 +1,24 @@
+import { useState } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { atributos, calcularModificador, getBonusRacial } from '../data/opcoes'
 import './Atributos.css'
 
 export default function Atributos() {
   const { personagem, atualizarAtributo } = useCharacter()
+  const [expandido, setExpandido] = useState(true)
 
   const bonusRacial = getBonusRacial(personagem.race)
 
   return (
     <div className="atributos-container">
-      <h3>Atributos</h3>
-      <div className="atributos-grid">
+      <div className="section-header">
+        <h3>Atributos</h3>
+        <button className="btn-collapse" onClick={() => setExpandido(!expandido)}>
+          {expandido ? '▼' : '▶'}
+        </button>
+      </div>
+      {expandido && (
+        <div className="atributos-grid">
         {atributos.map((attr) => {
           const valorBase = personagem.atributos[attr.id] || 10
           const bonusRaca = bonusRacial[attr.id] || 0
@@ -63,6 +71,7 @@ export default function Atributos() {
           )
         })}
       </div>
+      )}
     </div>
   )
 }

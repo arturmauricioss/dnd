@@ -1,29 +1,31 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useCharacter } from '../context/CharacterContext'
-import { todosItens } from '../data/itemDatabase'
+import { getDinheiroInicial } from '../data/itemDatabase'
 import { converterParaPO, converterParaCobre } from '../data/dinheiro'
 import './dinheiro.css'
 
 export default function Dinheiro() {
   const { personagem, atualizarCampo } = useCharacter()
+  const [expandido, setExpandido] = useState(true)
 
-  const itensClasse = getItensClasse(personagem.classe)
+  const money = useMemo(() => {
+    return personagem.equipment?.money || {
+      pl: 0,
+      po: 0,
+      pp: 0,
+      pc: 0
+    }
+  }, [personagem.equipment?.money])
 
-  const dinheiroClasse = itensClasse?.dinheiro_sem_kit || {
-    pl: 0,
-    po: 0,
-    pp: 0,
-    pc: 0
-  }
+  const dinheiroClasse = useMemo(() => {
+    return getDinheiroInicial(personagem.classe) || {
+      pl: 0,
+      po: 0,
+      pp: 0,
+      pc: 0
+    }
+  }, [personagem.classe])
 
-  const money = personagem.equipment?.money || {
-    pl: 0,
-    po: 0,
-    pp: 0,
-    pc: 0
-  }
-
-  // inicializa dinheiro padrão se estiver vazio
   useEffect(() => {
     if (!personagem.classe) return
 
@@ -35,9 +37,8 @@ export default function Dinheiro() {
         money: dinheiroClasse
       })
     }
-  }, [personagem.classe])
+  }, [personagem.classe, personagem.equipment, dinheiroClasse, atualizarCampo, money])
 
-  // total sempre baseado em cobre (seguro)
   const totalPO = useMemo(() => {
     return converterParaPO(money)
   }, [money])
@@ -54,55 +55,63 @@ export default function Dinheiro() {
 
   return (
     <div className="dinheiro-container">
-      <h3>Dinheiro</h3>
-
-      <div className="money-row">
-        <div className="money-total">
-          <strong>
-            Total: {totalPO.toFixed(2).replace(/\.?0+$/, '')} PO
-          </strong>
-        </div>
-
-        <label>
-          <span>PL</span>
-          <input
-            type="number"
-            min="0"
-            value={money.pl}
-            onChange={(e) => handleChange('pl', e.target.value)}
-          />
-        </label>
-
-        <label>
-          <span>PO</span>
-          <input
-            type="number"
-            min="0"
-            value={money.po}
-            onChange={(e) => handleChange('po', e.target.value)}
-          />
-        </label>
-
-        <label>
-          <span>PP</span>
-          <input
-            type="number"
-            min="0"
-            value={money.pp}
-            onChange={(e) => handleChange('pp', e.target.value)}
-          />
-        </label>
-
-        <label>
-          <span>PC</span>
-          <input
-            type="number"
-            min="0"
-            value={money.pc}
-            onChange={(e) => handleChange('pc', e.target.value)}
-          />
-        </label>
+      <div className="section-header">
+        <h3>Dinheiro</h3>
+        <button className="btn-collapse" onClick={() => setExpandido(!expandido)}>
+          {expandido ? '▼' : '▶'}
+        </button>
       </div>
+      {expandido && (
+        <div className="dinheiro-content">
+        <div className="money-row">
+          <div className="money-total">
+            <strong>
+              Total: {totalPO.toFixed(2).replace(/\.?0+$/, '')} PO
+            </strong>
+          </div>
+
+          <label>
+            <span>PL</span>
+            <input
+              type="number"
+              min="0"
+              value={money.pl}
+              onChange={(e) => handleChange('pl', e.target.value)}
+            />
+          </label>
+
+          <label>
+            <span>PO</span>
+            <input
+              type="number"
+              min="0"
+              value={money.po}
+              onChange={(e) => handleChange('po', e.target.value)}
+            />
+          </label>
+
+          <label>
+            <span>PP</span>
+            <input
+              type="number"
+              min="0"
+              value={money.pp}
+              onChange={(e) => handleChange('pp', e.target.value)}
+            />
+          </label>
+
+          <label>
+            <span>PC</span>
+            <input
+              type="number"
+              min="0"
+              value={money.pc}
+              onChange={(e) => handleChange('pc', e.target.value)}
+            />
+          </label>
+        </div>
+      </div>
+      )}
     </div>
   )
 }

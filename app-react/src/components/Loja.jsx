@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { todosItens } from '../data/itemDatabase'
 import { converterParaCobre } from '../data/dinheiro'
@@ -23,6 +23,9 @@ const kitsClasse = {
 export default function Loja() {
   const { personagem, atualizarCampo } = useCharacter()
   const [carrinho, setCarrinho] = useState([])
+  const [carrinhoAberto, setCarrinhoAberto] = useState(false)
+  const [expandido, setExpandido] = useState(true)
+  const carrinhoRef = useRef(null)
 
   const classe = personagem.classe
 
@@ -60,28 +63,48 @@ export default function Loja() {
     })
   }
 
+  const removerDoCarrinho = (id) => {
+    setCarrinho((prev) => prev.filter((i) => i.id !== id))
+  }
+
+  const aumentarQuantidade = (id) => {
+    setCarrinho((prev) =>
+      prev.map((i) =>
+        i.id === id ? { ...i, quantidade: i.quantidade + 1 } : i
+      )
+    )
+  }
+
+  const diminuirQuantidade = (id) => {
+    setCarrinho((prev) =>
+      prev.map((i) =>
+        i.id === id
+          ? { ...i, quantidade: Math.max(1, i.quantidade - 1) }
+          : i
+      )
+    )
+  }
+
   const comprarKitBasico = () => {
     const kit = kitsClasse?.[classe]
     if (!kit?.length) return
 
-    setCarrinho((prev) => {
-      const novo = [...prev]
+    const novoCarrinho = []
 
-      kit.forEach((id) => {
-        const item = todosItens[id]
-        if (!item) return
+    kit.forEach((id) => {
+      const item = todosItens[id]
+      if (!item) return
 
-        const existente = novo.find((i) => i.id === id)
+      const existente = novoCarrinho.find((i) => i.id === id)
 
-        if (existente) {
-          existente.quantidade += 1
-        } else {
-          novo.push({ id, ...item, quantidade: 1 })
-        }
-      })
-
-      return novo
+      if (existente) {
+        existente.quantidade += 1
+      } else {
+        novoCarrinho.push({ id, ...item, quantidade: 1 })
+      }
     })
+
+    setCarrinho(novoCarrinho)
   }
 
   const finalizarCompra = () => {
@@ -118,9 +141,15 @@ export default function Loja() {
   return (
     <div className="loja-container">
 
-      <h3>Loja</h3>
+      <div className="section-header">
+        <h3>Loja</h3>
+        <button className="btn-collapse" onClick={() => setExpandido(!expandido)}>
+          {expandido ? '▼' : '▶'}
+        </button>
+      </div>
 
-      <div className="loja-layout">
+      {expandido && (
+        <div className="loja-layout">
 
         {/* ITENS */}
         <div className="loja-items">
@@ -143,10 +172,6 @@ export default function Loja() {
               </button>
             )}
 
-            <button className="btn-clear" onClick={() => setCarrinho([])}>
-              Limpar Carrinho
-            </button>
-
           </div>
 
           <div className="itens-grid">
@@ -161,32 +186,75 @@ export default function Loja() {
 
         </div>
 
-        {/* CARRINHO */}
-        <aside className="loja-aside">
+        <div className="carrinho-floating" onClick={() => {
+            setCarrinhoAberto(!carrinhoAberto)
+            setTimeout(() => {
+              carrinhoRef.current?.scrollIntoView({ behavior: 'smooth' })
+            }, 100)
+          }}>
+          <span className="carrinho-icon">🛒</span>
+          {carrinho.length > 0 && <span className="carrinho-badge">{carrinho.length}</span>}
+        </div>
 
-          <h4>Carrinho</h4>
+        {carrinhoAberto && (
+          <div className="carrinho-panel" ref={carrinhoRef}>
+            <div className="carrinho-header">
+              <h4>Carrinho 🛒</h4>
+              {carrinho.length > 0 && (
+                <button className="btn-limpar" onClick={() => setCarrinho([])}>
+                  Limpar
+                </button>
+              )}
+            </div>
 
-          {carrinho.length === 0 ? (
-            <p>Vazio</p>
-          ) : (
-            carrinho.map(item => (
-              <div key={item.id}>
-                {item.nome} x{item.quantidade}
+{carrinho.length === 0 ? (
+              <p>Vazio</p>
+            ) : (
+              <div className="carrinho-itens-grid">
+                {carrinho.map(item => (
+                  <div key={item.id} className="carrinho-item">
+                    <span className="carrinho-item-nome">{item.nome}</span>
+                    <span className="carrinho-item-preco">
+                      {(item.preco / 100).toFixed(2)} PO × {item.quantidade}
+                    </span>
+                    <div className="quantidade-box">
+                      <button onClick={() => diminuirQuantidade(item.id)}>-</button>
+                      <span>{item.quantidade}</span>
+                      <button onClick={() => aumentarQuantidade(item.id)}>+</button>
+                    </div>
+                    <button className="btn-remover" onClick={() => removerDoCarrinho(item.id)}>×</button>
+                  </div>
+                ))}
+                <div className="carrinho-totals">
+                  <div className="carrinho-total-row">
+                    <span>Conta:</span>
+                    <span className="valor">{(totalDisponivel / 100).toFixed(2)} PO</span>
+                  </div>
+                  <div className="carrinho-total-row">
+                    <span>Carrinho:</span>
+                    <span className="valor">{(totalCarrinho / 100).toFixed(2)} PO</span>
+                  </div>
+                  <div className="carrinho-total-row">
+                    <span>Restante:</span>
+                    <span className={`valor ${podeComprar ? 'ok' : 'faltando'}`}>
+                      {(restante / 100).toFixed(2)} PO
+                    </span>
+                  </div>
+                  <button
+                    className="btn-buy"
+                    disabled={!podeComprar}
+                    onClick={finalizarCompra}
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
-            ))
-          )}
-
-          <button
-            className="btn-buy"
-            disabled={!podeComprar}
-            onClick={finalizarCompra}
-          >
-            Comprar
-          </button>
-
-        </aside>
+            )}
+          </div>
+        )}
 
       </div>
+      )}
     </div>
   )
 }

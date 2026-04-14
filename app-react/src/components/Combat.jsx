@@ -12,7 +12,7 @@ import './Combat.css'
 
 export default function Combat() {
   const { personagem, getModificador, atualizarCampo } = useCharacter()
-
+  const [expandido, setExpandido] = useState(true)
   const [caHover, setCaHover] = useState(null)
 
   const hpMaxAnterior = useRef(0)
@@ -149,63 +149,68 @@ export default function Combat() {
 
   return (
     <div className="combat-container">
-      <h3>Combate</h3>
-
-      <div className="combat-row">
-        <div className="combat-stat">
-          <div className="stat-label">BBA</div>
-          <div className="stat-value">
-            {bba >= 0 ? `+${bba}` : bba}
-          </div>
-          <div className="stat-detail">
-            Base +{bbaBase} · Tam {modTamanho.bba >= 0 ? `+${modTamanho.bba}` : modTamanho.bba}
-          </div>
-        </div>
-
-        <div className="combat-stat">
-          <div className="stat-label">Iniciativa</div>
-          <div className="stat-value">
-            {dexMod >= 0 ? `+${dexMod}` : dexMod}
-          </div>
-          <div className="stat-detail">Dex</div>
-        </div>
-
-        <div className="combat-stat">
-          <div className="stat-label">Desloc</div>
-          <div className="stat-value">
-            {showDeslocamento ? `${deslocamento}m` : '—'}
-          </div>
-          <div className="stat-detail">
-            {detalheDeslocamento}
-          </div>
-        </div>
+      <div className="section-header">
+        <h3>Combate</h3>
+        <button className="btn-collapse" onClick={() => setExpandido(!expandido)}>
+          {expandido ? '▼' : '▶'}
+        </button>
       </div>
+      {expandido && (
+        <div>
+          <div className="combat-row">
+            <div className="combat-stat">
+              <div className="stat-label">BBA</div>
+              <div className="stat-value">
+                {bba >= 0 ? `+${bba}` : bba}
+              </div>
+              <div className="stat-detail">
+                Base +{bbaBase} · Tam {modTamanho.bba >= 0 ? `+${modTamanho.bba}` : modTamanho.bba}
+              </div>
+            </div>
 
-      <div className="ca-section">
-        <div className="combat-block">
-          <span className="combat-block-label">Pontos de Vida</span>
+            <div className="combat-stat">
+              <div className="stat-label">Iniciativa</div>
+              <div className="stat-value">
+                {dexMod >= 0 ? `+${dexMod}` : dexMod}
+              </div>
+              <div className="stat-detail">Dex</div>
+            </div>
 
-          <div className="pv-row">
-            <input
-              type="number"
-              className="combat-pv-input"
-              value={personagem.combat?.hp?.atual ?? hpMax}
-              onChange={(e) =>
-                atualizarCampo('combat', {
-                  ...personagem.combat,
-                  hp: {
-                    ...personagem.combat?.hp,
-                    atual: parseInt(e.target.value) || 0
-                  }
-                })
-              }
-            />
-
-            <strong className="combat-pv-max">
-              / {hpMax}
-            </strong>
+            <div className="combat-stat">
+              <div className="stat-label">Desloc</div>
+              <div className="stat-value">
+                {showDeslocamento ? `${deslocamento}m` : '—'}
+              </div>
+              <div className="stat-detail">
+                {detalheDeslocamento}
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div className="combat-block">
+            <span className="combat-block-label">Pontos de Vida</span>
+
+            <div className="pv-row">
+              <input
+                type="number"
+                className="combat-pv-input"
+                value={personagem.combat?.hp?.atual ?? hpMax}
+                onChange={(e) =>
+                  atualizarCampo('combat', {
+                    ...personagem.combat,
+                    hp: {
+                      ...personagem.combat?.hp,
+                      atual: parseInt(e.target.value) || 0
+                    }
+                  })
+                }
+              />
+
+              <strong className="combat-pv-max">
+                / {hpMax}
+              </strong>
+            </div>
+          </div>
 
         <div className="combat-block">
           <span className="combat-block-label">Res Mágica</span>
@@ -276,33 +281,34 @@ export default function Combat() {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="saves-cards">
-        <div className="save-card">
-          <div className="save-title">Fortitude</div>
-          <div className="save-value">{fortTotal >= 0 ? `+${fortTotal}` : fortTotal}</div>
-          <div className="save-detail">
-            Base +{fortBase} {fortRacial > 0 ? `Racial +${fortRacial}` : ''}
+        <div className="saves-cards">
+          <div className="save-card">
+            <div className="save-title">Fortitude</div>
+            <div className="save-value">{fortTotal >= 0 ? `+${fortTotal}` : fortTotal}</div>
+            <div className="save-detail">
+              Base +{fortBase} {fortRacial > 0 ? `Racial +${fortRacial}` : ''}
+            </div>
           </div>
-        </div>
 
-        <div className="save-card">
-          <div className="save-title">Reflexos</div>
-          <div className="save-value">{refTotal >= 0 ? `+${refTotal}` : refTotal}</div>
-          <div className="save-detail">
-            Base +{refBase} {refRacial > 0 ? `Racial +${refRacial}` : ''}
+          <div className="save-card">
+            <div className="save-title">Reflexos</div>
+            <div className="save-value">{refTotal >= 0 ? `+${refTotal}` : refTotal}</div>
+            <div className="save-detail">
+              Base +{refBase} {refRacial > 0 ? `Racial +${refRacial}` : ''}
+            </div>
           </div>
-        </div>
 
-        <div className="save-card">
-          <div className="save-title">Vontade</div>
-          <div className="save-value">{vonTotal >= 0 ? `+${vonTotal}` : vonTotal}</div>
-          <div className="save-detail">
-            Base +{vonBase} {vonRacial > 0 ? `Racial +${vonRacial}` : ''}
+          <div className="save-card">
+            <div className="save-title">Vontade</div>
+            <div className="save-value">{vonTotal >= 0 ? `+${vonTotal}` : vonTotal}</div>
+            <div className="save-detail">
+              Base +{vonBase} {vonRacial > 0 ? `Racial +${vonRacial}` : ''}
+            </div>
           </div>
+</div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -319,3 +319,118 @@ export const todosItens = normalizarItens({
   ...armadurasBase,
   ...escudosBase
 });
+
+export const dinheiroInicialClasse = {
+  barbaro: { po: 100, pl: 0, pp: 0, pc: 0 },
+  bardo: { po: 100, pl: 0, pp: 0, pc: 0 },
+  clerigo: { po: 125, pl: 0, pp: 0, pc: 0 },
+  druida: { po: 50, pl: 0, pp: 0, pc: 0 },
+  feiticeiro: { po: 75, pl: 0, pp: 0, pc: 0 },
+  guerreiro: { po: 150, pl: 0, pp: 0, pc: 0 },
+  ladino: { po: 125, pl: 0, pp: 0, pc: 0 },
+  mago: { po: 75, pl: 0, pp: 0, pc: 0 },
+  monge: { po: 12, pl: 0, pp: 5, pc: 0 },
+  paladino: { po: 150, pl: 0, pp: 0, pc: 0 },
+  ranger: { po: 150, pl: 0, pp: 0, pc: 0 }
+}
+
+export function getDinheiroInicial(classe) {
+  if (!classe) return { po: 0, pl: 0, pp: 0, pc: 0 }
+  return dinheiroInicialClasse[classe.toLowerCase()] || { po: 0, pl: 0, pp: 0, pc: 0 }
+}
+
+const itensPorClasse = {
+  barbaro: {
+    armas: [armasBase.machadoGrande, armasBase.arcoCurto, armasBase.adaga],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro],
+    dinheiro_kit: { po: "2d4" },
+    dinheiro_sem_kit: { po: "4d4 x 10" }
+  },
+  bardo: {
+    armas: [armasBase.espadaLonga, armasBase.bestaLeve],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.tochas, itensBase.alaude, itensBase.bolsaComponentes],
+    dinheiro_kit: { po: "2d4" },
+    dinheiro_sem_kit: { po: "4d4 x 10" }
+  },
+  clerigo: {
+    armas: [armasBase.macaPesada, armasBase.bestaLeve],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.tochas, itensBase.simboloSagrado],
+    dinheiro_kit: { po: "1d4" },
+    dinheiro_sem_kit: { po: "5d4 x 10" }
+  },
+  druida: {
+    armas: [armasBase.cimitarra, armasBase.clava, armasBase.funda],
+    armadura: armadurasBase.peles,
+    escudo: escudosBase.madeiraPesado,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.tochas, itensBase.azevinho],
+    dinheiro_kit: { po: "1d6" },
+    dinheiro_sem_kit: { po: "2d4 x 10" }
+  },
+  feiticeiro: {
+    armas: [armasBase.lancaCurta, armasBase.bestaLeve],
+    armadura: null,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.lanterna, itensBase.oleo500, itensBase.bolsaComponentes],
+    dinheiro_kit: { po: "3d4" },
+    dinheiro_sem_kit: { po: "3d4 x 10" }
+  },
+  guerreiro: {
+    armas: [armasBase.machadoGrande, armasBase.arcoCurto],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro],
+    dinheiro_kit: { po: "2d4" },
+    dinheiro_sem_kit: { po: "6d4 x 10" }
+  },
+  ladino: {
+    armas: [armasBase.espadaCurta, armasBase.bestaLeve, armasBase.adaga],
+    armadura: armadurasBase.couro,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.ferramentasLadrao],
+    dinheiro_kit: { po: "4d4" },
+    dinheiro_sem_kit: { po: "5d4 x 10" }
+  },
+  mago: {
+    armas: [armasBase.bestaLeve],
+    armadura: null,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.grimorio],
+    dinheiro_kit: { po: "3d6" },
+    dinheiro_sem_kit: { po: "3d4 x 10" }
+  },
+  monge: {
+    armas: [armasBase.funda, armasBase.clava],
+    armadura: null,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.tochas],
+    dinheiro_kit: { po: "2d4" },
+    dinheiro_sem_kit: { po: "5d4" }
+  },
+  paladino: {
+    armas: [armasBase.espadaLonga, armasBase.arcoCurto, armasBase.funda],
+    armadura: armadurasBase.brunea,
+    escudo: escudosBase.madeiraPesado,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.lanterna, itensBase.oleo300, itensBase.simboloSagrado],
+    dinheiro_kit: { po: "6d4" },
+    dinheiro_sem_kit: { po: "6d4 x 10" }
+  },
+  ranger: {
+    armas: [armasBase.espadaLonga, armasBase.espadaCurta, armasBase.arcoLongo],
+    armadura: armadurasBase.couroBatido,
+    escudo: null,
+    itens: [itensBase.mochila, itensBase.cantil, itensBase.racao, itensBase.sacoDormir, itensBase.saco, itensBase.pederneira, itensBase.isqueiro, itensBase.tochas],
+    dinheiro_kit: { po: "2d4" },
+    dinheiro_sem_kit: { po: "6d4 x 10" }
+  }
+}
+
+export function getItensClasse(classe) {
+  if (!classe) return null
+  return itensPorClasse[classe.toLowerCase()] || null
+}
