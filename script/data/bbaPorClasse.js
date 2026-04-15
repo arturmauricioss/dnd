@@ -1,3 +1,4 @@
+//100%
 export const bbaPorClasse = {
     barbaro: "bom",
     guerreiro: "bom",

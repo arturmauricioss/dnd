@@ -1,0 +1,5 @@
+- generic [active] [ref=e1]:
+  - text: The server is configured with a public base URL of /dnd/ - did you mean to visit
+  - link /dnd/ [ref=e2] [cursor=pointer]:
+    - /url: /dnd/
+  - text: instead?

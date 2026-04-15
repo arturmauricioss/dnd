@@ -1,0 +1,126 @@
+.item-card {
+  width: 100%;
+  min-height: 160px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  border: 2px solid #444;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+  border-color: gold;
+}
+
+/* HEADER */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  font-size: 12px;
+  background: rgba(0,0,0,0.4);
+}
+
+.item-name-container {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.item-name {
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.item-name.scrolling {
+  animation: scrollText 10s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(var(--overflow, -50%)); }
+  55% { transform: translateX(var(--overflow, -50%)); }
+  100% { transform: translateX(0); }
+}
+
+.item-stars {
+  color: gold;
+}
+
+/* IMAGE */
+.card-image {
+  height: 90px;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.card-image img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* DESCRIPTION */
+.card-description {
+  font-size: 11px;
+  padding: 6px;
+  flex: 1;
+  opacity: 0.9;
+}
+
+/* STATS */
+.card-stats {
+  font-size: 11px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid #333;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stats-row span:first-child {
+  text-align: left;
+}
+
+.stats-row span:last-child {
+  text-align: right;
+}
+
+/* FOOTER */
+.card-footer {
+  padding: 8px;
+  text-align: right;
+  border-top: 1px solid #333;
+  font-weight: bold;
+  color: gold;
+  margin-top: auto;
+}
+.arma-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto;
+}
+
+.arma-emoji {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

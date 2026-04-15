@@ -1,3 +1,4 @@
+// 100%
 export const dadosVidaPorClasse = {
     barbaro: 12,
     guerreiro: 10, paladino: 10,

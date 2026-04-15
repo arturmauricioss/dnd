@@ -1,0 +1,257 @@
+/* =========================
+   PERÍCIAS
+   ========================= */
+
+.pericias-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-item span {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+.info-item strong {
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.pericias-list {
+  width: 100%;
+}
+
+.pericias-header {
+  display: grid;
+  grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  gap: 1px;
+  font-weight: 600;
+  background: var(--secondary);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.pericias-header > span:nth-child(n+2) {
+  display: flex;
+  justify-content: center;
+}
+
+.pericia-item {
+  display: grid;
+  grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  gap: 2px;
+  padding: 1px 2px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.pericia-item:hover {
+  background: var(--secondary);
+}
+
+.pericia-item.pericia-classe {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.pericia-nome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.pericia-total,
+.pericia-hab,
+.pericia-outros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pericia-hab {
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.pericia-hab .mod {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.pericia-item input,
+.pericia-total input,
+.pericia-outros input {
+  width: 100%;
+  max-width: 60px;
+  min-height: 32px;
+  text-align: center;
+  padding: 6px 4px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+/* graduação */
+.pericia-graduacao>input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-bottom: 2px solid #22c55e;
+  background: transparent;
+}
+.pericia-graduacao>input:focus{
+  border:none;
+  outline: none;
+  border-bottom: 2px solid var(--primary);
+}
+
+.treinado {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.classe-icon {
+  color: var(--success);
+  margin-left: 4px;
+  cursor: default;
+}
+
+.racial-bonus {
+  color: #f59e0b;
+  margin-left: 4px;
+}
+
+.pericias-header-mobile {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .pericias-list {
+    display: flex;
+    gap: 20px;
+  }
+
+  .pericias-coluna {
+    flex: 1;
+  }
+
+  .pericias-coluna .pericias-header {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px 60px 60px;
+    margin-bottom: 8px;
+  }
+
+  .pericias-coluna .pericia-item {
+    grid-template-columns: 1fr 60px 60px 60px 60px;
+  }
+
+  .pericias-list > .pericias-header {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .pericias-coluna .pericias-header {
+    display: none;
+  }
+
+  .pericias-header-mobile {
+    display: grid;
+    grid-template-columns: 35% 15% 15% 15% 20%;
+    gap: 2px;
+    padding: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--secondary);
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pericias-header {
+    display: none;
+  }
+
+  .pericias-list {
+    flex-direction: column;
+  }
+
+  .pericia-item {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    align-items: center;
+    padding: 6px 4px;
+    min-height: 36px;
+  }
+
+  .pericias-header-mobile {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    padding: 8px 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: var(--secondary);
+    border-radius: 8px;
+  }
+
+  .pericias-header-mobile span {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .pericia-nome {
+    flex: 2;
+    font-size: 0.75rem;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pericia-total,
+  .pericia-graduacao,
+  .pericia-hab,
+  .pericia-outros {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .pericia-total input,
+  .pericia-graduacao input,
+  .pericia-outros input {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.75rem;
+    padding: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pericias-info {
+    flex-direction: column;
+  }
+}
