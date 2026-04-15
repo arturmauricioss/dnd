@@ -1,0 +1,830 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha D&D</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo.svg" type="image/x-icon">
+</head>
+<body>
+    <h1>Ficha Guia para D&D 3.5</h1>
+    <header id="cabeçalho_geral">
+        <div id="cabeçalho_conteudo">
+            <div class="fc t4">
+                <input type="text" id="character_name">
+                <label for="character_name">Nome do Personagem</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="player">
+                <label for="player">Jogador</label>
+            </div>
+            <div class="fr">
+                <div class="fc t3">
+                    <select name="" id="classe">
+                        <option value="selecione" selected>SELECIONE...</option>
+                        <option value="barbaro">BÁRBARO</option>
+                        <option value="bardo">BARDO</option>
+                        <option value="clerigo">CLÉRIGO</option>
+                        <option value="druida">DRUIDA</option>
+                        <option value="feiticeiro">FEITICEIRO</option>
+                        <option value="guerreiro">GUERREIRO</option>
+                        <option value="ladino">LADINO</option>
+                        <option value="mago">MAGO</option>
+                        <option value="monge">MONGE</option>
+                        <option value="paladino">PALADINO</option>
+                        <option value="ranger">RANGER</option>
+
+                    </select>
+                    <label for="class">classe</label>
+                    
+                </div>
+                                
+                <div class="fc t1">
+                    <select id="level_class" class="lvl">
+                        <option value="selecione">SELECIONE...</option>
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <label for="level_class">Level</label>
+                </div>
+                <div class="fc t3" id="fastshop">
+                    <label class="flex-label">
+                        <input type="checkbox" id="usarKit">
+                        Comprar Kit
+                    </label>
+                </div>    
+            </div>
+            
+            <div class="fr">
+                <div class="fc t4">
+                    <input type="text" id="profession">
+                    <label for="profession">Profissão</label>
+                </div>
+                <div class="fc t2">
+                    <select id="level_profession" class="lvl">
+                        <option value="selecione" selected>SELECIONE...</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                    <label for="level_profession">Level</label>
+                </div>
+            </div>
+            <div class="fc t4">
+                <select name="" id="race">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="humano">HUMANO</option>
+                    <option value="elfo">ELFO</option>
+                    <option value="anao">ANÃO</option>
+                    <option value="gnomo">GNOMO</option>
+                    <option value="meio-elfo">MEIO-ELFO</option>
+                    <option value="meio-orc">MEIO-ORC</option>
+                    <option value="halfling">HALFLING</option>
+                </select>
+                <label for="race">Raça</label>
+            </div>
+            <div class="fc t4">
+                <select name="" id="alignment">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="lawful_good">LEAL BOM</option>
+                    <option value="neutral_good">NEUTRAL BOM</option>
+                    <option value="chaotic_good">CAÓTICO BOM</option>
+                    <option value="lawful_neutral">LEAL NEUTRAL</option>
+                    <option value="true_neutral">NEUTRAL VERDADEIRO</option>
+                    <option value="chaotic_neutral">CAÓTICO NEUTRAL</option>
+                    <option value="lawful_evil">LEAL MALIGNO</option>
+                    <option value="neutral_evil">NEUTRAL MALIGNO</option>
+                    <option value="chaotic_evil">CAÓTICO MALIGNO</option>
+                </select>
+                <label for="alignment">Tendência</label>
+            </div>
+            <div class="fc t4">
+                <select id="deity">
+                    <option value="selecione">SELECIONE...</option>
+                </select>
+                <label for="deity">Divindade</label>
+            </div>
+            <div class="fc t3">
+                <input type="text" id="size" readonly>
+                <label for="size">Tamanho</label>
+            </div>
+            <div class="fc t2">
+                <input 
+                    type="number" 
+                    id="idade" 
+                    min="0" 
+                    max="9999" 
+                    step="1" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,4)"
+                    >
+                <label for="idade">Idade</label>
+            </div>
+            <div class="fc t3">
+                <select name="sexo" id="sex">
+                    <option value="selecione" selected>SELECIONE...</option>
+                    <option value="masculino">MASCULINO</option>
+                    <option value="feminino">FEMININO</option>
+                </select>
+                <label for="sex">Sexo</label>
+            </div>
+            <div class="fc t2">
+                <input type="text" id="height">
+                <label for="height">Altura</label>
+            </div>
+            <div class="fc t35">
+                <input type="text" id="weight">
+                <label for="weight">Peso</label>
+            </div>
+            <div class="fc t35">
+                <input type="text" id="eyes">
+                <label for="eyes">Cor dos Olhos</label>
+            </div>
+            <div class="fc t35">
+                <input type="text" id="hair">
+                <label for="hair">cor do cabelo</label>
+            </div>
+            <div class="fc t35">
+                <input type="text" id="skin">
+                <label for="skin">cor da pele</label>
+            </div>
+        </div>
+        <div id="logo">
+            <img src="./logo.svg" alt="">
+        </div>
+    </header>
+    <main>   
+       <section id="ability">
+            <div class="ability-grid">
+                <!-- cabeçalho -->
+                <strong></strong>
+                <span>Base</span>
+                <span>Racial</span>
+                <span>Total</span>
+                <span>Mod</span>
+
+                <!-- FOR -->
+                <span>Força</span>
+                <input type="number" id="forca" placeholder="3-18">
+                <input type="number" id="mod_racial_forca" readonly tabindex="-1">
+                <input type="number" id="total_forca" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_forca" readonly tabindex="-1">
+
+                <!-- DES -->
+                <span>Destreza</span>
+                <input type="number" id="destreza" placeholder="3-18">
+                <input type="number" id="mod_racial_destreza" readonly tabindex="-1">
+                <input type="number" id="total_destreza" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_destreza" readonly tabindex="-1">
+
+                <!-- CON -->
+                <span>Constituição</span>
+                <input type="number" id="constituicao" placeholder="3-18">
+                <input type="number" id="mod_racial_constituicao" readonly tabindex="-1">
+                <input type="number" id="total_constituicao" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_constituicao" readonly tabindex="-1">
+
+                <!-- INT -->
+                <span>Inteligência</span>
+                <input type="number" id="inteligencia" placeholder="3-18">
+                <input type="number" id="mod_racial_inteligencia" readonly tabindex="-1">
+                <input type="number" id="total_inteligencia" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_inteligencia" readonly tabindex="-1">
+
+                <!-- SAB -->
+                <span>Sabedoria</span>
+                <input type="number" id="sabedoria" placeholder="3-18">
+                <input type="number" id="mod_racial_sabedoria" readonly tabindex="-1">
+                <input type="number" id="total_sabedoria" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_sabedoria" readonly tabindex="-1">
+
+                <!-- CAR -->
+                <span>Carisma</span>
+                <input type="number" id="carisma" placeholder="3-18">
+                <input type="number" id="mod_racial_carisma" readonly tabindex="-1">
+                <input type="number" id="total_carisma" readonly tabindex="-1">
+                <input type="text" id="mod_habilidade_carisma" readonly tabindex="-1">
+            </div>
+        </section>
+        
+        <section id="stats">
+            
+            <div class="fc t3">
+                <input type="text" id="vida" readonly>
+                <label for="vida">Pontos de Vida</label>
+            </div>
+            <div class="fc t3">
+                <input type="text" id="deslocamento" readonly>
+                <label for="deslocamento">Deslocamento</label>
+            </div>
+            <div class="fc t3">
+                <input id="iniciativa_total" readonly>
+                <input id="iniciativa" hidden readonly>
+                <input id="iniciativa_outros" hidden readonly value="0">
+
+                <label for="iniciativa">Iniciativa</label>
+            </div>
+            <div class="ag7">
+                <!-- cabeçalho -->
+                <strong></strong>
+                <span>Total</span>
+                <span>Base</span>
+                <span>Armadura</span>
+                <span>Escudo</span>
+                <span>Destreza</span>
+                <span>Tamanho</span>
+                <span>Natural</span>
+
+                <!-- ===================== -->
+                <!-- CA NORMAL -->
+                <!-- ===================== -->
+
+                <strong><span>CA</span></strong>
+                <input id="ca_final" readonly>
+
+                <input id="ca_base" class="ca_base" readonly>
+                <input id="ca_armor" class="ca_armor" readonly>
+                <input id="ca_shield" class="ca_shield" readonly>
+                <input id="ca_dex" class="ca_dex" readonly>
+                <input id="ca_size" class="ca_size" readonly>
+                <input id="ca_natural" class="ca_natural" readonly>
+
+                <!-- ===================== -->
+                <!-- TOQUE -->
+                <!-- ===================== -->
+                <strong><span>Toque</span></strong>
+                <input id="ca_toque_total" readonly>
+
+                <input class="ca_base" readonly>
+                <input class="ca_toque_armor" readonly>
+                <input class="ca_toque_shield" readonly>
+                <input class="ca_dex" readonly>
+                <input class="ca_size" readonly>
+                <input class="ca_toque_natural" readonly>
+
+                <!-- ===================== -->
+                <!-- SURPRESA -->
+                <!-- ===================== -->
+                <strong><span>Surpresa</span></strong>
+                <input id="ca_surpresa_total" readonly>
+
+                <input class="ca_base" readonly>
+                <input class="ca_armor" readonly>
+                <input class="ca_shield" readonly>
+                <input class="ca_surpresa_dex" readonly>
+                <input class="ca_size" readonly>
+                <input class="ca_natural" readonly>
+            </div>
+        </section>
+        <section id="testes">
+            
+            <div class="resistencias">
+                <!-- Cabeçalho -->
+                <strong></strong>
+                <span>Total</span>
+                <span>Base</span>
+                <span>Mod</span>
+                <span>Mágico</span>
+                <span>Outros</span>
+                <span>Temp</span>
+
+                <!-- FORTITUDE -->
+                <span class="grid-row-header">Fortitude</span>
+                <input id="fort_total" readonly>
+                <input id="fort_base" readonly>
+                <input id="fort_mod" readonly>
+                <input id="fort_magico">
+                <input id="fort_outros">
+                <input id="fort_temp">
+
+                <!-- REFLEXOS -->
+                <span class="grid-row-header">Reflexos</span>
+                <input id="ref_total" readonly>
+                <input id="ref_base" readonly>
+                <input id="ref_mod" readonly>
+                <input id="ref_magico">
+                <input id="ref_outros">
+                <input id="ref_temp">
+
+                <!-- VONTADE -->
+                <span class="grid-row-header">Vontade</span>
+                <input id="von_total" readonly>
+                <input id="von_base" readonly>
+                <input id="von_mod" readonly>
+                <input id="von_magico">
+                <input id="von_outros">
+                <input id="von_temp">
+            </div>
+
+            <div class="combate-grid1">
+                <input id="bonus_base_de_ataque" readonly>
+                <span>Bonus Base de Ataque</span>
+                <input id="resistencia_a_magia" value="0" readonly>
+                <span>Resistencia A Magia</span>
+            </div>
+            <div class="combate-grid2">
+                <!-- AGARRAR -->
+                <span class="grid-row-header">AGARRAR</span>
+                <input id="agarrar_total" readonly>
+                <input id="agarrar_base" readonly>
+                <input id="agarrar_mod" readonly>
+                <input id="agarrar_tamanho">
+                <input id="agarrar_outros">
+                <strong></strong>
+                <span>Total</span>
+                <span>Base</span>
+                <span>For</span>
+                <span>Tamanho</span>
+                <span>Outros</span>
+        
+             </div>
+        </section>
+  
+        <section id="inventory">
+            
+            <div class="div_invent">
+                <br>
+
+                <h2>Armas</h2>
+                
+                <div id="weapons">
+                    <div class="weapon">
+                        <input type="text" class="wp_atack" id="attack_1">
+                        <input type="text" class="wp_bonus_atack" id="attack_1_bonus">
+                        <input type="text" class="wp_damage" id="attack_1_damage">
+                        <input type="text" class="wp_decisive_success" id="attack_1_crit">
+                        <input type="text" class="wp_range" id="attack_1_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque Final</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type" id="attack_1_type">
+                        <input type="text" class="wp_weight" id="attack_1_weight">
+                        <input type="text" class="wp_ammo" id="attack_1_ammo">
+                        <input type="text" class="wp_quantity" id="attack_1_quantity">
+                        <input type="text" class="wp_notes" id="attack_1_notes">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack" id="attack_2">
+                        <input type="text" class="wp_bonus_atack" id="attack_2_bonus">
+                        <input type="text" class="wp_damage" id="attack_2_damage">
+                        <input type="text" class="wp_decisive_success" id="attack_2_crit">
+                        <input type="text" class="wp_range" id="attack_2_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque Final</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type" id="attack_2_type">
+                        <input type="text" class="wp_weight" id="attack_2_weight">
+                        <input type="text" class="wp_ammo" id="attack_2_ammo">
+                        <input type="text" class="wp_quantity" id="attack_2_quantity">
+                        <input type="text" class="wp_notes" id="attack_2_notes">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack" id="attack_3">
+                        <input type="text" class="wp_bonus_atack" id="attack_3_bonus">
+                        <input type="text" class="wp_damage" id="attack_3_damage">
+                        <input type="text" class="wp_decisive_success" id="attack_3_crit">
+                        <input type="text" class="wp_range" id="attack_3_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque Final</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type" id="attack_3_type">
+                        <input type="text" class="wp_weight" id="attack_3_weight">
+                        <input type="text" class="wp_ammo" id="attack_3_ammo">
+                        <input type="text" class="wp_quantity" id="attack_3_quantity">
+                        <input type="text" class="wp_notes" id="attack_3_notes">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                    <div class="weapon">
+                        <input type="text" class="wp_atack" id="attack_4">
+                        <input type="text" class="wp_bonus_atack" id="attack_4_bonus">
+                        <input type="text" class="wp_damage" id="attack_4_damage">
+                        <input type="text" class="wp_decisive_success" id="attack_4_crit">
+                        <input type="text" class="wp_range" id="attack_4_range">
+                        <span>Ataque</span>
+                        <span>Bonus de Ataque Final</span>
+                        <span>Dano</span>
+                        <span>Sucesso Decisivo</span>
+                        <span>Alcance</span>
+                        <input type="text" class="wp_type" id="attack_4_type">
+                        <input type="text" class="wp_weight" id="attack_4_weight">
+                        <input type="text" class="wp_ammo" id="attack_4_ammo">
+                        <input type="text" class="wp_quantity" id="attack_4_quantity">
+                        <input type="text" class="wp_notes" id="attack_4_notes">
+                        <span>Tipo</span>
+                        <span>Peso</span>
+                        <span>Munição</span>
+                        <span>Quantidade</span>
+                        <span>Observações</span>
+                    </div>
+                </div>
+                </div>
+                <div>
+                <br>
+                <h2>Armaduras, Escudos e Equipamentos de Proteção</h2>
+                <div id="armours">
+                    <div class="armour" id="armory">
+                        <input type="text" class="ar_armour" id="armor_name">
+                        <input type="text" class="ar_type" id="armor_type">
+                        <input type="text" class="ar_bonus_ca" id="armor_bonus">
+                        <span>Armadura</span>
+                        <span>Tipo</span>
+                        <span>Bonus na CA</span>
+                        <input type="text" class="ar_dex_max" id="armor_dex_max">
+                        <input type="text" class="ar_penal_armour" id="armor_penalty">
+                        <input type="text" class="ar_chance_mag_fail" id="armor_spell_fail">
+                        <span>Des MAX.</span>
+                        <span>Penal Armadura</span>
+                        <span>Chance Falh Mag</span>
+                        <input type="text" class="ar_moviment" id="armor_speed">
+                        <input type="text" class="ar_weight" id="armor_weight">
+                        <input type="text" class="ar_proprieties" id="armor_notes">
+                        <span>deslocamento</span>
+                        <span>peso</span>
+                        <span>propriedades Esp</span>
+                    </div>
+                    <div class="armour" id="shield">
+                        <input type="text" class="ar_shield" id="shield_name">
+                        <input type="text" class="ar_bonus_ca" id="shield_bonus">
+                        <input type="text" class="ar_weight" id="shield_weight">
+                        <span>Escudo</span>
+                        <span>Bonus na CA</span>
+                        <span>peso</span>
+                        <input type="text" class="ar_penal_armour" id="shield_penalty">
+                        <input type="text" class="ar_chance_mag_fail" id="shield_spell_fail">
+                        <input type="text" class="ar_proprieties" id="shield_notes">
+                        <span>Penal Armadura</span>
+                        <span>Chance Falh Mag</span>
+                        <span>props Especiais</span>
+                    </div>
+                    <div id="protect">
+                        <div class="armour protect">
+                            <input type="text" class="ar_protection" id="item_1">
+                            <input type="text" class="ar_bonus_ca" id="item_1_bonus">
+                            <input type="text" class="ar_weight" id="item_1_weight">
+                            <input type="text" class="ar_proprieties" id="item_1_props">
+                            <span>Item de Proteção</span>
+                            <span>Bonus na CA</span>
+                            <span>peso</span>
+                            <span>props Especiais</span>
+                        </div>
+                        <div class="armour protect">
+                            <input type="text" class="ar_protection" id="item_2">
+                            <input type="text" class="ar_bonus_ca" id="item_2_bonus">
+                            <input type="text" class="ar_weight" id="item_2_weight">
+                            <input type="text" class="ar_proprieties" id="item_2_props">
+                            <span>Item de Proteção</span>
+                            <span>Bonus na CA</span>
+                            <span>peso</span>
+                            <span>props Especiais</span>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+        </section>
+        <div class="bag">
+            <br>
+            <h2>Outros Itens</h2>
+            <div id="other_itens">
+                <div class="item">
+                    <input class="ot_item" id="itens_0">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_1">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+
+                <div class="item">
+                    <input class="ot_item" id="itens_2">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_3">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_4">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_5">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_6">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_7">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_8">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_9">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_10">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+                <div class="item">
+                    <input class="ot_item" id="itens_11">
+                    <input class="ot_page">
+                    <input class="ot_weight">
+                    <span>Item</span>
+                    <span>Pág</span>
+                    <span>Peso</span>
+                </div>
+            </div>
+            <br>
+            <div id="final_equipament_info">
+                <br>
+<!-- FALTA ADICIONAR CALCULOS
+PARA PESO E TBM ADICIONAR
+PESO AOS ITENS -->
+                    <h2>Peso Final</h2>
+                    <div class="final_equipament_weight">
+                        <input type="text" id="weight_total_carried">
+                        <input type="text" id="weight_light">
+                        <input type="text" id="weight_medium">
+                        <input type="text" id="weight_hard">
+                        <input type="text" id="weight_over_head">
+                        <input type="text" id="weight_over_ground">
+                        <input type="text" id="weight_pull_push">
+                        <span>Peso Total Carregado</span>
+                        <span>Carga Leve</span>
+                        <span>Carga Média</span>
+                        <span>Carga Pesada</span>
+                        <span>Erguer Sobre a Cabeça</span>
+                        <span>Erguer do Chão</span>
+                        <span>Empurrar ou Arrastar</span>
+                    </div>
+                    <br>
+                    <h2>Dinheiro</h2>
+                    <div class="money">
+                        <input type="text" class="pl_money" id="pl_money">
+                        <input type="text" class="po_money" id="po_money">
+                        <input type="text" class="pp_money" id="pp_money">
+                        <input type="text" class="pc_money" id="pc_money">
+                        <span>Peça de Platina</span>
+                        <span>Peça de Ouro</span>
+                        <span>Peça de Prata</span>
+                        <span>Peça de Cobre</span>
+                    </div>
+            
+            </div>
+            <br>
+            <div class="idioma">
+                <h2>Idiomas</h2>
+
+                <div class="idiomas">
+
+                    <input id="leitura_escrita" readonly>
+                    <input id="idioma_1"  readonly>
+                    <select id="idioma_2"></select>
+                    <span>Leitura e Escrita</span>
+                    <span>idioma</span>
+                    <span>idioma</span>
+                    
+                    <select id="idioma_3"></select>
+                    <select id="idioma_4"></select>
+                    <select id="idioma_5"></select>
+                    <span>idioma</span>
+                    <span>idioma</span>
+                    <span>idioma</span>
+                    <select id="idioma_6"></select>
+                    <select id="idioma_7"></select>
+                    <select id="idioma_8"></select>
+                    <span>idioma</span>
+                    <span>idioma</span>
+                    <span>idioma</span>
+                </div>
+            </div>
+            <div class="qualidades">
+                <br>
+                <h2>Qualidades Especiais</h2>
+                <div class="qualidades-container">
+                    <input id="hab_especial_0" readonly>
+                    <input id="hab_especial_1" readonly> 
+                    <input id="hab_especial_2" readonly> 
+                    <span>Qualidade 1</span>
+                    <span>Qualidade 2</span> 
+                    <span>Qualidade 3</span>
+                    <input id="hab_especial_3" readonly>
+                    <input id="hab_especial_4" readonly>
+                    <input id="hab_especial_5" readonly>
+                    <span>Qualidade 4</span>
+                    <span>Qualidade 5</span>
+                    <span>Qualidade 6</span>
+                    <input id="hab_especial_6" readonly>
+                    <input id="hab_especial_7" readonly>
+                    <input id="hab_especial_8" readonly>
+                    <span>Qualidade 7</span>
+                    <span>Qualidade 8</span>
+                    <span>Qualidade 9</span>
+                    <input id="hab_especial_9" readonly>
+                    <input id="hab_especial_10" readonly>
+                    <input id="hab_especial_11" readonly>
+                    <span>Qualidade 10</span>
+                    <span>Qualidade 11</span>
+                    <span>Qualidade 12</span>
+                    <input id="hab_especial_12" readonly>
+                    <input id="hab_especial_13" readonly>
+                    <input id="hab_especial_14" readonly>
+                    <span>Qualidade 13</span>
+                    <span>Qualidade 14</span>
+                    <span>Qualidade 15</span>
+                    <input id="hab_especial_15" readonly>
+                    <input id="hab_especial_16" readonly>
+                    <input id="hab_especial_17" readonly>
+                    <span>Qualidade 16</span>
+                    <span>Qualidade 17</span>
+                    <span>Qualidade 18</span>
+                    <input id="hab_especial_18" readonly>
+                    <input id="hab_especial_19" readonly>
+                    <input id="hab_especial_20" readonly>
+                    <span>Qualidade 19</span>
+                    <span>Qualidade 20</span>
+                    <span>Qualidade 21</span>
+                    <input id="hab_especial_21" readonly>
+                    <input id="hab_especial_22" readonly>
+                    <input id="hab_especial_23" readonly>
+                    <span>Qualidade 22</span>
+                    <span>Qualidade 23</span>
+                    <span>Qualidade 24</span>
+                </div>
+            </div>
+            <div class="pericias">
+                <br>
+                
+                <h2>Perícias</h2>
+                <div class="pericias-controller">
+                    <div class="fc t3">
+                        <input type="number" id="max_pericia" readonly>
+                        <label for="max_pericia">Máximo por Perícia</label>
+                    </div>
+                    <div class="fc t3">
+                        <input type="number" id="pontos_disponiveis" readonly>
+                        <label for="pontos_disponiveis">Pontos Disponíveis</label>
+                    </div>
+                </div>
+                <div class="pericias-container">
+                    <!-- Cabeçalho -->
+                    <span>Nome</span>
+                    <span>Classe</span>
+                    <span>Inata</span>
+                    <span>Habilidade</span>
+                    <span>Total</span>
+                    <span>Mod Hab</span>
+                    <span>Graduação</span>
+                    <span>ACP</span>
+                    <span>Outros</span>
+                    
+                    <!-- Perícias serão inseridas aqui dinamicamente -->
+                </div>
+            </div>
+            
+            <div class="talentos">
+                <br>
+                <h2>Talentos</h2>
+                <div class="talentos-container">
+                    <select id="talento_0"></select>
+                    <select id="talento_1"></select>
+                    <select id="talento_2"></select>
+                    <span>Talento 1</span>
+                    <span>Talento 2</span>
+                    <span>Talento 3</span>
+                    <select id="talento_3"></select>
+                    <select id="talento_4"></select>
+                    <select id="talento_5"></select>
+                    <span>Talento 4</span>
+                    <span>Talento 5</span>
+                    <span>Talento 6</span>
+                    <select id="talento_6"></select>
+                    <select id="talento_7"></select>
+                    <select id="talento_8"></select>
+                    <span>Talento 7</span>
+                    <span>Talento 8</span>
+                    <span>Talento 9</span>
+                    <select id="talento_9"></select>
+                    <select id="talento_10"></select>
+                    <select id="talento_11"></select>
+                    <span>Talento 10</span>
+                    <span>Talento 11</span>
+                    <span>Talento 12</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <button id="btn_exportar" class="export-action" type="button">
+            Exportar Ficha
+        </button>
+    </footer>
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script type="module" src="./script/script.js"></script>
+</body>
+</html>
