@@ -1,14 +1,20 @@
 .combat-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+}
+
+.combat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .combat-row {
   display: flex;
   gap: 12px;
-  /* margin-bottom: 16px; */
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .combat-stat {
@@ -18,6 +24,44 @@
   padding: 12px;
   border-radius: 10px;
   text-align: center;
+}
+
+.combat-stat.compact {
+  flex: 1;
+  min-width: 70px;
+  padding: 8px 12px;
+}
+
+.combat-stat.compact .stat-value.small {
+  font-size: 1.1rem;
+}
+
+.pv-input-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pv-input-group .combat-pv-input {
+  width: 50px;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.pv-sep {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.pv-max {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
 }
 
 .stat-label {
@@ -220,12 +264,20 @@ display: flex;
 
 @media (max-width: 768px) {
   .combat-row {
-    flex-direction: column;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 8px;
+  }
+
+  .combat-row:first-of-type {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .combat-row:last-of-type {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .saves-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ca-breakdown {

@@ -1,68 +1,93 @@
+import { useRef, useEffect, useState } from 'react'
 import './ItemCard.css'
 export default function ItemCard({ item, onClick }) {
+  const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
+  const nameRef = useRef(null)
+  const containerRef = useRef(null)
+  const [overflow, setOverflow] = useState(0)
+
+  useEffect(() => {
+    if (nameRef.current && containerRef.current) {
+      const textWidth = nameRef.current.scrollWidth
+      const containerWidth = containerRef.current.clientWidth
+      const charWidth = textWidth / item.nome.length
+      const overflowAmount = textWidth - containerWidth
+      const scrollAmount = Math.max(0, overflowAmount > 0 ? charWidth : 0)
+      setOverflow(Math.round(scrollAmount))
+    }
+  }, [])
+
   return (
     <div className={`card item-card ${item.tipo || ''}`} onClick={onClick}>
       
       {/* HEADER */}
       <div className="card-header">
-        <span className="item-name">{item.nome}</span>
+        <div className="item-name-container" ref={containerRef}>
+          <span 
+            ref={nameRef} 
+            className={`item-name ${overflow > 0 ? 'scrolling' : ''}`}
+            style={{ '--overflow': `-${overflow}px` }}
+          >
+            {item.nome}
+          </span>
+        </div>
 
         <div className="item-meta">
-          <span className="item-icon">{item.icon || '⚔️'}</span>
-          <span className="item-stars">
-            {'★'.repeat(item.estrelas || 1)}
-          </span>
+          {isArma && <span className="item-icon">⚔️</span>}
         </div>
       </div>
 
       {/* IMAGE */}
       <div className="card-image">
-        <img
-          src={item.imagem || '/placeholder.png'}
-          alt={item.nome}
-        />
+        {isArma && item.icon ? (
+          <span style={{ fontSize: '40px' }}>{item.icon}</span>
+        ) : (
+          <img
+            src={item.imagem || '/placeholder.png'}
+            alt={item.nome}
+          />
+        )}
       </div>
 
       {/* DESCRIPTION */}
-      <div className="card-description">
-        {item.descricao || 'Sem descrição.'}
-      </div>
+      {item.descricao && (
+        <div className="card-description">
+          {item.descricao}
+        </div>
+      )}
 
       {/* STATS ZONE (GENÉRICA) */}
       <div className="card-stats">
-        {item.dano && (
-          <div><b>ATK:</b> {item.dano}</div>
+        {isArma && item.dano && item.critico && (
+          <div className="stats-row">
+            <span><b>Dano:</b> {item.dano}</span>
+            <span><b>Crit:</b> {item.critico}</span>
+          </div>
         )}
 
-        {item.defesa && (
-          <div><b>DEF:</b> {item.defesa}</div>
+        {isArma && (
+          <div className="stats-row">
+            <span><b>Cat:</b> {item.categoria || '-'}</span>
+            <span><b>Sub:</b> {item.subcategoria || '-'}</span>
+          </div>
         )}
 
-        {item.critico && (
-          <div><b>Crit:</b> {item.critico}</div>
+        {isArma && (
+          <div className="stats-row">
+            <span><b>Alcance:</b> {item.alcance && item.alcance !== '-' ? item.alcance : '-'}</span>
+            <span><b>Peso:</b> {item.peso !== undefined ? (item.peso === 0 ? '0' : `${item.peso} kg`) : '-'}</span>
+          </div>
         )}
 
-        {item.alcance && (
-          <div><b>Range:</b> {item.alcance}</div>
-        )}
-
-        {item.peso && (
-          <div><b>Peso:</b> {item.peso}</div>
-        )}
-
-        {item.bonus_ca && (
-          <div><b>CA:</b> {item.bonus_ca}</div>
-        )}
-
-        {item.tipo_dano && (
-          <div><b>Dano:</b> {item.tipo_dano}</div>
+        {(item.tipo1 || item.tipo2) && (
+          <div><b>Tipo:</b> {item.tipo1 || '-'}{item.tipo2 ? `, ${item.tipo2}` : ''}</div>
         )}
       </div>
 
       {/* FOOTER */}
       <div className="card-footer">
         <span className="price">
-          {item.preco / 100} PO
+          {item.custo ? (item.custo / 100).toFixed(2).replace('.', ',') : '0,00'} PO
         </span>
       </div>
     </div>

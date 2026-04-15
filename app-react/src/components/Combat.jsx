@@ -3,11 +3,7 @@ import { useCharacter } from '../context/CharacterContext'
 import { getClasse, getBonusSaveRacial } from '../data/opcoes'
 import { getModificadoresTamanho } from '../data/tamanho'
 import { getBBABase, getProgressaoBBA } from '../data/bba'
-import {
-  getDeslocamento,
-  deslocamentoPorRaca,
-  bonusDeslocamentoPorClasse
-} from '../data/deslocamento'
+import { getDeslocamento, deslocamentoPorRaca, bonusDeslocamentoPorClasse } from '../data/deslocamento'
 import './Combat.css'
 
 export default function Combat() {
@@ -30,6 +26,7 @@ export default function Combat() {
 
   const conMod = getModificador('constituicao')
   const dexMod = getModificador('destreza')
+  const modForca = getModificador('forca')
 
   const bonusSaveRacial = getBonusSaveRacial(personagem.race)
   const modTamanho = getModificadoresTamanho(personagem.tamanho || '')
@@ -43,6 +40,8 @@ export default function Combat() {
   const bbaBase = useMemo(() => {
     return getBBABase(progressao, nivel)
   }, [progressao, nivel])
+
+  const agarrarTotal = bbaBase + modForca
 
   const hpMax = useMemo(() => {
     if (!classe.dadoVida) return 0
@@ -156,7 +155,7 @@ export default function Combat() {
         </button>
       </div>
       {expandido && (
-        <div>
+        <div className="combat-content">
           <div className="combat-row">
             <div className="combat-stat">
               <div className="stat-label">BBA</div>
@@ -165,6 +164,16 @@ export default function Combat() {
               </div>
               <div className="stat-detail">
                 Base +{bbaBase} · Tam {modTamanho.bba >= 0 ? `+${modTamanho.bba}` : modTamanho.bba}
+              </div>
+            </div>
+
+            <div className="combat-stat">
+              <div className="stat-label">Agarrar</div>
+              <div className="stat-value">
+                {agarrarTotal >= 0 ? `+${agarrarTotal}` : agarrarTotal}
+              </div>
+              <div className="stat-detail">
+                Base +{bbaBase} · For {modForca >= 0 ? `+${modForca}` : modForca}
               </div>
             </div>
 
@@ -187,127 +196,56 @@ export default function Combat() {
             </div>
           </div>
 
-          <div className="combat-block">
-            <span className="combat-block-label">Pontos de Vida</span>
-
-            <div className="pv-row">
-              <input
-                type="number"
-                className="combat-pv-input"
-                value={personagem.combat?.hp?.atual ?? hpMax}
-                onChange={(e) =>
-                  atualizarCampo('combat', {
-                    ...personagem.combat,
-                    hp: {
-                      ...personagem.combat?.hp,
-                      atual: parseInt(e.target.value) || 0
-                    }
-                  })
-                }
-              />
-
-              <strong className="combat-pv-max">
-                / {hpMax}
-              </strong>
-            </div>
-          </div>
-
-        <div className="combat-block">
-          <span className="combat-block-label">Res Mágica</span>
-          <strong className="rm-value">0</strong>
-        </div>
-
-        <div className="ca-layout">
-          <div
-            className="ca-total"
-            onMouseEnter={() => setCaHover('normal')}
-            onMouseLeave={() => setCaHover(null)}
-          >
-            <span className="combat-block-label">CA Total</span>
-            <strong className="ca-total-value">{caNormal}</strong>
-          </div>
-
-          <div className="ca-side-values">
-            <div className="ca-side-box">
-              <span>Tq:</span>
-              <strong>{caToque}</strong>
+          <div className="combat-row">
+            <div className="combat-stat compact">
+              <div className="stat-label">PV</div>
+              <div className="pv-input-group">
+                <input
+                  type="number"
+                  className="combat-pv-input"
+                  value={personagem.combat?.hp?.atual ?? hpMax}
+                  onChange={(e) =>
+                    atualizarCampo('combat', {
+                      ...personagem.combat,
+                      hp: {
+                        ...personagem.combat?.hp,
+                        atual: parseInt(e.target.value) || 0
+                      }
+                    })
+                  }
+                />
+                <span className="pv-sep">/</span>
+                <span className="pv-max">{hpMax}</span>
+              </div>
             </div>
 
-            <div className="ca-side-box">
-              <span>Sur:</span>
-              <strong>{caSurpresa}</strong>
-            </div>
-          </div>
-
-          <div className="ca-breakdown">
-            <div className={`ca-item ${caHover ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Bas</span>
-              <span>{caBase}</span>
+            <div className="combat-stat compact">
+              <div className="stat-label">RM</div>
+              <div className="stat-value small">0</div>
             </div>
 
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Arm</span>
-              <span>{caValores.armadura}</span>
+            <div className="combat-stat compact">
+              <div className="stat-label">CA</div>
+              <div className="stat-value small">{caNormal}</div>
+              <div className="stat-detail">Tq {caToque} · Sur {caSurpresa}</div>
             </div>
 
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Esc</span>
-              <span>{caValores.escudo}</span>
+            <div className="combat-stat compact">
+              <div className="stat-label">Fort</div>
+              <div className="stat-value small">{fortTotal >= 0 ? `+${fortTotal}` : fortTotal}</div>
             </div>
 
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'toque') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Dex</span>
-              <span>{dexMod >= 0 ? `+${dexMod}` : dexMod}</span>
+            <div className="combat-stat compact">
+              <div className="stat-label">Ref</div>
+              <div className="stat-value small">{refTotal >= 0 ? `+${refTotal}` : refTotal}</div>
             </div>
 
-            <div className={`ca-item ${caHover ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Tam</span>
-              <span>{modTamanho.ca >= 0 ? `+${modTamanho.ca}` : modTamanho.ca}</span>
-            </div>
-
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Nat</span>
-              <span>{caValores.natural}</span>
-            </div>
-
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Def</span>
-              <span>{caValores.deflexao}</span>
-            </div>
-
-            <div className={`ca-item ${(caHover === 'normal' || caHover === 'surpresa') ? 'highlight' : ''}`}>
-              <span className="ca-item-label">Out</span>
-              <span>{caValores.outros}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="saves-cards">
-          <div className="save-card">
-            <div className="save-title">Fortitude</div>
-            <div className="save-value">{fortTotal >= 0 ? `+${fortTotal}` : fortTotal}</div>
-            <div className="save-detail">
-              Base +{fortBase} {fortRacial > 0 ? `Racial +${fortRacial}` : ''}
-            </div>
-          </div>
-
-          <div className="save-card">
-            <div className="save-title">Reflexos</div>
-            <div className="save-value">{refTotal >= 0 ? `+${refTotal}` : refTotal}</div>
-            <div className="save-detail">
-              Base +{refBase} {refRacial > 0 ? `Racial +${refRacial}` : ''}
-            </div>
-          </div>
-
-          <div className="save-card">
-            <div className="save-title">Vontade</div>
-            <div className="save-value">{vonTotal >= 0 ? `+${vonTotal}` : vonTotal}</div>
-            <div className="save-detail">
-              Base +{vonBase} {vonRacial > 0 ? `Racial +${vonRacial}` : ''}
+            <div className="combat-stat compact">
+              <div className="stat-label">Von</div>
+              <div className="stat-value small">{vonTotal >= 0 ? `+${vonTotal}` : vonTotal}</div>
             </div>
           </div>
 </div>
-        </div>
       )}
     </div>
   )

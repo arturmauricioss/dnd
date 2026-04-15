@@ -3,8 +3,6 @@ import { getBonusRacial } from '../data/bonusRaciais'
 
 const CharacterContext = createContext(null)
 
-const atributosBase = ['forca', 'destreza', 'constituicao', 'inteligencia', 'sabedoria', 'carisma']
-
 const estadoInicial = {
   character_name: '',
   player: '',
@@ -157,6 +155,7 @@ export function CharacterProvider({ children }) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCharacter() {
   const context = useContext(CharacterContext)
   if (!context) {

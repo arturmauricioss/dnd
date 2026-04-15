@@ -28,16 +28,13 @@ export default function Dinheiro() {
 
   useEffect(() => {
     if (!personagem.classe) return
-
-    const vazio = converterParaCobre(money) === 0
-
-    if (vazio) {
-      atualizarCampo('equipment', {
-        ...personagem.equipment,
-        money: dinheiroClasse
-      })
-    }
-  }, [personagem.classe, personagem.equipment, dinheiroClasse, atualizarCampo, money])
+    if (personagem.equipment?.money && Object.values(personagem.equipment.money).some(v => v > 0)) return
+    
+    atualizarCampo('equipment', {
+      ...personagem.equipment,
+      money: dinheiroClasse
+    })
+  }, [personagem.classe, dinheiroClasse, atualizarCampo])
 
   const totalPO = useMemo(() => {
     return converterParaPO(money)

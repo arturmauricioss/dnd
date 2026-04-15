@@ -29,9 +29,11 @@ export default function Loja() {
 
   const classe = personagem.classe
 
-  const money = personagem.equipment?.money || {
-    pl: 0, po: 0, pp: 0, pc: 0
-  }
+  const money = useMemo(() => {
+    return personagem.equipment?.money || {
+      pl: 0, po: 0, pp: 0, pc: 0
+    }
+  }, [personagem.equipment?.money])
 
   const totalDisponivel = useMemo(() => {
     return converterParaCobre(money)
@@ -39,13 +41,18 @@ export default function Loja() {
 
   const totalCarrinho = useMemo(() => {
     return carrinho.reduce((acc, item) =>
-      acc + (item.preco * item.quantidade), 0
+      acc + (item.custo * item.quantidade), 0
     )
   }, [carrinho])
 
   const restante = Math.max(0, totalDisponivel - totalCarrinho)
 
   const podeComprar = totalCarrinho > 0 && totalDisponivel >= totalCarrinho
+  const statusMensagem = useMemo(() => {
+    if (totalCarrinho === 0) return null
+    if (podeComprar) return 'ok'
+    return 'faltando'
+  }, [podeComprar, totalCarrinho])
 
   const adicionarAoCarrinho = (item) => {
     setCarrinho((prev) => {
@@ -159,8 +166,8 @@ export default function Loja() {
             <span>Disponível: {(totalDisponivel / 100).toFixed(2)} PO</span>
             <span>Restante: {(restante / 100).toFixed(2)} PO</span>
 
-            <span className={podeComprar ? 'ok' : 'faltando'}>
-              {podeComprar ? 'OK' : 'Saldo insuficiente'}
+            <span className={statusMensagem}>
+              {statusMensagem === 'ok' ? 'OK' : statusMensagem === 'faltando' ? 'Saldo insuficiente' : ''}
             </span>
           </div>
 
@@ -215,7 +222,7 @@ export default function Loja() {
                   <div key={item.id} className="carrinho-item">
                     <span className="carrinho-item-nome">{item.nome}</span>
                     <span className="carrinho-item-preco">
-                      {(item.preco / 100).toFixed(2)} PO × {item.quantidade}
+                      {(item.custo / 100).toFixed(2).replace('.', ',')} PO × {item.quantidade}
                     </span>
                     <div className="quantidade-box">
                       <button onClick={() => diminuirQuantidade(item.id)}>-</button>
