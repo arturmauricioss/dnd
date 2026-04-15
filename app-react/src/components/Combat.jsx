@@ -41,7 +41,7 @@ export default function Combat() {
     return getBBABase(progressao, nivel)
   }, [progressao, nivel])
 
-  const agarrarTotal = bbaBase + modForca
+  const agarrarTotal = bbaBase + modForca + modTamanho.agarrar
 
   const hpMax = useMemo(() => {
     if (!classe.dadoVida) return 0
@@ -173,7 +173,15 @@ export default function Combat() {
                 {agarrarTotal >= 0 ? `+${agarrarTotal}` : agarrarTotal}
               </div>
               <div className="stat-detail">
-                Base +{bbaBase} · For {modForca >= 0 ? `+${modForca}` : modForca}
+                {[
+                  `Base +${bbaBase}`,
+                  `For ${modForca >= 0 ? `+${modForca}` : modForca}`,
+                  modTamanho.agarrar !== 0
+                    ? `Tam ${modTamanho.agarrar >= 0 ? `+${modTamanho.agarrar}` : modTamanho.agarrar}`
+                    : null
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
               </div>
             </div>
 
