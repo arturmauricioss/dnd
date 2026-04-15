@@ -1,6 +1,8 @@
-import { divindades } from './divindades'
+import { divindades, getDeusesPorAlinhamento } from './divindades'
 import { podeSelecionarAlinhamento as podeSelecionarAlinhamentoOriginal } from './restricoesClasse'
 import { bonusRacialAtributos, bonusRacialResistencia } from './bonusRaciais'
+
+export { getDeusesPorAlinhamento }
 
 export const racas = [
   { id: 'selecione', nome: 'SELECIONE...', bonus: {} },
@@ -85,15 +87,6 @@ export function getBonusRacial(racaId) {
 
 export function getBonusSaveRacial(racaId) {
   return bonusRacialResistencia[racaId] || { fort: 0, ref: 0, von: 0 }
-}
-
-export function getDeusesPorAlinhamento(alinhamentoId) {
-  const alinhamento = getAlinhamento(alinhamentoId)
-  if (!alinhamento?.deity) return divindades
-  
-  return divindades.filter(d => 
-    d.alinhamentos?.includes(alinhamentoId)
-  )
 }
 
 export function podeSelecionarAlinhamento(classeId, alinhamentoId) {
