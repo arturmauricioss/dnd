@@ -92,27 +92,27 @@ export default function Loja() {
     )
   }
 
-  const comprarKitBasico = () => {
-    const kit = kitsClasse?.[classe]
-    if (!kit?.length) return
+  // const comprarKitBasico = () => {
+  //   const kit = kitsClasse?.[classe]
+  //   if (!kit?.length) return
 
-    const novoCarrinho = []
+  //   const novoCarrinho = []
 
-    kit.forEach((id) => {
-      const item = todosItens[id]
-      if (!item) return
+  //   kit.forEach((id) => {
+  //     const item = todosItens[id]
+  //     if (!item) return
 
-      const existente = novoCarrinho.find((i) => i.id === id)
+  //     const existente = novoCarrinho.find((i) => i.id === id)
 
-      if (existente) {
-        existente.quantidade += 1
-      } else {
-        novoCarrinho.push({ id, ...item, quantidade: 1 })
-      }
-    })
+  //     if (existente) {
+  //       existente.quantidade += 1
+  //     } else {
+  //       novoCarrinho.push({ id, ...item, quantidade: 1 })
+  //     }
+  //   })
 
-    setCarrinho(novoCarrinho)
-  }
+  //   setCarrinho(novoCarrinho)
+  // }
 
   const finalizarCompra = () => {
     if (!podeComprar) return
@@ -171,7 +171,7 @@ export default function Loja() {
             </span>
           </div>
 
-          <div className="loja-actions">
+          {/* <div className="loja-actions">
 
             {!!kitsClasse?.[classe]?.length && (
               <button className="btn-kit" onClick={comprarKitBasico}>
@@ -179,7 +179,7 @@ export default function Loja() {
               </button>
             )}
 
-          </div>
+          </div> */}
 
           <div className="itens-grid">
             {Object.entries(todosItens).map(([id, item]) => (

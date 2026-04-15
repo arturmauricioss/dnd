@@ -20,7 +20,7 @@ export const itensFornecimento = {
 //  alho: { nome: "Alho (0,5 kg)", custo: 1500, peso: "0,5 kg" },
 //   boi: { nome: "Boi", custo: 1500, peso: "-" },
 //   ouro: { nome: "Ouro (0,5 kg)", custo: 5000, peso: "0,5 kg" },
-  platina: { nome: "Platina (0,5 kg)", custo: 50000, peso: "0,5 kg" }
+  // platina: { nome: "Platina (0,5 kg)", custo: 50000, peso: "0,5 kg" }
 };
 
 export const itensGerais = {
@@ -87,7 +87,7 @@ export const itensGerais = {
 //   tocha: { nome: "Tocha", custo: 1, peso: "0,5 kg" },
 //   vara: { nome: "Vara (3 m)", custo: 20, peso: "4 kg" },
 //   vela: { nome: "Vela", custo: 1, peso: "-" },
-  vidro_tinta: { nome: "Vidro para tinta ou poção", custo: 100, peso: "0,05 kg" }
+  // vidro_tinta: { nome: "Vidro para tinta ou poção", custo: 100, peso: "0,05 kg" }
 };
 
 export const itensEspeciais = {
@@ -100,7 +100,7 @@ export const itensEspeciais = {
   // fogo_alchimico: { nome: "Fogo alquímico (frasco)", custo: 2000, peso: "0,5 kg" },
   // fosforo: { nome: "Fósforo", custo: 100, peso: "-" },
   // pedra_trovao: { nome: "Pedra trovão", custo: 3000, peso: "0,5 kg" },
-  tocha_eterna: { nome: "Tocha da chama eterna", custo: 11000, peso: "0,5 kg" }
+  // tocha_eterna: { nome: "Tocha da chama eterna", custo: 11000, peso: "0,5 kg" }
 };
 
 export const instrumentos = {
@@ -122,7 +122,7 @@ export const instrumentos = {
   // laboratorio: { nome: "Laboratório alquímico", custo: 50000, peso: "20 kg" },
   // lente_aumento: { nome: "Lente de aumento", custo: 10000, peso: "-" },
   // simbolo_sagrado_madeira: { nome: "Símbolo sagrado de madeira", custo: 100, peso: "-" },
-  simbolo_sagrado_prata: { nome: "Símbolo sagrado de prata", custo: 2500, peso: "0,5 kg" }
+  // simbolo_sagrado_prata: { nome: "Símbolo sagrado de prata", custo: 2500, peso: "0,5 kg" }
 };
 
 export const indumentaria = {
@@ -137,7 +137,7 @@ export const indumentaria = {
   // trainee: { nome: "Traje de sábio", custo: 500, peso: "3 kg" },
   // traje_viajante: { nome: "Traje de viajante", custo: 100, peso: "2,5 kg" },
   // traje_real: { nome: "Traje real", custo: 20000, peso: "7,5 kg" },
-  vestimentas_clerigo: { nome: "Vestimentas de clérigo", custo: 500, peso: "3 kg" }
+  // vestimentas_clerigo: { nome: "Vestimentas de clérigo", custo: 500, peso: "3 kg" }
 };
 
 export const comidaBebida = {
@@ -154,7 +154,7 @@ export const comidaBebida = {
   // refei_padrão: { nome: "Refeições padrão (por dia)", custo: 30, peso: "-" },
   // refei_bom: { nome: "Refeições bom (por dia)", custo: 50, peso: "-" },
   // vinho_normal: { nome: "Vinho normal (jarra)", custo: 20, peso: "3 kg" },
-  vinho_bom: { nome: "Vinho bom (garrafa)", custo: 1000, peso: "0,75 kg" }
+  // vinho_bom: { nome: "Vinho bom (garrafa)", custo: 1000, peso: "0,75 kg" }
 };
 
 export const montarias = {
@@ -178,7 +178,7 @@ export const montarias = {
   // sela_montaria: { nome: "Sela de montaria", custo: 1000, peso: "12,5 kg" },
   // sela_exotica_carga: { nome: "Sela exótica de carga", custo: 1500, peso: "10 kg" },
   // sela_exotica_militar: { nome: "Sela exótica militar", custo: 6000, peso: "20 kg" },
-  sela_exotica_montaria: { nome: "Sela exótica de montaria", custo: 3000, peso: "15 kg" }
+  // sela_exotica_montaria: { nome: "Sela exótica de montaria", custo: 3000, peso: "15 kg" }
 };
 
 export const transporte = {
@@ -192,7 +192,7 @@ export const transporte = {
   // nav_guerra: { nome: "Navio de guerra", custo: 2500000, peso: "-" },
   // nav: { nome: "Navio", custo: 1000000, peso: "-" },
   // tren: { nome: "Trenó", custo: 2000, peso: "150 kg" },
-  veleiro: { nome: "Veleiro", custo: 1000000, peso: "-" }
+  // veleiro: { nome: "Veleiro", custo: 1000000, peso: "-" }
 };
 
 export const ferramentasNormalizadas = Object.fromEntries(

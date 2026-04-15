@@ -57,11 +57,12 @@
 
 /* IMAGE */
 .card-image {
-  height: 80px;
-  background: #222;
+  height: 90px;
+  background: #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 .card-image img {
@@ -109,4 +110,17 @@
   font-weight: bold;
   color: gold;
   margin-top: auto;
+}
+.arma-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: auto;
+}
+
+.arma-emoji {
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

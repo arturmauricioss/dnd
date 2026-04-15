@@ -12,7 +12,7 @@ export const todasArmaduras = {
   // cota_talas: { nome: "Cota de Talas", custo: 2000, bonus: "+6", tipo: "pesada", dex_max: "+0", penalidade: -7, falha_magia: "40%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "22,5 kg" },
   // loriga_segmentada: { nome: "Loriga Segmentada", custo: 25000, bonus: "+6", tipo: "pesada", dex_max: "+1", penalidade: -6, falha_magia: "35%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "17,5 kg" },
   // meia_armadura: { nome: "Meia Armadura", custo: 60000, bonus: "+7", tipo: "pesada", dex_max: "+0", penalidade: -7, falha_magia: "40%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "25 kg" },
-  armadura_batalha: { nome: "Armadura de Batalha", custo: 150000, bonus: "+8", tipo: "pesada", dex_max: "+1", penalidade: -6, falha_magia: "35%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "25 kg" }
+  // armadura_batalha: { nome: "Armadura de Batalha", custo: 150000, bonus: "+8", tipo: "pesada", dex_max: "+1", penalidade: -6, falha_magia: "35%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "25 kg" }
 };
 
 export const todosEscudos = {
@@ -21,7 +21,7 @@ export const todosEscudos = {
   // escudo_pequeno_metal: { nome: "Escudo Pequeno de Metal", custo: 900, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "3 kg" },
   // escudo_grande_madeira: { nome: "Escudo Grande de Madeira", custo: 700, bonus: "+2", tipo: "escudo", penalidade: -2, falha_magia: "15%", peso: "5 kg" },
   // escudo_grande_metal: { nome: "Escudo Grande de Metal", custo: 2000, bonus: "+2", tipo: "escudo", penalidade: -2, falha_magia: "15%", peso: "7,5 kg" },
-  escudo_corpo: { nome: "Escudo de Corpo", custo: 3000, bonus: "+4", tipo: "escudo", penalidade: -10, falha_magia: "50%", peso: "22,5 kg" }
+  // escudo_corpo: { nome: "Escudo de Corpo", custo: 3000, bonus: "+4", tipo: "escudo", penalidade: -10, falha_magia: "50%", peso: "22,5 kg" }
 };
 
 export const armadurasNormalizadas = Object.fromEntries(

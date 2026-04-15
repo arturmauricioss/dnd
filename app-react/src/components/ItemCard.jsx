@@ -15,7 +15,7 @@ export default function ItemCard({ item, onClick }) {
       const scrollAmount = Math.max(0, overflowAmount > 0 ? charWidth : 0)
       setOverflow(Math.round(scrollAmount))
     }
-  }, [])
+  }, [item.nome])
 
   return (
     <div className={`card item-card ${item.tipo || ''}`} onClick={onClick}>
@@ -39,8 +39,16 @@ export default function ItemCard({ item, onClick }) {
 
       {/* IMAGE */}
       <div className="card-image">
-        {isArma && item.icon ? (
-          <span style={{ fontSize: '40px' }}>{item.icon}</span>
+        {isArma ? (
+          item.img ? (
+            <img
+              src={item.img}
+              alt={item.nome}
+              className="arma-img"
+            />
+          ) : (
+            <span className="arma-emoji">{item.icon}</span>
+          )
         ) : (
           <img
             src={item.imagem || '/placeholder.png'}
