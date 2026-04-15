@@ -9,11 +9,10 @@ import './Combat.css'
 export default function Combat() {
   const { personagem, getModificador, atualizarCampo } = useCharacter()
   const [expandido, setExpandido] = useState(true)
-  const [caHover, setCaHover] = useState(null)
 
   const hpMaxAnterior = useRef(0)
 
-  const [caValores, setCaValores] = useState({
+  const [caValores] = useState({
     armadura: 0,
     escudo: 0,
     natural: 0,
@@ -89,6 +88,7 @@ export default function Combat() {
     }
 
     hpMaxAnterior.current = hpMax
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hpMax])
 
   const deslocamento = useMemo(() => {

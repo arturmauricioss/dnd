@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { periciasConfig, periciasPorClasse } from '../data/pericias'
 import { getBonusPericiaRacial } from '../data/bonusPericias'
-import { todosItens, getPenalidadeTotal } from '../data/itemDatabase'
+import { getPenalidadeTotal } from '../data/itemDatabase'
 import './Pericias.css'
 
 const pontosPorClasse = {

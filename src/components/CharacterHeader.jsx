@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { racas, classes, alinhamentos, sexos, niveis, getDeusesPorAlinhamento } from '../data/opcoes'
 import { tamanhoPorRaca } from '../data/tamanho'
@@ -8,8 +8,17 @@ import './CharacterHeader.css'
 export default function CharacterHeader() {
   const { personagem, atualizarCampo, setSelectedRace, setSelectedClass, setSelectedAlignment } = useCharacter()
   const [deusesDisponiveis, setDeusesDisponiveis] = useState([])
-  const [placeholderFisico, setPlaceholderFisico] = useState({ altura: '', peso: '' })
-  const [placeholderIdade, setPlaceholderIdade] = useState({ min: '', max: '' })
+
+  const deusesFiltrados = useMemo(() => {
+    if (personagem.alignment && personagem.alignment !== 'selecione') {
+      return getDeusesPorAlinhamento(personagem.alignment)
+    }
+    return []
+  }, [personagem.alignment])
+
+  useEffect(() => {
+    setDeusesDisponiveis(deusesFiltrados)
+  }, [deusesFiltrados])
 
   const alinhamentosFiltrados = useMemo(() => {
     if (!personagem.classe || personagem.classe === 'selecione') {
@@ -30,21 +39,13 @@ export default function CharacterHeader() {
   }, [personagem.classe])
 
   useEffect(() => {
-    if (personagem.alignment && personagem.alignment !== 'selecione') {
-      const deuses = getDeusesPorAlinhamento(personagem.alignment)
-      setDeusesDisponiveis(deuses)
-    } else {
-      setDeusesDisponiveis([])
-    }
-  }, [personagem.alignment])
-
-  useEffect(() => {
     if (personagem.classe && personagem.classe !== 'selecione') {
       if (!alinhamentosFiltrados.find(a => a.id === personagem.alignment)) {
         atualizarCampo('alignment', 'selecione')
         setSelectedAlignment('selecione')
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [personagem.classe])
 
   useEffect(() => {
@@ -52,14 +53,16 @@ export default function CharacterHeader() {
       const tamanhoRaca = tamanhoPorRaca[personagem.race] || ''
       atualizarCampo('tamanho', tamanhoRaca)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [personagem.race])
 
-  useEffect(() => {
-    const fisico = getFisicoSugerido(personagem.race, personagem.sex)
-    const idade = getIdadeSugerida(personagem.race)
-    setPlaceholderFisico(fisico)
-    setPlaceholderIdade(idade)
+  const placeholderFisico = useMemo(() => {
+    return getFisicoSugerido(personagem.race, personagem.sex)
   }, [personagem.race, personagem.sex])
+
+  const placeholderIdade = useMemo(() => {
+    return getIdadeSugerida(personagem.race)
+  }, [personagem.race])
 
   const handleClasseChange = (e) => {
     const valor = e.target.value
