@@ -1,3 +1,4 @@
+// 100% 
 export const bonusRacialAtributos = {
     humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
     anao: { constituicao: 2, carisma: -2 },

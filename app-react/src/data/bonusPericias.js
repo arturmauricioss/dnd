@@ -44,3 +44,5 @@ export function getBonusPericiaRacial(raca, nomePericia) {
     const normalizedNome = nomePericia.toLowerCase();
     return bonuses[normalizedNome] || 0;
 }
+
+

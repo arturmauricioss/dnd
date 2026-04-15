@@ -48,14 +48,18 @@ export default function Combat() {
 
     const dado = classe.dadoVida
 
-    if (nivel === 1) {
-      return dado + conMod
+    // nível 1: dado cheio, mínimo 1
+    let total = Math.max(1, dado + conMod)
+
+    if (nivel > 1) {
+      const hpMedio = Math.floor(dado / 2)
+
+      for (let i = 2; i <= nivel; i++) {
+        total += Math.max(1, hpMedio + conMod)
+      }
     }
 
-    const hpMedio = Math.floor(dado / 2)
-    const hpAdicional = (nivel - 1) * (hpMedio + conMod)
-
-    return dado + conMod + hpAdicional
+    return total
   }, [classe, nivel, conMod])
 
   /*
@@ -134,17 +138,20 @@ export default function Combat() {
     caValores.deflexao +
     caValores.outros
 
+  // dexMod e conMod ja estao acima mas tbm são usados aqui
+  const sabMod = getModificador('sabedoria')
+
   const fortBase = classe.fort || 0
-  const fortRacial = bonusSaveRacial.fort
-  const fortTotal = fortBase + fortRacial
+  const fortRacial = bonusSaveRacial.fort || 0
+  const fortTotal = fortBase + conMod + fortRacial
 
   const refBase = classe.ref || 0
-  const refRacial = bonusSaveRacial.ref
-  const refTotal = refBase + refRacial
+  const refRacial = bonusSaveRacial.ref || 0
+  const refTotal = refBase + dexMod + refRacial
 
   const vonBase = classe.von || 0
-  const vonRacial = bonusSaveRacial.von
-  const vonTotal = vonBase + vonRacial
+  const vonRacial = bonusSaveRacial.von || 0
+  const vonTotal = vonBase + sabMod + vonRacial
 
   return (
     <div className="combat-container">
@@ -240,20 +247,38 @@ export default function Combat() {
 
             <div className="combat-stat compact">
               <div className="stat-label">Fort</div>
-              <div className="stat-value small">{fortTotal >= 0 ? `+${fortTotal}` : fortTotal}</div>
+              <div className="stat-value small">
+                {fortTotal >= 0 ? `+${fortTotal}` : fortTotal}
+              </div>
+              <div className="stat-detail">
+                Base +{fortBase} · Con {conMod >= 0 ? `+${conMod}` : conMod}
+                {fortRacial !== 0 && ` · Rac ${fortRacial >= 0 ? `+${fortRacial}` : fortRacial}`}
+              </div>
             </div>
 
             <div className="combat-stat compact">
               <div className="stat-label">Ref</div>
-              <div className="stat-value small">{refTotal >= 0 ? `+${refTotal}` : refTotal}</div>
+              <div className="stat-value small">
+                {refTotal >= 0 ? `+${refTotal}` : refTotal}
+              </div>
+              <div className="stat-detail">
+                Base +{refBase} · Des {dexMod >= 0 ? `+${dexMod}` : dexMod}
+                {refRacial !== 0 && ` · Rac ${refRacial >= 0 ? `+${refRacial}` : refRacial}`}
+              </div>
             </div>
 
             <div className="combat-stat compact">
               <div className="stat-label">Von</div>
-              <div className="stat-value small">{vonTotal >= 0 ? `+${vonTotal}` : vonTotal}</div>
+              <div className="stat-value small">
+                {vonTotal >= 0 ? `+${vonTotal}` : vonTotal}
+              </div>
+              <div className="stat-detail">
+                Base +{vonBase} · Sab {sabMod >= 0 ? `+${sabMod}` : sabMod}
+                {vonRacial !== 0 && ` · Rac ${vonRacial >= 0 ? `+${vonRacial}` : vonRacial}`}
+              </div>
             </div>
           </div>
-</div>
+      </div>
       )}
     </div>
   )

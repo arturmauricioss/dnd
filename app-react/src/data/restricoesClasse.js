@@ -23,3 +23,4 @@ export function podeSelecionarAlinhamento(classeId, alinhamentoId) {
     
     return restricoes.includes(alinhamentoId)
 }
+

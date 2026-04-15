@@ -12,6 +12,7 @@ export const bbaPorClasse = {
   feiticeiro: "ruim"
 }
 
+
 export function getBBABase(tipo, nivel) {
   if (tipo === "bom") return nivel
   if (tipo === "medio") return Math.floor(nivel * 0.75)

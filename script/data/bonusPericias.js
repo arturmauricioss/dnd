@@ -1,3 +1,4 @@
+// 100%
 export const bonusPericiasRaca = {
     anao: {
         "oficio (armeiro)": 2,

@@ -261,7 +261,7 @@
   margin-bottom: 24px;
 }
 
-.btn-kit,
+/* .btn-kit, */
 .btn-limpar,
 .btn-comprar,
 .btn-remover,
@@ -273,20 +273,20 @@
   transition: 0.2s ease;
 }
 
-.btn-kit,
+/* .btn-kit, */
 .btn-limpar,
 .btn-comprar {
   padding: 10px 16px;
 }
 
-.btn-kit {
+/* .btn-kit {
   background: #3b82f6;
   color: white;
 }
 
 .btn-kit:hover {
   opacity: 0.9;
-}
+} */
 
 .btn-limpar {
   background: #e2e8f0;
