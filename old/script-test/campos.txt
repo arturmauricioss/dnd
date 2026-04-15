@@ -1,0 +1,1019 @@
+Jogador
+Classe
+Raça
+Tendência
+Divindade
+Tamanho
+Idade
+Sexo
+Altura
+Peso
+Olhos
+Cabelos
+Pele
+For
+Des
+Con
+Int
+Sab
+M For
+M Con
+M Int
+M Sab
+M Car
+For0
+Des0
+Con0
+Int0
+Sab0
+Car
+Car0
+M For0
+M Des0
+M Con0
+M Int0
+M Sab0
+M Car0
+PV
+Fer
+Fer0
+Fer1
+Fer2
+Fer3
+Fer4
+Fer5
+Fer6
+Fer7
+PV0
+DPC
+CA
+CA0
+CA1
+CA2
+CA3
+CA4
+CA5
+CA6
+Redução de Dano
+Toque
+Surprese
+Iniciativa
+M Des
+Iniciativa M Des
+Iniciativa Outros
+Fortitude
+Fortitude Bônus Base
+Fortitude M Con
+Fortitude Outros
+Fortitude M Con0
+Reflexos M Des0
+Reflexos Outros
+Reflexos Mod Mágico
+Fortitude Mod Mágico
+Reflexos M Des
+Reflexos Bônus Base
+Reflexos
+Vontade M Sab0
+Vontade Outros
+Vontade Mod Mágico
+Vontade M Sab
+Vontade Bônus Base
+Vontade
+Resistência à Magia
+Agarrar
+Agarrar BBA
+BBA
+Agarrar M For
+Agarrar Mod Tamanho
+Agarrar Outros
+Graduação 1ª Classe
+Graduação 2ª Classe
+Nível
+Perícia Abrir Fechaduras
+Perícia Abrir Fechaduras M Des
+Perícia Abrir Fechaduras Grad
+Perícia Abrir Fechaduras Outros
+Perícia Acrobacia Outros
+Perícia Acrobacia Grad
+Perícia Acrobacia M Des
+Perícia Acrobacia
+Zbox Abrir Fechadura
+Zbox Acrobacia
+Zbox Adestrar Animais
+Zbox Arte de Fuga
+Zbox Atuação 1
+Zbox Atuação 2
+Zbox Atuação 3
+Zbox Avaliação
+Zbox Blefar
+Zbox Cavalgar
+Zbox Concentração
+Zbox Conhecimento 1
+Zbox Conhecimento 2
+Zbox Conhecimento 3
+Zbox Conhecimento 4
+Zbox Conhecimento 5
+Zbox Cura
+Zbox Decifrar Escrita
+Zbox Diplomacia
+Zbox Disfarce
+Zbox Equilíbrio
+Zbox Escalar
+Zbox Esconder-se
+Zbox Observar
+Zbox Natação
+Zbox Intimidar
+Zbox Identificar Magia
+Zbox Furtividade
+Zbox Falsificação
+Zbox Ouvir
+Zbox Operar Mecanismo
+Zbox Ofícios 3
+Zbox Ofícios 2
+Zbox Ofícios 1
+Zbox Obter Informação
+Zbox Sentir Motivação
+Zbox Saltar
+Zbox Prestidigitação
+Zbox Profissão 2
+Zbox Profissão 1
+Zbox Procurar
+Zbox Diverso 3
+Zbox Diverso 2
+Zbox Diverso 1
+Zbox Usar Instrumento Mágico
+Zbox Usar Cordas
+Zbox Sobrevivência
+Zbutton Abrir Fechaduras
+Zbutton Acrobacia
+Zbutton Adestrar Animais
+Zbutton Arte de Fuga
+Zbutton Atuação 1
+Zbutton Atuação 2
+Zbutton Atuação 3
+Zbutton Avaliação
+Zbutton Blefar
+Zbutton Cavalgar
+Zbutton Concentração
+Zbutton Conhecimento 1
+Zbutton Conhecimento 2
+Zbutton Conhecimento 3
+Zbutton Conhecimento 4
+Zbutton Conhecimento 5
+Zbutton Cura
+Zbutton Decifrar Escrita
+Zbutton Diplomacia
+Zbutton Disfarce
+Zbutton Equilíbrio
+Zbutton Escalar
+Zbutton Esconder-se
+Zbutton Falsificação
+Zbutton Furtividade
+Zbutton Identificar Magia
+Zbutton Intimidar
+Zbutton Natação
+Zbutton Observar
+Zbutton Obter Informação
+Zbutton Ofícios 1
+Zbutton Ofícios 2
+Zbutton Ofícios 3
+Zbutton Operar Mecanismo
+Zbutton Ouvir
+Procurar
+Zbutton Profissão 1
+Zbutton Profissão 2
+Zbutton Prestidigitação
+Zbutton Saltar
+Zbutton Sentir Motivação
+Zbutton Sobrevivência
+Zbutton Usar Cordas
+Zbutton Usar Instrumento Mágico
+Zbutton Diverso 1
+Zbutton Diverso 2
+Zbutton Diverso 3
+Perícia Adestrar Animais
+Perícia Adestrar Animais M Car
+Perícia Arte de Fuga
+Perícia Atuação 1
+Perícia Adestrar Animais Grad
+Perícia Adestrar Animais Outros
+Perícia Atuação 2 Nome
+Perícia Atuação 3 Nome
+Perícia Atuação 1 Nome
+Perícia Atuação 2
+Perícia Atuação 3
+Perícia Avaliação
+Perícia Atuação 1 M Car
+Perícia Avaliação M Int
+Perícia Arte de Fuga M Des
+Perícia Atuação 3 M Car
+Perícia Atuação 2 M Car
+Perícia Atuação 1 Grad
+Perícia Atuação 3 Grad
+Perícia Arte de Fuga Grad
+Perícia Atuação 2 Grad
+Perícia Avaliação Grad
+Perícia Arte de Fuga Outros
+Perícia Atuação 2 Outros
+Perícia Atuação 1 Outros
+Perícia Atuação 3 Outros
+Perícia Avaliação Outros
+Perícia Blefar
+Perícia Blefar M Car
+Perícia Blefar Grad
+Perícia Blefar Outros
+Perícia Cavalgar Nome
+Perícia Cavalgar
+Perícia Cavalgar M Des
+Perícia Cavalgar Grad
+Perícia Cavalgar Outros
+Perícia Concentração
+Perícia Concentração M Con
+Perícia Concentração Grad
+Perícia Concentração Outros
+Perícia Conhecimento 1 Nome
+Perícia Conhecimento 1
+Perícia Conhecimento 1 M Int
+Perícia Conhecimento 1 Grad
+Perícia Conhecimento 1 Outros
+Perícia Conhecimento 2 Nome
+Perícia Conhecimento 2
+Perícia Conhecimento 2 M Int
+Perícia Conhecimento 2 Grad
+Perícia Conhecimento 2 Outros
+Perícia Conhecimento 3 Nome
+Perícia Conhecimento 3
+Perícia Conhecimento 3 M Int
+Perícia Conhecimento 3 Grad
+Perícia Conhecimento 3 Outros
+Perícia Conhecimento 4 Nome
+Perícia Conhecimento 4
+Perícia Conhecimento 4 M Int
+Perícia Conhecimento 4 Grad
+Perícia Conhecimento 4 Outros
+Perícia Conhecimento 5 Nome
+Perícia Conhecimento 5
+Perícia Conhecimento 5 M Int
+Perícia Conhecimento 5 Grad
+Perícia Conhecimento 5 Outros
+Perícia Cura
+Perícia Cura M Sab
+Perícia Cura Grad
+Perícia Cura Outros
+Perícia Decifrar Escrita
+Perícia Decifrar Escrita M Int
+Perícia Decifrar Escrita Grad
+Perícia Decifrar Escrita Outros
+Perícia Diplomacia
+Perícia Diplomacia M Car
+Perícia Diplomacia Grad
+Perícia Diplomacia Outros
+Perícia Disfarce
+Perícia Disfarce M Car
+Perícia Disfarce Grad
+Perícia Disfarce Outros
+Perícia Equilíbrio Grad
+Perícia Equilíbrio M Des
+Perícia Equilíbrio
+Perícia Equilíbrio Outros
+Perícia Escalar
+Perícia Escalar M For
+Perícia Escalar Grad
+Perícia Escalar Outros
+Perícia Esconder-se
+Perícia Esconder-se M Des
+Perícia Esconder-se Grad
+Perícia Esconder-se Outros
+Perícia Falsificação
+Perícia Falsificação M Int
+Perícia Falsificação Grad
+Perícia Falsificação Outros
+Perícia Furtividade
+Perícia Furtividade M Des
+Perícia Furtividade Grad
+Perícia Furtividade Outros
+Perícia Identificar Magia
+Perícia Identificar Magia M Int
+Perícia Identificar Magia Grad
+Perícia Identificar Magia Outros
+Perícia Intimidar
+Perícia Intimidar M Car
+Perícia Intimidar Grad
+Perícia Intimidar Outros
+Perícia Natação
+Perícia Natação M For
+Perícia Natação Grad
+Perícia Natação Outros
+Perícia Observar
+Perícia Observar M Sab
+Perícia Observar Grad
+Perícia Observar Outros
+Perícia Obter Informação
+Perícia Obter Informação M Car
+Perícia Obter Informação Grad
+Perícia Obter Informação Outros
+Perícia Ofícios 1 Nome
+Perícia Ofícios 1
+Perícia Ofícios 1 M Int
+Perícia Ofícios 1 Grad
+Perícia Ofícios 1 Outros
+Perícia Ofícios 2 Nome
+Perícia Ofícios 2
+Perícia Ofícios 2 M Int
+Perícia Ofícios 2 Grad
+Perícia Ofícios 2 Outros
+Perícia Ofícios 3 Nome
+Perícia Ofícios 3
+Perícia Ofícios 3 M Int
+Perícia Ofícios 3 Grad
+Perícia Ofícios 3 Outros
+Perícia Operar Mecanismo
+Perícia Operar Mecanismo M Int
+Perícia Operar Mecanismo Grad
+Perícia Operar Mecanismo Outros
+Perícia Ouvir
+Perícia Ouvir M Sab
+Perícia Ouvir Grad
+Perícia Ouvir Outros
+Perícia Procurar
+Perícia Procurar M Int
+Perícia Procurar Grad
+Perícia Procurar Outros
+Perícia Profissão 1 Nome
+Perícia Profissão 1
+Perícia Profissão 1 M Sab
+Perícia Profissão 1 Grad
+Perícia Profissão 1 Outros
+Perícia Profissão 2 Nome
+Perícia Profissão 2
+Perícia Profissão 2 M Sab
+Perícia Profissão 2 Grad
+Perícia Profissão 2 Outros
+Perícia Prestidigitação
+Perícia Prestidigitação M Des
+Perícia Prestidigitação Grad
+Perícia Prestidigitação Outros
+Perícia Saltar
+Perícia Saltar M For
+Perícia Saltar Grad
+Perícia Saltar Outros
+Perícia Sentir Motivação
+Perícia Sentir Motivação M Sab
+Perícia Sentir Motivação Grad
+Perícia Sentir Motivação Outros
+Perícia Sobrevivência
+Perícia Sobrevivência M Sab
+Perícia Sobrevivência Grad
+Perícia Sobrevivência Outros
+Perícia Usar Cordas
+Perícia Usar Cordas M Des
+Perícia Usar Cordas Grad
+Perícia Usar Cordas Outros
+Perícia Usar Intrumento Mágico
+Perícia Usar Intrumento Mágico M Car
+Perícia Usar Intrumento Mágico Grad
+Perícia Usar Intrumento Mágico Outros
+Perícia Diverso 1 Nome
+Perícia Diverso 1 HB
+Perícia Diverso 1
+Perícia Diverso 1 Mod
+Perícia Diverso 1 Grad
+Perícia Diverso 1 Outros
+Perícia Diverso 2 Nome
+Perícia Diverso 2 HB
+Perícia Diverso 2
+Perícia Diverso 2 Mod
+Perícia Diverso 2 Grad
+Perícia Diverso 2 Outros
+Perícia Diverso 3 Nome
+Perícia Diverso 3 HB
+Perícia Diverso 3
+Perícia Diverso 3 Mod
+Perícia Diverso 3 Grad
+Perícia Diverso 3 Outros
+Zbutton Ataque 1
+Zbox Ataque 1 Munição 2
+Zbox Ataque 1 Munição 3
+Zbox Ataque 1 Munição 4
+Zbox Ataque 1 Munição 0
+Zbox Ataque 1 Munição 1
+Zbox Ataque 1 Munição 5
+Zbox Ataque 1 Munição 6
+Zbox Ataque 1 Munição 7
+Zbox Ataque 1 Munição 8
+Zbox Ataque 1 Munição 9
+Zbox Ataque 1 Munição 10
+Zbox Ataque 1 Munição 11
+Zbox Ataque 1 Munição 12
+Zbox Ataque 1 Munição 13
+Zbox Ataque 1 Munição 14
+Zbox Ataque 1 Munição 15
+Zbox Ataque 1 Munição 16
+Zbox Ataque 1 Munição 17
+Zbox Ataque 1 Munição 18
+Zbox Ataque 1 Munição 19
+Zbox Ataque 1 Munição 20
+Zbox Ataque 1 Munição 21
+Zbox Ataque 1 Munição 22
+Zbox Ataque 1 Munição 23
+Zbox Ataque 1 Munição 24
+Zbox Ataque 1 Munição 25
+Zbox Ataque 1 Munição 26
+Zbox Ataque 1 Munição 27
+Zbox Ataque 1 Munição 28
+Zbox Ataque 1 Munição 29
+Zbutton Ataque 2
+Zbox Ataque 2 Munição 0
+Zbox Ataque 2 Munição 1
+Zbox Ataque 2 Munição 2
+Zbox Ataque 2 Munição 3
+Zbox Ataque 2 Munição 4
+Zbox Ataque 2 Munição 5
+Zbox Ataque 2 Munição 6
+Zbox Ataque 2 Munição 7
+Zbox Ataque 2 Munição 8
+Zbox Ataque 2 Munição 9
+Zbox Ataque 2 Munição 10
+Zbox Ataque 2 Munição 11
+Zbox Ataque 2 Munição 12
+Zbox Ataque 2 Munição 13
+Zbox Ataque 2 Munição 14
+Zbox Ataque 2 Munição 15
+Zbox Ataque 2 Munição 16
+Zbox Ataque 2 Munição 17
+Zbox Ataque 2 Munição 18
+Zbox Ataque 2 Munição 19
+Zbox Ataque 2 Munição 20
+Zbox Ataque 2 Munição 21
+Zbox Ataque 2 Munição 22
+Zbox Ataque 2 Munição 23
+Zbox Ataque 2 Munição 24
+Zbox Ataque 2 Munição 25
+Zbox Ataque 2 Munição 26
+Zbox Ataque 2 Munição 27
+Zbox Ataque 2 Munição 28
+Zbox Ataque 2 Munição 29
+Zbutton Ataque 3
+Zbox Ataque 3 Munição 0
+Zbox Ataque 3 Munição 1
+Zbox Ataque 3 Munição 2
+Zbox Ataque 3 Munição 3
+Zbox Ataque 3 Munição 4
+Zbox Ataque 3 Munição 5
+Zbox Ataque 3 Munição 6
+Zbox Ataque 3 Munição 7
+Zbox Ataque 3 Munição 8
+Zbox Ataque 3 Munição 9
+Zbox Ataque 3 Munição 10
+Zbox Ataque 3 Munição 11
+Zbox Ataque 3 Munição 12
+Zbox Ataque 3 Munição 13
+Zbox Ataque 3 Munição 14
+Zbox Ataque 3 Munição 15
+Zbox Ataque 3 Munição 16
+Zbox Ataque 3 Munição 17
+Zbox Ataque 3 Munição 18
+Zbox Ataque 3 Munição 19
+Zbox Ataque 3 Munição 20
+Zbox Ataque 3 Munição 21
+Zbox Ataque 3 Munição 22
+Zbox Ataque 3 Munição 23
+Zbox Ataque 3 Munição 24
+Zbox Ataque 3 Munição 25
+Zbox Ataque 3 Munição 26
+Zbox Ataque 3 Munição 27
+Zbox Ataque 3 Munição 28
+Zbox Ataque 3 Munição 29
+Zbutton Ataque 4
+Zbox Ataque 4 Munição 0
+Zbox Ataque 4 Munição 1
+Zbox Ataque 4 Munição 2
+Zbox Ataque 4 Munição 3
+Zbox Ataque 4 Munição 4
+Zbox Ataque 4 Munição 5
+Zbox Ataque 4 Munição 10
+Zbox Ataque 4 Munição 15
+Zbox Ataque 4 Munição 20
+Zbox Ataque 4 Munição 25
+Zbutton Ataque 5
+Zbox Ataque 5 Munição 0
+Zbox Ataque 5 Munição 1
+Zbox Ataque 5 Munição 2
+Zbox Ataque 5 Munição 3
+Zbox Ataque 5 Munição 4
+Zbox Ataque 5 Munição 5
+Zbox Ataque 5 Munição 10
+Zbox Ataque 5 Munição 15
+Zbox Ataque 5 Munição 20
+Zbox Ataque 5 Munição 25
+Ataque 1
+Ataque 2
+Ataque 3
+Ataque 1 Bônus
+Ataque 1 Dano
+Ataque 1 Crítico
+Ataque 1 Alcance
+Ataque 1 Tipo
+Ataque 1 Observações
+Ataque 1 Munição
+Ataque 2 Bônus
+Ataque 2 Dano
+Ataque 2 Crítico
+Ataque 2 Alcance
+Ataque 2 Tipo
+Ataque 2 Observações
+Ataque 2 Munição
+Ataque 3 Bônus
+Ataque 3 Dano
+Ataque 3 Crítico
+Ataque 3 Alcance
+Ataque 3 Tipo
+Ataque 3 Observações
+Ataque 3 Munição
+Ataque 4
+Ataque 4 Bônus
+Ataque 4 Dano
+Ataque 4 Crítico
+Ataque 4 Alcance
+Ataque 4 Tipo
+Ataque 4 Observações
+Nome do Personagem
+Ataque 4 Munição
+Ataque 5
+Ataque 5 Bônus
+Ataque 5 Dano
+Ataque 5 Crítico
+Ataque 5 Alcance
+Ataque 5 Tipo
+Ataque 5 Observações
+Ataque 5 Munição
+Campanha
+XP Próximo Nível
+XP Atual0
+XP Atual
+XP Próximo Nível0
+XP Restante
+XP Restante0
+Talentos0
+Talentos P0
+Talentos P1
+Talentos P2
+Talentos P3
+Talentos P4
+Talentos P7
+Talentos P12
+Talentos2
+Talentos3
+Talentos4
+Talentos5
+Talentos6
+Talentos7
+Talentos8
+Talentos9
+Talentos10
+Talentos1
+Talentos11
+Talentos12
+Talentos13
+Talentos14
+Talentos15
+Talentos16
+Talentos17
+Talentos18
+Talentos19
+Talentos20
+Talentos21
+Talentos22
+Talentos P5
+Talentos P6
+Talentos P8
+Talentos P9
+Talentos P10
+Talentos P11
+Talentos P13
+Talentos P14
+Talentos P15
+Talentos P16
+Talentos P17
+Talentos P18
+Talentos P19
+Talentos P20
+Talentos P21
+Talentos P22
+Habilidades0
+Habilidades P0
+Habilidades1
+Habilidades2
+Habilidades3
+Habilidades4
+Habilidades5
+Habilidades6
+Habilidades7
+Habilidades8
+Habilidades9
+Habilidades10
+Habilidades11
+Habilidades12
+Habilidades13
+Habilidades14
+Habilidades15
+Habilidades16
+Habilidades17
+Habilidades18
+Habilidades19
+Habilidades20
+Habilidades21
+Habilidades22
+Habilidades23
+Habilidades24
+Habilidades25
+Habilidades26
+Habilidades27
+Habilidades28
+Habilidades29
+Habilidades30
+Habilidades31
+Habilidades32
+Habilidades33
+Habilidades34
+Habilidades35
+Habilidades36
+Habilidades37
+Habilidades38
+Habilidades39
+Habilidades40
+Habilidades41
+Habilidades42
+Habilidades43
+Habilidades44
+Habilidades P1
+Habilidades P2
+Habilidades P3
+Habilidades P4
+Habilidades P5
+Habilidades P6
+Habilidades P7
+Habilidades P8
+Habilidades P9
+Habilidades P10
+Habilidades P11
+Habilidades P12
+Habilidades P13
+Habilidades P14
+Habilidades P15
+Habilidades P16
+Habilidades P17
+Habilidades P18
+Habilidades P19
+Habilidades P20
+Habilidades P21
+Habilidades P22
+Habilidades P23
+Habilidades P24
+Habilidades P25
+Habilidades P26
+Habilidades P27
+Habilidades P28
+Habilidades P29
+Habilidades P30
+Habilidades P31
+Habilidades P32
+Habilidades P33
+Habilidades P34
+Habilidades P35
+Habilidades P36
+Habilidades P37
+Habilidades P38
+Habilidades P39
+Habilidades P40
+Habilidades P41
+Habilidades P42
+Habilidades P43
+Habilidades P44
+Idiomas0
+Idiomas1
+Idiomas2
+Idiomas3
+Idiomas4
+Idiomas5
+Escola
+Magias 0 Nível 0
+Magias 0 Nível 2
+Magias 0 Nível 3
+Magias 0 Nível 4
+Magias 0 Nível 5
+Magias 1 Nível 0
+Magias 0 Nível 1
+Magias 1 Nível 1
+Magias 1 Nível 2
+Magias 1 Nível 3
+Magias 1 Nível 4
+Magias 1 Nível 5
+Magias 1 Nível 6
+Magias 1 Nível 7
+Magias 2 Nível 0
+Magias 2 Nível 1
+Magias 2 Nível 2
+Magias 2 Nível 3
+Magias 2 Nível 4
+Magias 2 Nível 5
+Magias 2 Nível 6
+Magias 3 Nível 0
+Magias 3 Nível 1
+Magias 3 Nível 2
+Magias 3 Nível 3
+Magias 3 Nível 4
+Magias 3 Nível 5
+Magias 3 Nível 6
+Magias 4 Nível 0
+Magias 4 Nível 1
+Magias 4 Nível 2
+Magias 4 Nível 3
+Magias 4 Nível 4
+Magias 4 Nível 5
+Magias 5 Nível 0
+Magias 5 Nível 1
+Magias 5 Nível 2
+Magias 5 Nível 3
+Magias 5 Nível 4
+Magias 6 Nível 0
+Magias 6 Nível 1
+Magias 6 Nível 2
+Magias 6 Nível 3
+Magias 6 Nível 4
+Magias 7 Nível 0
+Magias 7 Nível 1
+Magias 7 Nível 2
+Magias 7 Nível 3
+Magias 8 Nível 0
+Magias 8 Nível 1
+Magias 8 Nível 2
+Magias 9 Nível 0
+Magias 9 Nível 1
+Chance de Falha
+Mod Condicionais0
+Mod Condicionais1
+Magias Conhecidas 0
+Magias Conhecidas 1
+Magias Conhecidas 2
+Magias Conhecidas 3
+Magias Conhecidas 4
+Magias Conhecidas 5
+Magias Conhecidas 6
+Magias Conhecidas 7
+Magias Conhecidas 8
+Magias Conhecidas 9
+TRM0
+TRM1
+TRM
+TRM2
+TRM3
+TRM4
+TRM5
+TRM6
+TRM7
+TRM8
+TRM9
+Magias por Dia 1
+Magias por Dia 2
+Magias por Dia 3
+Magias por Dia 0
+Magias por Dia 4
+Magias por Dia 5
+Magias por Dia 6
+Magias por Dia 7
+Magias por Dia 8
+Magias por Dia 9
+Magias Adcionais 1
+Magias Adcionais 2
+Magias Adcionais 3
+Magias Adcionais 4
+Magias Adcionais 5
+Magias Adcionais 6
+Magias Adcionais 7
+Magias Adcionais 8
+Magias Adcionais 9
+Armadura
+Deslocamento
+Escudo
+Item 1 Bônus
+Item 1 Peso
+Item 1 Propriedades
+Escudo Bônus
+Escudo Peso
+Escudo Penalidade
+Escudo CFM
+Escudo Propriedades
+Armadura Tipo
+Armadura Bônus
+Armadura Des Max
+Armadura Penalidade
+Armadura CFM
+Armadura Deslocamento
+Armadura Peso
+Armadura Observações
+Item 2 Bônus
+Item 2 Peso
+Item 2 Propriedades
+Item 1
+Item 2
+Itens0 Pág
+Itens0 Peso
+Itens3
+Itens4
+Itens5
+Itens6
+Itens7
+Itens8
+Itens9
+Itens10
+Itens11
+Itens12
+Itens13
+Itens14
+Itens15
+Itens16
+Itens1 Quantidade
+Itens2
+Itens2 Quantidade
+Itens3 Quantidade
+Itens4 Quantidade
+Itens5 Quantidade
+Itens6 Quantidade
+Itens7 Quantidade
+Itens8 Quantidade
+Itens9 Quantidade
+Itens10 Quantidade
+Itens11 Quantidade
+Itens12 Quantidade
+Itens13 Quantidade
+Itens14 Quantidade
+Itens15 Quantidade
+Itens16 Quantidade
+Itens1 Pág
+Itens2 Pág
+Itens4 Pág
+Itens5 Pág
+Itens6 Pág
+Itens7 Pág
+Itens8 Pág
+Itens9 Pág
+Itens10 Pág
+Itens11 Pág
+Itens12 Pág
+Itens13 Pág
+Itens14 Pág
+Itens15 Pág
+Itens16 Pág
+Itens1 Peso
+Itens2 Peso
+Itens3 Peso
+Itens4 Peso
+Itens5 Peso
+Itens6 Peso
+Itens7 Peso
+Itens8 Peso
+Itens10 Peso
+Itens11 Peso
+Itens12 Peso
+Itens13 Peso
+Itens14 Peso
+Itens15 Peso
+Itens16 Peso
+Itens17
+Itens18
+Itens19
+Itens20
+Itens21
+Itens22
+Itens23
+Itens24
+Itens25
+Itens26
+Itens27
+Itens28
+Itens29
+Itens30
+Itens31
+Itens32
+Itens17 Quantidade
+Itens17 Pág
+Itens17 Peso
+Itens18 Quantidade
+Itens18 Pág
+Itens18 Peso
+Itens19 Quantidade
+Itens19 Pág
+Itens20 Quantidade
+Itens3 Pág
+Itens20 Pág
+Itens20 Peso
+Itens21 Quantidade
+Itens21 Pág
+Itens21 Peso
+Itens22 Quantidade
+Itens22 Pág
+Itens22 Peso
+Itens23 Quantidade
+Itens23 Pág
+Itens23 Peso
+Itens24 Pág
+Itens24 Peso
+Itens24 Quantidade
+Itens25 Pág
+Itens25 Quantidade
+Itens25 Peso
+Itens26 Quantidade
+Itens26 Pág
+Itens27 Quantidade
+Itens27 Pág
+Itens27 Peso
+Itens28 Quantidade
+Itens28 Pág
+Itens28 Peso
+Itens29 Quantidade
+Itens29 Pág
+Itens29 Peso
+Itens30 Quantidade
+Itens30 Pág
+Itens30 Peso
+Itens31 Quantidade
+Itens31 Pág
+Itens31 Peso
+Itens32 Quantidade
+Itens32 Pág
+Itens32 Peso
+Itens Peso Total
+Carga Leve
+Carga Média
+Carga Pesada
+Carga Erguer Sobre a Cabeça
+Carga Erguer do Chão
+Carga Empurrar
+Itens26 Peso
+Itens9 Peso
+Itens19 Peso
+Peças de Cobre
+Peças de Cobre em Prata
+Peças de Cobre em Ouro
+Peças de Cobre em Platina
+Peças de Platina em Cobre
+Peças de Ouro em Cobre
+Peças de Prata em Cobre
+Peças de Prata em Platina
+Peças de Prata em Ouro
+Peças de Prata
+Peças de Ouro em Platina
+Peças de Platina em Prata
+Peças de Platina em Ouro
+Peças de Platina
+Peças de Ouro
+Peças de Ouro em Prata
+Peça de Cobre
+Peça de Prata
+Peça de Ouro
+Peça de Platina
+Peça Variados
+Itens0 Quantidade
+Itens0
+Itens1
+Zbox Ataque 4 Munição 6
+Zbox Ataque 4 Munição 7
+Zbox Ataque 4 Munição 8
+Zbox Ataque 4 Munição 9
+Zbox Ataque 4 Munição 14
+Zbox Ataque 4 Munição 13
+Zbox Ataque 4 Munição 12
+Zbox Ataque 4 Munição 11
+Zbox Ataque 4 Munição 19
+Zbox Ataque 4 Munição 18
+Zbox Ataque 4 Munição 17
+Zbox Ataque 4 Munição 16
+Zbox Ataque 4 Munição 24
+Zbox Ataque 4 Munição 23
+Zbox Ataque 4 Munição 22
+Zbox Ataque 4 Munição 21
+Zbox Ataque 4 Munição 26
+Zbox Ataque 4 Munição 27
+Zbox Ataque 4 Munição 28
+Zbox Ataque 4 Munição 29
+Zbox Ataque 5 Munição 29
+Zbox Ataque 5 Munição 28
+Zbox Ataque 5 Munição 27
+Zbox Ataque 5 Munição 26
+Zbox Ataque 5 Munição 24
+Zbox Ataque 5 Munição 23
+Zbox Ataque 5 Munição 22
+Zbox Ataque 5 Munição 21
+Zbox Ataque 5 Munição 19
+Zbox Ataque 5 Munição 18
+Zbox Ataque 5 Munição 17
+Zbox Ataque 5 Munição 16
+Zbox Ataque 5 Munição 14
+Zbox Ataque 5 Munição 13
+Zbox Ataque 5 Munição 12
+Zbox Ataque 5 Munição 11
+Zbox Ataque 5 Munição 9
+Zbox Ataque 5 Munição 8
+Zbox Ataque 5 Munição 7
+Zbox Ataque 5 Munição 6
