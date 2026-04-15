@@ -1,4 +1,3 @@
-// 100% 
 export const bonusRacialAtributos = {
     humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
     anao: { constituicao: 2, carisma: -2 },
@@ -12,3 +11,7 @@ export const bonusRacialAtributos = {
 export const bonusRacialResistencia = {
     halfling: { fort: 1, ref: 1, von: 1 }
 };
+
+export function getBonusRacial(race) {
+    return bonusRacialAtributos[race] || { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 };
+}
