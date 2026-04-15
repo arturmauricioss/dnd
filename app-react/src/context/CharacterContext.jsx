@@ -3,6 +3,44 @@ import { getBonusRacial } from '../data/bonusRaciais'
 
 const CharacterContext = createContext(null)
 
+const prioridadeAtributosPorClasse = {
+  barbaro: ['forca', 'constituicao', 'destreza', 'sabedoria', 'carisma', 'inteligencia'],
+  guerreiro: ['forca', 'constituicao', 'destreza', 'sabedoria', 'carisma', 'inteligencia'],
+  paladino: ['forca', 'carisma', 'constituicao', 'sabedoria', 'destreza', 'inteligencia'],
+  ranger: ['destreza', 'forca', 'sabedoria', 'constituicao', 'inteligencia', 'carisma'],
+  ladino: ['destreza', 'inteligencia', 'constituicao', 'carisma', 'sabedoria', 'forca'],
+  monge: ['sabedoria', 'destreza', 'constituicao', 'forca', 'inteligencia', 'carisma'],
+  clerigo: ['sabedoria', 'constituicao', 'forca', 'carisma', 'destreza', 'inteligencia'],
+  druida: ['sabedoria', 'constituicao', 'destreza', 'inteligencia', 'forca', 'carisma'],
+  mago: ['inteligencia', 'destreza', 'constituicao', 'sabedoria', 'carisma', 'forca'],
+  feiticeiro: ['carisma', 'constituicao', 'destreza', 'inteligencia', 'sabedoria', 'forca'],
+  bardo: ['carisma', 'destreza', 'inteligencia', 'constituicao', 'sabedoria', 'forca'],
+}
+
+const distribuirAtributosPorClasse = (classe) => {
+  const valores = [15, 14, 13, 12, 10, 8]
+  const prioridade = prioridadeAtributosPorClasse[classe]
+
+  if (!prioridade) {
+    return {
+      forca: 15,
+      destreza: 14,
+      constituicao: 13,
+      inteligencia: 12,
+      sabedoria: 10,
+      carisma: 8,
+    }
+  }
+
+  const atributos = {}
+
+  prioridade.forEach((atributo, index) => {
+    atributos[atributo] = valores[index]
+  })
+
+  return atributos
+}
+
 const estadoInicial = {
   character_name: '',
   player: '',
@@ -18,7 +56,7 @@ const estadoInicial = {
   height: '',
   weight: '',
   usarKit: false,
-  
+
   atributos: {
     forca: 15,
     destreza: 14,
@@ -27,7 +65,7 @@ const estadoInicial = {
     sabedoria: 10,
     carisma: 8,
   },
-  
+
   atributosRacial: {
     forca: 0,
     destreza: 0,
@@ -36,29 +74,37 @@ const estadoInicial = {
     sabedoria: 0,
     carisma: 0,
   },
-  
+
   pericias: {},
   pontosPericiaDisponiveis: 0,
   maxGraduacaoPorPericia: 0,
-  
+
   combat: {
     bba: 0,
     hp: { atual: 0, max: 0 },
     deslocamento: 0,
     iniciativa: { total: 0, outros: 0 },
-    ca: { total: 0, armor: 0, dex: 0, size: 0, natural: 0, deflection: 0, misc: 0 },
+    ca: {
+      total: 0,
+      armor: 0,
+      dex: 0,
+      size: 0,
+      natural: 0,
+      deflection: 0,
+      misc: 0,
+    },
     fort: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
     ref: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
     von: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
   },
-  
+
   weapons: [],
   equipment: {
     armor: null,
     shield: null,
     money: { po: 0, pl: 0, pp: 0, pc: 0 },
   },
-  
+
   talentos: [],
   habilidadesEspeciais: [],
 }
@@ -69,20 +115,28 @@ export function CharacterProvider({ children }) {
   const [selectedClass, setSelectedClass] = useState('selecione')
   const [selectedAlignment, setSelectedAlignment] = useState('selecione')
 
-  const atualizarCampo = useCallback((campo, valor) => {
-    setPersonagem(prev => ({
+const atualizarCampo = useCallback((campo, valor) => {
+  setPersonagem(prev => {
+    const novoEstado = {
       ...prev,
-      [campo]: valor
-    }))
-  }, [])
+      [campo]: valor,
+    }
+
+    if (campo === 'classe' && valor !== 'selecione') {
+      novoEstado.atributos = distribuirAtributosPorClasse(valor)
+    }
+
+    return novoEstado
+  })
+}, [])
 
   const atualizarAtributo = useCallback((atributo, valor) => {
     setPersonagem(prev => ({
       ...prev,
       atributos: {
         ...prev.atributos,
-        [atributo]: valor
-      }
+        [atributo]: valor,
+      },
     }))
   }, [])
 
@@ -91,8 +145,8 @@ export function CharacterProvider({ children }) {
       ...prev,
       atributosRacial: {
         ...prev.atributosRacial,
-        [atributo]: valor
-      }
+        [atributo]: valor,
+      },
     }))
   }, [])
 
@@ -103,9 +157,9 @@ export function CharacterProvider({ children }) {
         ...prev.pericias,
         [nomePericia]: {
           ...prev.pericias[nomePericia],
-          [campo]: valor
-        }
-      }
+          [campo]: valor,
+        },
+      },
     }))
   }, [])
 
@@ -114,14 +168,21 @@ export function CharacterProvider({ children }) {
       ...prev,
       combat: {
         ...prev.combat,
-        [campo]: valor
-      }
+        [campo]: valor,
+      },
+    }))
+  }, [])
+
+  const aplicarAtributosSugeridos = useCallback((classe) => {
+    setPersonagem(prev => ({
+      ...prev,
+      atributos: distribuirAtributosPorClasse(classe),
     }))
   }, [])
 
   const getAtributoTotal = useCallback((atributo) => {
     const base = personagem.atributos[atributo] || 10
-    const racial = getBonusRacial(personagem.race)[atributo] || 0
+    const racial = getBonusRacial(personagem.race)?.[atributo] || 0
     return base + racial
   }, [personagem.atributos, personagem.race])
 
@@ -144,6 +205,7 @@ export function CharacterProvider({ children }) {
     atualizarAtributoRacial,
     atualizarPericia,
     atualizarCombat,
+    aplicarAtributosSugeridos,
     getAtributoTotal,
     getModificador,
   }
@@ -158,8 +220,10 @@ export function CharacterProvider({ children }) {
 // eslint-disable-next-line react-refresh/only-export-components
 export function useCharacter() {
   const context = useContext(CharacterContext)
+
   if (!context) {
     throw new Error('useCharacter must be used within a CharacterProvider')
   }
+
   return context
 }

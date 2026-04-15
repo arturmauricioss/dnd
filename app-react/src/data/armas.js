@@ -143,7 +143,7 @@ export const todasArmas = {
   // ARMAS EXÓTICAS - Uma Mão
   // "chicote": { nome: "Chicote", categoria: "exotica", subcategoria: "uma_mao", custo: 100, dano: "1d3", critico: "x2", alcance: "-", peso: 1, tipo1: "cortante", tipo2: "", img:"/dnd/armas/chicote.png" },
   // "espada-bastarda": { nome: "Espada bastarda", categoria: "exotica", subcategoria: "uma_mao", custo: 3500, dano: "1d10", critico: "19-20/x2", alcance: "-", peso: 3, tipo1: "cortante", tipo2: "", img:"/dnd/armas/espada-bastarda.png" },
-  // "machado-guerra-anano": { nome: "Machado de guerra anão", categoria: "exotica", subcategoria: "uma_mao", custo: 3000, dano: "1d10", critico: "x3", alcance: "-", peso: 4, tipo1: "cortante", tipo2: "", img:"/dnd/armas/machado-guerra-anano.png" },
+  "machado-guerra-anao": { nome: "Machado de guerra anão", categoria: "exotica", subcategoria: "uma_mao", custo: 3000, dano: "1d10", critico: "x3", alcance: "-", peso: 4, tipo1: "cortante", tipo2: "", img:"/dnd/armas/machado-guerra-anao.png" },
 
   // ARMAS EXÓTICAS - Duas Mãos
   // "corrente-cravos": { nome: "Corrente com cravos", categoria: "exotica", subcategoria: "duas_maos", custo: 2500, dano: "2d4", critico: "x2", alcance: "-", peso: 10, tipo1: "perfurante", tipo2: "", img:"/dnd/armas/corrente-cravos.png" },
@@ -151,7 +151,7 @@ export const todasArmas = {
   // "machado-orc-duplo": { nome: "Machado orc duplo", categoria: "exotica", subcategoria: "duas_maos", custo: 6000, dano: "1d8/1d8", critico: "x3", alcance: "-", peso: 12.5, tipo1: "cortante", tipo2: "", img:"/dnd/armas/machado-orc-duplo.png" },
   // "mangual-atroz": { nome: "Mangual atroz", categoria: "exotica", subcategoria: "duas_maos", custo: 9000, dano: "1d8/1d8", critico: "x2", alcance: "-", peso: 10, tipo1: "concussao", tipo2: "", img:"/dnd/armas/mangual-atroz.png" },
   // "martelo-gnomo-gancho": { nome: "Martelo gnomo com gancho", categoria: "exotica", subcategoria: "duas_maos", custo: 2000, dano: "1d8/1d6", critico: "x3/x4", alcance: "-", peso: 3, tipo1: "concussao", tipo2: "perfurante", img:"/dnd/armas/martelo-gnomo-gancho.png" },
-  "urgrosh-anao": { nome: "Urgrosh anão", categoria: "exotica", subcategoria: "duas_maos", custo: 5000, dano: "1d8/1d6", critico: "x3", alcance: "-", peso: 11, tipo1: "cortante", tipo2: "perfurante", img:"/dnd/armas/urgrosh-anao.png" },
+  // "urgrosh-anao": { nome: "Urgrosh anão", categoria: "exotica", subcategoria: "duas_maos", custo: 5000, dano: "1d8/1d6", critico: "x3", alcance: "-", peso: 11, tipo1: "cortante", tipo2: "perfurante", img:"/dnd/armas/urgrosh-anao.png" },
 
   // ARMAS EXÓTICAS - Distância
   // "besta-repeticao-leve": { nome: "Besta leve de repetição", categoria: "exotica", subcategoria: "distancia", custo: 25000, dano: "1d8", critico: "19-20/x2", alcance: "24m", peso: 3, tipo1: "perfurante", tipo2: "", img:"/dnd/armas/besta-repeticao-leve.png" },
