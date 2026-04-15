@@ -1,20 +1,19 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useMemo } from 'react'
 import './ItemCard.css'
 export default function ItemCard({ item, onClick }) {
   const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
   const nameRef = useRef(null)
   const containerRef = useRef(null)
-  const [overflow, setOverflow] = useState(0)
 
-  useEffect(() => {
+  const overflow = useMemo(() => {
     if (nameRef.current && containerRef.current) {
       const textWidth = nameRef.current.scrollWidth
       const containerWidth = containerRef.current.clientWidth
       const charWidth = textWidth / item.nome.length
       const overflowAmount = textWidth - containerWidth
-      const scrollAmount = Math.max(0, overflowAmount > 0 ? charWidth : 0)
-      setOverflow(Math.round(scrollAmount))
+      return Math.max(0, overflowAmount > 0 ? charWidth : 0)
     }
+    return 0
   }, [item.nome])
 
   return (
@@ -26,7 +25,7 @@ export default function ItemCard({ item, onClick }) {
           <span 
             ref={nameRef} 
             className={`item-name ${overflow > 0 ? 'scrolling' : ''}`}
-            style={{ '--overflow': `-${overflow}px` }}
+            style={{ '--overflow': `-${Math.round(overflow)}px` }}
           >
             {item.nome}
           </span>

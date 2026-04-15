@@ -5,29 +5,12 @@ import { converterParaCobre } from '../data/dinheiro'
 import ItemCard from '../components/ItemCard'
 import './Loja.css'
 
-// ⚠️ IMPORTANTE: tudo aqui precisa bater com IDs do itemDatabase
-const kitsClasse = {
-  barbaro: ['machadoGrande', 'arcoCurto', 'adaga', 'couroBatido', 'mochila', 'cantil', 'racao', 'sacoDormir', 'saco', 'pederneira', 'isqueiro'],
-  bardo: ['espadaLonga', 'bestaLeve', 'couroBatido', 'mochila', 'cantil', 'racao', 'alaude', 'bolsaComponentes'],
-  clerigo: ['macaPesada', 'bestaLeve', 'brunea', 'madeiraPesado', 'simboloSagrado', 'mochila', 'cantil'],
-  druida: ['cimitarra', 'clava', 'funda', 'azevinho', 'mochila', 'cantil'],
-  feiticeiro: ['lancaCurta', 'bestaLeve', 'bolsaComponentes', 'lanterna', 'oleo500', 'mochila'],
-  guerreiro: ['machadoGrande', 'arcoCurto', 'brunea', 'madeiraPesado', 'mochila', 'cantil'],
-  ladino: ['espadaCurta', 'bestaLeve', 'adaga', 'couro', 'ferramentasLadrao', 'mochila'],
-  mago: ['bestaLeve', 'grimorio', 'mochila', 'cantil'],
-  monge: ['funda', 'clava', 'tochas', 'mochila'],
-  paladino: ['espadaLonga', 'arcoCurto', 'brunea', 'madeiraPesado', 'simboloSagrado', 'lanterna'],
-  ranger: ['espadaLonga', 'espadaCurta', 'arcoLongo', 'couroBatido', 'mochila']
-}
-
 export default function Loja() {
   const { personagem, atualizarCampo } = useCharacter()
   const [carrinho, setCarrinho] = useState([])
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
   const [expandido, setExpandido] = useState(true)
   const carrinhoRef = useRef(null)
-
-  const classe = personagem.classe
 
   const money = useMemo(() => {
     return personagem.equipment?.money || {
@@ -92,28 +75,6 @@ export default function Loja() {
     )
   }
 
-  // const comprarKitBasico = () => {
-  //   const kit = kitsClasse?.[classe]
-  //   if (!kit?.length) return
-
-  //   const novoCarrinho = []
-
-  //   kit.forEach((id) => {
-  //     const item = todosItens[id]
-  //     if (!item) return
-
-  //     const existente = novoCarrinho.find((i) => i.id === id)
-
-  //     if (existente) {
-  //       existente.quantidade += 1
-  //     } else {
-  //       novoCarrinho.push({ id, ...item, quantidade: 1 })
-  //     }
-  //   })
-
-  //   setCarrinho(novoCarrinho)
-  // }
-
   const finalizarCompra = () => {
     if (!podeComprar) return
 
@@ -170,16 +131,6 @@ export default function Loja() {
               {statusMensagem === 'ok' ? 'OK' : statusMensagem === 'faltando' ? 'Saldo insuficiente' : ''}
             </span>
           </div>
-
-          {/* <div className="loja-actions">
-
-            {!!kitsClasse?.[classe]?.length && (
-              <button className="btn-kit" onClick={comprarKitBasico}>
-                Kit da Classe
-              </button>
-            )}
-
-          </div> */}
 
           <div className="itens-grid">
             {Object.entries(todosItens).map(([id, item]) => (

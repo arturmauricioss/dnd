@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { getDinheiroInicial } from '../data/itemDatabase'
-import { converterParaPO, converterParaCobre } from '../data/dinheiro'
+import { converterParaPO } from '../data/dinheiro'
 import './dinheiro.css'
 
 export default function Dinheiro() {
@@ -34,6 +34,7 @@ export default function Dinheiro() {
       ...personagem.equipment,
       money: dinheiroClasse
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [personagem.classe, dinheiroClasse, atualizarCampo])
 
   const totalPO = useMemo(() => {

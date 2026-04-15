@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useCharacter } from '../context/CharacterContext'
 
 const armadurasPredefinidas = [
   { nome: 'Couro', bonus: 2, penalidade: 5, maxDex: 6 },
@@ -17,7 +16,6 @@ const escudosPredefinidos = [
 ]
 
 export default function Equipment() {
-  const { personagem, atualizarCampo } = useCharacter()
   
   const [armadura, setArmadura] = useState(null)
   const [escudo, setEscudo] = useState(null)
