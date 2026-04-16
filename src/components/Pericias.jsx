@@ -41,12 +41,19 @@ const habilidadeAbreviada = {
 
 export default function Pericias() {
   const [expandido, setExpandido] = useState(true)
-  const { personagem, getModificador } = useCharacter()
+  const { personagem, getModificador, atualizarCampo } = useCharacter()
+
+  const periciasAtivas = periciasConfig.filter(p => {
+    if (p.nome === 'Alfabetização') {
+      return personagem.classe === 'barbaro'
+    }
+    return true
+  })
 
   const [periciasState, setPericiasState] = useState(() => {
     const inicial = {}
 
-    periciasConfig.forEach((p) => {
+    periciasAtivas.forEach((p) => {
       inicial[p.nome] = {
         graduacao: 0,
         outros: 0,
@@ -83,7 +90,7 @@ export default function Pericias() {
   }, [personagem.classe, personagem.race, nivel, base, intMod])
 
   const habilidadesOrdenadas = useMemo(() => {
-    const sorted = [...periciasConfig].sort((a, b) =>
+    const sorted = [...periciasAtivas].sort((a, b) =>
       a.nome.localeCompare(b.nome, 'pt-BR')
     )
 
@@ -93,7 +100,7 @@ export default function Pericias() {
       primeira: sorted.slice(0, meio),
       segunda: sorted.slice(meio),
     }
-  }, [])
+  }, [periciasAtivas])
 
   const maxGradPorNivel = nivel + 3
 
@@ -114,7 +121,7 @@ export default function Pericias() {
 
       let gastos = 0
 
-      periciasConfig.forEach((p) => {
+      periciasAtivas.forEach((p) => {
         const grad = novaState[p.nome]?.graduacao || 0
         const isClasse = isPericiaDeClasse(p.nome)
 
@@ -124,6 +131,11 @@ export default function Pericias() {
       if (gastos > pontosPericia) {
         return prev // cancela mudança
       }
+
+      // Atualizar pontos de Falar Idioma no personagem
+      const falarIdiomaGrad = novaState["Falar Idioma"]?.graduacao || 0
+      atualizarCampo('pontosFalarIdioma', falarIdiomaGrad)
+      atualizarCampo('pericias', novaState)
 
       return novaState
     })
@@ -171,7 +183,7 @@ export default function Pericias() {
   const verificarPontos = () => {
     let gastos = 0
 
-    periciasConfig.forEach((p) => {
+    periciasAtivas.forEach((p) => {
       const estado = periciasState[p.nome]
 
       if (estado?.graduacao > 0) {
@@ -220,7 +232,7 @@ export default function Pericias() {
           <input
             type="number"
             min="0"
-            max={isClasse ? maxGradPorNivel : maxGradPorNivel / 2}
+            max={pericia.nome === 'Alfabetização' ? 2 : (isClasse ? maxGradPorNivel : maxGradPorNivel / 2)}
             step={isClasse ? 1 : 0.5}
             value={estado?.graduacao || 0}
             onChange={(e) => {

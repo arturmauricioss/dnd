@@ -2,6 +2,7 @@ import { CharacterProvider } from './context/CharacterContext'
 import CharacterHeader from './components/CharacterHeader'
 import Atributos from './components/Atributos'
 import Pericias from './components/Pericias'
+import Idiomas from './components/Idiomas'
 import Combat from './components/Combat'
 import Dinheiro from './components/Dinheiro'
 import Loja from './components/Loja'
@@ -18,6 +19,7 @@ function App() {
           <Atributos />
           <Combat />
           <Pericias />
+          <Idiomas />
           <Dinheiro />
           <Loja />
         </div>

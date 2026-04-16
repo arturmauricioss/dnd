@@ -1,4 +1,4 @@
-import { divindades, getDeusesPorAlinhamento } from './divindades'
+import { getDeusesPorAlinhamento } from './divindades'
 import { podeSelecionarAlinhamento as podeSelecionarAlinhamentoOriginal } from './restricoesClasse'
 import { bonusRacialAtributos, bonusRacialResistencia } from './bonusRaciais'
 

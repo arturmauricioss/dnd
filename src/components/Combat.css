@@ -307,3 +307,8 @@ display: flex;
    font-size: 18px;
    color: var(--primary);
 }
+
+.combat-stat.highlight {
+  background: #fef08a !important;
+  box-shadow: 0 0 0 2px #eab308;
+}

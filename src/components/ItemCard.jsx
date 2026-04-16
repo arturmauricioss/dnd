@@ -1,19 +1,21 @@
-import { useRef, useMemo } from 'react'
+import { useRef, useState, useEffect } from 'react'
+import { traducoes } from '../data/traducoes'
 import './ItemCard.css'
+
 export default function ItemCard({ item, onClick }) {
   const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
   const nameRef = useRef(null)
   const containerRef = useRef(null)
+  const [overflow, setOverflow] = useState(0)
 
-  const overflow = useMemo(() => {
+  useEffect(() => {
     if (nameRef.current && containerRef.current) {
       const textWidth = nameRef.current.scrollWidth
       const containerWidth = containerRef.current.clientWidth
       const charWidth = textWidth / item.nome.length
       const overflowAmount = textWidth - containerWidth
-      return Math.max(0, overflowAmount > 0 ? charWidth : 0)
+      setOverflow(Math.round(Math.max(0, overflowAmount > 0 ? charWidth : 0)))
     }
-    return 0
   }, [item.nome])
 
   return (
@@ -74,8 +76,8 @@ export default function ItemCard({ item, onClick }) {
 
         {isArma && (
           <div className="stats-row">
-            <span><b>Cat:</b> {item.categoria || '-'}</span>
-            <span><b>Sub:</b> {item.subcategoria || '-'}</span>
+            <span><b>Cat:</b> {traducoes.categoria[item.categoria] || item.categoria || '-'}</span>
+            <span><b>Sub:</b> {traducoes.subcategoria[item.subcategoria] || item.subcategoria || '-'}</span>
           </div>
         )}
 

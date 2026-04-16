@@ -105,6 +105,9 @@ const estadoInicial = {
     money: { po: 0, pl: 0, pp: 0, pc: 0 },
   },
 
+  idiomas: [],
+  pontosFalarIdioma: 0,
+
   talentos: [],
   habilidadesEspeciais: [],
 }

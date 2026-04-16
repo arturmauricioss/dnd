@@ -115,6 +115,46 @@ h3 {
 
 @media (max-width: 768px) {
   .app {
+    padding: 8px;
+  }
+
+  .ficha {
+    gap: 12px;
+  }
+
+  .section-content {
     padding: 12px;
+  }
+
+  h3 {
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+
+  .section-header h3 {
+    padding: 10px 12px;
+  }
+
+  .btn-collapse {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 4px;
+  }
+
+  .ficha {
+    gap: 8px;
+  }
+
+  .section-content {
+    padding: 8px;
+  }
+
+  h3 {
+    padding: 8px 10px;
+    font-size: 0.9rem;
   }
 }

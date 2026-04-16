@@ -339,6 +339,42 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
+
+  .item-card {
+    min-height: 120px;
+  }
+
+  .item-card .card-image {
+    height: 50px;
+  }
+
+  .item-card .card-image img,
+  .item-card .card-image span {
+    font-size: 24px !important;
+  }
+
+  .item-card .card-header {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .item-card .card-stats,
+  .item-card .card-description {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+
+  .item-card .card-footer {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .itens-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
 }
 
 .item-loja {
