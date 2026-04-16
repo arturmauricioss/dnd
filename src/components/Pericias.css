@@ -176,13 +176,38 @@
 
   .pericias-header-mobile {
     display: grid;
-    grid-template-columns: 35% 15% 15% 15% 20%;
+    grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
     gap: 2px;
     padding: 8px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     background: var(--secondary);
     border-radius: 8px;
+  }
+
+  .pericias-header-mobile > span {
+    text-align: center;
+  }
+
+  .pericia-item {
+    display: grid;
+    grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    gap: 2px;
+  }
+
+  .pericia-nome {
+    font-size: 0.8rem;
+  }
+
+  .pericia-total input,
+  .pericia-graduacao input,
+  .pericia-outros input {
+    max-width: 50px;
+    font-size: 0.8rem;
+  }
+
+  .pericia-hab {
+    font-size: 0.75rem;
   }
 }
 
@@ -195,58 +220,42 @@
     flex-direction: column;
   }
 
+  .pericias-header-mobile {
+    display: grid;
+    grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    gap: 2px;
+    padding: 8px;
+  }
+
+  .pericias-header-mobile > span {
+    text-align: center;
+  }
+
   .pericia-item {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 4px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    gap: 2px;
     padding: 6px 4px;
     min-height: 36px;
   }
 
-  .pericias-header-mobile {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 4px;
-    padding: 8px 4px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: var(--secondary);
-    border-radius: 8px;
-  }
-
-  .pericias-header-mobile span {
-    flex: 1;
-    min-width: 0;
-    text-align: center;
-  }
-
   .pericia-nome {
-    flex: 2;
     font-size: 0.75rem;
-    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .pericia-total,
-  .pericia-graduacao,
-  .pericia-hab,
-  .pericia-outros {
-    flex: 1;
-    min-width: 0;
-    text-align: center;
-    font-size: 0.75rem;
-  }
-
   .pericia-total input,
   .pericia-graduacao input,
   .pericia-outros input {
-    width: 100%;
-    min-width: 0;
+    max-width: 40px;
     font-size: 0.75rem;
     padding: 2px;
+  }
+
+  .pericia-hab {
+    font-size: 0.7rem;
   }
 }
 

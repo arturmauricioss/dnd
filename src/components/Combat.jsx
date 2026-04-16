@@ -197,7 +197,7 @@ export default function Combat() {
               <div className="stat-value">
                 {dexMod >= 0 ? `+${dexMod}` : dexMod}
               </div>
-              <div className="stat-detail">Dex</div>
+              <div className="stat-detail">Des</div>
             </div>
 
             <div className="combat-stat">
@@ -234,15 +234,48 @@ export default function Combat() {
               </div>
             </div>
 
-            <div className="combat-stat compact">
+            <div className="combat-stat compact stat-rm">
               <div className="stat-label">RM</div>
               <div className="stat-value small">0</div>
             </div>
 
-            <div className="combat-stat compact">
+            <div className="combat-stat compact stat-toque" onMouseEnter={(e) => {
+              e.currentTarget.closest('.combat-row').querySelector('.stat-ca')?.classList.add('highlight')
+              e.currentTarget.classList.add('highlight')
+            }} onMouseLeave={(e) => {
+              e.currentTarget.closest('.combat-row').querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'))
+            }}>
+              <div className="stat-label">Toque</div>
+              <div className="stat-value small">{caToque}</div>
+              <div className="stat-detail">
+                Des {dexMod >= 0 ? `+${dexMod}` : dexMod}
+              </div>
+            </div>
+
+            <div className="combat-stat compact stat-ca" onMouseEnter={(e) => {
+              e.currentTarget.classList.add('highlight')
+              e.currentTarget.closest('.combat-row').querySelectorAll('.stat-toque, .stat-surp').forEach(el => el.classList.add('highlight'))
+            }} onMouseLeave={(e) => {
+              e.currentTarget.closest('.combat-row').querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'))
+            }}>
               <div className="stat-label">CA</div>
               <div className="stat-value small">{caNormal}</div>
-              <div className="stat-detail">Tq {caToque} · Sur {caSurpresa}</div>
+              <div className="stat-detail">
+                Base 10 Tam {modTamanho.ca >= 0 ? `+${modTamanho.ca}` : modTamanho.ca}
+              </div>
+            </div>
+
+            <div className="combat-stat compact stat-surp" onMouseEnter={(e) => {
+              e.currentTarget.closest('.combat-row').querySelector('.stat-ca')?.classList.add('highlight')
+              e.currentTarget.classList.add('highlight')
+            }} onMouseLeave={(e) => {
+              e.currentTarget.closest('.combat-row').querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'))
+            }}>
+              <div className="stat-label">Surp</div>
+              <div className="stat-value small">{caSurpresa}</div>
+              <div className="stat-detail">
+                {caValores.armadura > 0 && `${caValores.armadura} Arm `}{caValores.escudo > 0 && `${caValores.escudo} Esc `}{caValores.natural > 0 && `${caValores.natural} Nat`}
+              </div>
             </div>
 
             <div className="combat-stat compact">

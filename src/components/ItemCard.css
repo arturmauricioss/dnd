@@ -124,3 +124,38 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 600px) {
+  .item-card {
+    min-height: 100px;
+    border-radius: 6px;
+  }
+
+  .card-header {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  .card-image {
+    height: 50px;
+  }
+
+  .arma-emoji {
+    font-size: 24px;
+  }
+
+  .card-description {
+    font-size: 9px;
+    padding: 4px;
+  }
+
+  .card-stats {
+    font-size: 9px;
+    padding: 4px;
+  }
+
+  .card-footer {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}

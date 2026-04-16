@@ -2,6 +2,7 @@ export const periciasConfig = [
   { nome: "Abrir Fechaduras", habilidade: "destreza", penalidade: 0, somente_treinado: true },
   { nome: "Acrobacia", habilidade: "destreza", penalidade: 1, somente_treinado: true },
   { nome: "Adestrar Animais", habilidade: "carisma", penalidade: 0, somente_treinado: true },
+  { nome: "Alfabetização", habilidade: "nenhuma", penalidade: 0, somente_treinado: false, custo_fixo: 2 },
   { nome: "Arte da Fuga", habilidade: "destreza", penalidade: 1, somente_treinado: false },
   { nome: "Avaliação", habilidade: "inteligencia", penalidade: 0, somente_treinado: false },
   { nome: "Blefar", habilidade: "carisma", penalidade: 0, somente_treinado: false },
@@ -98,7 +99,7 @@ export const periciasConfig = [
 
 export const periciasPorClasse = {
   barbaro: [
-    "Adestrar Animais", "Cavalgar", "Escalar", "Intimidação", "Natação",
+    "Adestrar Animais", "Alfabetização", "Cavalgar", "Escalar", "Intimidação", "Natação",
     "Ouvir", "Saltar", "Sobrevivência"
   ],
   bardo: [
