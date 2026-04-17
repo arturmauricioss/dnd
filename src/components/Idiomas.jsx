@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { idiomasRaciais, idiomasClasseExtras, idiomaClasseFixo, TODOS_IDIOMAS } from '../data/idiomas'
+import { useNavigate } from 'react-router-dom'
 import './Idiomas.css'
 
 export default function Idiomas() {
+  const navigate = useNavigate()
   const { personagem, atualizarCampo, getModificador } = useCharacter()
   const [expandido, setExpandido] = useState(true)
   
@@ -142,6 +144,11 @@ export default function Idiomas() {
           )}
         </div>
       )}
+      <div style={{ marginTop: '20px' }}>
+        <button className="btn-next" onClick={() => navigate('/dinheiro')}>
+          Próximo →
+        </button>
+      </div>
     </div>
   )
 }

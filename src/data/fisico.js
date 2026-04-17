@@ -1,42 +1,42 @@
 export const fisicoPorRaca = {
   humano: {
-    masculino: { altura: "1.65m - 1.90m", peso: "60 - 100kg" },
-    feminino: { altura: "1.55m - 1.80m", peso: "50 - 80kg" }
+    masculino: { altura: "1.65 m - 1.90 m" , peso: "60 - 100 Kg" },
+    feminino: { altura: "1.55 m - 1.80 m" , peso: "50 - 80 Kg" }
   },
   elfo: {
-    masculino: { altura: "1.70m - 2.00m", peso: "55 - 80kg" },
-    feminino: { altura: "1.60m - 1.90m", peso: "45 - 70kg" }
+    masculino: { altura: "1.70 m - 2.00 m" , peso: "55 - 80 Kg" },
+    feminino: { altura: "1.60 m - 1.90 m" , peso: "45 - 70 Kg" }
   },
   anao: {
-    masculino: { altura: "1.20m - 1.40m", peso: "70 - 100kg" },
-    feminino: { altura: "1.10m - 1.30m", peso: "60 - 90kg" }
+    masculino: { altura: "1.20 m - 1.40 m" , peso: "70 - 100 Kg" },
+    feminino: { altura: "1.10 m - 1.30 m" , peso: "60 - 90 Kg" }
   },
   halfling: {
-    masculino: { altura: "0.90m - 1.10m", peso: "30 - 40kg" },
-    feminino: { altura: "0.85m - 1.05m", peso: "25 - 35kg" }
+    masculino: { altura: "0.90 m - 1.10 m" , peso: "30 - 40 Kg" },
+    feminino: { altura: "0.85 m - 1.05 m" , peso: "25 - 35 Kg" }
   },
   gnomo: {
-    masculino: { altura: "0.90m - 1.10m", peso: "35 - 45kg" },
-    feminino: { altura: "0.85m - 1.05m", peso: "30 - 40kg" }
+    masculino: { altura: "0.90 m - 1.10 m" , peso: "35 - 45 Kg" },
+    feminino: { altura: "0.85 m - 1.05 m" , peso: "30 - 40 Kg" }
   },
   "meio-elfo": {
-    masculino: { altura: "1.65m - 1.95m", peso: "55 - 90kg" },
-    feminino: { altura: "1.55m - 1.85m", peso: "45 - 75kg" }
+    masculino: { altura: "1.65 m - 1.95 m" , peso: "55 - 90 Kg" },
+    feminino: { altura: "1.55 m - 1.85 m" , peso: "45 - 75 Kg" }
   },
   "meio-orc": {
-    masculino: { altura: "1.80m - 2.10m", peso: "80 - 120kg" },
-    feminino: { altura: "1.70m - 2.00m", peso: "70 - 100kg" }
+    masculino: { altura: "1.80 m - 2.10 m" , peso: "80 - 120 Kg" },
+    feminino: { altura: "1.70 m - 2.00 m" , peso: "70 - 100 Kg" }
   }
 }
 
 export const fisicoGeral = {
-  humano: { altura: "1.55m - 1.90m", peso: "50 - 100kg" },
-  elfo: { altura: "1.60m - 2.00m", peso: "45 - 80kg" },
-  anao: { altura: "1.10m - 1.40m", peso: "60 - 100kg" },
-  halfling: { altura: "0.85m - 1.10m", peso: "25 - 40kg" },
-  gnomo: { altura: "0.85m - 1.10m", peso: "30 - 45kg" },
-  "meio-elfo": { altura: "1.55m - 1.95m", peso: "45 - 90kg" },
-  "meio-orc": { altura: "1.70m - 2.10m", peso: "70 - 120kg" }
+  humano: { altura: "1.55 m - 1.90 m" , peso: "50 - 100 Kg" },
+  elfo: { altura: "1.60 m - 2.00 m" , peso: "45 - 80 Kg" },
+  anao: { altura: "1.10 m - 1.40 m" , peso: "60 - 100 Kg" },
+  halfling: { altura: "0.85 m - 1.10 m" , peso: "25 - 40 Kg" },
+  gnomo: { altura: "0.85 m - 1.10 m" , peso: "30 - 45 Kg" },
+  "meio-elfo": { altura: "1.55 m - 1.95 m" , peso: "45 - 90 Kg" },
+  "meio-orc": { altura: "1.70 m - 2.10 m" , peso: "70 - 120 Kg" }
 }
 
 export const idadePorRaca = {

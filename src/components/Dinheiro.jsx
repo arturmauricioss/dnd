@@ -2,9 +2,11 @@ import { useMemo, useState, useEffect } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { getDinheiroInicial } from '../data/itemDatabase'
 import { converterParaPO } from '../data/dinheiro'
+import { useNavigate } from 'react-router-dom'
 import './dinheiro.css'
 
 export default function Dinheiro() {
+  const navigate = useNavigate()
   const { personagem, atualizarCampo } = useCharacter()
   const [expandido, setExpandido] = useState(true)
 
@@ -110,6 +112,11 @@ export default function Dinheiro() {
         </div>
       </div>
       )}
+      <div style={{ marginTop: '20px' }}>
+        <button className="btn-next" onClick={() => navigate('/loja')}>
+          Próximo →
+        </button>
+      </div>
     </div>
   )
 }
