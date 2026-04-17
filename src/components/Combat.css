@@ -1,69 +1,45 @@
 .combat-container {
   display: flex;
   flex-direction: column;
-  /* gap: 16px; */
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding-block: 20px;
+  gap: 12px;
 }
 
+/* 🔥 GRID PRINCIPAL (AQUI ESTÁ A MÁGICA) */
 .combat-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
 }
 
-.combat-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
+/* =========================
+   CARDS BASE
+========================= */
 .combat-stat {
-  flex: 1;
-  min-width: 80px;
   background: var(--secondary);
   padding: 12px;
   border-radius: 10px;
   text-align: center;
-}
 
-.combat-stat.compact {
-  flex: 1;
-  min-width: 70px;
-  padding: 8px 12px;
-}
-
-.combat-stat.compact .stat-value.small {
-  font-size: 1.1rem;
-}
-
-.pv-input-group {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
   justify-content: center;
-  gap: 4px;
+
+  min-height: 90px;
 }
 
-.pv-input-group .combat-pv-input {
-  width: 50px;
-  padding: 4px;
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+/* versão compacta */
+.combat-stat.compact {
+  padding: 8px 10px;
+  min-height: 70px;
 }
 
-.pv-sep {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
-
-.pv-max {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
+/* =========================
+   LABELS / VALUES
+========================= */
 .stat-label {
   font-size: 0.7rem;
   font-weight: 600;
@@ -78,218 +54,32 @@
   color: var(--primary);
 }
 
+.stat-value.small {
+  font-size: 1.1rem;
+}
+
 .stat-detail {
   font-size: 0.65rem;
   color: var(--text-light);
   margin-top: 4px;
+  min-height: 14px;
 }
 
-/* CA + PV */
-.ca-section {
+/* =========================
+   PV INPUT
+========================= */
+.pv-input-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  padding: 12px 60px;
-  min-height: 100px;
-  background: var(--secondary);
-  border-radius: 12px;
-}
-
-.combat-block {
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.combat-block-label {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-light);
-  display: block;
-  margin-bottom: 4px;
-}
-
-.pv-row {
-display: flex;
-  align-items: baseline;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-.combat-pv-max {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary);
-  opacity: 0.8;
-  line-height: 1;
-}
-
-.rm-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-/* CA */
-.ca-layout {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  border-left: 2px solid rgba(0, 0, 0, 0.05);
-  padding-left: 20px;
-}
-
-.ca-total {
-  text-align: center;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-.ca-total-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--primary);
-  line-height: 1;
-}
-
-.ca-side-values {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.ca-side-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  background: var(--card);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  min-width: 80px;
-  border: 1px solid var(--border);
-}
-
-.ca-side-box span {
-  color: var(--text-light);
-  font-weight: 700;
-}
-
-.ca-side-box strong {
-  color: var(--primary);
-}
-
-.ca-breakdown {
-  display: grid;
-  grid-template-columns: repeat(4, 110px);
-  gap: 4px;
-  font-size: 0.7rem;
-}
-
-.ca-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 8px;
-  background: var(--card);
-  border-radius: 4px;
-  border: 2px solid transparent;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.ca-item.highlight {
-  border-color: var(--success);
-  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
-}
-
-.ca-item-label {
-  color: var(--text-light);
-}
-
-/* Saves */
-.saves-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.save-card {
-  background: var(--secondary);
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.save-title {
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-}
-
-.save-value {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.save-detail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 0.75rem;
-  color: var(--text-light);
-  margin-top: 4px;
-}
-
-/* Responsivo */
-@media (max-width: 1024px) {
-  .ca-section {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 20px;
-  }
-
-  .ca-layout {
-    flex-direction: column;
-    align-items: stretch;
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .ca-breakdown {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .combat-row {
-    display: grid;
-    gap: 8px;
-  }
-
-  .combat-row:first-of-type {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .combat-row:last-of-type {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .saves-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .ca-breakdown {
-    grid-template-columns: 1fr;
-  }
-}
 .combat-pv-input {
-  width: 70px;
+  width: 60px;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--primary);
 
   background: transparent;
   border: none;
@@ -297,18 +87,40 @@ display: flex;
   outline: none;
 
   padding: 2px 4px;
-  line-height: 1;
 }
+
 .combat-pv-input:focus {
   border-bottom-color: var(--primary);
 }
-.input-line.combat-pv-input{
-   padding: 0;
-   font-size: 18px;
-   color: var(--primary);
+
+.pv-sep {
+  color: var(--text-light);
 }
 
+.pv-max {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* =========================
+   HIGHLIGHT (CA interações)
+========================= */
 .combat-stat.highlight {
   background: #fef08a !important;
   box-shadow: 0 0 0 2px #eab308;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  .combat-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .combat-content {
+    grid-template-columns: 1fr;
+  }
 }
