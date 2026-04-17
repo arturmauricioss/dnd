@@ -1,72 +1,105 @@
+/* CONTAINER GERAL */
 .character-header {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
+  max-width: 800px;
+  margin: auto;
 }
 
+/* GRID PRINCIPAL */
 .header-row {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 16px;
-  width: 100%;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
 }
 
+/* SPAN */
+.span-2 {
+  grid-column: span 2;
+}
+
+/* FIELD GROUP */
 .field-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  min-width: 0;
+  gap: 4px;
 }
 
+/* LABEL */
 .field-group label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-light);
 }
 
+/* INPUT / SELECT */
 .field-group input,
 .field-group select {
   width: 100%;
-  min-width: 0;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: 0.2s ease;
 }
 
-/* spans */
-.span-2 { grid-column: span 2; }
-.span-3 { grid-column: span 3; }
-.span-4 { grid-column: span 4; }
-.span-6 { grid-column: span 6; }
+/* FOCUS */
+.field-group input:focus,
+.field-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
 
-/* notebook */
-@media (max-width: 1200px) {
+/* READONLY */
+.field-group input[readonly] {
+  background: var(--secondary);
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+/* PLACEHOLDER */
+.field-group input::placeholder {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+/* TABLET */
+@media (max-width: 620px) {
   .header-row {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .span-6 { grid-column: span 6; }
-  .span-4 { grid-column: span 3; }
-  .span-3 { grid-column: span 3; }
-  .span-2 { grid-column: span 2; }
-}
-
-/* tablet */
-@media (max-width: 768px) {
-  .header-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .field-group {
-    grid-column: span 1 !important;
+  .span-2 {
+    grid-column: span 1;
   }
 }
 
-/* celular */
+/* MOBILE */
 @media (max-width: 480px) {
   .header-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .field-group {
-    grid-column: span 1 !important;
+  .span-2 {
+    grid-column: span 1;
+  }
+}
+
+/* MOBILE PEQUENO */
+@media (max-width: 320px) {
+  .header-row {
+    grid-template-columns: 1fr;
+  }
+
+  .span-2 {
+    grid-column: span 1;
   }
 }

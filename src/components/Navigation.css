@@ -1,0 +1,48 @@
+.nav-wrapper {
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* mantém alinhado com atributos automaticamente */
+.nav-buttons {
+  max-width: 800px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BOTÕES */
+.btn-prev,
+.btn-next {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* VOLTAR */
+.btn-prev {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-light);
+}
+
+.btn-prev:hover {
+  background: var(--secondary);
+  color: var(--text);
+}
+
+/* PRÓXIMO */
+.btn-next {
+  border: none;
+  background: var(--primary);
+  color: white;
+}
+
+.btn-next:hover {
+  background: var(--primary-dark);
+}

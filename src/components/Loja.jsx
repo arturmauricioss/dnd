@@ -3,9 +3,11 @@ import { useCharacter } from '../context/CharacterContext'
 import { todosItens } from '../data/itemDatabase'
 import { converterParaCobre } from '../data/dinheiro'
 import ItemCard from '../components/ItemCard'
+import { useNavigate } from 'react-router-dom'
 import './Loja.css'
 
 export default function Loja() {
+  const navigate = useNavigate()
   const { personagem, atualizarCampo } = useCharacter()
   const [carrinho, setCarrinho] = useState([])
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
@@ -213,6 +215,11 @@ export default function Loja() {
 
       </div>
       )}
+      <div style={{ marginTop: '20px' }}>
+        <button className="btn-next" onClick={() => navigate('/atributos')}>
+          Próximo →
+        </button>
+      </div>
     </div>
   )
 }

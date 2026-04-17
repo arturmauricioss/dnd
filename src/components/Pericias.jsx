@@ -3,6 +3,7 @@ import { useCharacter } from '../context/CharacterContext'
 import { periciasConfig, periciasPorClasse } from '../data/pericias'
 import { getBonusPericiaRacial } from '../data/bonusPericias'
 import { getPenalidadeTotal } from '../data/itemDatabase'
+import { useNavigate } from 'react-router-dom'
 import './Pericias.css'
 
 const pontosPorClasse = {
@@ -40,6 +41,7 @@ const habilidadeAbreviada = {
 }
 
 export default function Pericias() {
+  const navigate = useNavigate()
   const [expandido, setExpandido] = useState(true)
   const { personagem, getModificador, atualizarCampo } = useCharacter()
 
@@ -336,6 +338,11 @@ export default function Pericias() {
           </div>
         </div>
       )}
+      <div style={{ marginTop: '20px' }}>
+        <button className="btn-next" onClick={() => navigate('/idiomas')}>
+          Próximo →
+        </button>
+      </div>
     </div>
   )
 }

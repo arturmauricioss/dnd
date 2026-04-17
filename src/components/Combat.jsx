@@ -4,9 +4,11 @@ import { getClasse, getBonusSaveRacial } from '../data/opcoes'
 import { getModificadoresTamanho } from '../data/tamanho'
 import { getBBABase, getProgressaoBBA } from '../data/bba'
 import { getDeslocamento, deslocamentoPorRaca, bonusDeslocamentoPorClasse } from '../data/deslocamento'
+import { useNavigate } from 'react-router-dom'
 import './Combat.css'
 
 export default function Combat() {
+  const navigate = useNavigate()
   const { personagem, getModificador, atualizarCampo } = useCharacter()
   const [expandido, setExpandido] = useState(true)
 
@@ -313,6 +315,11 @@ export default function Combat() {
           </div>
       </div>
       )}
+      <div style={{ marginTop: '20px' }}>
+        <button className="btn-next" onClick={() => navigate('/pericias')}>
+          Próximo →
+        </button>
+      </div>
     </div>
   )
 }

@@ -4,6 +4,9 @@ import { bonusRacialAtributos, bonusRacialResistencia } from './bonusRaciais'
 
 export { getDeusesPorAlinhamento }
 
+/* =========================
+   RAÇAS
+========================= */
 export const racas = [
   { id: 'selecione', nome: 'SELECIONE...', bonus: {} },
   { id: 'humano', nome: 'HUMANO' },
@@ -15,6 +18,9 @@ export const racas = [
   { id: 'halfling', nome: 'HALFLING' },
 ]
 
+/* =========================
+   CLASSES
+========================= */
 export const classes = [
   { id: 'selecione', nome: 'SELECIONE...' },
   { id: 'barbaro', nome: 'BÁRBARO', dadoVida: 12, fort: 2, ref: 0, von: 0, bba: 1 },
@@ -30,6 +36,9 @@ export const classes = [
   { id: 'ranger', nome: 'RANGER', dadoVida: 8, fort: 2, ref: 2, von: 0, bba: 0.75 },
 ]
 
+/* =========================
+   ALINHAMENTOS
+========================= */
 export const alinhamentos = [
   { id: 'selecione', nome: 'SELECIONE...', deity: null },
   { id: 'lawful_good', nome: 'LEAL BOM', deity: ['lawful'] },
@@ -43,19 +52,25 @@ export const alinhamentos = [
   { id: 'chaotic_evil', nome: 'CAÓTICO MALIGNO', deity: ['chaotic'] },
 ]
 
+/* =========================
+   SEXO
+========================= */
 export const sexos = [
   { id: 'selecione', nome: 'SELECIONE...' },
   { id: 'masculino', nome: 'MASCULINO' },
   { id: 'feminino', nome: 'FEMININO' },
 ]
 
+/* =========================
+   ATRIBUTOS (NOVO PADRÃO)
+========================= */
 export const atributos = [
-  { id: 'forca', nome: 'FORÇA' },
-  { id: 'destreza', nome: 'DESTREZA' },
-  { id: 'constituicao', nome: 'CONSTITUIÇÃO' },
-  { id: 'inteligencia', nome: 'INTELIGÊNCIA' },
-  { id: 'sabedoria', nome: 'SABEDORIA' },
-  { id: 'carisma', nome: 'CARISMA' },
+  { id: 'forca', nome: 'FORÇA', curto: 'FOR' },
+  { id: 'destreza', nome: 'DESTREZA', curto: 'DES' },
+  { id: 'constituicao', nome: 'CONSTITUIÇÃO', curto: 'CON' },
+  { id: 'inteligencia', nome: 'INTELIGÊNCIA', curto: 'INT' },
+  { id: 'sabedoria', nome: 'SABEDORIA', curto: 'SAB' },
+  { id: 'carisma', nome: 'CARISMA', curto: 'CAR' },
 ]
 
 export const atributosFormatados = {
@@ -67,8 +82,14 @@ export const atributosFormatados = {
   carisma: 'Carisma',
 }
 
+/* =========================
+   NÍVEIS
+========================= */
 export const niveis = Array.from({ length: 21 }, (_, i) => i)
 
+/* =========================
+   GETTERS
+========================= */
 export function getRaca(id) {
   return racas.find(r => r.id === id) || racas[0]
 }
@@ -81,6 +102,9 @@ export function getAlinhamento(id) {
   return alinhamentos.find(a => a.id === id) || alinhamentos[0]
 }
 
+/* =========================
+   BÔNUS RACIAIS
+========================= */
 export function getBonusRacial(racaId) {
   return bonusRacialAtributos[racaId] || {}
 }
@@ -89,10 +113,16 @@ export function getBonusSaveRacial(racaId) {
   return bonusRacialResistencia[racaId] || { fort: 0, ref: 0, von: 0 }
 }
 
+/* =========================
+   REGRAS
+========================= */
 export function podeSelecionarAlinhamento(classeId, alinhamentoId) {
   return podeSelecionarAlinhamentoOriginal(classeId, alinhamentoId)
 }
 
+/* =========================
+   CÁLCULOS
+========================= */
 export function calcularModificador(valor) {
   return Math.floor((valor - 10) / 2)
 }
@@ -104,13 +134,18 @@ export function calcularBBA(nivel, classeId) {
 }
 
 export function calcularHP(dadoVida, nivel, constituicaoMod) {
-  const hpBase = dadoVida
-  return hpBase + (constituicaoMod * nivel)
+  return dadoVida + (constituicaoMod * nivel)
 }
 
 export function calcularSaveBase(classeId, tipo) {
   const classe = getClasse(classeId)
   if (!classe) return 0
-  const saves = { fort: classe.fort, ref: classe.ref, von: classe.von }
+
+  const saves = {
+    fort: classe.fort,
+    ref: classe.ref,
+    von: classe.von,
+  }
+
   return saves[tipo] || 0
 }
