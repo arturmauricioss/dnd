@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback } from 'react'
-import { getBonusRacial } from '../data/bonusRaciais'
+import { getBonusRacial } from '../components/Racas/racasLogic'
 
 const CharacterContext = createContext(null)
 
@@ -44,10 +44,10 @@ const distribuirAtributosPorClasse = (classe) => {
 const estadoInicial = {
   character_name: '',
   player: '',
-  classe: 'selecione',
+  classe: 'guerreiro',
   level_class: 1,
   level_profession: 0,
-  race: 'selecione',
+  race: 'humano',
   alignment: 'selecione',
   deity: 'selecione',
   profession: '',
@@ -115,23 +115,23 @@ const estadoInicial = {
 export function CharacterProvider({ children }) {
   const [personagem, setPersonagem] = useState(estadoInicial)
   const [selectedRace, setSelectedRace] = useState('humano')
-  const [selectedClass, setSelectedClass] = useState('selecione')
+  const [selectedClass, setSelectedClass] = useState('guerreiro')
   const [selectedAlignment, setSelectedAlignment] = useState('selecione')
 
-const atualizarCampo = useCallback((campo, valor) => {
-  setPersonagem(prev => {
-    const novoEstado = {
-      ...prev,
-      [campo]: valor,
-    }
+  const atualizarCampo = useCallback((campo, valor) => {
+    setPersonagem(prev => {
+      const novoEstado = {
+        ...prev,
+        [campo]: valor,
+      }
 
-    if (campo === 'classe' && valor !== 'selecione') {
-      novoEstado.atributos = distribuirAtributosPorClasse(valor)
-    }
+      if (campo === 'classe' && valor !== 'selecione') {
+        novoEstado.atributos = distribuirAtributosPorClasse(valor)
+      }
 
-    return novoEstado
-  })
-}, [])
+      return novoEstado
+    })
+  }, [])
 
   const atualizarAtributo = useCallback((atributo, valor) => {
     setPersonagem(prev => ({

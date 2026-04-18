@@ -1,0 +1,126 @@
+.combat-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding-block: 20px;
+  gap: 12px;
+}
+
+/* 🔥 GRID PRINCIPAL (AQUI ESTÁ A MÁGICA) */
+.combat-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+/* =========================
+   CARDS BASE
+========================= */
+.combat-stat {
+  background: var(--secondary);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 90px;
+}
+
+/* versão compacta */
+.combat-stat.compact {
+  padding: 8px 10px;
+  min-height: 70px;
+}
+
+/* =========================
+   LABELS / VALUES
+========================= */
+.stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-value.small {
+  font-size: 1.1rem;
+}
+
+.stat-detail {
+  font-size: 0.65rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  min-height: 14px;
+}
+
+/* =========================
+   PV INPUT
+========================= */
+.pv-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.combat-pv-input {
+  width: 60px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--success);
+  outline: none;
+
+  padding: 2px 4px;
+}
+
+.combat-pv-input:focus {
+  border-bottom-color: var(--primary);
+}
+
+.pv-sep {
+  color: var(--text-light);
+}
+
+.pv-max {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* =========================
+   HIGHLIGHT (CA interações)
+========================= */
+.combat-stat.highlight {
+  background: #fef08a !important;
+  box-shadow: 0 0 0 2px #eab308;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  .combat-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .combat-content {
+    grid-template-columns: 1fr;
+  }
+}
