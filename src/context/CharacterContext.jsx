@@ -170,7 +170,7 @@ export function CharacterProvider({ children }) {
     setPersonagem(prev => ({
       ...prev,
       combat: {
-        ...prev.combat,
+        ...(prev.combat || {}),
         [campo]: valor,
       },
     }))
