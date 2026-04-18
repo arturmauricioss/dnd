@@ -26,10 +26,11 @@ export default function Personagem() {
     }
     
     let deusesClasse = []
+    let deusesTendencia = []
     
     if (isClerigo) {
-      // Clérigo: usar lógica de alinhamento (1 passo)
-      deusesClasse = deusesAlinhamento
+      // Clérigo: usa deusesAlinhamento como base (não usa deusesPorClasse)
+      // Os deuses raciais já são adicionados depois
     } else {
       // Não-clérigo: TODOS os deuses da classe (sem filtro de alinhamento)
       const deusesClasseIds = getDeusesPorClasse(personagem.classe)
@@ -38,23 +39,30 @@ export default function Personagem() {
         const deus = getDeusPorId(id)
         return deus ? { value: deus.value, nome: deus.nome } : null
       }).filter(Boolean)
-    }
-    
-    // Deuses por tendência (alinhamento) que não são raciais nem da classe
-    let deusesTendencia = []
-    if (temAlinhamento) {
-      const deusesRaciaisValues = deusesRaciais.map(d => d.value)
-      const deusesClasseValues = deusesClasse.map(d => d.value)
       
-      deusesTendencia = deusesAlinhamento.filter(d => 
-        !deusesRaciaisValues.includes(d.value) && 
-        !deusesClasseValues.includes(d.value)
-      )
+      // Deuses por tendência que não são raciais nem da classe
+      if (temAlinhamento) {
+        const deusesRaciaisValues = deusesRaciais.map(d => d.value)
+        const deusesClasseValues = deusesClasse.map(d => d.value)
+        
+        deusesTendencia = deusesAlinhamento.filter(d => 
+          !deusesRaciaisValues.includes(d.value) && 
+          !deusesClasseValues.includes(d.value)
+        )
+      }
     }
     
-    // Combina: raciais + classe + tendência
-    const todosDeuses = [...deusesRaciais, ...deusesClasse, ...deusesTendencia]
-    const uniqueDeuses = todosDeuses.filter((deus, index, self) => 
+    // Combina os deuses baseado no tipo de classe
+    let deusesFinais
+    if (isClerigo) {
+      // Clérigo: raciais + deuses por alinhamento
+      deusesFinais = [...deusesRaciais, ...deusesAlinhamento]
+    } else {
+      // Não-clérigo: raciais + classe + tendência
+      deusesFinais = [...deusesRaciais, ...deusesClasse, ...deusesTendencia]
+    }
+    
+    const uniqueDeuses = deusesFinais.filter((deus, index, self) => 
       index === self.findIndex(d => d.value === deus.value)
     )
     

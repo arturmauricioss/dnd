@@ -8,10 +8,15 @@ export function calcularPassos(alinhamento1, alinhamento2) {
 }
 
 export function getDeusesPorAlinhamento(alinhamentoId) {
-    if (!alinhamentoId || alinhamentoId === 'selecione') return divindades
+    if (!alinhamentoId || alinhamentoId === 'selecione') return []
+    
+    const posAlinhamento = passoPorAlinhamento[alinhamentoId]
+    if (!posAlinhamento) return []
     
     return divindades.filter(d => {
-        const passos = calcularPassos(alinhamentoId, d.alinhamento)
+        const posDeus = passoPorAlinhamento[d.alinhamento]
+        if (!posDeus) return false
+        const passos = Math.abs(posAlinhamento[0] - posDeus[0]) + Math.abs(posAlinhamento[1] - posDeus[1])
         return passos <= 1
     })
 }

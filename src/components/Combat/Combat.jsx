@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { getClasse } from '../Classes/classesData'
 import { getModificadoresTamanho } from './tamanhoData'
@@ -8,10 +8,8 @@ import { Navigation } from '../global'
 import './Combat.css'
 
 export default function Combat() {
-  const { personagem, getModificador, atualizarCombat } = useCharacter()
+  const { personagem, getModificador } = useCharacter()
   const [expandido] = useState(true)
-
-  const hpMaxAnterior = useRef(0)
 
   const buildBreakdown = (parts) =>
     parts
@@ -66,24 +64,6 @@ export default function Combat() {
 
     return total
   }, [classe, nivel, conMod])
-
-  useEffect(() => {
-    if (!hpMax || hpMax <= 0) return
-
-    const hpAtual = personagem.combat?.hp?.atual
-    const hpAnterior = hpMaxAnterior.current
-    const hpNaoDefinido = hpAtual == null
-    const hpEstavaCheio = hpAtual === hpAnterior
-
-    if (hpNaoDefinido || hpEstavaCheio) {
-      atualizarCombat('hp', {
-        ...personagem.combat?.hp,
-        atual: hpMax
-      })
-    }
-
-    hpMaxAnterior.current = hpMax
-  }, [hpMax, atualizarCombat])
 
   const deslocamento = useMemo(
     () => getDeslocamento(personagem.race, personagem.classe),
