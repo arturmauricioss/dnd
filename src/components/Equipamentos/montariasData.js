@@ -1,0 +1,23 @@
+export const montarias = {
+  alforje: { nome: "Alforje", custo: 400, peso: "4 kg" },
+  alimentacao: { nome: "Alimentação (por dia)", custo: 5, peso: "5 kg" },
+  armadura_montaria_g: { nome: "Armadura de montaria (Grande)", custo: 0, peso: "x2" },
+  armadura_montaria_m: { nome: "Armadura de montaria (Média)", custo: 0, peso: "x4" },
+  cachorro_montaria: { nome: "Cachorro de montaria", custo: 15000, peso: "-" },
+  cao_guarda: { nome: "Cão de guarda", custo: 2500, peso: "-" },
+  cavalo_guerra_leve: { nome: "Cavalo de guerra leve", custo: 15000, peso: "-" },
+  cavalo_guerra_pesado: { nome: "Cavalo de guerra pesado", custo: 40000, peso: "-" },
+  cavalo_leve: { nome: "Cavalo leve", custo: 7500, peso: "-" },
+  cavalo_pesado: { nome: "Cavalo pesado", custo: 20000, peso: "-" },
+  pônei_guerra: { nome: "Pônei de guerra", custo: 10000, peso: "-" },
+  ponei: { nome: "Pônei", custo: 3000, peso: "-" },
+  estalagem: { nome: "Estábulo (por dia)", custo: 50, peso: "-" },
+  freio_redeas: { nome: "Freio e rédeas", custo: 200, peso: "0,5 kg" },
+  jumento: { nome: "Jumento ou mula", custo: 800, peso: "-" },
+  sela_carga: { nome: "Sela de carga", custo: 500, peso: "7,5 kg" },
+  sela_militar: { nome: "Sela militar", custo: 2000, peso: "15 kg" },
+  sela_montaria: { nome: "Sela de montaria", custo: 1000, peso: "12,5 kg" },
+  sela_exotica_carga: { nome: "Sela exótica de carga", custo: 1500, peso: "10 kg" },
+  sela_exotica_militar: { nome: "Sela exótica militar", custo: 6000, peso: "20 kg" },
+  sela_exotica_montaria: { nome: "Sela exótica de montaria", custo: 3000, peso: "15 kg" }
+};
