@@ -1,10 +1,7 @@
 import { deslocamentoPorRaca } from '../Racas/racasData'
+import { bonusDeslocamentoPorClasse } from '../Classes/classesData'
 
-export { deslocamentoPorRaca }
-
-export const bonusDeslocamentoPorClasse = {
-  barbaro: 3
-}
+export { deslocamentoPorRaca, bonusDeslocamentoPorClasse }
 
 export function getDeslocamento(raca, classe) {
   const base = deslocamentoPorRaca[raca] || 6

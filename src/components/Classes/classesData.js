@@ -29,6 +29,10 @@ export const dinheiroInicialClasse = {
   ranger: { po: 150, pl: 0, pp: 0, pc: 0 }
 }
 
+export const bonusDeslocamentoPorClasse = {
+  barbaro: 3
+}
+
 export const deusesPorClasse = {
   barbaro: ['kord', 'obad_hai', 'erythnul'],
   bardo: ['pelor', 'fharlanghn', 'olidammara'],
