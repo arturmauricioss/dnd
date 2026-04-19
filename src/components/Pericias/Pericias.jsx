@@ -56,6 +56,17 @@ export default function Pericias() {
     calculateHabilidadesOrdenadas({ classe, level_class: nivel, race }),
   [classe, nivel, race])
 
+  const listaIntercalada = useMemo(() => {
+    const { primeira, segunda } = habilidadesOrdenadas
+    const intercalada = []
+    const max = Math.max(primeira.length, segunda.length)
+    for (let i = 0; i < max; i++) {
+      if (primeira[i]) intercalada.push(primeira[i])
+      if (segunda[i]) intercalada.push(segunda[i])
+    }
+    return intercalada
+  }, [habilidadesOrdenadas])
+
   const renderPericia = (pericia) => {
     const estado = periciasState[pericia.nome] || { graduacao: 0, outros: 0 }
     const grad = estado.graduacao
@@ -104,30 +115,22 @@ export default function Pericias() {
     <div className="pericias-container">
       <div className="pericias-info">
         <div className="info-item">
-          <span>Pontos disponíveis:</span>
+          <span>Total</span>
           <strong>{pontosPericia}</strong>
         </div>
 
         <div className="info-item">
-          <span>Saldo:</span>
+          <span>Saldo</span>
           <strong>{pontosRestantes}</strong>
         </div>
 
         <div className="info-item">
-          <span>Máx. graduação:</span>
+          <span>Máx. Grad.</span>
           <strong>{maxGradPorNivel}</strong>
         </div>
       </div>
 
       <div>
-        <div className="pericias-header-mobile">
-          <span>Perícia</span>
-          <span>Total</span>
-          <span>Grad</span>
-          <span>Hab</span>
-          <span>Outros</span>
-        </div>
-
         <div className="pericias-list">
           <div className="pericias-coluna">
             <div className="pericias-header">
@@ -150,6 +153,17 @@ export default function Pericias() {
             </div>
             {habilidadesOrdenadas.segunda.map(renderPericia)}
           </div>
+        </div>
+
+        <div className="pericias-list-mobile">
+          <div className="pericias-header">
+            <span>Perícia</span>
+            <span>Total</span>
+            <span>Grad</span>
+            <span>Hab</span>
+            <span>Outros</span>
+          </div>
+          {listaIntercalada.map(renderPericia)}
         </div>
       </div>
 

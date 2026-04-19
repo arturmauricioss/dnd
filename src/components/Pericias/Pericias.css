@@ -1,5 +1,5 @@
 .pericias-container {
-  padding: 20px;
+  /* padding: 20px; */
   max-width: 800px;
   margin: 0 auto;
 }
@@ -30,14 +30,6 @@
   color: #333;
 }
 
-.pericias-header-mobile {
-  display: none;
-  padding: 10px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-
 .pericias-list {
   display: flex;
   gap: 20px;
@@ -47,9 +39,13 @@
   flex: 1;
 }
 
+.pericias-list-mobile {
+  display: none;
+}
+
 .pericias-header {
   display: grid;
-  grid-template-columns: 1fr 50px 50px 50px 60px;
+  grid-template-columns: 1fr 40px 50px 40px 40px;
   gap: 5px;
   padding: 10px;
   background: #2c3e50;
@@ -61,7 +57,7 @@
 
 .pericia-row {
   display: grid;
-  grid-template-columns: 1fr 50px 50px 50px 60px;
+  grid-template-columns: 1fr 40px 50px 40px 40px;
   gap: 5px;
   padding: 10px;
   border-bottom: 1px solid #eee;
@@ -131,6 +127,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .pericia-row input[type="number"]::-webkit-outer-spin-button,
@@ -139,36 +136,52 @@
   margin: 0;
 }
 
-@media (max-width: 600px) {
-  .pericias-header {
+@media (max-width: 728px) {
+  .pericias-container {
+    padding: 10px;
+  }
+
+  .pericias-info {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+  }
+
+  .pericias-list,
+  .pericias-coluna {
     display: none;
   }
 
-  .pericias-header-mobile {
-    display: grid;
-    grid-template-columns: 1fr 50px 50px 50px 60px;
-    gap: 5px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
-  }
-
   .pericias-list {
-    flex-direction: column;
+    display: none;
   }
 
-  .pericia-row {
-    grid-template-columns: 1fr 50px 50px 50px 60px;
+  .pericias-list-mobile {
+    display: block;
+  }
+
+  .pericias-list-mobile .pericias-header {
+    position: sticky;
+    top: 60px;
+    z-index: 10;
+  }
+}
+@media (max-width:480px) {
+  .pericia-nome,
+  .pericia-row,
+  .pericias-header {
     font-size: 12px;
   }
-
-  .pericia-nome {
-    font-size: 12px;
+  
+  .pericia-row, .pericias-header {
+    display: grid;
+    grid-template-columns: 1fr 30px 40px 30px 30px;
   }
-
   .pericia-row input[type="number"] {
     width: 40px;
-    padding: 3px;
-    font-size: 12px;
+    padding: 2px;
   }
 }
