@@ -33,6 +33,14 @@ export const bonusDeslocamentoPorClasse = {
   barbaro: 3
 }
 
+export const alinhamentosPorClasse = {
+  paladino: ["lawful_good"],
+  monge: ["lawful_good", "lawful_neutral", "lawful_evil"],
+  barbaro: ["non_lawful"],
+  bardo: ["non_lawful"],
+  druida: ["true_neutral", "neutral_good", "neutral_evil", "lawful_neutral", "chaotic_neutral"]
+}
+
 export const deusesPorClasse = {
   barbaro: ['kord', 'obad_hai', 'erythnul'],
   bardo: ['pelor', 'fharlanghn', 'olidammara'],
