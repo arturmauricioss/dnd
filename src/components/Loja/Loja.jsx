@@ -4,12 +4,11 @@ import { todosItens } from '../Equipamentos/equipamentosLogic'
 import { converterParaCobre } from '../Inventario/dinheiroData'
 import { getDinheiroInicial } from '../Classes/classesData'
 import ItemCard from '../ItemCard/ItemCard'
-import { useNavigate } from 'react-router-dom'
 import { Navigation, Page } from '../global'
 import './Loja.css'
 
 export default function Loja() {
-  const navigate = useNavigate()
+
   const { personagem, atualizarCampo } = useCharacter()
   const [carrinho, setCarrinho] = useState([])
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
@@ -94,27 +93,49 @@ export default function Loja() {
 
     const armadura = carrinho.find(i => i.tipo === 'armadura')
     const escudo = carrinho.find(i => i.tipo === 'escudo')
-    const armas = carrinho.filter(i => i.tipo === 'arma')
-    const outros = carrinho.filter(i =>
+    const armasCarrinho = carrinho.filter(i => i.tipo === 'arma')
+    const outrosCarrinho = carrinho.filter(i =>
       i.tipo !== 'arma' &&
       i.tipo !== 'armadura' &&
       i.tipo !== 'escudo'
     )
 
+    const armasAnteriores = personagem.equipment?.weapons || []
+    const itensAnteriores = personagem.equipment?.itens || []
+
+    const armasCombinadas = [...armasAnteriores]
+    armasCarrinho.forEach(arma => {
+      const existente = armasCombinadas.find(a => a.id === arma.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (arma.quantidade || 1)
+      } else {
+        armasCombinadas.push({ id: arma.id, quantidade: arma.quantidade || 1 })
+      }
+    })
+
+    const itensCombinados = [...itensAnteriores]
+    outrosCarrinho.forEach(item => {
+      const existente = itensCombinados.find(i => i.id === item.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (item.quantidade || 1)
+      } else {
+        itensCombinados.push({ id: item.id, quantidade: item.quantidade || 1 })
+      }
+    })
+
     atualizarCampo('equipment', {
       ...personagem.equipment,
       money: moedasRestantes,
-      armor: armadura?.id || '',
-      shield: escudo?.id || '',
-      weapons: armas,
-      itens: outros
+      armor: armadura?.id || personagem.equipment?.armor || '',
+      shield: escudo?.id || personagem.equipment?.shield || '',
+      weapons: armasCombinadas,
+      itens: itensCombinados
     })
 
     setCarrinho([])
   }
 
   return (
-    <Page>
       <div className="loja-container">
         <div className="loja-layout">
           <div className="loja-items">
@@ -205,14 +226,7 @@ export default function Loja() {
             </div>
           )}
         </div>
-
-        <div style={{ marginTop: '20px' }}>
-          <button className="btn-next" onClick={() => navigate('/atributos')}>
-            Próximo →
-          </button>
-        </div>
-        <Navigation prev="/inventario" />
+        <Navigation prev="/idiomas" next="/inventario"/>
       </div>
-    </Page>
   )
 }
