@@ -1,6 +1,8 @@
 .loja-container {
   width: 100%;
   position: relative;
+  max-width: 800px;
+  margin: auto;
 }
 
 .loja-container h3 {
@@ -318,64 +320,22 @@
 
 .itens-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
-@media (max-width: 1200px) {
+
+@media (max-width: 680px) {
   .itens-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-
-@media (max-width: 900px) {
-  .itens-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 560px) {
   .itens-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  .item-card {
-    min-height: 120px;
-  }
-
-  .item-card .card-image {
-    height: 50px;
-  }
-
-  .item-card .card-image img,
-  .item-card .card-image span {
-    font-size: 24px !important;
-  }
-
-  .item-card .card-header {
-    padding: 4px 6px;
-    font-size: 10px;
-  }
-
-  .item-card .card-stats,
-  .item-card .card-description {
-    padding: 4px 6px;
-    font-size: 9px;
-  }
-
-  .item-card .card-footer {
-    padding: 4px 6px;
-    font-size: 10px;
   }
 }
 
-@media (max-width: 400px) {
-  .itens-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
-}
 
 .item-loja {
   display: flex;
@@ -499,5 +459,12 @@
   .item-loja {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+@media (max-width:340px) {
+  .itens-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4px;
   }
 }

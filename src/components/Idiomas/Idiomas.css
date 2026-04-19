@@ -1,9 +1,7 @@
 .idiomas-container {
   width: 100%;
-}
-
-.idiomas-content {
-  padding: 16px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .idiomas-info {

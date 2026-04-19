@@ -1,5 +1,5 @@
-import { idiomasRaciais, idiomasClasseExtras, idiomaClasseFixo, TODOS_IDIOMAS } from './idiomasData'
-import { podeUsarAlfabetizacao } from '../Classes/classesData'
+import { idiomasRaciais, TODOS_IDIOMAS } from './idiomasData'
+import { podeUsarAlfabetizacao, getIdiomasExtrasPorClasse, getIdiomasFixosClasse as getIdiomasFixosClasseData } from '../Classes/classesData'
 
 export function getIdiomasBase(raca) {
   const dadosRaca = idiomasRaciais[raca] || { base: ['Comum'], extras: [] }
@@ -8,21 +8,25 @@ export function getIdiomasBase(raca) {
 
 export function getPoolExtras(raca, classe) {
   const dadosRaca = idiomasRaciais[raca] || { base: ['Comum'], extras: [] }
-  let poolExtras = [...dadosRaca.extras]
+  let poolExtras = []
   
-  if (idiomasClasseExtras[classe]) {
-    poolExtras.push(...idiomasClasseExtras[classe])
+  // Se extras for null, pode aprender qualquer idioma (humano, meio-elfo)
+  if (dadosRaca.extras === null) {
+    poolExtras = [...TODOS_IDIOMAS]
+  } else {
+    poolExtras = [...dadosRaca.extras]
   }
   
-  if (raca === 'humano' || raca === 'meio-elfo') {
-    poolExtras = [...TODOS_IDIOMAS]
+  const extrasPorClasse = getIdiomasExtrasPorClasse(classe)
+  if (extrasPorClasse.length > 0) {
+    poolExtras.push(...extrasPorClasse)
   }
   
   return [...new Set(poolExtras)]
 }
 
 export function getIdiomasFixosClasse(classe) {
-  return idiomaClasseFixo[classe] || []
+  return getIdiomasFixosClasseData(classe)
 }
 
 export function calcularQtdExtras(intMod, pontosFalarIdioma) {
@@ -39,12 +43,9 @@ export function getAlfabetizacao(classe, alfabetizacaoGrad) {
   return 'Alfabetizado'
 }
 
-export function validarIdiomasAtuais(idiomasAtuais, raca, classe) {
-  const idiomasBase = getIdiomasBase(raca)
-  const idiomasFixos = getIdiomasFixosClasse(classe)
-  const todosValidos = [...idiomasBase, ...idiomasFixos]
-  
-  return idiomasAtuais.filter(id => todosValidos.includes(id))
+export function validarIdiomasAtuais(idiomasAtuais) {
+  // Idiomas extras são válidos - não remove idiomas que o usuário adicionou
+  return idiomasAtuais
 }
 
 export function getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse) {

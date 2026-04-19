@@ -1,7 +1,8 @@
 import { useMemo, useState, useRef } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { todosItens } from '../Equipamentos/equipamentosLogic'
-import { converterParaCobre } from '../Dinheiro/dinheiroData'
+import { converterParaCobre } from '../Inventario/dinheiroData'
+import { getDinheiroInicial } from '../Classes/classesData'
 import ItemCard from '../ItemCard/ItemCard'
 import { useNavigate } from 'react-router-dom'
 import { Navigation, Page } from '../global'
@@ -14,11 +15,15 @@ export default function Loja() {
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
   const carrinhoRef = useRef(null)
 
+  const dinheiroInicial = useMemo(() => {
+    return getDinheiroInicial(personagem.classe) || { po: 0, pl: 0, pp: 0, pc: 0 }
+  }, [personagem.classe])
+
   const money = useMemo(() => {
-    return personagem.equipment?.money || {
-      pl: 0, po: 0, pp: 0, pc: 0
-    }
-  }, [personagem.equipment?.money])
+    const moneyExistente = personagem.equipment?.money
+    const temDinheiro = moneyExistente && Object.values(moneyExistente).some(v => v > 0)
+    return temDinheiro ? moneyExistente : dinheiroInicial
+  }, [personagem.equipment?.money, dinheiroInicial])
 
   const totalDisponivel = useMemo(() => {
     return converterParaCobre(money)
@@ -206,7 +211,7 @@ export default function Loja() {
             Próximo →
           </button>
         </div>
-        <Navigation prev="/dinheiro" />
+        <Navigation prev="/inventario" />
       </div>
     </Page>
   )

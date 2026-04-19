@@ -1,0 +1,108 @@
+.inventario-container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.inventario-content {
+  padding: 16px;
+}
+
+.inventario-itens-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.money-display {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.money-label {
+  font-weight: 600;
+}
+
+.money-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.money-detail {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.inventario-section {
+  margin-bottom: 16px;
+}
+
+.inventario-section h4 {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+.inventario-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.item-ca, .item-bonus, .item-dano {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.item-quantidade {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-left: auto;
+}
+
+.inventario-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+}
+
+@media (max-width: 680px) {
+  .inventario-itens-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .inventario-content {
+    padding: 12px;
+  }
+  .money-display {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+@media (max-width: 560px) {
+  .inventario-itens-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:340px) {
+  .inventario-itens-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4px;
+  }
+} 

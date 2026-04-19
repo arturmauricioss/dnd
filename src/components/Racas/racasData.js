@@ -50,13 +50,13 @@ export const deslocamentoPorRaca = {
 }
 
 export const idiomasRaciais = {
-  humano: { base: ['Comum'], extras: [] },
-  elfo: { base: ['Comum', 'Élfico'], extras: ['Anão', 'Gnômico'] },
-  anao: { base: ['Comum', 'Anão'], extras: ['Élfico', 'Gnômico', 'Orc'] },
-  gnomo: { base: ['Comum', 'Gnômico'], extras: ['Élfico', 'Anão'] },
-  'meio-elfo': { base: ['Comum', 'Élfico'], extras: ['Humano', 'Anão'] },
-  'meio-orc': { base: ['Comum', 'Orc'], extras: ['Humano'] },
-  halfling: { base: ['Comum'], extras: ['Anão', 'Élfico'] },
+  humano: { base: ['Comum'], extras: null }, // null = pode aprender qualquer idioma
+  elfo: { base: ['Comum', 'Élfico'], extras: null },
+  anao: { base: ['Comum', 'Anão'], extras: null },
+  gnomo: { base: ['Comum', 'Gnomo'], extras: null },
+  'meio-elfo': { base: ['Comum', 'Élfico'], extras: null },
+  'meio-orc': { base: ['Comum', 'Orc'], extras: null },
+  halfling: { base: ['Comum'], extras: null },
 }
 
 export const fisicoPorRaca = {

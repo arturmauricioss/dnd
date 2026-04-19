@@ -4,7 +4,7 @@ import Atributos from './components/Atributos/Atributos'
 import Pericias from './components/Pericias/Pericias'
 import Idiomas from './components/Idiomas/Idiomas'
 import Combat from './components/Combat/Combat'
-import Dinheiro from './components/Dinheiro/Dinheiro'
+import Inventario from './components/Inventario/Inventario'
 import Loja from './components/Loja/Loja'
 import Menu from './components/Menu/Menu'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -25,8 +25,8 @@ function App() {
             <Route path="/combat" element={<Combat />} />
             <Route path="/pericias" element={<Pericias />} />
             <Route path="/idiomas" element={<Idiomas />} />
-            <Route path="/dinheiro" element={<Dinheiro />} />
             <Route path="/loja" element={<Loja />} />
+            <Route path="/inventario" element={<Inventario />} />
           </Routes>
         </div>
       </BrowserRouter>

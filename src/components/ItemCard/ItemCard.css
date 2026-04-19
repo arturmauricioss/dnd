@@ -57,7 +57,7 @@
 
 /* IMAGE */
 .card-image {
-  height: 90px;
+  /* height: 90px; */
   background: #ccc;
   display: flex;
   align-items: center;
@@ -137,7 +137,7 @@
   }
 
   .card-image {
-    height: 50px;
+    height: 90px;
   }
 
   .arma-emoji {
@@ -157,5 +157,25 @@
   .card-footer {
     padding: 4px 6px;
     font-size: 10px;
+  }
+}
+@media (max-width: 560px) {
+  .card-image {
+    height: 130px;
+  }
+}
+@media (max-width: 530px) {
+  .card-image {
+    height: 110px;
+  }
+}
+@media (max-width: 430px) {
+  .card-image {
+    height: 80px;
+  }
+}
+@media (max-width: 340px) {
+  .card-image {
+    height:130px;
   }
 }
