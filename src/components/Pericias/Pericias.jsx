@@ -45,11 +45,11 @@ export default function Pericias() {
   [classe, nivel, race, periciasState])
 
   const pontosRestantes = pontosPericia - pontosGastos
-  const podeIncrementar = (periciaNome, valorAtual) => {
-    if (valorAtual === 0) return true
-    const eClasse = periciasPorClasse[classe]?.includes(periciaNome)
-    const custo = eClasse ? 1 : 2
-    return pontosRestantes >= custo
+  const podeIncrementar = (periciaNome, novoValor, valorAtual) => {
+    if (novoValor <= valorAtual) return true
+    const custo = periciasPorClasse[classe]?.includes(periciaNome) ? 1 : 2
+    const custoAdicional = custo * (novoValor - valorAtual)
+    return pontosRestantes >= custoAdicional
   }
 
   const habilidadesOrdenadas = useMemo(() => 
@@ -101,7 +101,7 @@ export default function Pericias() {
           onChange={(e) => {
             let val = parseInt(e.target.value) || 0
             val = Math.min(val, maxGrad)
-            if (val > grad && !podeIncrementar(pericia.nome, grad)) return
+            if (!podeIncrementar(pericia.nome, val, grad)) return
             handleGraduacaoChange(pericia.nome, val)
           }}
         />
