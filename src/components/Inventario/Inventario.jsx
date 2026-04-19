@@ -41,7 +41,7 @@ export default function Inventario() {
   }, [personagem.equipment?.itens])
 
   return (
-    <Page>
+
       <div className="inventario-container">
         <div className="inventario-content">
           <div className="money-display">
@@ -83,8 +83,7 @@ export default function Inventario() {
             </div>
           )}
         </div>
-        <Navigation prev="/loja" next="/atributos" />
+        <Navigation prev="/loja"/>
       </div>
-    </Page>
   )
 }

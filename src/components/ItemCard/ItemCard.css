@@ -105,11 +105,27 @@
 /* FOOTER */
 .card-footer {
   padding: 8px;
-  text-align: right;
   border-top: 1px solid #333;
   font-weight: bold;
   color: gold;
   margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantidade-badge {
+  background: gold;
+  color: #1a1a1a;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.price {
+  margin-left: auto;
 }
 .arma-img {
   width: 100%;

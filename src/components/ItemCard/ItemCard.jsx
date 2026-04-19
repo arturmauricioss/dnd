@@ -8,6 +8,9 @@ export default function ItemCard({ item, onClick }) {
   const containerRef = useRef(null)
   const [overflow, setOverflow] = useState(0)
 
+  const matchQuantidade = item.nome.match(/\((\d+)\)$/)
+  const quantidadePack = matchQuantidade ? parseInt(matchQuantidade[1]) : null
+
   useEffect(() => {
     if (nameRef.current && containerRef.current) {
       const textWidth = nameRef.current.scrollWidth
@@ -95,6 +98,11 @@ export default function ItemCard({ item, onClick }) {
 
       {/* FOOTER */}
       <div className="card-footer">
+        {quantidadePack && quantidadePack > 1 ? (
+          <span className="quantidade-badge">×{quantidadePack}</span>
+        ) : item.quantidade && item.quantidade > 1 ? (
+          <span className="quantidade-badge">×{item.quantidade}</span>
+        ) : null}
         <span className="price">
           {item.custo ? (item.custo / 100).toFixed(2).replace('.', ',') : '0,00'} PO
         </span>
