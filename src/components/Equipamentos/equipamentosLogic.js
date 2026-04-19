@@ -28,3 +28,7 @@ export const todosItens = {
   ...escudosNormalizados,
   ...todosItensNormalizados
 };
+
+export function getItemPorId(id) {
+  return todosItens[id] || null
+}

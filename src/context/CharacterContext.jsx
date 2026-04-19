@@ -106,7 +106,6 @@ const estadoInicial = {
   },
 
   idiomas: [],
-  pontosFalarIdioma: 0,
 
   talentos: [],
   habilidadesEspeciais: [],

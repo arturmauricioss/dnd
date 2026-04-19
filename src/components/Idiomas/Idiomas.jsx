@@ -19,8 +19,8 @@ export default function Idiomas() {
   const intMod = getModificador('inteligencia')
   
   const idiomasAtuais = useMemo(() => personagem.idiomas || [], [personagem.idiomas])
-  const pontosFalarIdioma = useMemo(() => personagem.pontosFalarIdioma || 0, [personagem.pontosFalarIdioma])
   const periciasState = useMemo(() => personagem.pericias || {}, [personagem.pericias])
+  const pontosFalarIdioma = useMemo(() => periciasState['Falar Idioma']?.graduacao || 0, [periciasState])
   const alfabetizacaoGrad = useMemo(() => periciasState['Alfabetização']?.graduacao || 0, [periciasState])
 
   const idiomasBase = useMemo(() => getIdiomasBase(raca), [raca])
@@ -30,12 +30,12 @@ export default function Idiomas() {
   const poolExtrasUnicos = useMemo(() => getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse), [raca, classe, idiomasBase, idiomasFixosClasse])
 
   useEffect(() => {
-    const idiomasValidos = validarIdiomasAtuais(idiomasAtuais, raca, classe)
+    const idiomasValidos = validarIdiomasAtuais(idiomasAtuais)
     
     if (idiomasValidos.length !== idiomasAtuais.length) {
       atualizarCampo('idiomas', idiomasValidos)
     }
-  }, [classe, raca, atualizarCampo, idiomasAtuais])
+  }, [atualizarCampo, idiomasAtuais])
 
   const adicionarIdioma = (idioma) => {
     if (!idioma || idiomasAtuais.length >= qtdExtras) return
@@ -107,17 +107,20 @@ export default function Idiomas() {
                 defaultValue=""
               >
                 <option value="">Selecione...</option>
-                {poolExtrasUnicos
-                  .filter(id => !idiomasAtuais.includes(id))
-                  .map(id => (
-                    <option key={id} value={id}>{id}</option>
-                  ))
-                }
+                {poolExtrasUnicos.length === 0 ? (
+                  <option disabled>Sem idiomas disponíveis</option>
+                ) : (
+                  poolExtrasUnicos
+                    .filter(id => !idiomasAtuais.includes(id))
+                    .map(id => (
+                      <option key={id} value={id}>{id}</option>
+                    ))
+                )}
               </select>
             </div>
           )}
         </div>
-        <Navigation prev="/pericias" next="/dinheiro" />
+        <Navigation prev="/pericias" next="/loja" />
       </div>
   )
 }

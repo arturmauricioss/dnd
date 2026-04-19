@@ -1,14 +1,5 @@
 export { idiomasRaciais } from '../Racas/racasData'
-
-const idiomaClasseFixo = {
-  druida: ["Druídico"]
-}
-
-const idiomasClasseExtras = {
-  clerigo: ["Abissal", "Celestial", "Infernal"],
-  mago: ["Dracônico"],
-  druida: ["Silvestre"]
-}
+export { idiomasFixosPorClasse, idiomasExtrasPorClasse } from '../Classes/classesData'
 
 const TODOS_IDIOMAS = [
   'Anão', 'Gnomo', 'Goblin', 'Gigante', 'Terran', 'Orc',
@@ -17,4 +8,4 @@ const TODOS_IDIOMAS = [
   'Abissal', 'Silvestre'
 ]
 
-export { idiomaClasseFixo, idiomasClasseExtras, TODOS_IDIOMAS }
+export { TODOS_IDIOMAS }

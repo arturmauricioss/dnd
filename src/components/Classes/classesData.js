@@ -95,3 +95,21 @@ export function podeUsarAlfabetizacao(classeId) {
 export function getDeusesPorClasse(classeId) {
   return deusesPorClasse[classeId] || []
 }
+
+export const idiomasFixosPorClasse = {
+  druida: ["Druídico"]
+}
+
+export const idiomasExtrasPorClasse = {
+  clerigo: ["Abissal", "Celestial", "Infernal"],
+  mago: ["Dracônico"],
+  druida: ["Silvestre"]
+}
+
+export function getIdiomasFixosClasse(classeId) {
+  return idiomasFixosPorClasse[classeId] || []
+}
+
+export function getIdiomasExtrasPorClasse(classeId) {
+  return idiomasExtrasPorClasse[classeId] || []
+}
