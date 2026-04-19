@@ -10,6 +10,17 @@ export default function ItemCard({ item, onClick }) {
 
   const matchQuantidade = item.nome.match(/\((\d+)\)$/)
   const quantidadePack = matchQuantidade ? parseInt(matchQuantidade[1]) : null
+  
+  let quantidadeDisplay = null
+  if (item.quantidade && item.quantidade > 1) {
+    if (quantidadePack && item.quantidade > quantidadePack) {
+      quantidadeDisplay = item.quantidade
+    } else if (quantidadePack) {
+      quantidadeDisplay = item.quantidade
+    } else {
+      quantidadeDisplay = item.quantidade
+    }
+  }
 
   useEffect(() => {
     if (nameRef.current && containerRef.current) {
@@ -98,10 +109,8 @@ export default function ItemCard({ item, onClick }) {
 
       {/* FOOTER */}
       <div className="card-footer">
-        {quantidadePack && quantidadePack > 1 ? (
-          <span className="quantidade-badge">×{quantidadePack}</span>
-        ) : item.quantidade && item.quantidade > 1 ? (
-          <span className="quantidade-badge">×{item.quantidade}</span>
+        {quantidadeDisplay ? (
+          <span className="quantidade-badge">×{quantidadeDisplay}</span>
         ) : null}
         <span className="price">
           {item.custo ? (item.custo / 100).toFixed(2).replace('.', ',') : '0,00'} PO
