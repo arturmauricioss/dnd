@@ -29,9 +29,13 @@ export default function Loja() {
   }, [money])
 
   const totalCarrinho = useMemo(() => {
-    return carrinho.reduce((acc, item) =>
-      acc + (item.custo * item.quantidade), 0
-    )
+    return carrinho.reduce((acc, item) => {
+      const matchPack = item.nome.match(/\((\d+)\)$/)
+      const quantidadePack = matchPack ? parseInt(matchPack[1]) : 1
+      
+      const custoTotal = item.custo * (item.quantidade / quantidadePack)
+      return acc + custoTotal
+    }, 0)
   }, [carrinho])
 
   const restante = Math.max(0, totalDisponivel - totalCarrinho)
@@ -44,18 +48,21 @@ export default function Loja() {
   }, [podeComprar, totalCarrinho])
 
   const adicionarAoCarrinho = (item) => {
+    const matchQuantidade = item.nome.match(/\((\d+)\)$/)
+    const quantidadePack = matchQuantidade ? parseInt(matchQuantidade[1]) : 1
+    
     setCarrinho((prev) => {
       const existente = prev.find((i) => i.id === item.id)
 
       if (existente) {
         return prev.map((i) =>
           i.id === item.id
-            ? { ...i, quantidade: i.quantidade + 1 }
+            ? { ...i, quantidade: i.quantidade + quantidadePack }
             : i
         )
       }
 
-      return [...prev, { ...item, quantidade: 1 }]
+      return [...prev, { ...item, quantidade: quantidadePack }]
     })
   }
 
@@ -188,7 +195,7 @@ export default function Loja() {
                     <div key={item.id} className="carrinho-item">
                       <span className="carrinho-item-nome">{item.nome}</span>
                       <span className="carrinho-item-preco">
-                        {(item.custo / 100).toFixed(2).replace('.', ',')} PO × {item.quantidade}
+                        {(item.custo / 100).toFixed(2).replace('.', ',')} PO {item.quantidade > 1 && `× ${item.quantidade}`}
                       </span>
                       <div className="quantidade-box">
                         <button onClick={() => diminuirQuantidade(item.id)}>-</button>
