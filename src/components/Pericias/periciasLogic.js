@@ -127,3 +127,17 @@ export function calculateMaxGrad(personagem, nomePericia) {
   const maxGradPorNivel = nivel + 3
   return eClasse ? maxGradPorNivel : Math.floor(maxGradPorNivel / 2)
 }
+
+export function getPericiaTotalPorNome(personagem, nomePericia, getModificador) {
+  const pericia = periciasConfig.find(p => p.nome === nomePericia)
+  if (!pericia) return 0
+  return calculatePericiaTotal(pericia, personagem, personagem.pericias || {}, getModificador)
+}
+
+export function getTodasPericiasTotais(personagem, getModificador) {
+  const result = {}
+  periciasConfig.forEach(pericia => {
+    result[pericia.nome] = calculatePericiaTotal(pericia, personagem, personagem.pericias || {}, getModificador)
+  })
+  return result
+}

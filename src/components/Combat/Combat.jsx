@@ -46,9 +46,7 @@ export default function Combat() {
             </div>
             <div className="stat-detail">
               {buildBreakdown([
-                { label: 'Base', value: combate.bbaBase },
-                { label: 'For', value: forMod },
-                { label: 'Tam', value: modTamanho.bba }
+                { label: 'Base', value: combate.bbaBase }
               ])}
             </div>
           </div>

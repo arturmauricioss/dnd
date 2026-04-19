@@ -5,10 +5,9 @@ import { getDeslocamento, deslocamentoPorRaca } from './deslocamentoData'
 import { bonusDeslocamentoPorClasse } from '../Classes/classesData'
 import { caValoresIniciais } from './combatData'
 
-export function calcularBBA(classeId, nivel, modTamanho) {
+export function calcularBBA(classeId, nivel) {
   const progressao = getProgressaoBBA(classeId)
-  const base = getBBABase(progressao, nivel)
-  return base + modTamanho.bba
+  return getBBABase(progressao, nivel)
 }
 
 export function getBBAForcaBase(classeId, nivel, forMod, modTamanho) {
@@ -90,7 +89,7 @@ export function getDadosCombate(personagem, getModificador) {
   const progressao = getProgressaoBBA(classeId)
 
   const bbaBase = getBBABase(progressao, nivel)
-  const bba = calcularBBA(classeId, nivel, modTamanho)
+  const bba = calcularBBA(classeId, nivel)
 
   const agarrarTotal = bbaBase + forMod + modTamanho.agarrar
 

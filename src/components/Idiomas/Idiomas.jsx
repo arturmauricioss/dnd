@@ -1,8 +1,14 @@
 import { useEffect, useMemo } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
-import { idiomasRaciais, idiomasClasseExtras, idiomaClasseFixo, TODOS_IDIOMAS } from './idiomasData'
-import { podeUsarAlfabetizacao } from '../Classes/classesData'
 import { Navigation, Page } from '../global'
+import {
+  getIdiomasBase,
+  getIdiomasFixosClasse,
+  calcularQtdExtras,
+  getAlfabetizacao,
+  validarIdiomasAtuais,
+  getPoolExtrasUnicos
+} from './idiomasLogic'
 import './Idiomas.css'
 
 export default function Idiomas() {
@@ -17,42 +23,19 @@ export default function Idiomas() {
   const periciasState = useMemo(() => personagem.pericias || {}, [personagem.pericias])
   const alfabetizacaoGrad = useMemo(() => periciasState['Alfabetização']?.graduacao || 0, [periciasState])
 
+  const idiomasBase = useMemo(() => getIdiomasBase(raca), [raca])
+  const idiomasFixosClasse = useMemo(() => getIdiomasFixosClasse(classe), [classe])
+  const qtdExtras = useMemo(() => calcularQtdExtras(intMod, pontosFalarIdioma), [intMod, pontosFalarIdioma])
+  const alfabetizacao = useMemo(() => getAlfabetizacao(classe, alfabetizacaoGrad), [classe, alfabetizacaoGrad])
+  const poolExtrasUnicos = useMemo(() => getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse), [raca, classe, idiomasBase, idiomasFixosClasse])
+
   useEffect(() => {
-    const idiomasBase = (idiomasRaciais[raca]?.base || ['Comum'])
-    const fixosClasse = idiomaClasseFixo[classe] || []
-    const todosValidos = [...idiomasBase, ...fixosClasse]
+    const idiomasValidos = validarIdiomasAtuais(idiomasAtuais, raca, classe)
     
-    const idiomasInvalidos = idiomasAtuais.filter(id => !todosValidos.includes(id))
-    
-    if (idiomasInvalidos.length > 0) {
-      atualizarCampo('idiomas', idiomasAtuais.filter(id => todosValidos.includes(id)))
+    if (idiomasValidos.length !== idiomasAtuais.length) {
+      atualizarCampo('idiomas', idiomasValidos)
     }
   }, [classe, raca, atualizarCampo, idiomasAtuais])
-
-  const dadosRaca = idiomasRaciais[raca] || { base: ['Comum'], extras: [] }
-  const idiomasBase = dadosRaca.base
-  
-  let poolExtras = [...dadosRaca.extras]
-    
-  if (idiomasClasseExtras[classe]) {
-    poolExtras.push(...idiomasClasseExtras[classe])
-  }
-
-  const idiomasFixoClasse = idiomaClasseFixo[classe] || []
-    
-  if (raca === 'humano' || raca === 'meio-elfo') {
-    poolExtras = [...TODOS_IDIOMAS]
-  }
-    
-  const poolExtrasUnicos = [...new Set(poolExtras)].filter(id => 
-    !idiomasBase.includes(id) && !idiomasFixoClasse.includes(id)
-  )
-  
-  const qtdExtrasPorInt = Math.max(0, intMod)
-  const qtdExtras = qtdExtrasPorInt + pontosFalarIdioma
-  
-  const podeAlfabetizar = podeUsarAlfabetizacao(classe)
-  const alfabetizacao = (!podeAlfabetizar && alfabetizacaoGrad < 2) ? 'Analfabeto' : 'Alfabetizado'
 
   const adicionarIdioma = (idioma) => {
     if (!idioma || idiomasAtuais.length >= qtdExtras) return
@@ -66,7 +49,6 @@ export default function Idiomas() {
   }
 
   return (
-    <Page>
       <div className="idiomas-container">
         <div className="idiomas-content">
           <div className="idiomas-info">
@@ -93,7 +75,7 @@ export default function Idiomas() {
               </div>
             ))}
             
-            {idiomasFixoClasse.map((idioma, idx) => (
+            {idiomasFixosClasse.map((idioma, idx) => (
               <div key={`fixo-${idx}`} className="idioma-row">
                 <span>{idioma}</span>
                 <span className="idioma-tipo-fixo">Fixo ({classe})</span>
@@ -108,9 +90,9 @@ export default function Idiomas() {
             ))}
           </div>
 
-          {idiomasFixoClasse.length > 0 && (
+          {idiomasFixosClasse.length > 0 && (
             <div className="idiomas-nota">
-              * {idiomasFixoClasse.join(', ')} é idioma fixo da classe {classe} (não conta para o limite de idiomas extras)
+              * {idiomasFixosClasse.join(', ')} é idioma fixo da classe {classe} (não conta para o limite de idiomas extras)
             </div>
           )}
 
@@ -137,6 +119,5 @@ export default function Idiomas() {
         </div>
         <Navigation prev="/pericias" next="/dinheiro" />
       </div>
-    </Page>
   )
 }
