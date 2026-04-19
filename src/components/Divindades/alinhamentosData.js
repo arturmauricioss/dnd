@@ -1,3 +1,5 @@
+import { alinhamentosPorClasse } from '../Classes/classesData'
+
 export const alinhamentos = [
   { id: 'selecione', nome: 'SELECIONE...' },
   { id: 'lawful_good', nome: 'LEAL BOM' },
@@ -11,13 +13,7 @@ export const alinhamentos = [
   { id: 'chaotic_evil', nome: 'CAÓTICO MALIGNO' },
 ]
 
-export const alinhamentosPorClasse = {
-    paladino: ["lawful_good"],
-    monge: ["lawful_good", "lawful_neutral", "lawful_evil"],
-    barbaro: ["non_lawful"],
-    bardo: ["non_lawful"],
-    druida: ["true_neutral", "neutral_good", "neutral_evil", "lawful_neutral", "chaotic_neutral"]
-}
+export { alinhamentosPorClasse }
 
 export function getAlinhamento(id) {
   return alinhamentos.find(a => a.id === id) || alinhamentos[0]

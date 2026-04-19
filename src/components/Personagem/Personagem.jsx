@@ -1,7 +1,7 @@
 import { useMemo, useEffect } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { classes, niveis, getDeusesPorClasse } from '../Classes/classesData'
-import { alinhamentos, alinhamentoValidoParaClasse, podeSelecionarAlinhamento } from '../Classes/alinhamentosData'
+import { alinhamentos, alinhamentoValidoParaClasse, podeSelecionarAlinhamento } from '../Divindades/alinhamentosData'
 import { racas, sexos } from '../Racas/racasData'
 import { getFisicoSugerido, getIdadeSugerida, getTamanhoPorRaca, getDeusesRaciaisFormatados } from '../Racas/racasLogic'
 import { getDeusesPorAlinhamento, getDeusPorId } from '../Divindades/divindadesLogic'
