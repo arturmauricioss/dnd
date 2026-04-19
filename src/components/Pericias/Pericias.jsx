@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import {
   calculatePontosPericia,
@@ -13,7 +13,7 @@ import { Navigation } from '../global'
 import './Pericias.css'
 
 export default function Pericias() {
-  const { personagem, getModificador } = useCharacter()
+  const { personagem, getModificador, atualizarCampo } = useCharacter()
 
   const { classe, level_class, race, equipment } = personagem
   const nivel = level_class || 1
@@ -28,16 +28,16 @@ export default function Pericias() {
 
   const maxGradPorNivel = nivel + 3
 
-  const [periciasState, setPericiasState] = useState({})
+  const periciasState = useMemo(() => personagem.pericias || {}, [personagem.pericias])
 
   const handleGraduacaoChange = (nomePericia, valor) => {
-    setPericiasState((prev) => ({
-      ...prev,
+    atualizarCampo('pericias', {
+      ...periciasState,
       [nomePericia]: {
-        ...prev[nomePericia],
+        ...periciasState[nomePericia],
         graduacao: valor,
       },
-    }))
+    })
   }
 
   const pontosGastos = useMemo(() => 
@@ -82,13 +82,13 @@ export default function Pericias() {
 
     const valorOutrosDisplay = (estado.outros || 0) + bonusRacial + penalidadeArmadura
 
-    const nomeClasse = `pericia-nome ${eClasse ? 'pericia-classe' : ''} ${pericia.somente_treinado ? 'pericia-treinada' : ''}`
+    const nomeClasse = `pericia-nome ${eClasse ? 'pericia-classe' : ''} ${pericia.somente_treinado && grad === 0 ? 'pericia-treinada' : ''}`
 
     return (
       <div key={pericia.nome} className="pericia-row">
         <span className={nomeClasse}>
           {pericia.nome}
-          {pericia.somente_treinado && <span className="pericia-marcador" title="Requer treinamento">*</span>}
+          {pericia.somente_treinado && grad === 0 && <span className="pericia-marcador" title="Requer treinamento">*</span>}
           {bonusRacial > 0 && <span className="pericia-bonus" title={`Bônus racial: +${bonusRacial}`}>+{bonusRacial}</span>}
         </span>
         <span className="pericia-total">{total}</span>
