@@ -3,7 +3,7 @@ import { useCharacter } from '../../context/CharacterContext'
 import { getClasse } from '../Classes/classesData'
 import { getModificadoresTamanho } from './tamanhoData'
 import { getBBABase, getProgressaoBBA, bonusRacialResistencia } from './bbaData'
-import { getDeslocamento } from './deslocamentoData'
+import { getDeslocamento, deslocamentoPorRaca, bonusDeslocamentoPorClasse } from './deslocamentoData'
 import { Navigation } from '../global'
 import './Combat.css'
 
@@ -106,7 +106,7 @@ export default function Combat() {
 
           {/* BBA */}
           <div className="combat-stat">
-            <div className="stat-label">BBA</div>
+            <div className="stat-label">Bonus base de Ataque</div>
             <div className="stat-value">
               {bba >= 0 ? `+${bba}` : bba}
             </div>
@@ -149,56 +149,138 @@ export default function Combat() {
 
           {/* Deslocamento */}
           <div className="combat-stat">
-            <div className="stat-label">Desloc</div>
+            <div className="stat-label">Deslocamento</div>
             <div className="stat-value">
               {showDeslocamento ? `${deslocamento}m` : '—'}
             </div>
+            {showDeslocamento && deslocamento > 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: 'Raça', value: deslocamentoPorRaca[personagem.race] || 6 },
+                  { label: 'Classe', value: bonusDeslocamentoPorClasse[personagem.classe] || 0 }
+                ])}
+              </div>
+            )}
           </div>
 
           {/* PV */}
           <div className="combat-stat compact">
-            <div className="stat-label">PV</div>
+            <div className="stat-label">Pontos de VIda</div>
             <div className="stat-value">{hpMax}</div>
+            {hpMax > 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: 'Dado', value: classe.dadoVida },
+                  { label: 'Con', value: conMod },
+                  { label: 'Nv', value: nivel > 1 ? (nivel - 1) * Math.max(1, Math.floor(classe.dadoVida / 2) + conMod) : 0 }
+                ])}
+              </div>
+            )}
           </div>
 
           {/* RM */}
           <div className="combat-stat compact">
-            <div className="stat-label">RM</div>
+            <div className="stat-label">Resistência mágica</div>
             <div className="stat-value">0</div>
+          </div>
+
+
+          {/* CA */}
+          <div className="combat-stat compact">
+            <div className="stat-label">Classe de Armadura</div>
+            <div className="stat-value small">{caNormal}</div>
+            {caNormal > 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: '10', value: 0 },
+                  { label: 'Arm', value: caValores.armadura },
+                  { label: 'Esc', value: caValores.escudo },
+                  { label: 'Des', value: dexMod },
+                  { label: 'Tam', value: modTamanho.ca },
+                  { label: 'Nat', value: caValores.natural },
+                  { label: 'Def', value: caValores.deflexao },
+                  { label: 'Out', value: caValores.outros }
+                ])}
+              </div>
+            )}
           </div>
 
           {/* Toque */}
           <div className="combat-stat compact">
             <div className="stat-label">Toque</div>
             <div className="stat-value small">{caToque}</div>
+            {caToque > 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: '10', value: 0 },
+                  { label: 'Des', value: dexMod },
+                  { label: 'Tam', value: modTamanho.ca }
+                ])}
+              </div>
+            )}
           </div>
 
-          {/* CA */}
-          <div className="combat-stat compact">
-            <div className="stat-label">CA</div>
-            <div className="stat-value small">{caNormal}</div>
-          </div>
 
           {/* Surpresa */}
           <div className="combat-stat compact">
-            <div className="stat-label">Surp</div>
+            <div className="stat-label">Surpresa</div>
             <div className="stat-value small">{caSurpresa}</div>
+            {caSurpresa > 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: '10', value: 0 },
+                  { label: 'Arm', value: caValores.armadura },
+                  { label: 'Esc', value: caValores.escudo },
+                  { label: 'Tam', value: modTamanho.ca },
+                  { label: 'Nat', value: caValores.natural },
+                  { label: 'Def', value: caValores.deflexao },
+                  { label: 'Out', value: caValores.outros }
+                ])}
+              </div>
+            )}
           </div>
 
           {/* Saves */}
           <div className="combat-stat compact">
-            <div className="stat-label">Fort</div>
+            <div className="stat-label">Fortitude</div>
             <div className="stat-value small">{fortTotal}</div>
+            {fortTotal !== 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: 'Classe', value: classe.fort },
+                  { label: 'Con', value: conMod },
+                  { label: 'Raça', value: bonusSaveRacial.fort }
+                ])}
+              </div>
+            )}
           </div>
 
           <div className="combat-stat compact">
-            <div className="stat-label">Ref</div>
+            <div className="stat-label">Reflexo</div>
             <div className="stat-value small">{refTotal}</div>
+            {refTotal !== 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: 'Classe', value: classe.ref },
+                  { label: 'Des', value: dexMod },
+                  { label: 'Raça', value: bonusSaveRacial.ref }
+                ])}
+              </div>
+            )}
           </div>
 
           <div className="combat-stat compact">
-            <div className="stat-label">Von</div>
+            <div className="stat-label">Vontade</div>
             <div className="stat-value small">{vonTotal}</div>
+            {vonTotal !== 0 && (
+              <div className="stat-detail">
+                {buildBreakdown([
+                  { label: 'Classe', value: classe.von },
+                  { label: 'Sab', value: sabMod },
+                  { label: 'Raça', value: bonusSaveRacial.von }
+                ])}
+              </div>
+            )}
           </div>
 
         </div>
