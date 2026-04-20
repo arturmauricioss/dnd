@@ -133,3 +133,32 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+.combat-stat .carga-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.combat-stat .carga-badge.light {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.combat-stat .carga-badge.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.combat-stat .carga-badge.heavy {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.combat-stat .peso-aviso {
+  color: #dc2626;
+  font-weight: 600;
+  margin-left: 4px;
+}

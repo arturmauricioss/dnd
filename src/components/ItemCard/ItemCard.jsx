@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { traducoes } from '../Equipamentos/armasData'
 import './ItemCard.css'
 
-export default function ItemCard({ item, onClick }) {
+export default function ItemCard({ item, onClick, peso, local, onLocalChange }) {
   const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
   const nameRef = useRef(null)
   const containerRef = useRef(null)
@@ -115,7 +115,23 @@ export default function ItemCard({ item, onClick }) {
         <span className="price">
           {item.custo ? (item.custo / 100).toFixed(2).replace('.', ',') : '0,00'} PO
         </span>
+        {peso !== undefined && (
+          <span className="item-peso">{peso.toFixed(1)} kg</span>
+        )}
       </div>
+      {local && onLocalChange && (
+        <div className="local-selector">
+          <select 
+            value={local} 
+            onChange={(e) => onLocalChange(e.target.value)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <option value="equipped">🧤 Equipado</option>
+            <option value="carregando">🎒 Carregando</option>
+            <option value="tesoureiro">🏠 Tesoureiro</option>
+          </select>
+        </div>
+      )}
     </div>
   )
 }
