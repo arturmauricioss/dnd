@@ -1,8 +1,8 @@
 export const todasArmaduras = {
-  acolchoada: { nome: "Acolchoada", custo: 500, bonus: "+1", tipo: "leve", dex_max: "+8", penalidade: 0, falha_magia: "5%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "5 kg" },
-  couro: { nome: "Couro", custo: 1000, bonus: "+2", tipo: "leve", dex_max: "+6", penalidade: 0, falha_magia: "10%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "7,5 kg" },
-  couro_batido: { nome: "Couro.batido", custo: 2500, bonus: "+3", tipo: "leve", dex_max: "+5", penalidade: -1, falha_magia: "15%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "10 kg" },
-  camisao_cota: { nome: "Camisão de Cota de Malha", custo: 10000, bonus: "+4", tipo: "leve", dex_max: "+4", penalidade: -2, falha_magia: "20%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "12,5 kg" },
+  acolchoada: { nome: "Acolchoada", custo: 500, bonus: "+1", tipo: "leve", dex_max: "+8", penalidade: 0, falha_magia: "5%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "5 kg", loja: 'armeiro' },
+  couro: { nome: "Couro", custo: 1000, bonus: "+2", tipo: "leve", dex_max: "+6", penalidade: 0, falha_magia: "10%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "7,5 kg", loja: 'armeiro' },
+  couro_batido: { nome: "Couro.batido", custo: 2500, bonus: "+3", tipo: "leve", dex_max: "+5", penalidade: -1, falha_magia: "15%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "10 kg", loja: 'armeiro' },
+  camisao_cota: { nome: "Camisão de Cota de Malha", custo: 10000, bonus: "+4", tipo: "leve", dex_max: "+4", penalidade: -2, falha_magia: "20%", deslocamento_9: "9 m", deslocamento_6: "6 m", peso: "12,5 kg", loja: 'armeiro' },
 
   gibao_peles: { nome: "Gibão de Peles", custo: 1500, bonus: "+3", tipo: "media", dex_max: "+4", penalidade: -3, falha_magia: "20%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "12,5 kg" },
   brunea: { nome: "Brunea", custo: 5000, bonus: "+4", tipo: "media", dex_max: "+3", penalidade: -4, falha_magia: "25%", deslocamento_9: "6 m", deslocamento_6: "4,5 m", peso: "15 kg" },
@@ -25,9 +25,9 @@ export const todosEscudos = {
 };
 
 export const armadurasNormalizadas = Object.fromEntries(
-  Object.entries(todasArmaduras).map(([id, a]) => [id, { id, tipo: "armadura", ...a }])
+  Object.entries(todasArmaduras).map(([id, a]) => [id, { id, tipo: "armadura", tipoLoja: "armadura", ...a }])
 );
 
 export const escudosNormalizados = Object.fromEntries(
-  Object.entries(todosEscudos).map(([id, s]) => [id, { id, tipo: "escudo", ...s }])
+  Object.entries(todosEscudos).map(([id, s]) => [id, { id, tipo: "escudo", tipoLoja: "escudo", ...s }])
 );

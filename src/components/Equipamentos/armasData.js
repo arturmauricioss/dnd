@@ -138,7 +138,8 @@ export const armasNormalizadas = Object.fromEntries(
 function normalizarArma(id, arma) {
   const tipo = (arma.subcategoria === 'distancia' || arma.subcategoria === 'municao') ? 'distancia' : 'corpo';
   const icon = getIconArma(arma);
-  return { id, ...arma, tipo, icon, img: arma.img || null };
+  const tipoLoja = arma.categoria === 'simples' ? 'arma-simples' : arma.categoria === 'comum' ? 'arma-comum' : 'arma-exotica';
+  return { id, ...arma, tipo, icon, img: arma.img || null, tipoLoja };
 }
 
 function getIconArma(arma) {
