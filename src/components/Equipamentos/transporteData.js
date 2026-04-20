@@ -8,6 +8,6 @@ export const transporte = {
   galeao: { nome: "Galeão", custo: 3000000, peso: "-" },
   nav_guerra: { nome: "Navio de guerra", custo: 2500000, peso: "-" },
   nav: { nome: "Navio", custo: 1000000, peso: "-" },
-  tren: { nome: "Trenó", custo: 2000, peso: "150 kg" },
+  treno: { nome: "Trenó", custo: 2000, peso: "150 kg" },
   veleiro: { nome: "Veleiro", custo: 1000000, peso: "-" }
 };

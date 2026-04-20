@@ -468,3 +468,44 @@
     gap: 4px;
   }
 }
+
+.loja-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.loja-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.loja-tab:hover {
+  background: #e2e8f0;
+}
+
+.loja-tab.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.loja-icone {
+  font-size: 1.1rem;
+}
+
+.loja-nome {
+  white-space: nowrap;
+}

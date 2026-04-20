@@ -3,6 +3,7 @@ import { useCharacter } from '../../context/CharacterContext'
 import { todosItens } from '../Equipamentos/equipamentosLogic'
 import { converterParaCobre } from '../Inventario/dinheiroData'
 import { getDinheiroInicial } from '../Classes/classesData'
+import { lojas, itensPorLoja } from './lojasData'
 import ItemCard from '../ItemCard/ItemCard'
 import { Navigation, Page } from '../global'
 import './Loja.css'
@@ -10,9 +11,20 @@ import './Loja.css'
 export default function Loja() {
 
   const { personagem, atualizarCampo } = useCharacter()
+  const [lojaSelecionada, setLojaSelecionada] = useState('ferreiro')
   const [carrinho, setCarrinho] = useState([])
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
   const carrinhoRef = useRef(null)
+
+  const tiposDaLoja = itensPorLoja[lojaSelecionada] || []
+
+  const itensFiltrados = useMemo(() => {
+    return Object.entries(todosItens).filter(([id, item]) => {
+      const tipoItem = item.tipo?.toLowerCase() || ''
+      const tipoLojaItem = item.tipoLoja?.toLowerCase() || ''
+      return tiposDaLoja.some(t => tipoItem.includes(t) || tipoLojaItem.includes(t))
+    })
+  }, [lojaSelecionada, tiposDaLoja])
 
   const dinheiroInicial = useMemo(() => {
     return getDinheiroInicial(personagem.classe) || { po: 0, pl: 0, pp: 0, pc: 0 }
@@ -146,6 +158,19 @@ export default function Loja() {
       <div className="loja-container">
         <div className="loja-layout">
           <div className="loja-items">
+            <div className="loja-tabs">
+              {lojas.map(loja => (
+                <button
+                  key={loja.id}
+                  className={`loja-tab ${lojaSelecionada === loja.id ? 'active' : ''}`}
+                  onClick={() => setLojaSelecionada(loja.id)}
+                >
+                  <span className="loja-icone">{loja.icone}</span>
+                  <span className="loja-nome">{loja.nome}</span>
+                </button>
+              ))}
+            </div>
+
             <div className="carrinho-info">
               <span>Carrinho: {(totalCarrinho / 100).toFixed(2)} PO</span>
               <span>Disponível: {(totalDisponivel / 100).toFixed(2)} PO</span>
@@ -156,7 +181,7 @@ export default function Loja() {
             </div>
 
             <div className="itens-grid">
-              {Object.entries(todosItens).map(([id, item]) => (
+              {itensFiltrados.map(([id, item]) => (
                 <ItemCard
                   key={id}
                   item={{ id, ...item }}
