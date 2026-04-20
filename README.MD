@@ -115,13 +115,31 @@ src/
 
 ## 📝 Funcionalidades Futuras
 
-- [ ] Salvar/carregar personagens
-- [ ] Mais raças e classes
+- [ ] Peso e Carga
+- [ ] Sistema de Equipar/Desequipar
+- [ ] Habilidades Especiais
 - [ ] Talentos
-- [ ] Equipamentos mágicos
+- [ ] Magias
 - [ ] Feitiços
-- [ ] Combate automático
+- [ ] Rolar Dado Local
+- [ ] Salvar/carregar personagens
 - [ ] Exportar/importar PDF
+- [ ] Sistema de Login para usuários 
+- [ ] Utilizar as fichas em campanhas de um mestre/que vai ser outro usuario
+- [ ] Fichas para partidas online devem ser limitas ao que o mestre limitar a campanha como por exemplo qual regra será usada para distribuição de atributos, todos os jogadores devem seguir a mesma regra / será necessário implementar mais regras e também bloquear a inserção de dados no input de atributos
+- [ ] Geremciamento de movimentação / combate
+- [ ] Gerenciador de Monstros e Bosses
+- [ ] Criador de Mapas com cidades 
+- [ ] Gerenciador de 'loja' da cidade mestre pode limitar o que cada loja daquela cidade vende... 
+- [ ] Rolar dado em campanha para todos verem
+- [ ] Vincular posicionamento do personagem com itens que o item pode comprar em loja, se ele estiver em uma loja deve ser exibido apenas os itens daquela loja, se ele nao estiver em uma loja, nao devem ser exibidos itens, vendedores no caminho são lojas rápidas que o mestre pode criar sem necessáriamente criar uma loja/cidade
+- [ ] Combate automático guiada com ordem de iniciativa, onde cada jogador pode jogar na sua vez.. talvez o mestre possa jogar pelo jogador casoa conexao dele esteja ocilando para nao travar o roleplay...
+- [ ] Possibildiade de UI com barras de hp do personagem
+- [ ] Sistema de personalização de personagem, como olhos e cor da pele, tipo de cabelo etc...
+- [ ] Transformação do sistema de Equipar/Desequipar em sistema de Vestir/Desvestir visualmente
+- [ ] Sistema de UI para exibir magias, golpes, animações entre outras como montar..
+- [ ] Possibilidaes de exibir campanhas em 2D estilo tibia/pokemon ou 2D estilo Grand Chase
+
 
 ---
 
