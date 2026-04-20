@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .money-label {
@@ -39,40 +39,192 @@
   opacity: 0.9;
 }
 
-.inventario-section {
+.peso-display {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
   margin-bottom: 16px;
 }
 
-.inventario-section h4 {
+.peso-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.peso-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.peso-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.peso-capacidade {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.carga-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.carga-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.carga-badge.light {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.carga-badge.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.carga-badge.heavy {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.carga-penalidade {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.peso-aviso {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.montaria-section {
+  margin-bottom: 16px;
+}
+
+.montaria-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f0fdf4;
+  border: 2px solid #22c55e;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.montaria-card:hover {
+  background: #dcfce7;
+}
+
+.montaria-icon {
+  font-size: 1.5rem;
+}
+
+.montaria-nome {
+  font-weight: 600;
+  flex: 1;
+}
+
+.montaria-peso {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.montaria-status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.montaria-status.montando {
+  background: #22c55e;
+  color: white;
+}
+
+.montaria-info {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.inventario-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #e2e8f0;
+}
+
+.tab-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.tab-count {
+  background: rgba(0,0,0,0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+.tab-btn.active .tab-count {
+  background: rgba(255,255,255,0.2);
+}
+
+.inventario-secao {
+  margin-bottom: 20px;
+}
+
+.inventario-secao h4 {
   margin-bottom: 8px;
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 1px solid var(--border);
   padding-bottom: 4px;
-}
-
-.inventario-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  margin-bottom: 4px;
-}
-
-.item-ca, .item-bonus, .item-dano {
-  font-size: 0.85rem;
-  color: var(--text-light);
-}
-
-.item-quantidade {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-left: auto;
 }
 
 .inventario-empty {
@@ -92,6 +244,14 @@
     flex-direction: column;
     text-align: center;
   }
+  .inventario-tabs {
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 100px;
+  }
 }
 @media (max-width: 560px) {
   .inventario-itens-grid {
@@ -105,4 +265,4 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 4px;
   }
-} 
+}

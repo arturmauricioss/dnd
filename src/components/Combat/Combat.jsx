@@ -95,6 +95,20 @@ export default function Combat() {
             )}
           </div>
 
+          {/* Encumbrance */}
+          <div className="combat-stat">
+            <div className="stat-label">Carga</div>
+            <div className="stat-value">
+              <span className="stat-number">{combate.encumbrance?.pesoTotal?.toFixed(1) || 0} kg</span>
+            </div>
+            <div className="stat-detail">
+              <span className={`carga-badge ${combate.encumbrance?.cargaAtual}`}>
+                {combate.encumbrance?.cargaAtual === 'light' ? 'Leve' : 
+                 combate.encumbrance?.cargaAtual === 'medium' ? 'Média' : 'Pesada'}
+              </span>
+            </div>
+          </div>
+
           {/* PV */}
           <div className="combat-stat compact">
             <div className="stat-label">Pontos de VIda</div>

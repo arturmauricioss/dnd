@@ -103,6 +103,9 @@ const estadoInicial = {
     armor: null,
     shield: null,
     money: { po: 0, pl: 0, pp: 0, pc: 0 },
+    weapons: [],
+    itens: [],
+    montaria: null,
   },
 
   idiomas: [],

@@ -127,6 +127,29 @@
 .price {
   margin-left: auto;
 }
+
+.item-peso {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: normal;
+}
+
+.local-selector {
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid #333;
+}
+
+.local-selector select {
+  width: 100%;
+  padding: 4px 8px;
+  background: #2d2d2d;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
 .arma-img {
   width: 100%;
   height: 100%;
