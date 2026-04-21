@@ -7,7 +7,7 @@ export const montarias = {
   cao_guarda: { nome: "Cão de guarda", custo: 2500, peso: "25 kg", capacidade: { light: 15, medium: 30, heavy: 45 }, tipo: 'montaria', forca: 4 },
   cavalo_guerra_leve: { nome: "Cavalo de guerra leve", custo: 15000, peso: "450 kg", capacidade: { light: 65, medium: 130, heavy: 195 }, tipo: 'montaria', forca: 14 },
   cavalo_guerra_pesado: { nome: "Cavalo de guerra pesado", custo: 40000, peso: "550 kg", capacidade: { light: 87, medium: 175, heavy: 262 }, tipo: 'montaria', forca: 16 },
-  cavalo_leve: { nome: "Cavalo leve", custo: 7500, peso: "400 kg", capacidade: { light: 43, medium: 86, heavy: 130 }, tipo: 'montaria', forca: 12 },
+  cavalo_leve: { nome: "Cavalo leve", custo: 7500, peso: "400 kg", capacidade: { light: 43, medium: 86, heavy: 130 }, tipo: 'montaria', forca: 12, img:"/dnd/montarias/cavalo-leve.png"  },
   cavalo_pesado: { nome: "Cavalo pesado", custo: 20000, peso: "500 kg", capacidade: { light: 58, medium: 116, heavy: 175 }, tipo: 'montaria', forca: 14 },
   pônei_guerra: { nome: "Pônei de guerra", custo: 10000, peso: "250 kg", capacidade: { light: 43, medium: 86, heavy: 130 }, tipo: 'montaria', forca: 12 },
   ponei: { nome: "Pônei", custo: 3000, peso: "200 kg", capacidade: { light: 25, medium: 50, heavy: 75 }, tipo: 'montaria', forca: 10 },

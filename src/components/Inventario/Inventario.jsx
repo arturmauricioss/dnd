@@ -3,9 +3,12 @@ import { useCharacter } from '../../context/CharacterContext'
 import { converterParaPO } from './dinheiroData'
 import { getItemPorId, getPesoItem, getCapacidade, getLoad, tabelaCarga } from '../Equipamentos/equipamentosLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
+import { montarias, transporte } from '../Equipamentos/montariasData'
 import ItemCard from '../ItemCard/ItemCard'
 import { Navigation, Page } from '../global'
 import './Inventario.css'
+
+const TODAS_MONTARIAS = { ...montarias, ...transporte }
 
 export default function Inventario() {
   const { personagem, atualizarCampo } = useCharacter()
@@ -103,7 +106,7 @@ export default function Inventario() {
 
   const pesoExcedente = pesoTotal - capacidade.medium
 
-  const mudarLocal = (tipo, id, novoLocal) => {
+  const mudarLocal = (tipo, id, novoLocal, qtdMover = null) => {
     if (tipo === 'armadura') {
       if (novoLocal === 'equipped') {
         atualizarCampo('equipment', { ...personagem.equipment, armor: id })
@@ -126,15 +129,108 @@ export default function Inventario() {
       return
     }
 
+    const isMontaria = !!TODAS_MONTARIAS[id]
+    if (isMontaria && (novoLocal === 'montaria' || novoLocal === 'tesoureiro')) {
+      if (novoLocal === 'montaria') {
+        const listaItens = personagem.equipment?.itens || []
+        const novaListaItens = listaItens.filter(i => i.id !== id)
+        atualizarCampo('equipment', { ...personagem.equipment, montaria: id, itens: novaListaItens })
+      } else if (novoLocal === 'tesoureiro') {
+        const listaItens = [...(personagem.equipment?.itens || [])]
+        const item = { id: id, quantidade: 1, local: 'tesoureiro' }
+        listaItens.push(item)
+        atualizarCampo('equipment', { ...personagem.equipment, montaria: null, itens: listaItens })
+      }
+      return
+    }
+
     const campo = tipo === 'arma' ? 'weapons' : 'itens'
     const lista = [...(personagem.equipment?.[campo] || [])]
     const idx = lista.findIndex(i => i.id === id)
     if (idx >= 0) {
-      lista[idx] = { ...lista[idx], local: novoLocal }
+      const item = lista[idx]
+      const qtd = parseInt(qtdMover) || item.quantidade || 1
+      const idxDestino = lista.findIndex(i => i.id === id && i.local === novoLocal && i !== item)
+      
+      if (qtd >= item.quantidade) {
+        if (idxDestino >= 0) {
+          lista[idxDestino] = { ...lista[idxDestino], quantidade: lista[idxDestino].quantidade + item.quantidade }
+          lista.splice(idx, 1)
+        } else {
+          lista[idx] = { ...item, local: novoLocal }
+        }
+      } else {
+        lista[idx] = { ...item, quantidade: item.quantidade - qtd }
+        if (idxDestino >= 0) {
+          lista[idxDestino] = { ...lista[idxDestino], quantidade: lista[idxDestino].quantidade + qtd }
+        } else {
+          lista.push({ id: item.id, quantidade: qtd, local: novoLocal })
+        }
+      }
       atualizarCampo('equipment', {
         ...personagem.equipment,
         [campo]: lista
       })
+    }
+  }
+
+  const venderItem = (tipo, id, qtdVender) => {
+    const itemData = getItemPorId(id)
+    if (!itemData) return
+    
+    if (tipo === 'montaria') {
+      const valorTotal = itemData.custo || 0
+      const listaItens = personagem.equipment?.itens || []
+      const novaListaItens = listaItens.filter(i => i.id !== id)
+      atualizarCampo('equipment', {
+        ...personagem.equipment,
+        montaria: null,
+        itens: novaListaItens,
+        money: {
+          po: (personagem.equipment?.money?.po || 0) + Math.floor(valorTotal / 100),
+          pl: (personagem.equipment?.money?.pl || 0) + Math.floor((valorTotal % 100) / 10),
+          pp: (personagem.equipment?.money?.pp || 0) + Math.floor((valorTotal % 100 % 10) / 1),
+          pc: personagem.equipment?.money?.pc || 0
+        }
+      })
+      return
+    }
+    
+    const campo = tipo === 'arma' ? 'weapons' : 'itens'
+    const lista = [...(personagem.equipment?.[campo] || [])]
+    const idx = lista.findIndex(i => i.id === id)
+    if (idx >= 0) {
+      const item = lista[idx]
+      const qtd = qtdVender || item.quantidade || 1
+      const valorTotal = (itemData.custo || 0) * qtd
+      
+      if (qtd >= item.quantidade) {
+        const listaDinheiro = {
+          po: (personagem.equipment?.money?.po || 0) + Math.floor(valorTotal / 100),
+          pl: (personagem.equipment?.money?.pl || 0) + Math.floor((valorTotal % 100) / 10),
+          pp: (personagem.equipment?.money?.pp || 0) + Math.floor((valorTotal % 100 % 10) / 1),
+          pc: personagem.equipment?.money?.pc || 0
+        }
+        const novaLista = lista.filter(i => i.id !== id)
+        atualizarCampo('equipment', {
+          ...personagem.equipment,
+          [campo]: novaLista,
+          money: listaDinheiro
+        })
+      } else {
+        lista[idx] = { ...item, quantidade: item.quantidade - qtd }
+        const listaDinheiro = {
+          po: (personagem.equipment?.money?.po || 0) + Math.floor(valorTotal / 100),
+          pl: (personagem.equipment?.money?.pl || 0) + Math.floor((valorTotal % 100) / 10),
+          pp: (personagem.equipment?.money?.pp || 0) + Math.floor((valorTotal % 100 % 10) / 1),
+          pc: personagem.equipment?.money?.pc || 0
+        }
+        atualizarCampo('equipment', {
+          ...personagem.equipment,
+          [campo]: lista,
+          money: listaDinheiro
+        })
+      }
     }
   }
 
@@ -156,13 +252,18 @@ export default function Inventario() {
     const itemData = getItemPorId(item.id)
     if (!itemData) return null
     const peso = getPesoItem(itemData) * quantidade
+    const tipoItem = item.tipo || tipo
+    const isMontariaItem = !!TODAS_MONTARIAS[item.id]
+    const tipoItemCard = isMontariaItem ? 'montaria' : tipoItem
     return (
       <ItemCard 
-        key={`${tipo}-${item.id}`} 
+        key={`${tipo}-${item.id}-${item.local}`} 
         item={{ id: item.id, ...itemData, quantidade }} 
         peso={peso}
         local={item.local}
-        onLocalChange={(novoLocal) => mudarLocal(tipo, item.id, novoLocal)}
+        onLocalChange={(novoLocal, qtd) => mudarLocal(tipo, item.id, novoLocal, qtd)}
+        onSell={(qtd) => venderItem(tipo, item.id, qtd)}
+        tipoItem={tipoItemCard}
       />
     )
   }
@@ -173,7 +274,17 @@ export default function Inventario() {
       <div className="inventario-secao">
         <h4>{titulo}</h4>
         <div className="inventario-itens-grid">
-          {itensLista.map((item, idx) => renderItem(item, tipo, item.quantidade || 1))}
+          {itensLista.map((item) => (
+            <ItemCard 
+              key={`${tipo}-${item.id}-${item.local}`}
+              item={{ id: item.id, ...getItemPorId(item.id), quantidade: item.quantidade || 1 }}
+              peso={(getPesoItem(getItemPorId(item.id)) || 0) * (item.quantidade || 1)}
+              local={item.local}
+              onLocalChange={(novoLocal, qtd) => mudarLocal(tipo, item.id, novoLocal, qtd)}
+              onSell={(qtd) => venderItem(tipo, item.id, qtd)}
+              tipoItem={tipo}
+            />
+          ))}
         </div>
       </div>
     )
@@ -263,20 +374,27 @@ export default function Inventario() {
         {abaSelecionada === 'montaria' && (
           <div className="inventario-aba">
             {montaria && (
-              <div className="montaria-card" onClick={equiparMontaria}>
-                <span className="montaria-icon">🐴</span>
-                <span className="montaria-nome">{montaria.nome}</span>
-                <span className="montaria-peso">{pesoMontaria} kg</span>
-                <span className={`montaria-status ${montando ? 'montando' : ''}`}>
-                  {montando ? 'Montando' : 'A pé'}
-                </span>
+              <div className="inventario-itens-grid">
+                <ItemCard 
+                  item={{ id: montaria.id, ...montaria, quantidade: 1 }} 
+                  peso={pesoMontaria}
+                  local="montaria"
+                  onLocalChange={(novoLocal) => mudarLocal('montaria', montaria.id, novoLocal)}
+                  onSell={(qtd) => venderItem('montaria', montaria.id, qtd)}
+                  tipoItem="montaria"
+                  extraBtn={
+                    <button className="extra-montar-btn" onClick={(e) => { e.stopPropagation(); equiparMontaria() }}>
+                      {montando ? '🚶' : '🐴'}
+                    </button>
+                  }
+                />
               </div>
             )}
             {montando && montaria && (
               <div className="montaria-info">
-                Capacidade da montaria: {Math.floor(capacidade.light * 1.5)} kg (light), {' '}
-                {Math.floor(capacidade.medium * 1.5)} kg (medium), {' '}
-                {Math.floor(capacidade.heavy * 1.5)} kg (heavy)
+                Capacidade: {Math.floor(capacidade.light * 1.5)}kg light, {' '}
+                {Math.floor(capacidade.medium * 1.5)}kg medium, {' '}
+                {Math.floor(capacidade.heavy * 1.5)}kg heavy
               </div>
             )}
             {!montaria && <p>Nenhuma montaria disponível</p>}

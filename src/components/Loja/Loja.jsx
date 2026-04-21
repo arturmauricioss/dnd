@@ -16,15 +16,14 @@ export default function Loja() {
   const [carrinhoAberto, setCarrinhoAberto] = useState(false)
   const carrinhoRef = useRef(null)
 
-  const tiposDaLoja = itensPorLoja[lojaSelecionada] || []
-
   const itensFiltrados = useMemo(() => {
-    return Object.entries(todosItens).filter(([id, item]) => {
+    const tipos = itensPorLoja[lojaSelecionada] || []
+    return Object.entries(todosItens).filter(([, item]) => {
       const tipoItem = item.tipo?.toLowerCase() || ''
       const tipoLojaItem = item.tipoLoja?.toLowerCase() || ''
-      return tiposDaLoja.some(t => tipoItem.includes(t) || tipoLojaItem.includes(t))
+      return tipos.some(t => tipoItem.includes(t) || tipoLojaItem.includes(t))
     })
-  }, [lojaSelecionada, tiposDaLoja])
+  }, [lojaSelecionada])
 
   const dinheiroInicial = useMemo(() => {
     return getDinheiroInicial(personagem.classe) || { po: 0, pl: 0, pp: 0, pc: 0 }
@@ -189,6 +188,7 @@ export default function Loja() {
                 <ItemCard
                   key={id}
                   item={{ id, ...item }}
+                  tipoItem={item.tipoLoja || item.tipo}
                   onClick={() => adicionarAoCarrinho({ id, ...item })}
                 />
               ))}

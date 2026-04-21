@@ -7,7 +7,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -58,11 +58,12 @@
 /* IMAGE */
 .card-image {
   /* height: 90px; */
-  background: #ccc;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+
 }
 
 .card-image img {
@@ -113,6 +114,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .quantidade-badge {
@@ -138,10 +140,14 @@
   padding: 4px 8px;
   background: rgba(0,0,0,0.5);
   border-top: 1px solid #333;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .local-selector select {
-  width: 100%;
+  flex: 1;
   padding: 4px 8px;
   background: #2d2d2d;
   color: white;
@@ -149,6 +155,31 @@
   border-radius: 4px;
   font-size: 0.75rem;
   cursor: pointer;
+}
+
+.qtd-input {
+  width: 50px;
+  padding: 4px 4px;
+  background: #2d2d2d;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.sell-btn {
+  padding: 4px 8px;
+  background: #2d7d2d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.sell-btn:hover {
+  background: #3d9d3d;
 }
 .arma-img {
   width: 100%;
@@ -167,7 +198,7 @@
 @media (max-width: 600px) {
   .item-card {
     min-height: 100px;
-    border-radius: 6px;
+    border-radius: 6px; 
   }
 
   .card-header {
