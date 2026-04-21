@@ -4,7 +4,7 @@ import { getBBABase, getProgressaoBBA, bonusRacialResistencia } from './bbaData'
 import { getDeslocamento, deslocamentoPorRaca } from './deslocamentoData'
 import { bonusDeslocamentoPorClasse } from '../Classes/classesData'
 import { caValoresIniciais } from './combatData'
-import { getItemPorId, getPesoItem, getCapacidade, getLoad, tabelaCarga } from '../Equipamentos/equipamentosLogic'
+import { getItemPorId, getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga } from '../Equipamentos/equipamentosLogic'
 
 export function calcularBBA(classeId, nivel) {
   const progressao = getProgressaoBBA(classeId)
@@ -107,7 +107,14 @@ export function getDadosCombate(personagem, getModificador) {
 
   const saves = calcularSaves(classeId, conMod, dexMod, sabMod, race)
 
-  const capacidade = getCapacidade(forca)
+  const capacidade = (() => {
+    const cap = getCapacidade(forca)
+    return {
+      leve: cap.leve || cap.light || 0,
+      media: cap.media || cap.medium || 0,
+      maxima: cap.maxima || cap.heavy || 0
+    }
+  })()
   
   const getArmaduraData = () => {
     if (!equipment?.armor) return null
@@ -155,8 +162,29 @@ export function getDadosCombate(personagem, getModificador) {
     .filter(i => (i.local || 'carregando') === 'carregando')
     .reduce((total, i) => total + (getPesoItem(getItemPorId(i.id)) || 0) * (i.quantidade || 1), 0)
 
-  const pesoTotal = pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando
-  const cargaAtual = getLoad(pesoTotal, forca)
+  const pesoPersonagem = parseFloat(personagem.peso) || 0
+  
+  const montariasItens = (equipment?.itens || []).filter(i => i.local === 'montaria')
+  
+  const capacidadeMontaria = montariasItens.length > 0
+    ? getCapacidadeMontaria(getItemPorId(montariasItens[0].id))
+    : { leve: 0, media: 0, maxima: 0 }
+  
+  const capacidadeTotal = {
+    leve: capacidade.leve + capacidadeMontaria.leve,
+    media: capacidade.media + capacidadeMontaria.media,
+    maxima: capacidade.maxima + capacidadeMontaria.maxima
+  }
+  
+  const montando = equipment?.montando || false
+  const pesoTotal = montando 
+    ? pesoPersonagem + pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando 
+    : pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando
+  
+  const cargaAtual = montando && montariasItens.length > 0
+    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'maxima')
+    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'maxima')
+  
   const dadosCarga = tabelaCarga[cargaAtual]
 
   const getDeslocamentoFinal = () => {

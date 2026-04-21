@@ -103,8 +103,8 @@ export default function Combat() {
             </div>
             <div className="stat-detail">
               <span className={`carga-badge ${combate.encumbrance?.cargaAtual}`}>
-                {combate.encumbrance?.cargaAtual === 'light' ? 'Leve' : 
-                 combate.encumbrance?.cargaAtual === 'medium' ? 'Média' : 'Pesada'}
+                {combate.encumbrance?.cargaAtual === 'leve' ? 'Leve' : 
+                 combate.encumbrance?.cargaAtual === 'media' ? 'Média' : 'Máxima'}
               </span>
             </div>
           </div>

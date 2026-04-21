@@ -18,54 +18,59 @@ export function getPesoItemComQuantidade(item, quantidade = 1) {
 }
 
 export const capacidadeCargaPorForca = {
-  1: { light: 1.5, medium: 3, heavy: 5 },
-  2: { light: 3, medium: 6.5, heavy: 10 },
-  3: { light: 5, medium: 10, heavy: 15 },
-  4: { light: 6.5, medium: 13, heavy: 20 },
-  5: { light: 8, medium: 16.5, heavy: 25 },
-  6: { light: 10, medium: 20, heavy: 30 },
-  7: { light: 11.5, medium: 23, heavy: 35 },
-  8: { light: 13, medium: 26.5, heavy: 40 },
-  9: { light: 15, medium: 30, heavy: 45 },
-  10: { light: 16.5, medium: 33, heavy: 50 },
-  11: { light: 19, medium: 38, heavy: 57.5 },
-  12: { light: 21.5, medium: 43, heavy: 65 },
-  13: { light: 25, medium: 50, heavy: 75 },
-  14: { light: 29, medium: 58, heavy: 87.5 },
-  15: { light: 33, medium: 66.5, heavy: 100 },
-  16: { light: 38, medium: 76.5, heavy: 115 },
-  17: { light: 43, medium: 86.5, heavy: 130 },
-  18: { light: 50, medium: 100, heavy: 150 },
-  19: { light: 58, medium: 116.5, heavy: 175 },
-  20: { light: 66.5, medium: 133, heavy: 200 },
-  21: { light: 76.5, medium: 153, heavy: 230 },
-  22: { light: 86.5, medium: 173, heavy: 260 },
-  23: { light: 100, medium: 200, heavy: 300 },
-  24: { light: 116.5, medium: 233, heavy: 350 },
-  25: { light: 133, medium: 266.5, heavy: 400 },
-  26: { light: 153, medium: 306.5, heavy: 460 },
-  27: { light: 173, medium: 346.5, heavy: 520 },
-  28: { light: 200, medium: 400, heavy: 600 },
-  29: { light: 233, medium: 466.5, heavy: 700 }
+  1: { leve: 1.5, media: 3, maxima: 5 },
+  2: { leve: 3, media: 6.5, maxima: 10 },
+  3: { leve: 5, media: 10, maxima: 15 },
+  4: { leve: 6.5, media: 13, maxima: 20 },
+  5: { leve: 8, media: 16.5, maxima: 25 },
+  6: { leve: 10, media: 20, maxima: 30 },
+  7: { leve: 11.5, media: 23, maxima: 35 },
+  8: { leve: 13, media: 26.5, maxima: 40 },
+  9: { leve: 15, media: 30, maxima: 45 },
+  10: { leve: 16.5, media: 33, maxima: 50 },
+  11: { leve: 19, media: 38, maxima: 57.5 },
+  12: { leve: 21.5, media: 43, maxima: 65 },
+  13: { leve: 25, media: 50, maxima: 75 },
+  14: { leve: 29, media: 58, maxima: 87.5 },
+  15: { leve: 33, media: 66.5, maxima: 100 },
+  16: { leve: 38, media: 76.5, maxima: 115 },
+  17: { leve: 43, media: 86.5, maxima: 130 },
+  18: { leve: 50, media: 100, maxima: 150 },
+  19: { leve: 58, media: 116.5, maxima: 175 },
+  20: { leve: 66.5, media: 133, maxima: 200 },
+  21: { leve: 76.5, media: 153, maxima: 230 },
+  22: { leve: 86.5, media: 173, maxima: 260 },
+  23: { leve: 100, media: 200, maxima: 300 },
+  24: { leve: 116.5, media: 233, maxima: 350 },
+  25: { leve: 133, media: 266.5, maxima: 400 },
+  26: { leve: 153, media: 306.5, maxima: 460 },
+  27: { leve: 173, media: 346.5, maxima: 520 },
+  28: { leve: 200, media: 400, maxima: 600 },
+  29: { leve: 233, media: 466.5, maxima: 700 }
 }
 
 export const tabelaCarga = {
-  light: { maxDex: null, checkPenalty: 0, speed9m: 9, speed6m: 6, corrida: 4 },
-  medium: { maxDex: 3, checkPenalty: -3, speed9m: 6, speed6m: 4.5, corrida: 4 },
-  heavy: { maxDex: 1, checkPenalty: -6, speed9m: 6, speed6m: 4.5, corrida: 3 }
+  leve: { maxDex: 99, checkPenalty: 0, speed9m: 9, speed6m: 6, corrida: 3 },
+  media: { maxDex: 3, checkPenalty: -3, speed9m: 6, speed6m: 4.5, corrida: 3 },
+  maxima: { maxDex: 1, checkPenalty: -6, speed9m: 6, speed6m: 4.5, corrida: 3 }
 }
 
 export function getCapacidade(forca) {
   const forcaNum = typeof forca === 'string' ? parseInt(forca) : forca
-  return capacidadeCargaPorForca[forcaNum] || capacidadeCargaPorForca[10]
+  const data = capacidadeCargaPorForca[forcaNum] || capacidadeCargaPorForca[10]
+  return {
+    leve: data.leve,
+    media: data.media,
+    maxima: data.maxima
+  }
 }
 
 export function getLoad(peso, forca) {
   const capacidade = getCapacidade(forca)
   
-  if (peso <= capacidade.light) return 'light'
-  if (peso <= capacidade.medium) return 'medium'
-  return 'heavy'
+  if (peso <= capacidade.leve) return 'leve'
+  if (peso <= capacidade.media) return 'media'
+  return 'maxima'
 }
 
 export function getDadosEncumbrance(forca) {

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { converterParaPO } from './dinheiroData'
-import { getItemPorId, getPesoItem, getCapacidade, getLoad, getCapacidadeMontaria, tabelaCarga } from '../Equipamentos/equipamentosLogic'
+import { getItemPorId, getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga } from '../Equipamentos/equipamentosLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
 import { montarias, transporte } from '../Equipamentos/montariasData'
 import ItemCard from '../ItemCard/ItemCard'
@@ -23,7 +23,14 @@ export default function Inventario() {
     return parseFloat(personagem.peso) || 0
   }, [personagem.peso])
 
-  const capacidadePersonagem = useMemo(() => getCapacidade(forca), [forca])
+  const capacidadePersonagem = useMemo(() => {
+    const cap = getCapacidade(forca)
+    return {
+      leve: cap.leve || cap.light || 0,
+      media: cap.media || cap.medium || 0,
+      maxima: cap.maxima || cap.heavy || 0
+    }
+  }, [forca])
   
   const dinheiroInicial = useMemo(() => {
     return getDinheiroInicial(personagem.classe) || { po: 0, pl: 0, pp: 0, pc: 0 }
@@ -52,18 +59,18 @@ export default function Inventario() {
   const montariasItens = useMemo(() => itens.filter(i => i.local === 'montaria'), [itens])
 
   const capacidadeMontaria = useMemo(() => {
-    if (montariasItens.length === 0) return { light: 0, medium: 0, heavy: 0 }
+    if (montariasItens.length === 0) return { leve: 0, media: 0, maxima: 0 }
     const primeiroItem = getItemPorId(montariasItens[0].id)
-    if (!primeiroItem) return { light: 0, medium: 0, heavy: 0 }
+    if (!primeiroItem) return { leve: 0, media: 0, maxima: 0 }
     return getCapacidadeMontaria(primeiroItem)
   }, [montariasItens])
 
   const capacidadeTotal = useMemo(() => {
     if (montando) return capacidadeMontaria
     return {
-      light: capacidadePersonagem.light + capacidadeMontaria.light,
-      medium: capacidadePersonagem.medium + capacidadeMontaria.medium,
-      heavy: capacidadePersonagem.heavy + capacidadeMontaria.heavy
+      leve: capacidadePersonagem.leve + capacidadeMontaria.leve,
+      media: capacidadePersonagem.media + capacidadeMontaria.media,
+      maxima: capacidadePersonagem.maxima + capacidadeMontaria.maxima
     }
   }, [montando, capacidadePersonagem, capacidadeMontaria])
 
@@ -112,7 +119,9 @@ export default function Inventario() {
     ? pesoPersonagem + pesoTotalEquipamentos 
     : pesoTotalEquipamentos
 
-  const cargaAtual = getLoad(pesoTotal, (montando && montariasItens.length > 0) ? getItemPorId(montariasItens[0].id)?.forca : forca)
+  const cargaAtual = montando && montariasItens.length > 0
+    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'maxima')
+    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'maxima')
   const dadosCarga = tabelaCarga[cargaAtual]
 
   const pesoExcedente = pesoTotal - capacidadeTotal.medium
@@ -346,13 +355,13 @@ const renderSecao = (titulo, itensLista, tipo) => {
           <div className="peso-info">
             <span className="peso-label">Carga:</span>
             <span className="peso-value">{pesoTotal.toFixed(1)} kg</span>
-            <span className="peso-capacidade">/ {capacidadeTotal[cargaAtual].toFixed(1)} kg ({cargaAtual})</span>
+            <span className="peso-capacidade">/ {capacidadeTotal[cargaAtual].toFixed(1)} kg</span>
           </div>
           <div className="carga-info">
             <span className={`carga-badge ${cargaAtual}`}>
-              {cargaAtual === 'light' ? 'Leve' : cargaAtual === 'medium' ? 'Média' : 'Pesada'}
+              {cargaAtual === 'leve' ? 'Leve' : cargaAtual === 'media' ? 'Média' : 'Máxima'}
             </span>
-            {cargaAtual !== 'light' && (
+            {cargaAtual !== 'leve' && (
               <span className="carga-penalidade">
                 Testes: {dadosCarga.checkPenalty} | Corrida: x{dadosCarga.corrida}
               </span>

@@ -212,10 +212,13 @@ export default function Personagem() {
           />
         </div>
         <div className="field-group span-2">
-          <label>Peso</label>
+          <label>Peso (kg)</label>
           <input
-            value={personagem.weight}
-            onChange={(e) => atualizarCampo('weight', e.target.value)}
+            type="number"
+            min="0"
+            step="1"
+            value={personagem.peso || ''}
+            onChange={(e) => atualizarCampo('peso', parseFloat(e.target.value) || 0)}
             placeholder={placeholderFisico.peso}
           />
         </div>
