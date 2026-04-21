@@ -3,6 +3,7 @@ import { getDinheiroInicial } from '../Classes/classesData'
 import { armadurasNormalizadas, escudosNormalizados } from './armadurasData'
 import { todosItensNormalizados } from './itensData'
 import { armasNormalizadas } from './armasData'
+import { instrumentosNormalizados } from './instrumentosData'
 import { normalizarPeso, getPesoItem, capacidadeCargaPorForca, tabelaCarga, getCapacidade, getLoad } from '../Inventario/encumbranceData'
 
 export { getDanoPorTamanho, getPesoPorTamanho, getDinheiroInicial }
@@ -12,22 +13,21 @@ export { normalizarPeso, getPesoItem, getCapacidade, getLoad, capacidadeCargaPor
 export function getCapacidadeMontaria(montaria) {
   if (!montaria) return { light: 0, medium: 0, heavy: 0 }
   
-  if (montaria.capacidade) {
-    return montaria.capacidade
-  }
+  let capacidadeBase
   
-  if (montaria.forca) {
+  if (montaria.capacidade && !montaria.forca) {
+    capacidadeBase = montaria.capacidade
+  } else if (montaria.forca) {
     const forca = montaria.forca
-    const capacidadeBase = capacidadeCargaPorForca[forca] || capacidadeCargaPorForca[10]
-    const modificado = {
+    capacidadeBase = capacidadeCargaPorForca[forca] || capacidadeCargaPorForca[10]
+    return {
       light: capacidadeBase.light * 1.5,
       medium: capacidadeBase.medium * 1.5,
       heavy: capacidadeBase.heavy * 1.5
     }
-    return modificado
   }
   
-  return { light: 0, medium: 0, heavy: 0 }
+  return capacidadeBase || { light: 0, medium: 0, heavy: 0 }
 }
 
 export function isMontariaOuTransporte(item) {
@@ -54,6 +54,7 @@ export const todosItens = {
   ...armasNormalizadas,
   ...armadurasNormalizadas,
   ...escudosNormalizados,
+  ...instrumentosNormalizados,
   ...todosItensNormalizados
 };
 
