@@ -170,6 +170,20 @@
   color: var(--text-light);
 }
 
+.extra-montar-btn {
+  padding: 4px 8px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.extra-montar-btn:hover {
+  background: #16a34a;
+}
+
 .inventario-tabs {
   display: flex;
   gap: 8px;
