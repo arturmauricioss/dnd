@@ -56,7 +56,7 @@ export default function ItemCard({ item, onClick, peso, local, onLocalChange, on
 
   const handleLocalChange = (novoLocal) => {
     const qtd = parseInt(qtdMove) || item.quantidade || 1
-    onLocalChange(novoLocal, qtd)
+    onLocalChange(novoLocal, qtd, local)
     setQtdMove('')
   }
 
@@ -173,7 +173,15 @@ return (
               onChange={(e) => handleLocalChange(e.target.value)}
               onClick={(e) => e.stopPropagation()}
             >
-              {local === 'montaria' || (local === 'tesoureiro' && tipoItem === 'montaria') ? (
+              {local === 'montaria' ? (
+                <>
+                  <option value="tesoureiro">🏠</option>
+                </>
+              ) : local === 'tesoureiro' ? (
+                <>
+                  <option value="montaria">🐴</option>
+                </>
+              ) : local === 'carregando' && tipoItem === 'montaria' ? (
                 <>
                   <option value="montaria">🐴</option>
                   <option value="tesoureiro">🏠</option>

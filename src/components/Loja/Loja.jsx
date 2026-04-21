@@ -111,7 +111,8 @@ export default function Loja() {
 
     const armadura = carrinho.find(i => i.tipo === 'armadura')
     const escudo = carrinho.find(i => i.tipo === 'escudo')
-    const montaria = carrinho.find(i => i.tipo === 'montaria' || i.tipo === 'transporte')
+    const montariasCarrinho = carrinho.filter(i => i.tipo === 'montaria')
+    const transportesCarrinho = carrinho.filter(i => i.tipo === 'transporte')
     const armasCarrinho = carrinho.filter(i => i.tipo === 'arma')
     const outrosCarrinho = carrinho.filter(i =>
       i.tipo !== 'arma' &&
@@ -144,12 +145,31 @@ export default function Loja() {
       }
     })
 
+    const primeiraMontaria = montariasCarrinho[0]?.id
+    montariasCarrinho.forEach(item => {
+      const existente = itensCombinados.find(i => i.id === item.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (item.quantidade || 1)
+      } else {
+        itensCombinados.push({ id: item.id, quantidade: item.quantidade || 1, local: 'montaria' })
+      }
+    })
+
+    transportesCarrinho.forEach(item => {
+      const existente = itensCombinados.find(i => i.id === item.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (item.quantidade || 1)
+      } else {
+        itensCombinados.push({ id: item.id, quantidade: item.quantidade || 1, local: 'carregando' })
+      }
+    })
+
     atualizarCampo('equipment', {
       ...personagem.equipment,
       money: moedasRestantes,
       armor: armadura?.id || personagem.equipment?.armor || '',
       shield: escudo?.id || personagem.equipment?.shield || '',
-      montaria: montaria?.id || personagem.equipment?.montaria || null,
+      montaria: montariasCarrinho[0]?.id || personagem.equipment?.montaria || null,
       weapons: armasCombinadas,
       itens: itensCombinados
     })

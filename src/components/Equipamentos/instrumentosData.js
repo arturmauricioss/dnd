@@ -19,3 +19,7 @@ export const instrumentos = {
   simbolo_sagrado_madeira: { nome: "Símbolo sagrado de madeira", custo: 100, peso: "-" },
   simbolo_sagrado_prata: { nome: "Símbolo sagrado de prata", custo: 2500, peso: "0,5 kg" }
 };
+
+export const instrumentosNormalizados = Object.fromEntries(
+  Object.entries(instrumentos).map(([id, inst]) => [id, { id, tipo: "instrumento", tipoLoja: "instrumento", ...inst }])
+);
