@@ -11,23 +11,26 @@ export { getDanoPorTamanho, getPesoPorTamanho, getDinheiroInicial }
 export { normalizarPeso, getPesoItem, getCapacidade, getLoad, capacidadeCargaPorForca, tabelaCarga }
 
 export function getCapacidadeMontaria(montaria) {
-  if (!montaria) return { light: 0, medium: 0, heavy: 0 }
-  
-  let capacidadeBase
+  if (!montaria) return { leve: 0, media: 0, maxima: 0 }
   
   if (montaria.capacidade && !montaria.forca) {
-    capacidadeBase = montaria.capacidade
-  } else if (montaria.forca) {
-    const forca = montaria.forca
-    capacidadeBase = capacidadeCargaPorForca[forca] || capacidadeCargaPorForca[10]
     return {
-      light: capacidadeBase.light * 1.5,
-      medium: capacidadeBase.medium * 1.5,
-      heavy: capacidadeBase.heavy * 1.5
+      leve: montaria.capacidade.leve || montaria.capacidade.light || 0,
+      media: montaria.capacidade.media || montaria.capacidade.medium || 0,
+      maxima: montaria.capacidade.maxima || montaria.capacidade.heavy || 0
     }
   }
   
-  return capacidadeBase || { light: 0, medium: 0, heavy: 0 }
+  if (montaria.forca) {
+    const data = capacidadeCargaPorForca[montaria.forca] || capacidadeCargaPorForca[10]
+    return {
+      leve: (data.leve || data.light || 0) * 1.5,
+      media: (data.media || data.medium || 0) * 1.5,
+      maxima: (data.maxima || data.heavy || 0) * 1.5
+    }
+  }
+  
+  return { leve: 0, media: 0, maxima: 0 }
 }
 
 export function isMontariaOuTransporte(item) {
