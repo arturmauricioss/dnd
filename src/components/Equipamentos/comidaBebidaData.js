@@ -4,11 +4,11 @@ export const comidaBebida = {
   // acom_alojamento_bom: { nome: "Alojamento bom (por dia)", custo: 200, peso: "-" },
   // banquete: { nome: "Banquete (por pessoa)", custo: 1000, peso: "-" },
   // carne: { nome: "Carne (pedaço)", custo: 30, peso: "0,25 kg" },
-  cerveja_caneca: { nome: "Cerveja (caneca)", custo: 4, peso: "0,5 kg" }
-  // ,
+  cerveja_caneca: { nome: "Cerveja (caneca)", custo: 4, peso: "0,5 kg" },
   // cerveja_jarra: { nome: "Cerveja (jarra)", custo: 20, peso: "4 kg" },
-  // pao: { nome: "Pão", custo: 2, peso: "0,25 kg" },
-  // queijo: { nome: "Queijo (pedaço)", custo: 10, peso: "0,25 kg" },
+  pao: { nome: "Pão", custo: 2, peso: "0,25 kg" },
+  queijo: { nome: "Queijo (pedaço)", custo: 10, peso: "0,25 kg" }
+  // ,
   // refei_pobre: { nome: "Refeições pobre (por dia)", custo: 10, peso: "-" },
   // refei_padrão: { nome: "Refeições padrão (por dia)", custo: 30, peso: "-" },
   // refei_bom: { nome: "Refeições bom (por dia)", custo: 50, peso: "-" },
