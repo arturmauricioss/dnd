@@ -41,22 +41,22 @@ export const todasArmas = {
 
   // // ARMAS SIMPLES - Uma Mão
   // "clava": { nome: "Clava", categoria: "simples", subcategoria: "uma_mao", custo: 0, dano: "1d6", critico: "x2", alcance: "3m", peso: 1.5, tipo1: "concussao", tipo2: "" },
-  // "lanca-curta": { nome: "Lança curta", categoria: "simples", subcategoria: "uma_mao", custo: 100, dano: "1d6", critico: "x2", alcance: "6m", peso: 1.5, tipo1: "perfurante", tipo2: "" },
+  "lanca-curta": { nome: "Lança curta", categoria: "simples", subcategoria: "uma_mao", custo: 100, dano: "1d6", critico: "x2", alcance: "6m", peso: 1.5, tipo1: "perfurante", tipo2: "" },
   // "maca-pesada": { nome: "Maça pesada", categoria: "simples", subcategoria: "uma_mao", custo: 1200, dano: "1d8", critico: "x2", alcance: "-", peso: 4, tipo1: "concussao", tipo2: "" },
   // "maca-estrela": { nome: "Maça-estrela", categoria: "simples", subcategoria: "uma_mao", custo: 800, dano: "1d8", critico: "x2", alcance: "-", peso: 3, tipo1: "concussao", tipo2: "perfurante" },
 
   // ARMAS SIMPLES - Duas Mãos
   // "bordao": { nome: "Bordão", categoria: "simples", subcategoria: "duas_maos", custo: 0, dano: "1d6/1d6", critico: "x2", alcance: "-", peso: 2, tipo1: "concussao", tipo2: "" },
   // "lanca": { nome: "Lança", categoria: "simples", subcategoria: "duas_maos", custo: 200, dano: "1d8", critico: "x3", alcance: "6m", peso: 3, tipo1: "perfurante", tipo2: "" },
-  // "lanca-longa": { nome: "Lança longa", categoria: "simples", subcategoria: "duas_maos", custo: 500, dano: "1d8", critico: "x3", alcance: "-", peso: 4.5, tipo1: "perfurante", tipo2: "" },
+  "lanca-longa": { nome: "Lança longa", categoria: "simples", subcategoria: "duas_maos", custo: 500, dano: "1d8", critico: "x3", alcance: "-", peso: 4.5, tipo1: "perfurante", tipo2: "" },
 
   // ARMAS SIMPLES - Distância
-  // "azagaia": { nome: "Azagaia", categoria: "simples", subcategoria: "distancia", custo: 100, dano: "1d6", critico: "x2", alcance: "9m", peso: 1, tipo1: "perfurante", tipo2: "" },
+  "azagaia": { nome: "Azagaia", categoria: "simples", subcategoria: "distancia", custo: 100, dano: "1d6", critico: "x2", alcance: "9m", peso: 1, tipo1: "perfurante", tipo2: "" },
   // "besta-leve": { nome: "Besta leve", categoria: "simples", subcategoria: "distancia", custo: 3500, dano: "1d8", critico: "19-20/x2", alcance: "24m", peso: 2, tipo1: "perfurante", tipo2: "" },
   // "virotes-besta-10": { nome: "Virotes de besta (10)", categoria: "simples", subcategoria: "municao", custo: 100, dano: "-", critico: "-", alcance: "-", peso: 0.5, tipo1: "-", tipo2: "" },
   // "besta-pesada": { nome: "Besta pesada", categoria: "simples", subcategoria: "distancia", custo: 5000, dano: "1d10", critico: "19-20/x2", alcance: "36m", peso: 4, tipo1: "perfurante", tipo2: "" },
   // "dardo": { nome: "Dardo", categoria: "simples", subcategoria: "distancia", custo: 50, dano: "1d4", critico: "x2", alcance: "6m", peso: 0.25, tipo1: "perfurante", tipo2: "" },
-  // "funda": { nome: "Funda", categoria: "simples", subcategoria: "distancia", custo: 0, dano: "1d4", critico: "x2", alcance: "15m", peso: 0, tipo1: "concussao", tipo2: "" },
+  "funda": { nome: "Funda", categoria: "simples", subcategoria: "distancia", custo: 0, dano: "1d4", critico: "x2", alcance: "15m", peso: 0, tipo1: "concussao", tipo2: "" },
   // "balas-funda-10": { nome: "Balas de funda (10)", categoria: "simples", subcategoria: "municao", custo: 10, dano: "-", critico: "-", alcance: "-", peso: 0.25, tipo1: "-", tipo2: "" },
 
   // ARMAS COMUNS - Leves

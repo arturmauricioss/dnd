@@ -11,7 +11,8 @@ export const itensGerais = {
   // bau: { nome: "Baú (vazio)", custo: 200, peso: "12,5 kg" },
   // caneco: { nome: "Caneco de cerâmica", custo: 2, peso: "0,5 kg" },
   // caneta: { nome: "Caneta tinteiro", custo: 10, peso: "-" },
-  // cantil: { nome: "Cantil", custo: 100, peso: "2 kg" },
+  cantil: { nome: "Cantil", custo: 100, peso: "2 kg" }
+  // ,
   // cesto: { nome: "Cesto (vazio)", custo: 40, peso: "0,5 kg" },
   // cobertor: { nome: "Cobertor de inverno", custo: 50, peso: "1,5 kg" },
   // corda_canha: { nome: "Reda de Cânhamo (15 m)", custo: 100, peso: "5 kg" },

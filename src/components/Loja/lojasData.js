@@ -37,13 +37,14 @@ export const lojas = [
     descricao: 'Comida, bebida e alojamento',
     icone: '🍺'
   }
+  ,
+  {
+    id: 'mercador',
+    nome: 'Mercador',
+    descricao: 'Itens gerais e suprimentos',
+    icone: '⚖️'
+  }
   // ,
-  // {
-  //   id: 'mercador',
-  //   nome: 'Mercador',
-  //   descricao: 'Itens gerais e suprimentos',
-  //   icone: '⚖️'
-  // },
   // {
   //   id: 'alquimista',
   //   nome: 'Alquimista',
@@ -95,7 +96,7 @@ export const itensPorLoja = {
   couracaria: ['armadura'],
   // escudaria: ['escudo'],
   taberna: ['comida', 'bebida', 'alojamento'],
-  // mercador: ['item', 'fornecimento'],
+  mercador: ['item', 'fornecimento'],
   // alquimista: ['especial'],
   // haras: ['montaria'],
   // carroceiro: ['carroca', 'carruagem', 'charrete', 'treno'],
