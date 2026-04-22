@@ -22,31 +22,34 @@ export const lojas = [
     nome: 'Couraçaria',
     descricao: 'Armaduras',
     icone: '⛓️'
-  },
-  {
-    id: 'escudaria',
-    nome: 'Escudaria',
-    descricao: 'Escudos',
-    icone: '🛡️'
-  },
+  }
+  // ,
+  // {
+  //   id: 'escudaria',
+  //   nome: 'Escudaria',
+  //   descricao: 'Escudos',
+  //   icone: '🛡️'
+  // }
+  ,
   {
     id: 'taberna',
     nome: 'Taberna',
     descricao: 'Comida, bebida e alojamento',
     icone: '🍺'
-  },
-  {
-    id: 'mercador',
-    nome: 'Mercador',
-    descricao: 'Itens gerais e suprimentos',
-    icone: '⚖️'
-  },
-  {
-    id: 'alquimista',
-    nome: 'Alquimista',
-    descricao: 'Itens especiais e mágicos',
-    icone: '⚗️'
-  },
+  }
+  // ,
+  // {
+  //   id: 'mercador',
+  //   nome: 'Mercador',
+  //   descricao: 'Itens gerais e suprimentos',
+  //   icone: '⚖️'
+  // },
+  // {
+  //   id: 'alquimista',
+  //   nome: 'Alquimista',
+  //   descricao: 'Itens especiais e mágicos',
+  //   icone: '⚗️'
+  // },
   // {
   //   id: 'haras',
   //   nome: 'Haras',
@@ -71,18 +74,18 @@ export const lojas = [
   //   descricao: 'Embarcações marítimas',
   //   icone: '⚓'
   // },
-  {
-    id: 'alfaiataria',
-    nome: 'Alfaiataria',
-    descricao: 'Roupas e indumentária',
-    icone: '🥋'
-  },
-  {
-    id: 'luthieria',
-    nome: 'Luthieria',
-    descricao: 'Instrumentos musicais',
-    icone: '🎻'
-  }
+  // {
+  //   id: 'alfaiataria',
+  //   nome: 'Alfaiataria',
+  //   descricao: 'Roupas e indumentária',
+  //   icone: '🥋'
+  // },
+  // {
+  //   id: 'luthieria',
+  //   nome: 'Luthieria',
+  //   descricao: 'Instrumentos musicais',
+  //   icone: '🎻'
+  // }
 ]
 
 export const itensPorLoja = {
@@ -90,10 +93,10 @@ export const itensPorLoja = {
   arsenal: ['arma-comum'],
   'forja-arcana': ['arma-exotica'],
   couracaria: ['armadura'],
-  escudaria: ['escudo'],
+  // escudaria: ['escudo'],
   taberna: ['comida', 'bebida', 'alojamento'],
-  mercador: ['item', 'fornecimento'],
-  alquimista: ['especial'],
+  // mercador: ['item', 'fornecimento'],
+  // alquimista: ['especial'],
   // haras: ['montaria'],
   // carroceiro: ['carroca', 'carruagem', 'charrete', 'treno'],
   // estaleiro: ['barco', 'remo', 'barcaca'],
