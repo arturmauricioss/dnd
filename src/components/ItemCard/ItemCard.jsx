@@ -175,11 +175,13 @@ return (
             >
               {local === 'montaria' ? (
                 <>
+                  <option value="montaria">🐴</option>
                   <option value="tesoureiro">🏠</option>
                 </>
               ) : local === 'tesoureiro' ? (
                 <>
                   <option value="montaria">🐴</option>
+                  <option value="tesoureiro">🏠</option>
                 </>
               ) : local === 'carregando' && tipoItem === 'montaria' ? (
                 <>
