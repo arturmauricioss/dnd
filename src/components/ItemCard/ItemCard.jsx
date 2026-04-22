@@ -60,9 +60,6 @@ export default function ItemCard({
   // =========================
   // 📦 QUANTIDADE
   // =========================
-  const matchQuantidade = item.nome?.match(/\((\d+)\)$/)
-  const quantidadePack = matchQuantidade ? parseInt(matchQuantidade[1]) : null
-
   const quantidadeDisplay =
     item.quantidade > 1 ? item.quantidade : null
 
