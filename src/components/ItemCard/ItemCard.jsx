@@ -2,14 +2,30 @@ import { useRef, useState, useEffect } from 'react'
 import { traducoes } from '../Equipamentos/armasData'
 import './ItemCard.css'
 
-export default function ItemCard({ item, onClick, peso, local, onLocalChange, onSell, tipoItem, extraBtn }) {
-  const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
+export default function ItemCard({
+  item,
+  onClick,
+  peso,
+  local,
+  onLocalChange,
+  onSell,
+  tipoItem,
+  extraBtn
+}) {
+
+  const isArma =
+    item.categoria === 'simples' ||
+    item.categoria === 'comum' ||
+    item.categoria === 'exotica'
+
   const nameRef = useRef(null)
   const containerRef = useRef(null)
   const [overflow, setOverflow] = useState(0)
   const [qtdMove, setQtdMove] = useState('')
-  
 
+  // =========================
+  // 📁 PASTA DE IMAGEM (REGRA PRINCIPAL)
+  // =========================
   const getPastaImg = (tipo) => {
     const pastas = {
       arma: 'armas',
@@ -20,40 +36,53 @@ export default function ItemCard({ item, onClick, peso, local, onLocalChange, on
       instrumento: 'instrumentos',
       especial: 'especiais',
       comida: 'comida',
+      bebida: 'comida',       // 🔥 importante
+      alojamento: 'comida',   // 🔥 importante
       fornecimento: 'fornecimentos',
       indumentaria: 'indumentaria'
     }
     return pastas[tipo] || 'itens'
   }
 
-  const pastaImg = getPastaImg(isArma ? 'arma' : (tipoItem || item.tipo || 'item'))
-  const imgId = item.id.replace(/-/g, '_')
+  // 👉 prioridade correta:
+  // 1. arma força pasta arma
+  // 2. item.tipo (principal)
+  // 3. tipoItem (fallback)
+  const pastaKey = isArma
+    ? 'arma'
+    : (item.tipo || item.tipoLoja || tipoItem || 'item')
+
+  const pastaImg = getPastaImg(pastaKey)
+
+  const imgId = item.id?.replace(/-/g, '_')
   const imgPadrao = `/dnd/${pastaImg}/${imgId}.png`
 
-  const matchQuantidade = item.nome.match(/\((\d+)\)$/)
+  // =========================
+  // 📦 QUANTIDADE
+  // =========================
+  const matchQuantidade = item.nome?.match(/\((\d+)\)$/)
   const quantidadePack = matchQuantidade ? parseInt(matchQuantidade[1]) : null
-  
-  let quantidadeDisplay = null
-  if (item.quantidade && item.quantidade > 1) {
-    if (quantidadePack && item.quantidade > quantidadePack) {
-      quantidadeDisplay = item.quantidade
-    } else if (quantidadePack) {
-      quantidadeDisplay = item.quantidade
-    } else {
-      quantidadeDisplay = item.quantidade
-    }
-  }
 
+  const quantidadeDisplay =
+    item.quantidade > 1 ? item.quantidade : null
+
+  // =========================
+  // 📏 overflow texto
+  // =========================
   useEffect(() => {
     if (nameRef.current && containerRef.current) {
       const textWidth = nameRef.current.scrollWidth
       const containerWidth = containerRef.current.clientWidth
       const charWidth = textWidth / item.nome.length
       const overflowAmount = textWidth - containerWidth
+
       setOverflow(Math.round(Math.max(0, overflowAmount > 0 ? charWidth : 0)))
     }
   }, [item.nome])
 
+  // =========================
+  // ações
+  // =========================
   const handleLocalChange = (novoLocal) => {
     const qtd = parseInt(qtdMove) || item.quantidade || 1
     onLocalChange(novoLocal, qtd, local)
@@ -66,14 +95,17 @@ export default function ItemCard({ item, onClick, peso, local, onLocalChange, on
     setQtdMove('')
   }
 
-return (
+  // =========================
+  // UI
+  // =========================
+  return (
     <div className={`card item-card ${item.tipo || ''}`} onClick={onClick}>
-      
+
       {/* HEADER */}
       <div className="card-header">
         <div className="item-name-container" ref={containerRef}>
-          <span 
-            ref={nameRef} 
+          <span
+            ref={nameRef}
             className={`item-name ${overflow > 0 ? 'scrolling' : ''}`}
             style={{ '--overflow': `-${Math.round(overflow)}px` }}
           >
@@ -92,17 +124,21 @@ return (
         {item.imagem ? (
           <img src={item.imagem} alt={item.nome} className="item-img" />
         ) : (
-          <img 
-            src={imgPadrao} 
-            alt={item.nome} 
+          <img
+            src={imgPadrao}
+            alt={item.nome}
             className="item-img"
-            onError={(e) => { 
-              e.target.style.display = 'none'; 
-              if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex'
+            onError={(e) => {
+              e.target.style.display = 'none'
+              if (e.target.nextSibling) {
+                e.target.nextSibling.style.display = 'flex'
+              }
             }}
           />
         )}
-        <span className="arma-emoji" style={{ display: 'none' }}>{isArma ? '⚔️' : '📦'}</span>
+        <span className="arma-emoji" style={{ display: 'none' }}>
+          {isArma ? '⚔️' : '📦'}
+        </span>
       </div>
 
       {/* DESCRIPTION */}
@@ -112,8 +148,9 @@ return (
         </div>
       )}
 
-      {/* STATS ZONE (GENÉRICA) */}
+      {/* STATS */}
       <div className="card-stats">
+
         {isArma && item.dano && item.critico && (
           <div className="stats-row">
             <span><b>Dano:</b> {item.dano}</span>
@@ -130,32 +167,40 @@ return (
 
         {isArma && (
           <div className="stats-row">
-            <span><b>Alcance:</b> {item.alcance && item.alcance !== '-' ? item.alcance : '-'}</span>
-            <span><b>Peso:</b> {item.peso !== undefined ? (item.peso === 0 ? '0' : `${item.peso} kg`) : '-'}</span>
+            <span><b>Alcance:</b> {item.alcance || '-'}</span>
+            <span><b>Peso:</b> {item.peso ?? '-'}</span>
           </div>
         )}
 
         {(item.tipo1 || item.tipo2) && (
-          <div><b>Tipo:</b> {item.tipo1 || '-'}{item.tipo2 ? `, ${item.tipo2}` : ''}</div>
+          <div>
+            <b>Tipo:</b> {item.tipo1 || '-'}
+            {item.tipo2 ? `, ${item.tipo2}` : ''}
+          </div>
         )}
       </div>
 
       {/* FOOTER */}
       <div className="card-footer">
-        {quantidadeDisplay ? (
+        {quantidadeDisplay && (
           <span className="quantidade-badge">×{quantidadeDisplay}</span>
-        ) : null}
+        )}
+
         <span className="price">
           {item.custo ? (item.custo / 100).toFixed(2).replace('.', ',') : '0,00'} PO
         </span>
+
         {peso !== undefined && (
           <span className="item-peso">{peso.toFixed(1)} kg</span>
         )}
       </div>
-{(local || onSell || extraBtn) && (
+
+      {/* AÇÕES */}
+      {(local || onSell || extraBtn) && (
         <div className="local-selector">
           {extraBtn}
-          {(local && onLocalChange && item.quantidade > 1) && (
+
+          {local && onLocalChange && item.quantidade > 1 && (
             <input
               type="number"
               className="qtd-input"
@@ -167,59 +212,33 @@ return (
               onClick={(e) => e.stopPropagation()}
             />
           )}
+
           {local && onLocalChange && (
-            <select 
-              value={local} 
+            <select
+              value={local}
               onChange={(e) => handleLocalChange(e.target.value)}
               onClick={(e) => e.stopPropagation()}
             >
-              {local === 'montaria' ? (
-                <>
-                  <option value="montaria">🐴</option>
-                  <option value="tesoureiro">🏠</option>
-                </>
-              ) : local === 'tesoureiro' ? (
-                <>
-                  <option value="montaria">🐴</option>
-                  <option value="tesoureiro">🏠</option>
-                </>
-              ) : local === 'carregando' && tipoItem === 'montaria' ? (
-                <>
-                  <option value="montaria">🐴</option>
-                  <option value="tesoureiro">🏠</option>
-                </>
-              ) : (
-                <>
-                  <option value="equipped">🧤</option>
-                  <option value="carregando">🎒</option>
-                  <option value="tesoureiro">🏠</option>
-                </>
-              )}
+              <option value="equipped">🧤</option>
+              <option value="carregando">🎒</option>
+              <option value="tesoureiro">🏠</option>
             </select>
           )}
+
           {onSell && (
-            <button 
+            <button
               className="sell-btn"
-              onClick={(e) => { e.stopPropagation(); handleSell() }}
-              title="Vender"
-            >💰</button>
+              onClick={(e) => {
+                e.stopPropagation()
+                handleSell()
+              }}
+            >
+              💰
+            </button>
           )}
         </div>
       )}
-      {!local && !onSell && item.quantidade > 1 && (
-        <div className="local-selector">
-          <input
-            type="number"
-            className="qtd-input"
-            placeholder="Qtd"
-            min={1}
-            max={item.quantidade}
-            value={qtdMove}
-            onChange={(e) => setQtdMove(e.target.value)}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+
     </div>
   )
 }
