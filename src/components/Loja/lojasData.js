@@ -47,30 +47,30 @@ export const lojas = [
     descricao: 'Itens especiais e mágicos',
     icone: '⚗️'
   },
-  {
-    id: 'haras',
-    nome: 'Haras',
-    descricao: 'Montarias',
-    icone: '🐎'
-  },
-  {
-    id: 'carroceiro',
-    nome: 'Carroceiro',
-    descricao: 'Carroças e veículos',
-    icone: '🛞'
-  },
-  {
-    id: 'estaleiro',
-    nome: 'Estaleiro',
-    descricao: 'Embarcações leves',
-    icone: '⛵'
-  },
-  {
-    id: 'porto',
-    nome: 'Porto',
-    descricao: 'Embarcações marítimas',
-    icone: '⚓'
-  },
+  // {
+  //   id: 'haras',
+  //   nome: 'Haras',
+  //   descricao: 'Montarias',
+  //   icone: '🐎'
+  // },
+  // {
+  //   id: 'carroceiro',
+  //   nome: 'Carroceiro',
+  //   descricao: 'Carroças e veículos',
+  //   icone: '🛞'
+  // },
+  // {
+  //   id: 'estaleiro',
+  //   nome: 'Estaleiro',
+  //   descricao: 'Embarcações leves',
+  //   icone: '⛵'
+  // },
+  // {
+  //   id: 'porto',
+  //   nome: 'Porto',
+  //   descricao: 'Embarcações marítimas',
+  //   icone: '⚓'
+  // },
   {
     id: 'alfaiataria',
     nome: 'Alfaiataria',
@@ -94,10 +94,10 @@ export const itensPorLoja = {
   taberna: ['comida', 'bebida', 'alojamento'],
   mercador: ['item', 'fornecimento'],
   alquimista: ['especial'],
-  haras: ['montaria'],
-  carroceiro: ['carroca', 'carruagem', 'charrete', 'treno'],
-  estaleiro: ['barco', 'remo', 'barcaca'],
-  porto: ['galeao', 'nav_guerra', 'navio', 'veleiro'],
+  // haras: ['montaria'],
+  // carroceiro: ['carroca', 'carruagem', 'charrete', 'treno'],
+  // estaleiro: ['barco', 'remo', 'barcaca'],
+  // porto: ['galeao', 'nav_guerra', 'navio', 'veleiro'],
   alfaiataria: ['indumentaria'],
   luthieria: ['instrumento']
 }
