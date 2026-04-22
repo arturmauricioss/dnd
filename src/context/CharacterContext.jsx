@@ -54,7 +54,7 @@ const estadoInicial = {
   sex: 'selecione',
   idade: '',
   height: '',
-  weight: '',
+  weight: 75,
   usarKit: false,
 
   atributos: {

@@ -445,9 +445,9 @@ const renderSecao = (titulo, itensLista, tipo) => {
             )}
             {montando && montariasItens.length > 0 && (
               <div className="montaria-info">
-                Capacidade: {Math.floor(capacidadeMontaria.light)}kg light, {' '}
-                {Math.floor(capacidadeMontaria.medium)}kg medium, {' '}
-                {Math.floor(capacidadeMontaria.heavy)}kg heavy
+                Capacidade: {Math.floor(capacidadeMontaria.leve)}kg leve, {' '}
+                {Math.floor(capacidadeMontaria.media)}kg média, {' '}
+                {Math.floor(capacidadeMontaria.maxima)}kg máxima
               </div>
             )}
             {montariasItens.length === 0 && <p>Nenhuma montaria disponível</p>}
