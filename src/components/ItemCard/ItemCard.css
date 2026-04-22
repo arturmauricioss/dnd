@@ -78,7 +78,8 @@
   flex: 1;
   opacity: 0.9;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* número de linhas */
+  -webkit-line-clamp: 4;
+  line-clamp: 4; /* número de linhas */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

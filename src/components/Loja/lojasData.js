@@ -23,13 +23,13 @@ export const lojas = [
     descricao: 'Armaduras',
     icone: '⛓️'
   }
-  // ,
-  // {
-  //   id: 'escudaria',
-  //   nome: 'Escudaria',
-  //   descricao: 'Escudos',
-  //   icone: '🛡️'
-  // }
+  ,
+  {
+    id: 'escudaria',
+    nome: 'Escudaria',
+    descricao: 'Escudos',
+    icone: '🛡️'
+  }
   ,
   {
     id: 'taberna',
@@ -94,7 +94,7 @@ export const itensPorLoja = {
   arsenal: ['arma-comum'],
   'forja-arcana': ['arma-exotica'],
   couracaria: ['armadura'],
-  // escudaria: ['escudo'],
+  escudaria: ['escudo'],
   taberna: ['comida', 'bebida', 'alojamento'],
   mercador: ['item', 'fornecimento'],
   // alquimista: ['especial'],

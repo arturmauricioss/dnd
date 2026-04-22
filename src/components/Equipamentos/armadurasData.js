@@ -17,8 +17,9 @@ export const todasArmaduras = {
 };
 
 export const todosEscudos = {
-  // broquel: { nome: "Broquel", custo: 1500, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "2,5 kg" },
-  // escudo_pequeno_madeira: { nome: "Escudo Pequeno de Madeira", custo: 300, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "2,5 kg" },
+  broquel: { nome: "Broquel", custo: 1500, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "2,5 kg" },
+  escudo_pequeno_madeira: { nome: "Escudo Pequeno de Madeira", custo: 300, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "2,5 kg" }
+  // ,
   // escudo_pequeno_metal: { nome: "Escudo Pequeno de Metal", custo: 900, bonus: "+1", tipo: "escudo", penalidade: -1, falha_magia: "5%", peso: "3 kg" },
   // escudo_grande_madeira: { nome: "Escudo Grande de Madeira", custo: 700, bonus: "+2", tipo: "escudo", penalidade: -2, falha_magia: "15%", peso: "5 kg" },
   // escudo_grande_metal: { nome: "Escudo Grande de Metal", custo: 2000, bonus: "+2", tipo: "escudo", penalidade: -2, falha_magia: "15%", peso: "7,5 kg" },

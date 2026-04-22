@@ -145,7 +145,6 @@ export default function Loja() {
       }
     })
 
-    const primeiraMontaria = montariasCarrinho[0]?.id
     montariasCarrinho.forEach(item => {
       const existente = itensCombinados.find(i => i.id === item.id)
       if (existente) {
