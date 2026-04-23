@@ -28,7 +28,7 @@ export default function Inventario() {
     return {
       leve: cap.leve || cap.light || 0,
       media: cap.media || cap.medium || 0,
-      maxima: cap.maxima || cap.heavy || 0
+      pesada: cap.pesada || cap.heavy || 0
     }
   }, [forca])
   
@@ -59,9 +59,9 @@ export default function Inventario() {
   const montariasItens = useMemo(() => itens.filter(i => i.local === 'montaria'), [itens])
 
   const capacidadeMontaria = useMemo(() => {
-    if (montariasItens.length === 0) return { leve: 0, media: 0, maxima: 0 }
+    if (montariasItens.length === 0) return { leve: 0, media: 0, pesada: 0 }
     const primeiroItem = getItemPorId(montariasItens[0].id)
-    if (!primeiroItem) return { leve: 0, media: 0, maxima: 0 }
+    if (!primeiroItem) return { leve: 0, media: 0, pesada: 0 }
     return getCapacidadeMontaria(primeiroItem)
   }, [montariasItens])
 
@@ -70,7 +70,7 @@ export default function Inventario() {
     return {
       leve: capacidadePersonagem.leve + capacidadeMontaria.leve,
       media: capacidadePersonagem.media + capacidadeMontaria.media,
-      maxima: capacidadePersonagem.maxima + capacidadeMontaria.maxima
+      pesada: capacidadePersonagem.pesada + capacidadeMontaria.pesada
     }
   }, [montando, capacidadePersonagem, capacidadeMontaria])
 
@@ -120,11 +120,9 @@ export default function Inventario() {
     : pesoTotalEquipamentos
 
   const cargaAtual = montando && montariasItens.length > 0
-    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'maxima')
-    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'maxima')
+    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'pesada')
+    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'pesada')
   const dadosCarga = tabelaCarga[cargaAtual]
-
-  const pesoExcedente = pesoTotal - capacidadeTotal.medium
 
   const mudarLocal = (tipo, id, novoLocal, qtdMover = null, localOrigem = null) => {
     if (tipo === 'armadura') {
@@ -355,11 +353,11 @@ const renderSecao = (titulo, itensLista, tipo) => {
           <div className="peso-info">
             <span className="peso-label">Carga:</span>
             <span className="peso-value">{pesoTotal.toFixed(1)} kg</span>
-            <span className="peso-capacidade">/ {capacidadeTotal[cargaAtual].toFixed(1)} kg</span>
+            <span className="peso-capacidade">/ {capacidadeTotal[cargaAtual]?.toFixed(1) || '∞'} kg</span>
           </div>
           <div className="carga-info">
             <span className={`carga-badge ${cargaAtual}`}>
-              {cargaAtual === 'leve' ? 'Leve' : cargaAtual === 'media' ? 'Média' : 'Máxima'}
+              {cargaAtual === 'leve' ? 'Leve' : cargaAtual === 'media' ? 'Média' : cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
             </span>
             {cargaAtual !== 'leve' && (
               <span className="carga-penalidade">
@@ -367,11 +365,7 @@ const renderSecao = (titulo, itensLista, tipo) => {
               </span>
             )}
           </div>
-          {pesoExcedente > 0 && (
-            <div className="peso-aviso">
-              ⚠️ Excedendo {pesoExcedente.toFixed(1)} kg da carga média!
-            </div>
-          )}
+          
         </div>
 
         <div className="inventario-tabs">

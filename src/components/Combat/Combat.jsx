@@ -79,18 +79,25 @@ export default function Combat() {
             )}
           </div>
 
-          {/* Deslocamento */}
+{/* Deslocamento */}
           <div className="combat-stat">
             <div className="stat-label">Deslocamento</div>
             <div className="stat-value">
               {showDeslocamento ? `${combate.deslocamento}m` : '—'}
             </div>
-            {showDeslocamento && combate.deslocamento > 0 && (
+            {showDeslocamento && (
               <div className="stat-detail">
-                {buildBreakdown([
-                  { label: 'Raça', value: combate.detalhes.deslocamentoBase },
-                  { label: 'Classe', value: combate.detalhes.deslocamentoBonus }
-                ])}
+                {combate.deslocamento === 0 ? (
+                  <span>Carga -100%</span>
+                ) : (
+                  buildBreakdown([
+                    { label: 'Raça', value: combate.detalhes.deslocamentoBase },
+                    { label: 'Classe', value: combate.detalhes.deslocamentoBonus },
+                    combate.encumbrance?.penalidadeCargaDeslocamento > 0 
+                      ? { label: 'Carga', value: -combate.encumbrance.penalidadeCargaDeslocamento }
+                      : null
+                  ].filter(Boolean))
+                )}
               </div>
             )}
           </div>
@@ -104,7 +111,8 @@ export default function Combat() {
             <div className="stat-detail">
               <span className={`carga-badge ${combate.encumbrance?.cargaAtual}`}>
                 {combate.encumbrance?.cargaAtual === 'leve' ? 'Leve' : 
-                 combate.encumbrance?.cargaAtual === 'media' ? 'Média' : 'Máxima'}
+                  combate.encumbrance?.cargaAtual === 'media' ? 'Média' : 
+                  combate.encumbrance?.cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
               </span>
             </div>
           </div>

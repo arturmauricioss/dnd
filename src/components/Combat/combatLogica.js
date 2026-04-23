@@ -112,7 +112,7 @@ export function getDadosCombate(personagem, getModificador) {
     return {
       leve: cap.leve || cap.light || 0,
       media: cap.media || cap.medium || 0,
-      maxima: cap.maxima || cap.heavy || 0
+      pesada: cap.pesada || cap.heavy || 0
     }
   })()
   
@@ -168,12 +168,12 @@ export function getDadosCombate(personagem, getModificador) {
   
   const capacidadeMontaria = montariasItens.length > 0
     ? getCapacidadeMontaria(getItemPorId(montariasItens[0].id))
-    : { leve: 0, media: 0, maxima: 0 }
+    : { leve: 0, media: 0, pesada: 0 }
   
   const capacidadeTotal = {
     leve: capacidade.leve + capacidadeMontaria.leve,
     media: capacidade.media + capacidadeMontaria.media,
-    maxima: capacidade.maxima + capacidadeMontaria.maxima
+    pesada: capacidade.pesada + capacidadeMontaria.pesada
   }
   
   const montando = equipment?.montando || false
@@ -182,32 +182,43 @@ export function getDadosCombate(personagem, getModificador) {
     : pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando
   
   const cargaAtual = montando && montariasItens.length > 0
-    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'maxima')
-    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'maxima')
+    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : pesoTotal <= capacidadeMontaria.pesada ? 'pesada' : 'excessiva')
+    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : pesoTotal <= capacidadeTotal.pesada ? 'pesada' : 'excessiva')
   
   const dadosCarga = tabelaCarga[cargaAtual]
 
   const getDeslocamentoFinal = () => {
     const base = deslocamentoBase
     
-    let deslocamentoArmadura = base
+    if (cargaAtual === 'excessiva') {
+      return 0
+    }
+    
+    let penalidadeCarga = 0
+    if (cargaAtual === 'media' || cargaAtual === 'pesada') {
+      penalidadeCarga = base >= 9 ? 3 : 1.5
+    }
+    
+    let penalidadeArmadura = 0
     if (armaduraData) {
-      if (armaduraData.tipo === 'media') {
-        deslocamentoArmadura = 6
-      } else if (armaduraData.tipo === 'pesada') {
-        deslocamentoArmadura = 6
+      if (armaduraData.tipo === 'media' || armaduraData.tipo === 'pesada') {
+        penalidadeArmadura = base >= 9 ? 3 : 1.5
       }
     }
     
-    let deslocamentoCarga = base
-    if (cargaAtual === 'medium' || cargaAtual === 'heavy') {
-      deslocamentoCarga = 6
-    }
+    const penalidadeTotal = penalidadeCarga + penalidadeArmadura
     
-    return Math.min(deslocamentoArmadura, deslocamentoCarga)
+    return Math.max(0, base - penalidadeTotal)
   }
 
   const deslocamento = getDeslocamentoFinal()
+  const penalidadeCargaDeslocamento = (() => {
+    if (cargaAtual === 'excessiva') return 0
+    if (cargaAtual === 'media' || cargaAtual === 'pesada') {
+      return deslocamentoBase >= 9 ? 3 : 1.5
+    }
+    return 0
+  })()
 
   const getDexMaxFinal = () => {
     const dexArmadura = armaduraData ? armaduraData.dexMax : 999
@@ -245,8 +256,9 @@ export function getDadosCombate(personagem, getModificador) {
       pesoTotal,
       cargaAtual,
       capacidade,
+      capacidadeTotal,
       dadosCarga,
-      pesoExcedente: pesoTotal > capacidade.medium ? pesoTotal - capacidade.medium : 0
+      penalidadeCargaDeslocamento
     },
     armadura: armaduraData,
     escudo: escudoData,
