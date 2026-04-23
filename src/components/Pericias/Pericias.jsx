@@ -9,6 +9,8 @@ import {
 } from './periciasLogic'
 import { periciasPorClasse } from './periciasData'
 import { getBonusPericiaRacial } from '../Classes/bonusPericias'
+import { getItemPorId } from '../Equipamentos/equipamentosLogic'
+import { getCapacidade } from '../Inventario/encumbranceData'
 import { Navigation } from '../global'
 import './Pericias.css'
 
@@ -25,6 +27,30 @@ export default function Pericias() {
   const penalidadeArmadura = useMemo(() => {
     return equipment ? (equipment.penalidadeArmadura || 0) : 0
   }, [equipment])
+
+  const dexMaxLimit = useMemo(() => {
+    const forca = (personagem.atributos?.forca || 10) + (personagem.atributosRacial?.forca || 0)
+    const capacidade = getCapacidade(forca)
+    
+    const pesoTotal = (personagem.peso || 0)
+    
+    const cargaAtual = pesoTotal <= capacidade.leve ? 'leve' 
+      : pesoTotal <= capacidade.media ? 'media' 
+      : pesoTotal <= capacidade.pesada ? 'pesada' 
+      : 'excessiva'
+    
+    const dadosCarga = {
+      leve: { maxDex: 99 },
+      media: { maxDex: 3 },
+      pesada: { maxDex: 1 },
+      excessiva: { maxDex: 0 }
+    }[cargaAtual]
+    
+    const armadura = equipment?.armor ? getItemPorId(equipment.armor) : null
+    const dexArmadura = armadura ? parseInt(armadura.dex_max?.replace('+', '') || 999) : 999
+    
+    return Math.min(dexArmadura, dadosCarga.maxDex)
+  }, [personagem.atributos, personagem.atributosRacial, personagem.peso, equipment])
 
   const maxGradPorNivel = nivel + 3
 
@@ -73,12 +99,15 @@ export default function Pericias() {
     
     const personagemCalc = { classe, level_class: nivel, race }
     const maxGrad = calculateMaxGrad(personagemCalc, pericia.nome)
-    const total = calculatePericiaTotal(pericia, personagemCalc, periciasState, getModificador)
+    const total = calculatePericiaTotal(pericia, personagemCalc, periciasState, getModificador, dexMaxLimit)
     
     const eClasse = periciasPorClasse[classe]?.includes(pericia.nome)
     const bonusRacial = getBonusPericiaRacial(race, pericia.nome)
 
-    const modHab = getModificador(pericia.habilidade)
+    let modHab = getModificador(pericia.habilidade)
+    if (pericia.habilidade === 'destreza') {
+      modHab = Math.min(modHab, dexMaxLimit)
+    }
 
     const valorOutrosDisplay = (estado.outros || 0) + bonusRacial + penalidadeArmadura
 
