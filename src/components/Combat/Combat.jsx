@@ -70,11 +70,11 @@ export default function Combat() {
           <div className="combat-stat">
             <div className="stat-label">Iniciativa</div>
             <div className="stat-value">
-              {dexMod >= 0 ? `+${dexMod}` : dexMod}
+              {Math.min(dexMod, combate.dexMaxFinal) >= 0 ? `+${Math.min(dexMod, combate.dexMaxFinal)}` : Math.min(dexMod, combate.dexMaxFinal)}
             </div>
-            {dexMod !== 0 && (
+            {Math.min(dexMod, combate.dexMaxFinal) !== 0 && (
               <div className="stat-detail">
-                Des {dexMod > 0 ? `+${dexMod}` : dexMod}
+                Des {Math.min(dexMod, combate.dexMaxFinal)}
               </div>
             )}
           </div>
@@ -149,7 +149,7 @@ export default function Combat() {
                   { label: '10', value: 0 },
                   { label: 'Arm', value: 0 },
                   { label: 'Esc', value: 0 },
-                  { label: 'Des', value: dexMod },
+                  { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
                   { label: 'Tam', value: modTamanho.ca },
                   { label: 'Nat', value: 0 },
                   { label: 'Def', value: 0 },
@@ -167,7 +167,7 @@ export default function Combat() {
               <div className="stat-detail">
                 {buildBreakdown([
                   { label: '10', value: 0 },
-                  { label: 'Des', value: dexMod },
+                  { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
                   { label: 'Tam', value: modTamanho.ca }
                 ])}
               </div>
@@ -216,7 +216,7 @@ export default function Combat() {
               <div className="stat-detail">
                 {buildBreakdown([
                   { label: 'Classe', value: classe.ref },
-                  { label: 'Des', value: dexMod },
+                  { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
                   { label: 'Raça', value: 0 }
                 ])}
               </div>

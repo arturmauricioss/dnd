@@ -101,12 +101,6 @@ export function getDadosCombate(personagem, getModificador) {
 
   const caValores = caValoresIniciais
 
-  const caNormal = calcularCA(caValores, dexMod, modTamanho)
-  const caToque = calcularCAToque(dexMod, modTamanho)
-  const caSurpresa = calcularCASurpresa(caValores, modTamanho)
-
-  const saves = calcularSaves(classeId, conMod, dexMod, sabMod, race)
-
   const capacidade = (() => {
     const cap = getCapacidade(forca)
     return {
@@ -233,9 +227,16 @@ export function getDadosCombate(personagem, getModificador) {
     return Math.max(penArmadura, penEscudo, penCarga)
   }
 
-  const dexMaxFinal = getDexMaxFinal()
+const dexMaxFinal = getDexMaxFinal()
   const penalidadeFinal = getPenalidadeFinal()
-
+  const dexModLimitado = Math.min(dexMod, dexMaxFinal)
+  
+  const caNormal = calcularCA(caValores, dexModLimitado, modTamanho)
+  const caToque = calcularCAToque(dexModLimitado, modTamanho)
+  const caSurpresa = calcularCASurpresa(caValores, modTamanho)
+  
+  const saves = calcularSaves(classeId, conMod, dexModLimitado, sabMod, race)
+  
   return {
     bba,
     bbaBase,
