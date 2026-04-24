@@ -3,7 +3,18 @@ import { getModificadoresTamanho } from './tamanhoData'
 import { getBBABase, getProgressaoBBA } from './bbaData'
 import { deslocamentoPorRaca, bonusRacialResistencia } from '../Racas/racasData'
 import { caValoresIniciais } from './combatData'
-import { getItemPorId, getPesoItem, getCapacidade, tabelaCarga } from '../Equipamentos/equipamentosLogic'
+import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
+
+import {
+  getItemPorId,
+  getPesoItem,
+  getCapacidade,
+  tabelaCarga
+} from '../Equipamentos/equipamentosLogic'
+
+/* =========================
+   UTILITÁRIOS
+========================= */
 
 export function calcularBBA(classeId, nivel) {
   const progressao = getProgressaoBBA(classeId)
@@ -27,16 +38,20 @@ export function calcularHP(classeId, nivel, conMod) {
   return total
 }
 
-export function calcularCA(caValores, dexMod, modTamanho) {
+/* =========================
+   CA
+========================= */
+
+export function calcularCA(ca, dexMod, modTamanho) {
   return (
     10 +
-    caValores.armadura +
-    caValores.escudo +
+    ca.armadura +
+    ca.escudo +
     dexMod +
     modTamanho.ca +
-    caValores.natural +
-    caValores.deflexao +
-    caValores.outros
+    ca.natural +
+    ca.deflexao +
+    ca.outros
   )
 }
 
@@ -44,39 +59,40 @@ export function calcularCAToque(dexMod, modTamanho) {
   return 10 + dexMod + modTamanho.ca
 }
 
-export function calcularCASurpresa(caValores, modTamanho) {
+export function calcularCASurpresa(ca, modTamanho) {
   return (
     10 +
-    caValores.armadura +
-    caValores.escudo +
+    ca.armadura +
+    ca.escudo +
     modTamanho.ca +
-    caValores.natural +
-    caValores.deflexao +
-    caValores.outros
+    ca.natural +
+    ca.deflexao +
+    ca.outros
   )
 }
 
-function getFaixaDeslocamento(deslocamento) {
-  if (deslocamento === 12) return 12
-  if (deslocamento === 9) return 9
-  return 6
-}
+/* =========================
+   DESLOCAMENTO
+========================= */
 
-function aplicarPenalidadeCargaDeslocamento(deslocamento, cargaAtual, race) {
-  if (race === 'anao') return deslocamento
-  if (cargaAtual === 'leve') return deslocamento
-  if (cargaAtual === 'excessiva') return 0
+function aplicarPenalidadeCargaDeslocamento(base, carga, race) {
+  const isAnao = race === 'anao'
 
-  const faixa = getFaixaDeslocamento(deslocamento)
+  if (isAnao && carga !== 'excessiva') return base
+  if (carga === 'excessiva') return 1.5
 
   const tabela = {
-    12: { media: 9, pesada: 6 },
-    9: { media: 6, pesada: 6 },
-    6: { media: 4.5, pesada: 4.5 },
+    leve: 1,
+    media: 0.75,
+    pesada: 0.5
   }
 
-  return tabela[faixa]?.[cargaAtual] ?? deslocamento
+  return Math.max(1.5, base * (tabela[carga] ?? 1))
 }
+
+/* =========================
+   MAIN
+========================= */
 
 export function getDadosCombate(personagem, getModificador) {
   const { race, classe: classeId, level_class: nivel, equipment } = personagem
@@ -85,7 +101,6 @@ export function getDadosCombate(personagem, getModificador) {
 
   const conMod = getModificador('constituicao')
   const dexMod = getModificador('destreza')
-  const forca = (personagem.atributos?.forca || 10) + (personagem.atributosRacial?.forca || 0)
   const forMod = getModificador('forca')
   const sabMod = getModificador('sabedoria')
 
@@ -95,23 +110,31 @@ export function getDadosCombate(personagem, getModificador) {
   const bbaBase = getBBABase(progressao, nivel)
   const bba = calcularBBA(classeId, nivel)
 
-  const agarrarTotal = bbaBase + forMod + modTamanho.agarrar
-
+  const agarrar = bbaBase + forMod + modTamanho.agarrar
   const hpMax = calcularHP(classeId, nivel, conMod)
 
   const deslocamentoBase = deslocamentoPorRaca[race] || 6
-  const bonusClasseMovimento = classeId === 'barbaro' ? (bonusDeslocamentoPorClasse[classeId] || 0) : 0
 
-  const caValores = caValoresIniciais
+  const bonusClasseMovimento =
+    classeId === 'barbaro'
+      ? (bonusDeslocamentoPorClasse[classeId] || 0)
+      : 0
 
-  const capacidade = (() => {
-    const cap = getCapacidade(forca)
-    return {
-      leve: cap.leve || cap.light || 0,
-      media: cap.media || cap.medium || 0,
-      pesada: cap.pesada || cap.heavy || 0,
-    }
-  })()
+  /* =========================
+     CARGA
+  ========================= */
+
+  const forca =
+    (personagem.atributos?.forca || 10) +
+    (personagem.atributosRacial?.forca || 0)
+
+  const cap = getCapacidade(forca)
+
+  const capacidade = {
+    leve: cap.leve,
+    media: cap.media,
+    pesada: cap.pesada
+  }
 
   const pesoTotal =
     (equipment?.weapons || []).reduce(
@@ -132,77 +155,70 @@ export function getDadosCombate(personagem, getModificador) {
       ? 'pesada'
       : 'excessiva'
 
-  const dadosCarga = tabelaCarga[cargaAtual] || {}
+  const dadosCarga = tabelaCarga()[cargaAtual]
 
-  const usandoArmaduraPesada = false // ajustar depois quando implementar armadura
+  /* =========================
+     DESLOCAMENTO
+  ========================= */
 
-  const bonusRapidoAtivo =
-    classeId === 'barbaro' &&
-    cargaAtual !== 'pesada' &&
-    !usandoArmaduraPesada
-  const deslocamentoSemCarga = deslocamentoBase + (bonusRapidoAtivo ? bonusClasseMovimento : 0)
+  const deslocamentoBaseFinal =
+    deslocamentoBase + bonusClasseMovimento
 
-  const deslocamento = aplicarPenalidadeCargaDeslocamento(deslocamentoSemCarga, cargaAtual, race)
-  const penalidadeCargaDeslocamento = Math.max(0, deslocamentoSemCarga - deslocamento)
-
-  const dexMaxFinal = Math.min(
-    dadosCarga?.maxDex ?? 999,
-    999
+  const deslocamento = aplicarPenalidadeCargaDeslocamento(
+    deslocamentoBaseFinal,
+    cargaAtual,
+    race
   )
 
+  const dexMaxFinal = dadosCarga?.maxDex ?? 999
   const dexModLimitado = Math.min(dexMod, dexMaxFinal)
 
-  const caNormal = calcularCA(caValores, dexModLimitado, modTamanho)
-  const caToque = calcularCAToque(dexModLimitado, modTamanho)
-  const caSurpresa = calcularCASurpresa(caValores, modTamanho)
+  /* =========================
+     CA BASE
+  ========================= */
 
-  const bonusSaveRacial = bonusRacialResistencia[race] || { fort: 0, ref: 0, von: 0 }
+  const armorPenalty = getTotalArmorPenalty(
+    equipment?.armor,
+    equipment?.shield
+  )
 
-  const saves = {
-    fort: {
-      total: (classe.fort || 0) + conMod + bonusSaveRacial.fort,
-      classe: classe.fort || 0,
-      atributo: conMod,
-      racial: bonusSaveRacial.fort,
-    },
-    ref: {
-      total: (classe.ref || 0) + dexModLimitado + bonusSaveRacial.ref,
-      classe: classe.ref || 0,
-      atributo: dexModLimitado,
-      racial: bonusSaveRacial.ref,
-    },
-    von: {
-      total: (classe.von || 0) + sabMod + bonusSaveRacial.von,
-      classe: classe.von || 0,
-      atributo: sabMod,
-      racial: bonusSaveRacial.von,
-    },
+  const caBase = {
+    ...caValoresIniciais,
+    armadura: caValoresIniciais.armadura - armorPenalty
   }
+
+  const caNormal = calcularCA(caBase, dexModLimitado, modTamanho)
+  const caToque = calcularCAToque(dexModLimitado, modTamanho)
+  const caSurpresa = calcularCASurpresa(caBase, modTamanho)
+
+  /* =========================
+     RETURN
+  ========================= */
 
   return {
     bba,
     bbaBase,
     hpMax,
+
     deslocamento,
+
     caNormal,
     caToque,
     caSurpresa,
-    fort: saves.fort.total,
-    ref: saves.ref.total,
-    von: saves.von.total,
-    savesDetalhes: saves,
-    agarrar: agarrarTotal,
-    detalhes: {
-      deslocamentoBase,
-      deslocamentoBonus: bonusRapidoAtivo ? bonusClasseMovimento : 0,
-    },
+
+    fort: (classe.fort || 0) + conMod + (bonusRacialResistencia[race]?.fort || 0),
+    ref: (classe.ref || 0) + dexModLimitado + (bonusRacialResistencia[race]?.ref || 0),
+    von: (classe.von || 0) + sabMod + (bonusRacialResistencia[race]?.von || 0),
+
+    agarrar,
+
     encumbrance: {
       pesoTotal,
       cargaAtual,
       capacidade,
-      dadosCarga,
-      penalidadeCargaDeslocamento,
+      dadosCarga
     },
-    dexMaxFinal,
+
+    dexMaxFinal
   }
 }

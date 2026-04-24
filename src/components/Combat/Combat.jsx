@@ -112,21 +112,6 @@ export default function Combat() {
             )}
           </div>
 
-          {/* Encumbrance */}
-          <div className="combat-stat">
-            <div className="stat-label">Carga</div>
-            <div className="stat-value">
-              <span className="stat-number">{combate.encumbrance?.pesoTotal?.toFixed(1) || 0} kg</span>
-            </div>
-            <div className="stat-detail">
-              <span className={`carga-badge ${combate.encumbrance?.cargaAtual}`}>
-                {combate.encumbrance?.cargaAtual === 'leve' ? 'Leve' : 
-                  combate.encumbrance?.cargaAtual === 'media' ? 'Média' : 
-                  combate.encumbrance?.cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
-              </span>
-            </div>
-          </div>
-
           {/* PV */}
           <div className="combat-stat compact">
             <div className="stat-label">Pontos de Vida</div>
@@ -247,6 +232,67 @@ export default function Combat() {
             )}
           </div>
 
+          {/* Encumbrance */}
+          <div className="combat-stat">
+            <div className="stat-label">Carga Atual</div>
+            <div className="stat-value">
+              <span className="stat-number">{combate.encumbrance?.pesoTotal?.toFixed(1) || 0} kg</span>
+            </div>
+            <div className="stat-detail">
+              <span className={`carga-badge ${combate.encumbrance?.cargaAtual}`}>
+                {combate.encumbrance?.cargaAtual === 'leve' ? 'Leve' : 
+                  combate.encumbrance?.cargaAtual === 'media' ? 'Média' : 
+                  combate.encumbrance?.cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
+              </span>
+            </div>
+          </div>
+
+          <div className="combat-stat compact">
+            <div className="stat-label">Capacidade de Carregamento</div>
+
+            <div className="stat-value small">
+              {combate.movimentoEspecial.levantarCabeca} kg
+            </div>
+
+            <div className="stat-detail">
+              <span>1x capacidade</span>
+            </div>
+          </div>
+          <div className="combat-stat compact">
+            <div className="stat-label">Levantar (cabeça)</div>
+
+            <div className="stat-value small">
+              {combate.movimentoEspecial.levantarCabeca} kg
+            </div>
+
+            <div className="stat-detail">
+              <span>1x capacidade</span>
+            </div>
+          </div>
+
+          <div className="combat-stat compact">
+            <div className="stat-label">Levantar (chão)</div>
+
+            <div className="stat-value small">
+              {combate.movimentoEspecial.levantarChao} kg
+            </div>
+
+            <div className="stat-detail">
+              <span>2x capacidade</span>
+            </div>
+          </div>
+
+          <div className="combat-stat compact">
+            <div className="stat-label">Empurrar / Arrastar</div>
+
+            <div className="stat-value small">
+              {combate.movimentoEspecial.empurrarArrastar} kg
+            </div>
+
+            <div className="stat-detail">
+              <span>5x capacidade</span>
+            </div>
+          </div>
         </div>
       )}
 
