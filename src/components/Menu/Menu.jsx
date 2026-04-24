@@ -8,10 +8,10 @@ export default function Menu() {
       <NavLink to="/" end>Personagem</NavLink>
       <NavLink to="/atributos">Atributos</NavLink>
       <NavLink to="/combat">Combate</NavLink>
-      {/* <NavLink to="/pericias">Perícias</NavLink> */}
-      {/* <NavLink to="/idiomas">Idiomas</NavLink> */}
-      {/* <NavLink to="/loja">Loja</NavLink> */}
-      {/* <NavLink to="/inventario">Inventário</NavLink> */}
+      <NavLink to="/pericias">Perícias</NavLink>
+      <NavLink to="/idiomas">Idiomas</NavLink>
+      <NavLink to="/loja">Loja</NavLink>
+      <NavLink to="/inventario">Inventário</NavLink>
 
     </nav>
   )

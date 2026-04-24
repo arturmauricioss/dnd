@@ -1,12 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
-import { Navigation, Page } from '../global'
+import { Navigation} from '../global'
 import {
   getIdiomasBase,
   getIdiomasFixosClasse,
   calcularQtdExtras,
   getAlfabetizacao,
-  validarIdiomasAtuais,
   getPoolExtrasUnicos
 } from './idiomasLogic'
 import './Idiomas.css'
@@ -27,15 +26,18 @@ export default function Idiomas() {
   const idiomasFixosClasse = useMemo(() => getIdiomasFixosClasse(classe), [classe])
   const qtdExtras = useMemo(() => calcularQtdExtras(intMod, pontosFalarIdioma), [intMod, pontosFalarIdioma])
   const alfabetizacao = useMemo(() => getAlfabetizacao(classe, alfabetizacaoGrad), [classe, alfabetizacaoGrad])
-  const poolExtrasUnicos = useMemo(() => getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse), [raca, classe, idiomasBase, idiomasFixosClasse])
+  const poolExtrasUnicos = useMemo(
+    () => getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse),
+    [raca, classe, idiomasBase, idiomasFixosClasse]
+  )
 
   useEffect(() => {
-    const idiomasValidos = validarIdiomasAtuais(idiomasAtuais)
-    
+    const idiomasValidos = idiomasAtuais.slice(0, qtdExtras)
+
     if (idiomasValidos.length !== idiomasAtuais.length) {
       atualizarCampo('idiomas', idiomasValidos)
     }
-  }, [atualizarCampo, idiomasAtuais])
+  }, [idiomasAtuais, qtdExtras, atualizarCampo])
 
   const adicionarIdioma = (idioma) => {
     if (!idioma || idiomasAtuais.length >= qtdExtras) return
@@ -48,79 +50,101 @@ export default function Idiomas() {
     atualizarCampo('idiomas', idiomasAtuais.filter(i => i !== idioma))
   }
 
+  const restantes = Math.max(0, qtdExtras - idiomasAtuais.length)
+
   return (
-      <div className="idiomas-container">
-        <div className="idiomas-content">
-          <div className="idiomas-info">
-            <div className="info-item">
-              <span>Alfabetização:</span>
-              <strong>{alfabetizacao}</strong>
-            </div>
-            <div className="info-item">
-              <span>Idiomas extras:</span>
-              <strong>{idiomasAtuais.length} / {qtdExtras} (INT + Falar Idioma)</strong>
-            </div>
+    <div className="idiomas-container">
+      <div className="idiomas-content">
+
+        <div className="idiomas-info">
+          <div className="info-item">
+            <span>Alfabetização:</span>
+            <strong>{alfabetizacao}</strong>
           </div>
-
-          <div className="idiomas-grid">
-            <div className="idiomas-header">
-              <span>Idioma</span>
-              <span>Tipo</span>
-            </div>
-            
-            {idiomasBase.map((idioma, idx) => (
-              <div key={idx} className="idioma-row">
-                <span>{idioma}</span>
-                <span className="idioma-tipo-base">Base</span>
-              </div>
-            ))}
-            
-            {idiomasFixosClasse.map((idioma, idx) => (
-              <div key={`fixo-${idx}`} className="idioma-row">
-                <span>{idioma}</span>
-                <span className="idioma-tipo-fixo">Fixo ({classe})</span>
-              </div>
-            ))}
-            
-            {idiomasAtuais.map((idioma, idx) => (
-              <div key={`extra-${idx}`} className="idioma-row">
-                <span>{idioma}</span>
-                <button className="btn-remover-idioma" onClick={() => removerIdioma(idioma)}>×</button>
-              </div>
-            ))}
+          <div className="info-item">
+            <span>Idiomas extras:</span>
+            <strong>
+              {Math.min(idiomasAtuais.length, qtdExtras)} / {qtdExtras}
+            </strong>
           </div>
-
-          {idiomasFixosClasse.length > 0 && (
-            <div className="idiomas-nota">
-              * {idiomasFixosClasse.join(', ')} é idioma fixo da classe {classe} (não conta para o limite de idiomas extras)
-            </div>
-          )}
-
-          {qtdExtras > 0 && idiomasAtuais.length < qtdExtras && (
-            <div className="idiomas-extras">
-              <label>Adicionar idioma extra (INT):</label>
-              <select 
-                onChange={(e) => {
-                  adicionarIdioma(e.target.value)
-                  e.target.value = ''
-                }}
-                defaultValue=""
-              >
-                <option value="">Selecione...</option>
-                {poolExtrasUnicos.length === 0 ? (
-                  <option disabled>Sem idiomas disponíveis</option>
-                ) : (
-                  poolExtrasUnicos
-                    .filter(id => !idiomasAtuais.includes(id))
-                    .map(id => (
-                      <option key={id} value={id}>{id}</option>
-                    ))
-                )}
-              </select>
-            </div>
-          )}
         </div>
-        <Navigation prev="/pericias" next="/loja" />
+
+        <div className="idiomas-grid">
+          <div className="idiomas-header">
+            <span>Idioma</span>
+            <span>Tipo</span>
+          </div>
+          
+          {idiomasBase.map((idioma, idx) => (
+            <div key={idx} className="idioma-row">
+              <span>{idioma}</span>
+              <span className="idioma-tipo-base">Base</span>
+            </div>
+          ))}
+          
+          {idiomasFixosClasse.map((idioma, idx) => (
+            <div key={`fixo-${idx}`} className="idioma-row">
+              <span>{idioma}</span>
+              <span className="idioma-tipo-fixo">Fixo ({classe})</span>
+            </div>
+          ))}
+          
+          {idiomasAtuais.map((idioma, idx) => (
+            <div key={`extra-${idx}`} className="idioma-row">
+              <span>{idioma}</span>
+              <button
+                className="btn-remover-idioma"
+                onClick={() => removerIdioma(idioma)}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {idiomasFixosClasse.length > 0 && (
+          <div className="idiomas-nota">
+            * {idiomasFixosClasse.join(', ')} é idioma fixo da classe {classe} (não conta para o limite de idiomas extras)
+          </div>
+        )}
+
+        
+          <div className="idiomas-extras">
+            <label>
+              Adicionar idioma ({restantes > 0 ? `${restantes} restantes` : 'limite atingido'}):
+            </label>
+
+            <select
+              disabled={restantes <= 0}
+              onChange={(e) => {
+                adicionarIdioma(e.target.value)
+                e.target.value = ''
+              }}
+              defaultValue=""
+            >
+              <option value="">
+                {restantes <= 0
+                  ? 'Limite atingido'
+                  : poolExtrasUnicos.length === 0
+                  ? 'Nenhum idioma disponível'
+                  : 'Selecione um idioma'}
+              </option>
+
+              {poolExtrasUnicos
+                .filter(id => !idiomasAtuais.includes(id))
+                .map(id => (
+                  <option key={id} value={id}>
+                    {id}
+                  </option>
+                ))}
+            </select>
+          </div>
+        
+
       </div>
+
+      <Navigation prev="/pericias" next="/loja" />
+    </div>
   )
 }
+

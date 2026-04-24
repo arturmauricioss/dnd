@@ -7,9 +7,11 @@ import { Navigation } from '../global'
 import './Combat.css'
 
 export default function Combat() {
+  
   const { personagem, getModificador } = useCharacter()
   const [expandido] = useState(true)
   const combate = getDadosCombate(personagem, getModificador)
+  
   const savesDetalhes = combate.savesDetalhes
   const buildBreakdown = (parts) =>
     parts
@@ -26,7 +28,7 @@ export default function Combat() {
   const forMod = getModificador('forca')
   const conMod = getModificador('constituicao')
   const sabMod = getModificador('sabedoria')
-
+  const iniciativa = Math.min(dexMod, combate.dexMaxFinal)
   const modTamanho = getModificadoresTamanho(personagem.tamanho || '')
 
   
@@ -70,12 +72,19 @@ export default function Combat() {
           {/* Iniciativa */}
           <div className="combat-stat">
             <div className="stat-label">Iniciativa</div>
+
             <div className="stat-value">
-              {Math.min(dexMod, combate.dexMaxFinal) >= 0 ? `+${Math.min(dexMod, combate.dexMaxFinal)}` : Math.min(dexMod, combate.dexMaxFinal)}
+              {iniciativa >= 0 ? `+${iniciativa}` : iniciativa}
             </div>
-            {Math.min(dexMod, combate.dexMaxFinal) !== 0 && (
+
+            {iniciativa !== 0 && (
               <div className="stat-detail">
-                Des {Math.min(dexMod, combate.dexMaxFinal)}
+                {buildBreakdown([
+                  { label: 'Des', value: dexMod },
+                  dexMod > combate.dexMaxFinal
+                    ? { label: 'Limite', value: combate.dexMaxFinal - dexMod }
+                    : null
+                ].filter(Boolean))}
               </div>
             )}
           </div>
@@ -120,7 +129,7 @@ export default function Combat() {
 
           {/* PV */}
           <div className="combat-stat compact">
-            <div className="stat-label">Pontos de VIda</div>
+            <div className="stat-label">Pontos de Vida</div>
             <div className="stat-value">{combate.hpMax}</div>
             {combate.hpMax > 0 && (
               <div className="stat-detail">

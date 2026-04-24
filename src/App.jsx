@@ -23,10 +23,10 @@ function App() {
             <Route path="/" element={<Personagem />} />
             <Route path="/atributos" element={<Atributos />} />
             <Route path="/combat" element={<Combat />} />
-            {/* <Route path="/pericias" element={<Pericias />} /> */}
-            {/* <Route path="/idiomas" element={<Idiomas />} /> */}
-            {/* <Route path="/loja" element={<Loja />} /> */}
-            {/* <Route path="/inventario" element={<Inventario />} /> */}
+            <Route path="/pericias" element={<Pericias />} />
+            <Route path="/idiomas" element={<Idiomas />} />
+            <Route path="/loja" element={<Loja />} />
+            <Route path="/inventario" element={<Inventario />} />
           </Routes>
         </div>
       </BrowserRouter>

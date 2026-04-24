@@ -6,5 +6,3 @@ export const atributos = [
   { id: 'sabedoria', nome: 'SABEDORIA', curto: 'SAB' },
   { id: 'carisma', nome: 'CARISMA', curto: 'CAR' },
 ]
-
-export { bonusRacialAtributos } from '../Racas/racasData'

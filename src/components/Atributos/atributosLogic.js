@@ -6,10 +6,6 @@ export function getValorBase(personagem, attrId) {
   return personagem.atributos?.[attrId] || 10
 }
 
-export function getBonusRaca(bonusRacial, attrId) {
-  return bonusRacial?.[attrId] || 0
-}
-
 export function getTotalAtributo(valorBase, bonusRaca, attrId) {
   let total = valorBase + bonusRaca
   if (attrId === 'inteligencia' && total < 3) total = 3
