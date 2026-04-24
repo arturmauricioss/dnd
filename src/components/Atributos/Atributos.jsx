@@ -49,7 +49,16 @@ export default function Atributos() {
                 value={valorBase}
                 onChange={(e) => {
                   const valor = parseInt(e.target.value)
-                  if (!isNaN(valor)) atualizarAtributo(attr.id, valor)
+                  if (e.target.value === '') {
+                    atualizarAtributo(attr.id, 10)
+                  } else if (!isNaN(valor)) {
+                    atualizarAtributo(attr.id, valor)
+                  }
+                }}
+                onBlur={(e) => {
+                  const valor = parseInt(e.target.value)
+                  if (isNaN(valor) || valor < 3) atualizarAtributo(attr.id, 3)
+                  else if (valor > 18) atualizarAtributo(attr.id, 18)
                 }}
               />
 
