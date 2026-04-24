@@ -9,7 +9,8 @@ import './Combat.css'
 export default function Combat() {
   const { personagem, getModificador } = useCharacter()
   const [expandido] = useState(true)
-
+  const combate = getDadosCombate(personagem, getModificador)
+  const savesDetalhes = combate.savesDetalhes
   const buildBreakdown = (parts) =>
     parts
       .map(({ label, value }) => {
@@ -28,7 +29,7 @@ export default function Combat() {
 
   const modTamanho = getModificadoresTamanho(personagem.tamanho || '')
 
-  const combate = getDadosCombate(personagem, getModificador)
+  
 
   const showDeslocamento = personagem.race && personagem.race !== 'selecione'
 
@@ -79,7 +80,7 @@ export default function Combat() {
             )}
           </div>
 
-{/* Deslocamento */}
+          {/* Deslocamento */}
           <div className="combat-stat">
             <div className="stat-label">Deslocamento</div>
             <div className="stat-value">
@@ -201,9 +202,9 @@ export default function Combat() {
             {combate.fort !== 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: 'Classe', value: classe.fort },
-                  { label: 'Con', value: conMod },
-                  { label: 'Raça', value: 0 }
+                  { label: 'Classe', value: savesDetalhes.fort.classe },
+                  { label: 'Con', value: savesDetalhes.fort.atributo },
+                  { label: 'Raça', value: savesDetalhes.fort.racial }
                 ])}
               </div>
             )}
@@ -215,9 +216,9 @@ export default function Combat() {
             {combate.ref !== 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: 'Classe', value: classe.ref },
-                  { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
-                  { label: 'Raça', value: 0 }
+                  { label: 'Classe', value: savesDetalhes.ref.classe },
+                  { label: 'Des', value: savesDetalhes.ref.atributo },
+                  { label: 'Raça', value: savesDetalhes.ref.racial }
                 ])}
               </div>
             )}
@@ -229,9 +230,9 @@ export default function Combat() {
             {combate.von !== 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: 'Classe', value: classe.von },
-                  { label: 'Sab', value: sabMod },
-                  { label: 'Raça', value: 0 }
+                  { label: 'Classe', value: savesDetalhes.von.classe },
+                  { label: 'Sab', value: savesDetalhes.von.atributo },
+                  { label: 'Raça', value: savesDetalhes.von.racial }
                 ])}
               </div>
             )}
