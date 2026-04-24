@@ -191,9 +191,13 @@ export function getDadosCombate(personagem, getModificador) {
   const caToque = calcularCAToque(dexModLimitado, modTamanho)
   const caSurpresa = calcularCASurpresa(caBase, modTamanho)
 
-  /* =========================
+/* =========================
      RETURN
-  ========================= */
+   ========================= */
+
+  const multiplicadorCorrida = personagem.talentos?.includes('corrida') 
+    ? 5 
+    : (cargaAtual === 'pesada' ? 3 : 4)
 
   return {
     bba,
@@ -212,13 +216,49 @@ export function getDadosCombate(personagem, getModificador) {
 
     agarrar,
 
+    dexMaxFinal,
+
     encumbrance: {
       pesoTotal,
       cargaAtual,
       capacidade,
-      dadosCarga
+      dadosCarga,
+      penalidadeCargaDeslocamento: cargaAtual === 'excessiva' ? 100 : cargaAtual === 'pesada' ? 50 : cargaAtual === 'media' ? 25 : 0
     },
 
-    dexMaxFinal
+    detalhes: {
+      deslocamentoBase,
+      deslocamentoBonus: bonusClasseMovimento
+    },
+
+    savesDetalhes: {
+      fort: {
+        classe: classe.fort || 0,
+        atributo: conMod,
+        racial: bonusRacialResistencia[race]?.fort || 0
+      },
+      ref: {
+        classe: classe.ref || 0,
+        atributo: dexModLimitado,
+        racial: bonusRacialResistencia[race]?.ref || 0
+      },
+      von: {
+        classe: classe.von || 0,
+        atributo: sabMod,
+        racial: bonusRacialResistencia[race]?.von || 0
+      }
+    },
+
+    movimentoEspecial: {
+      capacidadeCarregamento: capacidade.pesada,
+      levantarCabeca: capacidade.pesada,
+      levantarChao: capacidade.pesada * 2,
+      empurrarArrastar: capacidade.pesada * 5,
+    },
+
+    corrida: {
+      multiplicador: multiplicadorCorrida,
+      metros: deslocamento * multiplicadorCorrida
+    }
   }
 }
