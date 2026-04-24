@@ -1,4 +1,7 @@
 import { divindades, passoPorAlinhamento } from './divindadesData'
+import { getDeusesRaciaisFormatados } from '../Racas/racasLogic';
+import { getDeusesPorClasse } from '../Classes/classesData';
+import { alinhamentos, podeSelecionarAlinhamento } from './alinhamentosData';
 
 export function calcularPassos(alinhamento1, alinhamento2) {
     const pos1 = passoPorAlinhamento[alinhamento1]
@@ -23,4 +26,47 @@ export function getDeusesPorAlinhamento(alinhamentoId) {
 
 export function getDeusPorId(deusId) {
     return divindades.find(d => d.value === deusId) || null
+}
+
+export function filtrarDeuses(personagem) {
+  const deusesRaciais = getDeusesRaciaisFormatados(personagem.race);
+
+  const isClerigo = personagem.classe === 'clerigo';
+  const temAlinhamento = personagem.alignment && personagem.alignment !== 'selecione';
+
+  let deusesAlinhamento = [];
+  if (temAlinhamento) {
+    deusesAlinhamento = getDeusesPorAlinhamento(personagem.alignment);
+  }
+
+  let deusesClasse = [];
+  let deusesTendencia = [];
+
+  if (!isClerigo) {
+    const deusesClasseIds = getDeusesPorClasse(personagem.classe);
+    deusesClasse = deusesClasseIds.map(id => getDeusPorId(id)).filter(Boolean);
+
+    if (temAlinhamento) {
+      const deusesRaciaisValues = deusesRaciais.map(d => d.value);
+      const deusesClasseValues = deusesClasse.map(d => d.value);
+
+      deusesTendencia = deusesAlinhamento.filter(d =>
+        !deusesRaciaisValues.includes(d.value) &&
+        !deusesClasseValues.includes(d.value)
+      );
+    }
+  }
+
+  const deusesFinais = isClerigo
+    ? [...deusesRaciais, ...deusesAlinhamento]
+    : [...deusesRaciais, ...deusesClasse, ...deusesTendencia];
+
+  return deusesFinais.filter((deus, index, self) =>
+    index === self.findIndex(d => d.value === deus.value)
+  );
+}
+
+export function filtrarAlinhamentosPorClasse(classe) {
+  if (!classe || classe === 'selecione') return alinhamentos;
+  return alinhamentos.filter(a => podeSelecionarAlinhamento(classe, a.id));
 }

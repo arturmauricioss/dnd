@@ -46,16 +46,13 @@ const estadoInicial = {
   player: '',
   classe: 'guerreiro',
   level_class: 1,
-  level_profession: 0,
   race: 'humano',
   alignment: 'selecione',
   deity: 'selecione',
-  profession: '',
   sex: 'selecione',
   idade: '',
   height: '',
   peso: 75,
-  usarKit: false,
 
   atributos: {
     forca: 15,

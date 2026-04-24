@@ -1,10 +1,10 @@
 import { useMemo, useEffect } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
-import { classes, niveis, getDeusesPorClasse } from '../Classes/classesData'
-import { alinhamentos, alinhamentoValidoParaClasse, podeSelecionarAlinhamento } from '../Divindades/alinhamentosData'
+import { classes, niveis } from '../Classes/classesData'
 import { racas, sexos } from '../Racas/racasData'
 import { getFisicoSugerido, getIdadeSugerida, getTamanhoPorRaca, getDeusesRaciaisFormatados } from '../Racas/racasLogic'
-import { getDeusesPorAlinhamento, getDeusPorId } from '../Divindades/divindadesLogic'
+import { filtrarDeuses, filtrarAlinhamentosPorClasse } from '../Divindades/divindadesLogic'
+import { alinhamentoValidoParaClasse } from '../Divindades/alinhamentosData';
 import { Navigation } from '../global'
 import './Personagem.css'
 
@@ -12,68 +12,16 @@ export default function Personagem() {
   const { personagem, atualizarCampo, setSelectedRace, setSelectedClass, setSelectedAlignment } = useCharacter()
 
   // 🔮 Deuses por classe + alinhamento + raciais
-  const deusesFiltrados = useMemo(() => {
-    // Deuses raciais SEMPRE aparecem
-    const deusesRaciais = getDeusesRaciaisFormatados(personagem.race)
-    
-    const isClerigo = personagem.classe === 'clerigo'
-    const temAlinhamento = personagem.alignment && personagem.alignment !== 'selecione'
-    
-    // Deuses que estão a 1 passo do alinhamento
-    let deusesAlinhamento = []
-    if (temAlinhamento) {
-      deusesAlinhamento = getDeusesPorAlinhamento(personagem.alignment)
-    }
-    
-    let deusesClasse = []
-    let deusesTendencia = []
-    
-    if (isClerigo) {
-      // Clérigo: usa deusesAlinhamento como base (não usa deusesPorClasse)
-      // Os deuses raciais já são adicionados depois
-    } else {
-      // Não-clérigo: TODOS os deuses da classe (sem filtro de alinhamento)
-      const deusesClasseIds = getDeusesPorClasse(personagem.classe)
-      
-      deusesClasse = deusesClasseIds.map(id => {
-        const deus = getDeusPorId(id)
-        return deus ? { value: deus.value, nome: deus.nome } : null
-      }).filter(Boolean)
-      
-      // Deuses por tendência que não são raciais nem da classe
-      if (temAlinhamento) {
-        const deusesRaciaisValues = deusesRaciais.map(d => d.value)
-        const deusesClasseValues = deusesClasse.map(d => d.value)
-        
-        deusesTendencia = deusesAlinhamento.filter(d => 
-          !deusesRaciaisValues.includes(d.value) && 
-          !deusesClasseValues.includes(d.value)
-        )
-      }
-    }
-    
-    // Combina os deuses baseado no tipo de classe
-    let deusesFinais
-    if (isClerigo) {
-      // Clérigo: raciais + deuses por alinhamento
-      deusesFinais = [...deusesRaciais, ...deusesAlinhamento]
-    } else {
-      // Não-clérigo: raciais + classe + tendência
-      deusesFinais = [...deusesRaciais, ...deusesClasse, ...deusesTendencia]
-    }
-    
-    const uniqueDeuses = deusesFinais.filter((deus, index, self) => 
-      index === self.findIndex(d => d.value === deus.value)
-    )
-    
-    return uniqueDeuses
-  }, [personagem.alignment, personagem.race, personagem.classe])
+  const deusesFiltrados = useMemo(() => filtrarDeuses(personagem), [
+    personagem.alignment,
+    personagem.race,
+    personagem.classe,
+  ])
 
   // ⚖️ Alinhamento por classe
-  const alinhamentosFiltrados = useMemo(() => {
-    if (!personagem.classe || personagem.classe === 'selecione') return alinhamentos
-    return alinhamentos.filter(a => podeSelecionarAlinhamento(personagem.classe, a.id))
-  }, [personagem.classe])
+  const alinhamentosFiltrados = useMemo(() => filtrarAlinhamentosPorClasse(personagem.classe), [
+    personagem.classe,
+  ])
 
   useEffect(() => {
     if (
