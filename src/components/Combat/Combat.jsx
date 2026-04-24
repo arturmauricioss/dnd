@@ -27,7 +27,6 @@ export default function Combat() {
   const dexMod = getModificador('destreza')
   const forMod = getModificador('forca')
   const conMod = getModificador('constituicao')
-  const sabMod = getModificador('sabedoria')
   const iniciativa = Math.min(dexMod, combate.dexMaxFinal)
   const modTamanho = getModificadoresTamanho(personagem.tamanho || '')
 
@@ -41,35 +40,8 @@ export default function Combat() {
       {expandido && (
         <div className="combat-content">
 
-          {/* BBA */}
-          <div className="combat-stat">
-            <div className="stat-label">Bonus base de Ataque</div>
-            <div className="stat-value">
-              {combate.bba >= 0 ? `+${combate.bba}` : combate.bba}
-            </div>
-            <div className="stat-detail">
-              {buildBreakdown([
-                { label: 'Base', value: combate.bbaBase }
-              ])}
-            </div>
-          </div>
-
-          {/* Agarrar */}
-          <div className="combat-stat">
-            <div className="stat-label">Agarrar</div>
-            <div className="stat-value">
-              {combate.agarrar >= 0 ? `+${combate.agarrar}` : combate.agarrar}
-            </div>
-            <div className="stat-detail">
-              {buildBreakdown([
-                { label: 'Base', value: combate.bbaBase },
-                { label: 'For', value: forMod },
-                { label: 'Tam', value: modTamanho.agarrar }
-              ])}
-            </div>
-          </div>
-
-          {/* Iniciativa */}
+          
+           {/* Iniciativa */}
           <div className="combat-stat">
             <div className="stat-label">Iniciativa</div>
 
@@ -89,6 +61,37 @@ export default function Combat() {
             )}
           </div>
 
+          {/* BBA */}
+          <div className="combat-stat">
+            <div className="stat-label">Bonus base de Ataque</div>
+            <div className="stat-value">
+              {combate.bba >= 0 ? `+${combate.bba}` : combate.bba}
+            </div>
+            <div className="stat-detail">
+              {buildBreakdown([
+                { label: 'Base', value: combate.bbaBase }
+              ])}
+            </div>
+          </div>
+          
+         
+
+          {/* Agarrar */}
+          <div className="combat-stat">
+            <div className="stat-label">Agarrar</div>
+            <div className="stat-value">
+              {combate.agarrar >= 0 ? `+${combate.agarrar}` : combate.agarrar}
+            </div>
+            <div className="stat-detail">
+              {buildBreakdown([
+                { label: 'Base', value: combate.bbaBase },
+                { label: 'For', value: forMod },
+                { label: 'Tam', value: modTamanho.agarrar }
+              ])}
+            </div>
+          </div>
+
+          
           {/* Deslocamento */}
           <div className="combat-stat">
             <div className="stat-label">Deslocamento</div>
@@ -112,6 +115,18 @@ export default function Combat() {
             )}
           </div>
 
+          {/* Corrida */}
+          {showDeslocamento && (
+            <div className="combat-stat compact">
+              <div className="stat-label">Corrida</div>
+              <div className="stat-value">{combate.corrida?.metros || 0}m</div>
+              <div className="stat-detail">
+                <span>x{combate.corrida?.multiplicador || 4}</span>
+              </div>
+            </div>
+          )}
+
+
           {/* PV */}
           <div className="combat-stat compact">
             <div className="stat-label">Pontos de Vida</div>
@@ -125,12 +140,6 @@ export default function Combat() {
                 ])}
               </div>
             )}
-          </div>
-
-          {/* RM */}
-          <div className="combat-stat compact">
-            <div className="stat-label">Resistência mágica</div>
-            <div className="stat-value">0</div>
           </div>
 
 
@@ -231,6 +240,13 @@ export default function Combat() {
               </div>
             )}
           </div>
+          
+          {/* RM */}
+          <div className="combat-stat compact">
+            <div className="stat-label">Resistência mágica</div>
+            <div className="stat-value">0</div>
+          </div>
+
 
           {/* Encumbrance */}
           <div className="combat-stat">
@@ -251,13 +267,14 @@ export default function Combat() {
             <div className="stat-label">Capacidade de Carregamento</div>
 
             <div className="stat-value small">
-              {combate.movimentoEspecial.levantarCabeca} kg
+              {combate.movimentoEspecial.capacidadeCarregamento} kg
             </div>
 
             <div className="stat-detail">
               <span>1x capacidade</span>
             </div>
           </div>
+          
           <div className="combat-stat compact">
             <div className="stat-label">Levantar (cabeça)</div>
 
@@ -292,7 +309,11 @@ export default function Combat() {
             <div className="stat-detail">
               <span>5x capacidade</span>
             </div>
+
+            
           </div>
+
+          
         </div>
       )}
 

@@ -127,3 +127,16 @@ export function getLoad(peso, forca) {
   if (peso <= cap.pesada) return 'pesada'
   return 'excessiva'
 }
+
+export function getCapacidadeMontaria(montaria) {
+  if (!montaria) return { leve: 0, media: 0, pesada: 0 }
+  
+  const forcaMontaria = montaria.forca || montaria.forcaMontaria || 10
+  const cap = getCapacidade(forcaMontaria)
+  
+  return {
+    leve: cap.leve,
+    media: cap.media,
+    pesada: cap.pesada
+  }
+}
