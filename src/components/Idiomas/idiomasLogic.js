@@ -43,11 +43,6 @@ export function getAlfabetizacao(classe, alfabetizacaoGrad) {
   return 'Alfabetizado'
 }
 
-export function validarIdiomasAtuais(idiomasAtuais) {
-  // Idiomas extras são válidos - não remove idiomas que o usuário adicionou
-  return idiomasAtuais
-}
-
 export function getPoolExtrasUnicos(raca, classe, idiomasBase, idiomasFixosClasse) {
   const poolExtras = getPoolExtras(raca, classe)
   

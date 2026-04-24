@@ -135,9 +135,65 @@
 
 .idiomas-extras select {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 0.95rem;
-  background: white;
+  background: var(--background);
+  color: var(--text);
+  cursor: pointer;
+
+  /* remove estilo padrão feio */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* seta custom */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23999' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+.idiomas-extras select:hover {
+  border-color: var(--primary);
+}
+
+.idiomas-extras select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(100, 100, 255, 0.2);
+}
+.idioma-dropdown {
+  position: relative;
+}
+
+.dropdown-trigger {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-menu {
+  position: absolute;
+  width: 100%;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: var(--primary);
+  color: white;
 }

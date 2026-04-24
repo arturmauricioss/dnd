@@ -5,12 +5,12 @@ import {
   calculatePontosGastos,
   calculateHabilidadesOrdenadas,
   calculatePericiaTotal,
-  calculateMaxGrad
+  calculateMaxGrad,
+  calculatePenalidadeArmadura
 } from './periciasLogic'
 import { periciasPorClasse } from './periciasData'
 import { getBonusPericiaRacial } from '../Classes/bonusPericias'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
-import { getCapacidade } from '../Inventario/encumbranceData'
 import { Navigation } from '../global'
 import './Pericias.css'
 
@@ -20,39 +20,23 @@ export default function Pericias() {
   const { classe, level_class, race, equipment } = personagem
   const nivel = level_class || 1
 
-  const pontosPericia = useMemo(() => 
-    calculatePontosPericia({ classe, level_class: nivel, race }, getModificador), 
+  const pontosPericia = useMemo(() =>
+    calculatePontosPericia({ classe, level_class: nivel, race }, getModificador),
   [classe, nivel, race, getModificador])
 
+  // ✅ Penalidade vinda APENAS de armadura (sem peso/carga)
   const penalidadeArmadura = useMemo(() => {
-    return equipment ? (equipment.penalidadeArmadura || 0) : 0
-  }, [equipment])
+    return calculatePenalidadeArmadura(personagem)
+  }, [personagem])
 
+  // ✅ Limite de DEX APENAS da armadura
   const dexMaxLimit = useMemo(() => {
-    const forca = (personagem.atributos?.forca || 10) + (personagem.atributosRacial?.forca || 0)
-    const capacidade = getCapacidade(forca)
-    
-    const pesoTotal = (personagem.peso || 0)
-    
-    const cargaAtual = pesoTotal <= capacidade.leve ? 'leve' 
-      : pesoTotal <= capacidade.media ? 'media' 
-      : pesoTotal <= capacidade.pesada ? 'pesada' 
-      : 'excessiva'
-    
-    const dadosCarga = {
-      leve: { maxDex: 99 },
-      media: { maxDex: 3 },
-      pesada: { maxDex: 1 },
-      excessiva: { maxDex: 0 }
-    }[cargaAtual]
-    
     const armadura = equipment?.armor ? getItemPorId(equipment.armor) : null
-    const dexArmadura = armadura ? parseInt(armadura.dex_max?.replace('+', '') || 999) : 999
-    
-    return Math.min(dexArmadura, dadosCarga.maxDex)
-  }, [personagem.atributos, personagem.atributosRacial, personagem.peso, equipment])
 
-  const maxGradPorNivel = nivel + 3
+    if (!armadura) return null
+
+    return parseInt(armadura.dex_max?.replace('+', '') || 999)
+  }, [equipment])
 
   const periciasState = useMemo(() => personagem.pericias || {}, [personagem.pericias])
 
@@ -66,11 +50,12 @@ export default function Pericias() {
     })
   }
 
-  const pontosGastos = useMemo(() => 
+  const pontosGastos = useMemo(() =>
     calculatePontosGastos({ classe, level_class: nivel, race }, periciasState),
   [classe, nivel, race, periciasState])
 
   const pontosRestantes = pontosPericia - pontosGastos
+
   const podeIncrementar = (periciaNome, novoValor, valorAtual) => {
     if (novoValor <= valorAtual) return true
     const custo = periciasPorClasse[classe]?.includes(periciaNome) ? 1 : 2
@@ -78,54 +63,67 @@ export default function Pericias() {
     return pontosRestantes >= custoAdicional
   }
 
-  const habilidadesOrdenadas = useMemo(() => 
+  const habilidadesOrdenadas = useMemo(() =>
     calculateHabilidadesOrdenadas({ classe, level_class: nivel, race }),
   [classe, nivel, race])
-
-  const listaIntercalada = useMemo(() => {
-    const { primeira, segunda } = habilidadesOrdenadas
-    const intercalada = []
-    const max = Math.max(primeira.length, segunda.length)
-    for (let i = 0; i < max; i++) {
-      if (primeira[i]) intercalada.push(primeira[i])
-      if (segunda[i]) intercalada.push(segunda[i])
-    }
-    return intercalada
-  }, [habilidadesOrdenadas])
 
   const renderPericia = (pericia) => {
     const estado = periciasState[pericia.nome] || { graduacao: 0, outros: 0 }
     const grad = estado.graduacao
-    
-    const personagemCalc = { classe, level_class: nivel, race }
+
+    const personagemCalc = { ...personagem }
     const maxGrad = calculateMaxGrad(personagemCalc, pericia.nome)
-    const total = calculatePericiaTotal(pericia, personagemCalc, periciasState, getModificador, dexMaxLimit)
-    
+
+    const total = calculatePericiaTotal(
+      pericia,
+      personagemCalc,
+      periciasState,
+      getModificador,
+      dexMaxLimit
+    )
+
     const eClasse = periciasPorClasse[classe]?.includes(pericia.nome)
     const bonusRacial = getBonusPericiaRacial(race, pericia.nome)
 
-    let modHab = getModificador(pericia.habilidade)
-    if (pericia.habilidade === 'destreza') {
-      modHab = Math.min(modHab, dexMaxLimit)
+    // ✅ MODIFICADOR DE HABILIDADE (SEM PENALIDADE)
+    let modHab = 0
+    if (pericia.habilidade !== 'nenhuma') {
+      modHab = getModificador(pericia.habilidade)
+
+      if (pericia.habilidade === 'destreza' && dexMaxLimit !== null) {
+        modHab = Math.min(modHab, dexMaxLimit)
+      }
     }
 
-    const valorOutrosDisplay = (estado.outros || 0) + bonusRacial + penalidadeArmadura
+    // ✅ PENALIDADE CORRIGIDA (SEM BUG DE SINAL)
+    const penalidadeBase = Math.abs(penalidadeArmadura)
+    const penalidadePericia = penalidadeBase * (pericia.penalidade || 0)
 
-    const nomeClasse = `pericia-nome ${eClasse ? 'pericia-classe' : ''} ${pericia.somente_treinado && grad === 0 ? 'pericia-treinada' : ''}`
+    // ✅ OUTROS = racial + manual - penalidade
+    const valorOutrosDisplay =
+      (estado.outros || 0) +
+      bonusRacial -
+      penalidadePericia
+
+    const nomeClasse = `pericia-nome ${eClasse ? 'pericia-classe' : ''} ${
+      pericia.somente_treinado && grad === 0 ? 'pericia-treinada' : ''
+    }`
 
     return (
       <div key={pericia.nome} className="pericia-row">
         <span className={nomeClasse}>
           {pericia.nome}
-          {pericia.somente_treinado && grad === 0 && <span className="pericia-marcador" title="Requer treinamento">*</span>}
-          {bonusRacial > 0 && <span className="pericia-bonus" title={`Bônus racial: +${bonusRacial}`}>+{bonusRacial}</span>}
+          {pericia.somente_treinado && grad === 0 && (
+            <span className="pericia-marcador" title="Requer treinamento">*</span>
+          )}
         </span>
+
         <span className="pericia-total">{total}</span>
+
         <input
           type="number"
           min="0"
           max={maxGrad}
-          placeholder="0"
           value={grad || ''}
           onChange={(e) => {
             let val = parseInt(e.target.value) || 0
@@ -134,14 +132,21 @@ export default function Pericias() {
             handleGraduacaoChange(pericia.nome, val)
           }}
         />
-        <span className="pericia-hab">{modHab >= 0 ? `+${modHab}` : modHab}</span>
-        <span className="pericia-outros">{valorOutrosDisplay}</span>
+
+        <span className="pericia-hab">
+          {modHab >= 0 ? `+${modHab}` : modHab}
+        </span>
+
+        <span className="pericia-outros">
+          {valorOutrosDisplay >= 0 ? `+${valorOutrosDisplay}` : valorOutrosDisplay}
+        </span>
       </div>
     )
   }
 
   return (
     <div className="pericias-container">
+
       <div className="pericias-info">
         <div className="info-item">
           <span>Total</span>
@@ -155,36 +160,12 @@ export default function Pericias() {
 
         <div className="info-item">
           <span>Máx. Grad.</span>
-          <strong>{maxGradPorNivel}</strong>
+          <strong>{nivel + 3}</strong>
         </div>
       </div>
 
-      <div>
-        <div className="pericias-list">
-          <div className="pericias-coluna">
-            <div className="pericias-header">
-              <span>Perícia</span>
-              <span>Total</span>
-              <span>Grad</span>
-              <span>Hab</span>
-              <span>Outros</span>
-            </div>
-            {habilidadesOrdenadas.primeira.map(renderPericia)}
-          </div>
-
-          <div className="pericias-coluna">
-            <div className="pericias-header">
-              <span>Perícia</span>
-              <span>Total</span>
-              <span>Grad</span>
-              <span>Hab</span>
-              <span>Outros</span>
-            </div>
-            {habilidadesOrdenadas.segunda.map(renderPericia)}
-          </div>
-        </div>
-
-        <div className="pericias-list-mobile">
+      <div className="pericias-list">
+        <div className="pericias-coluna">
           <div className="pericias-header">
             <span>Perícia</span>
             <span>Total</span>
@@ -192,7 +173,18 @@ export default function Pericias() {
             <span>Hab</span>
             <span>Outros</span>
           </div>
-          {listaIntercalada.map(renderPericia)}
+          {habilidadesOrdenadas.primeira.map(renderPericia)}
+        </div>
+
+        <div className="pericias-coluna">
+          <div className="pericias-header">
+            <span>Perícia</span>
+            <span>Total</span>
+            <span>Grad</span>
+            <span>Hab</span>
+            <span>Outros</span>
+          </div>
+          {habilidadesOrdenadas.segunda.map(renderPericia)}
         </div>
       </div>
 

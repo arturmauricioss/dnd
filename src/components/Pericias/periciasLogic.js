@@ -100,23 +100,45 @@ export function isPericiaDeClasse(personagem, nomePericia) {
   return pericias.includes(nomePericia)
 }
 
-export function calculatePericiaTotal(pericia, personagem, periciasState, getModificador, dexMaxLimit = null) {
+export function calculatePericiaTotal(
+  pericia,
+  personagem,
+  periciasState,
+  getModificador,
+  dexMaxLimit = null
+) {
   const estado = periciasState[pericia.nome] || { graduacao: 0, outros: 0 }
   const grad = estado.graduacao
-  const bonusRacial = getBonusPericiaRacial(personagem.race, pericia.nome)
 
-  let modHab = getModificador(pericia.habilidade)
-  
-  if (pericia.habilidade === 'destreza' && dexMaxLimit !== null) {
-    modHab = Math.min(modHab, dexMaxLimit)
+  // MOD HAB
+  let modHab = 0
+  if (pericia.habilidade !== 'nenhuma') {
+    modHab = getModificador(pericia.habilidade)
+
+    if (pericia.habilidade === 'destreza' && dexMaxLimit !== null) {
+      modHab = Math.min(modHab, dexMaxLimit)
+    }
   }
 
+  // GRAD
   const maxGrad = calculateMaxGrad(personagem, pericia.nome)
   const gradLimitado = Math.min(grad, maxGrad)
-  const outrosTotal = calculateOutrosTotal(periciasState, pericia)
-  const penalidadeArmadura = calculatePenalidadeArmadura(personagem)
 
-  return modHab + gradLimitado + bonusRacial + outrosTotal - penalidadeArmadura
+  // RACIAL
+  const bonusRacial = getBonusPericiaRacial(personagem.race, pericia.nome)
+
+  // PENALIDADE
+  const penalidadeBase = Math.abs(calculatePenalidadeArmadura(personagem))
+  const penalidadeFinal = penalidadeBase * (pericia.penalidade || 0)
+
+  // OUTROS FINAL (TUDO CENTRALIZADO)
+  const outrosTotal =
+    (estado.outros || 0) +
+    bonusRacial -
+    penalidadeFinal
+
+  // ✅ TOTAL CORRETO
+  return modHab + gradLimitado + outrosTotal
 }
 
 export function calculateMaxGrad(personagem, nomePericia) {

@@ -1,6 +1,11 @@
 import { useCharacter } from '../../context/CharacterContext'
 import { atributos } from './atributosData'
-import { calcularModificador, getValorBase, getBonusRaca, getTotalAtributo, formatModificador } from './atributosLogic'
+import {
+  calcularModificador,
+  getValorBase,
+  getTotalAtributo,
+  formatModificador
+} from './atributosLogic'
 import { getBonusRacial } from '../Racas/racasLogic'
 import { Navigation } from '../global'
 import './Atributos.css'
@@ -27,7 +32,7 @@ export default function Atributos() {
         {/* LINHAS */}
         {atributos.map((attr) => {
           const valorBase = getValorBase(personagem, attr.id)
-          const bonusRaca = getBonusRaca(bonusRacial, attr.id)
+          const bonusRaca = bonusRacial[attr.id] || 0
           const total = getTotalAtributo(valorBase, bonusRaca, attr.id)
           const mod = calcularModificador(total)
 
@@ -63,7 +68,6 @@ export default function Atributos() {
         })}
       </div>
 
-      {/* NAVIGATION */}
       <Navigation prev="/" next="/combat" />
     </div>
   )
