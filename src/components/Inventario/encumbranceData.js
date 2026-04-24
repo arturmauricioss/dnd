@@ -1,10 +1,21 @@
+/* =========================
+   PESO
+========================= */
+
 export function normalizarPeso(peso) {
   if (peso === undefined || peso === null || peso === '-') return 0
   if (typeof peso === 'number') return peso
+
   if (typeof peso === 'string') {
-    const num = parseFloat(peso.replace(',', '.').replace(' kg', '').replace('kg', '').trim())
+    const num = parseFloat(
+      peso
+        .replace(',', '.')
+        .replace('kg', '')
+        .trim()
+    )
     return isNaN(num) ? 0 : num
   }
+
   return 0
 }
 
@@ -16,6 +27,10 @@ export function getPesoItem(item) {
 export function getPesoItemComQuantidade(item, quantidade = 1) {
   return getPesoItem(item) * quantidade
 }
+
+/* =========================
+   CAPACIDADE POR FORÇA
+========================= */
 
 export const capacidadeCargaPorForca = {
   1: { leve: 1.5, media: 3, pesada: 5 },
@@ -42,23 +57,21 @@ export const capacidadeCargaPorForca = {
   22: { leve: 86.5, media: 173, pesada: 260 },
   23: { leve: 100, media: 200, pesada: 300 },
   24: { leve: 116.5, media: 233, pesada: 350 },
-  25: { leve: 133, media: 266.5, pesada: 400 },
-  26: { leve: 153, media: 306.5, pesada: 460 },
-  27: { leve: 173, media: 346.5, pesada: 520 },
-  28: { leve: 200, media: 400, pesada: 600 },
-  29: { leve: 233, media: 466.5, pesada: 700 }
+  25: { leve: 133, media: 266.5, pesada: 400 }
 }
 
-export const tabelaCarga = {
-  leve: { maxDex: 99, checkPenalty: 0, speed9m: 9, speed6m: 6, corrida: 3 },
-  media: { maxDex: 3, checkPenalty: -3, speed9m: 6, speed6m: 4.5, corrida: 3 },
-  pesada: { maxDex: 1, checkPenalty: -6, speed9m: 6, speed6m: 4.5, corrida: 3 },
-  excessiva: { maxDex: 0, checkPenalty: -10, speed9m: 0, speed6m: 0, corrida: 0 }
-}
+/* =========================
+   CAPACIDADE NORMALIZADA
+========================= */
 
 export function getCapacidade(forca) {
-  const forcaNum = typeof forca === 'string' ? parseInt(forca) : forca
-  const data = capacidadeCargaPorForca[forcaNum] || capacidadeCargaPorForca[10]
+  const forcaNum =
+    typeof forca === 'string' ? parseInt(forca) : forca
+
+  const data =
+    capacidadeCargaPorForca[forcaNum] ||
+    capacidadeCargaPorForca[10]
+
   return {
     leve: data.leve,
     media: data.media,
@@ -66,22 +79,15 @@ export function getCapacidade(forca) {
   }
 }
 
-export function getLoad(peso, forca) {
-  const capacidade = getCapacidade(forca)
-  
-  if (peso <= capacidade.leve) return 'leve'
-  if (peso <= capacidade.media) return 'media'
-  return 'pesada'
-}
+/* =========================
+   CARGA ATUAL
+========================= */
 
-export function getDadosEncumbrance(forca) {
-  const forcaNum = typeof forca === 'string' ? parseInt(forca) : forca
-  const capacidade = getCapacidade(forcaNum)
-  
-  return {
-    forca: forcaNum,
-    lightMax: capacidade.light,
-    mediumMax: capacidade.medium,
-    heavyMax: capacidade.heavy
-  }
+export function getLoad(peso, forca) {
+  const cap = getCapacidade(forca)
+
+  if (peso <= cap.leve) return 'leve'
+  if (peso <= cap.media) return 'media'
+  if (peso <= cap.pesada) return 'pesada'
+  return 'excessiva'
 }

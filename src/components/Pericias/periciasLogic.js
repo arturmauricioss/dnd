@@ -1,5 +1,5 @@
 import { getBonusPericiaRacial } from '../Classes/bonusPericias'
-import { getPenalidadeTotal } from '../Equipamentos/equipamentosLogic'
+import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 import { periciasConfig, periciasPorClasse } from './periciasData'
 import { podeUsarAlfabetizacao } from '../Classes/classesData'
 
@@ -49,7 +49,7 @@ export function calculatePontosPericia(personagem, getModificador) {
 export function calculatePenalidadeArmadura(personagem) {
   const armor = personagem.equipment?.armor
   const shield = personagem.equipment?.shield
-  return getPenalidadeTotal(armor, shield)
+  return getTotalArmorPenalty(armor, shield)
 }
 
 export function calculateMaxGradPorNivel(personagem) {
