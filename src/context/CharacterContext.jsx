@@ -83,39 +83,6 @@ const estadoInicial = {
     montando: false,
   },
 
-  pericias: {},
-  pontosPericiaDisponiveis: 0,
-  maxGraduacaoPorPericia: 0,
-
-  combat: {
-    bba: 0,
-    hp: { atual: 0, max: 0 },
-    deslocamento: 0,
-    iniciativa: { total: 0, outros: 0 },
-    ca: {
-      total: 0,
-      armor: 0,
-      dex: 0,
-      size: 0,
-      natural: 0,
-      deflection: 0,
-      misc: 0,
-    },
-    fort: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
-    ref: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
-    von: { total: 0, base: 0, magico: 0, outros: 0, temp: 0 },
-  },
-
-  weapons: [],
-  equipment: {
-    armor: null,
-    shield: null,
-    money: { po: 0, pl: 0, pp: 0, pc: 0 },
-    weapons: [],
-    itens: [],
-    montaria: null,
-  },
-
   idiomas: [],
 
   talentos: [],

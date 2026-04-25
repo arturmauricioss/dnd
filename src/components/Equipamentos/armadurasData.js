@@ -28,14 +28,13 @@ export const todosEscudos = {
 
 export const armadurasNormalizadas = Object.fromEntries(
   Object.entries(todasArmaduras).map(([id, a]) => {
-    const { tipo: _tipoOriginal, ...resto } = a
-    return [id, { id, tipo: "armadura", tipoLoja: "armadura", ...resto }]
+    const { tipo: tipoOriginal, ...resto } = a
+    return [id, { id, tipo: "armadura", tipoLoja: "armadura", tipoArmadura: tipoOriginal, ...resto }]
   })
 );
 
 export const escudosNormalizados = Object.fromEntries(
   Object.entries(todosEscudos).map(([id, s]) => {
-    const { tipo: _tipoOriginal, ...resto } = s
-    return [id, { id, tipo: "escudo", tipoLoja: "escudo", ...resto }]
+    return [id, { id, tipo: "escudo", tipoLoja: "escudo", ...s }]
   })
 );
