@@ -85,9 +85,9 @@ export function getCapacidadeMontaria(montaria) {
 
 export function tabelaCarga() {
   return {
-    leve: { maxDex: 999 },
+    leve: { maxDex: 999, checkPenalty: 0, corrida: 4 },
     media: { maxDex: 3, checkPenalty: -3, corrida: 4 },
     pesada: { maxDex: 1, checkPenalty: -6, corrida: 3 },
-    excessiva: { maxDex: 0, checkPenalty: -12, corrida: 1 }
+    excessiva: { maxDex: 0, checkPenalty: -6, corrida: 1 }
   }
 }
