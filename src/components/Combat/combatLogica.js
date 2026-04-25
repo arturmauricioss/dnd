@@ -5,10 +5,8 @@ import { deslocamentoPorRaca, bonusRacialResistencia } from '../Racas/racasData'
 import { caValoresIniciais } from './combatData'
 import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 
-import { getItemPorId } from '../Equipamentos/equipamentosLogic'
-import { getPesoItem, getCapacidade, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
+import { getCapacidade, tabelaCarga, getPesoTotalEquipamentos } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
-import { getPesoDinheiro } from '../Inventario/dinheiroData'
 
 /* =========================
    UTILITÁRIOS
@@ -130,24 +128,7 @@ const deslocamentoBase = deslocamentoPorRaca[race] || 6
     pesada: cap.pesada
   }
 
-  const pesoTotal =
-    (equipment?.weapons || []).reduce(
-      (t, a) => {
-        const itemOriginal = getItemPorId(a.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, race)
-        return t + (getPesoItem(itemAjustado) || 0) * (a.quantidade || 1)
-      },
-      0
-    ) +
-    (equipment?.itens || []).reduce(
-      (t, i) => {
-        const itemOriginal = getItemPorId(i.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, race)
-        return t + (getPesoItem(itemAjustado) || 0) * (i.quantidade || 1)
-      },
-      0
-    ) +
-    getPesoDinheiro(equipment?.money)
+  const pesoTotal = getPesoTotalEquipamentos(equipment, race, classeId)
 
   const cargaAtual =
     pesoTotal <= capacidade.leve
