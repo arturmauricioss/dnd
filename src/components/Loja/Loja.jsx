@@ -110,8 +110,8 @@ export default function Loja() {
       pl: 0
     }
 
-    const armadura = carrinho.find(i => i.tipo === 'armadura')
-    const escudo = carrinho.find(i => i.tipo === 'escudo')
+    const armadurasCarrinho = carrinho.filter(i => i.tipo === 'armadura')
+    const escudosCarrinho = carrinho.filter(i => i.tipo === 'escudo')
     const montariasCarrinho = carrinho.filter(i => i.tipo === 'montaria')
     const transportesCarrinho = carrinho.filter(i => i.tipo === 'transporte')
     const armasCarrinho = carrinho.filter(i => i.tipo === 'arma')
@@ -135,8 +135,26 @@ export default function Loja() {
         armasCombinadas.push({ id: arma.id, quantidade: arma.quantidade || 1, local: 'carregando' })
       }
     })
+const itensCombinados = [...itensAnteriores]
 
-    const itensCombinados = [...itensAnteriores]
+    armadurasCarrinho.forEach(armadura => {
+      const existente = itensCombinados.find(i => i.id === armadura.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (armadura.quantidade || 1)
+      } else {
+        itensCombinados.push({ id: armadura.id, quantidade: armadura.quantidade || 1, local: 'carregando' })
+      }
+    })
+
+    escudosCarrinho.forEach(escudo => {
+      const existente = itensCombinados.find(i => i.id === escudo.id)
+      if (existente) {
+        existente.quantidade = (existente.quantidade || 1) + (escudo.quantidade || 1)
+      } else {
+        itensCombinados.push({ id: escudo.id, quantidade: escudo.quantidade || 1, local: 'carregando' })
+      }
+    })
+
     outrosCarrinho.forEach(item => {
       const existente = itensCombinados.find(i => i.id === item.id)
       if (existente) {
@@ -167,8 +185,8 @@ export default function Loja() {
     atualizarCampo('equipment', {
       ...personagem.equipment,
       money: moedasRestantes,
-      armor: armadura?.id || personagem.equipment?.armor || '',
-      shield: escudo?.id || personagem.equipment?.shield || '',
+      armor: null,
+      shield: null,
       montaria: montariasCarrinho[0]?.id || personagem.equipment?.montaria || null,
       weapons: armasCombinadas,
       itens: itensCombinados

@@ -18,6 +18,9 @@ export default function ItemCard({
     item.categoria === 'comum' ||
     item.categoria === 'exotica'
 
+  const isArmor = item.tipo === 'armadura' || item.tipoLoja === 'armadura'
+  const isEscudo = item.tipo === 'escudo' || item.tipoLoja === 'escudo'
+
   const nameRef = useRef(null)
   const containerRef = useRef(null)
   const [overflow, setOverflow] = useState(0)
@@ -165,6 +168,56 @@ export default function ItemCard({
         {isArma && (
           <div className="stats-row">
             <span><b>Alcance:</b> {item.alcance || '-'}</span>
+            <span><b>Peso:</b> {item.peso ?? '-'}</span>
+          </div>
+        )}
+
+        {!isArma && !isArmor && !isEscudo && (
+          <div className="stats-row spacer" />
+        )}
+
+        {isArmor && (
+          <div className="stats-row spacer" />
+        )}
+
+        {isEscudo && (
+          <>
+            <div className="stats-row spacer" />
+            <div className="stats-row spacer" />
+          </>
+        )}
+
+        {isArmor && item.bonus && (
+          <div className="stats-row">
+            <span><b>CA:</b> {item.bonus}</span>
+            <span><b>Tipo:</b> {item.tipoArmadura || item.tipo || '-'}</span>
+          </div>
+        )}
+
+        {isArmor && (
+          <div className="stats-row">
+            <span><b>Dex máx:</b> {item.dex_max || '-'}</span>
+            <span><b>Penal:</b> {item.penalidade !== undefined ? item.penalidade : '-'}</span>
+          </div>
+        )}
+
+        {isArmor && item.falha_magia && (
+          <div className="stats-row">
+            <span><b>Falha:</b> {item.falha_magia}</span>
+            <span><b>Peso:</b> {item.peso ?? '-'}</span>
+          </div>
+        )}
+
+        {isEscudo && item.bonus && (
+          <div className="stats-row">
+            <span><b>CA:</b> {item.bonus}</span>
+            <span><b>Penal:</b> {item.penalidade !== undefined ? item.penalidade : '-'}</span>
+          </div>
+        )}
+
+        {isEscudo && item.falha_magia && (
+          <div className="stats-row">
+            <span><b>Falha:</b> {item.falha_magia}</span>
             <span><b>Peso:</b> {item.peso ?? '-'}</span>
           </div>
         )}
