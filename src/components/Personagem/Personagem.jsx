@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { classes, niveis } from '../Classes/classesData'
 import { racas, sexos } from '../Racas/racasData'
-import { getFisicoSugerido, getIdadeSugerida, getTamanhoPorRaca, getDeusesRaciaisFormatados } from '../Racas/racasLogic'
+import { getFisicoSugerido, getIdadeSugerida, getTamanhoPorRaca } from '../Racas/racasLogic'
 import { filtrarDeuses, filtrarAlinhamentosPorClasse } from '../Divindades/divindadesLogic'
 import { alinhamentoValidoParaClasse } from '../Divindades/alinhamentosData';
 import { Navigation } from '../global'
@@ -12,11 +12,7 @@ export default function Personagem() {
   const { personagem, atualizarCampo, setSelectedRace, setSelectedClass, setSelectedAlignment } = useCharacter()
 
   // 🔮 Deuses por classe + alinhamento + raciais
-  const deusesFiltrados = useMemo(() => filtrarDeuses(personagem), [
-    personagem.alignment,
-    personagem.race,
-    personagem.classe,
-  ])
+  const deusesFiltrados = useMemo(() => filtrarDeuses(personagem), [personagem])
 
   // ⚖️ Alinhamento por classe
   const alinhamentosFiltrados = useMemo(() => filtrarAlinhamentosPorClasse(personagem.classe), [
@@ -32,6 +28,17 @@ export default function Personagem() {
       setSelectedAlignment('selecione')
     }
   }, [personagem.classe, personagem.alignment, atualizarCampo, setSelectedAlignment])
+
+  useEffect(() => {
+    if (
+      personagem.classe !== 'selecione' &&
+      alinhamentosFiltrados.length > 0 &&
+      (personagem.alignment === 'selecione' || !alinhamentoValidoParaClasse(personagem.classe, personagem.alignment))
+    ) {
+      atualizarCampo('alignment', alinhamentosFiltrados[0].id)
+      setSelectedAlignment(alinhamentosFiltrados[0].id)
+    }
+  }, [personagem.classe, alinhamentosFiltrados, personagem.alignment, atualizarCampo, setSelectedAlignment])
 
   useEffect(() => {
     if (personagem.race !== 'selecione') {

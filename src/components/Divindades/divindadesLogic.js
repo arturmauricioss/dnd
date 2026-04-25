@@ -40,7 +40,7 @@ export function filtrarDeuses(personagem) {
   }
 
   let deusesClasse = [];
-  let deusesTendencia = [];
+  let deusesAlinhamentoUnicos = [];
 
   if (!isClerigo) {
     const deusesClasseIds = getDeusesPorClasse(personagem.classe);
@@ -50,7 +50,7 @@ export function filtrarDeuses(personagem) {
       const deusesRaciaisValues = deusesRaciais.map(d => d.value);
       const deusesClasseValues = deusesClasse.map(d => d.value);
 
-      deusesTendencia = deusesAlinhamento.filter(d =>
+      deusesAlinhamentoUnicos = deusesAlinhamento.filter(d =>
         !deusesRaciaisValues.includes(d.value) &&
         !deusesClasseValues.includes(d.value)
       );
@@ -59,7 +59,7 @@ export function filtrarDeuses(personagem) {
 
   const deusesFinais = isClerigo
     ? [...deusesRaciais, ...deusesAlinhamento]
-    : [...deusesRaciais, ...deusesClasse, ...deusesTendencia];
+    : [...deusesRaciais, ...deusesClasse, ...deusesAlinhamentoUnicos];
 
   return deusesFinais.filter((deus, index, self) =>
     index === self.findIndex(d => d.value === deus.value)
