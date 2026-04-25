@@ -1,3 +1,6 @@
+import { getDanoPorTamanho, getPesoPorTamanho } from '../Equipamentos/armasLogic'
+import { getTamanhoPorRaca } from '../Racas/racasLogic'
+
 export const capacidadeCargaPorForca = {
   1: { leve: 1.5, media: 3, pesada: 5 },
   2: { leve: 3, media: 6.5, pesada: 10 },
@@ -81,6 +84,32 @@ export function getCapacidadeMontaria(montaria) {
     media: cap.media,
     pesada: cap.pesada
   }
+}
+
+export function getItemAjustadoPorTamanho(item, racaId) {
+  const isArma = item.categoria === 'simples' || item.categoria === 'comum' || item.categoria === 'exotica'
+  const tipo = isArma ? 'arma' : (item.tipo || item.tipoLoja)
+  const tamanho = getTamanhoPorRaca(racaId)
+  
+  if (!tamanho || tamanho === 'media') return item
+  
+  if (isArma) {
+    return {
+      ...item,
+      dano: getDanoPorTamanho(item.dano, tamanho),
+      critico: item.critico,
+      peso: getPesoPorTamanho(normalizarPeso(item.peso), tamanho)
+    }
+  }
+  
+  if (tipo === 'armadura' || tipo === 'escudo') {
+    return {
+      ...item,
+      peso: getPesoPorTamanho(normalizarPeso(item.peso), tamanho)
+    }
+  }
+  
+  return item
 }
 
 export function tabelaCarga() {
