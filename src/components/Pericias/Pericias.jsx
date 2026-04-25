@@ -9,7 +9,7 @@ import {
   calculatePenalidadeArmadura
 } from './periciasLogic'
 import { periciasPorClasse } from './periciasData'
-import { getBonusPericiaRacial } from '../Classes/bonusPericias'
+import { getBonusPericiaRacial } from '../Racas/bonusPericias'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
 import { Navigation } from '../global'
 import './Pericias.css'
