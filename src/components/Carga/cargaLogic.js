@@ -1,5 +1,22 @@
 import { getDanoPorTamanho, getPesoPorTamanho } from '../Equipamentos/armasLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
+import { getItemPorId } from '../Equipamentos/equipamentosLogic'
+import { getDinheiroInicial } from '../Classes/classesData'
+
+export const PESO_MOEDA = 0.01 // 10g por moeda
+
+export function getPesoDinheiro(money = {}, classe = 'guerreiro') {
+  const moneyExistente = money
+  const temDinheiro = moneyExistente && Object.values(moneyExistente).some(v => v > 0)
+  const moneyFinal = temDinheiro ? moneyExistente : getDinheiroInicial(classe)
+  
+  const totalMoedas = 
+    (Number(moneyFinal.po) || 0) + 
+    (Number(moneyFinal.pl) || 0) + 
+    (Number(moneyFinal.pp) || 0) + 
+    (Number(moneyFinal.pc) || 0)
+  return totalMoedas * PESO_MOEDA
+}
 
 export const capacidadeCargaPorForca = {
   1: { leve: 1.5, media: 3, pesada: 5 },
@@ -119,4 +136,34 @@ export function tabelaCarga() {
     pesada: { maxDex: 1, checkPenalty: -6, corrida: 3 },
     excessiva: { maxDex: 0, checkPenalty: -6, corrida: 1 }
   }
+}
+
+export function getPesoTotalEquipamentos(equipment, raca, classe = 'guerreiro') {
+  if (!equipment) return 0
+  
+  const dinheiro = getPesoDinheiro(equipment.money, classe)
+  
+  const pesoArmadura = (() => {
+    const item = equipment.armor ? getItemAjustadoPorTamanho(getItemPorId(equipment.armor), raca) : null
+    return item ? getPesoItem(item) : 0
+  })()
+  
+  const pesoEscudo = (() => {
+    const item = equipment.shield ? getItemAjustadoPorTamanho(getItemPorId(equipment.shield), raca) : null
+    return item ? getPesoItem(item) : 0
+  })()
+  
+  const pesoWeapons = (equipment.weapons || []).reduce((total, a) => {
+    const itemOriginal = getItemPorId(a.id)
+    const item = getItemAjustadoPorTamanho(itemOriginal, raca)
+    return total + (getPesoItem(item) || 0) * (a.quantidade || 1)
+  }, 0)
+  
+  const pesoItens = (equipment.itens || []).reduce((total, i) => {
+    const itemOriginal = getItemPorId(i.id)
+    const item = getItemAjustadoPorTamanho(itemOriginal, raca)
+    return total + (getPesoItem(item) || 0) * (i.quantidade || 1)
+  }, 0)
+  
+  return dinheiro + pesoArmadura + pesoEscudo + pesoWeapons + pesoItens
 }

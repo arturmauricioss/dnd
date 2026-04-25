@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
-import { converterParaPO, getPesoDinheiro } from './dinheiroData'
+import { converterParaPO } from './dinheiroData'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
-import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
+import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getItemAjustadoPorTamanho, getPesoTotalEquipamentos } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
 import { montarias, transporte } from '../Equipamentos/montariasData'
@@ -77,52 +77,10 @@ export default function Inventario() {
     }
   }, [montando, capacidadePersonagem, capacidadeMontaria])
 
-  const pesoArmadura = useMemo(() => getPesoItem(armadura) || 0, [armadura])
-  const pesoEscudo = useMemo(() => getPesoItem(escudo) || 0, [escudo])
-
-  const pesoArmasEquipped = useMemo(() => {
-    return armas
-      .filter(a => a.local === 'equipped')
-      .reduce((total, a) => {
-        const itemOriginal = getItemPorId(a.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
-        return total + (getPesoItem(itemAjustado) * (a.quantidade || 1))
-      }, 0)
-  }, [armas, personagem.race])
-
-  const pesoItensEquipped = useMemo(() => {
-    return itens
-      .filter(i => i.local === 'equipped')
-      .reduce((total, i) => {
-        const itemOriginal = getItemPorId(i.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
-        return total + (getPesoItem(itemAjustado) * (i.quantidade || 1))
-      }, 0)
-  }, [itens, personagem.race])
-
-  const pesoArmasCarregando = useMemo(() => {
-    return armas
-      .filter(a => a.local === 'carregando')
-      .reduce((total, a) => {
-        const itemOriginal = getItemPorId(a.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
-        return total + (getPesoItem(itemAjustado) * (a.quantidade || 1))
-      }, 0)
-  }, [armas, personagem.race])
-
-  const pesoItensCarregando = useMemo(() => {
-    return itens
-      .filter(i => i.local === 'carregando')
-      .reduce((total, i) => {
-        const itemOriginal = getItemPorId(i.id)
-        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
-        return total + (getPesoItem(itemAjustado) * (i.quantidade || 1))
-      }, 0)
-  }, [itens, personagem.race])
-
-  const pesoDinheiro = useMemo(() => getPesoDinheiro(money) || 0, [money])
-
-  const pesoTotalEquipamentos = pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando + pesoDinheiro
+  const pesoTotalEquipamentos = useMemo(() => 
+    getPesoTotalEquipamentos(personagem.equipment, personagem.race, personagem.classe), 
+    [personagem.equipment, personagem.race, personagem.classe]
+  )
 
   const pesoTotal = montando 
     ? pesoPersonagem + pesoTotalEquipamentos 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useCallback } from 'react'
 import { getBonusRacial } from '../components/Racas/racasLogic'
+import { getDinheiroInicial } from '../components/Classes/classesData'
 
 const CharacterContext = createContext(null)
 
@@ -72,6 +73,16 @@ const estadoInicial = {
     carisma: 0,
   },
 
+  equipment: {
+    armor: null,
+    shield: null,
+    money: getDinheiroInicial('guerreiro'),
+    weapons: [],
+    itens: [],
+    montaria: null,
+    montando: false,
+  },
+
   pericias: {},
   pontosPericiaDisponiveis: 0,
   maxGraduacaoPorPericia: 0,
@@ -129,7 +140,7 @@ export function CharacterProvider({ children }) {
         novoEstado.equipment = {
           armor: null,
           shield: null,
-          money: { po: 0, pl: 0, pp: 0, pc: 0 },
+          money: getDinheiroInicial(valor),
           weapons: [],
           itens: [],
           montaria: null,
