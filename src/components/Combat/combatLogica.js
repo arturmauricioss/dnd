@@ -6,7 +6,7 @@ import { caValoresIniciais } from './combatData'
 import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
-import { getPesoItem, getCapacidade, tabelaCarga } from '../Carga/cargaLogic'
+import { getPesoItem, getCapacidade, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
 
 /* =========================
@@ -131,11 +131,19 @@ const deslocamentoBase = deslocamentoPorRaca[race] || 6
 
   const pesoTotal =
     (equipment?.weapons || []).reduce(
-      (t, a) => t + (getPesoItem(getItemPorId(a.id)) || 0) * (a.quantidade || 1),
+      (t, a) => {
+        const itemOriginal = getItemPorId(a.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, race)
+        return t + (getPesoItem(itemAjustado) || 0) * (a.quantidade || 1)
+      },
       0
     ) +
     (equipment?.itens || []).reduce(
-      (t, i) => t + (getPesoItem(getItemPorId(i.id)) || 0) * (i.quantidade || 1),
+      (t, i) => {
+        const itemOriginal = getItemPorId(i.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, race)
+        return t + (getPesoItem(itemAjustado) || 0) * (i.quantidade || 1)
+      },
       0
     )
 

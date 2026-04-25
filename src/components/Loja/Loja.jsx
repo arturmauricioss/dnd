@@ -3,6 +3,7 @@ import { useCharacter } from '../../context/CharacterContext'
 import { todosItens } from '../Equipamentos/equipamentosLogic'
 import { converterParaCobre } from '../Inventario/dinheiroData'
 import { getDinheiroInicial } from '../Classes/classesData'
+import { getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
 import { lojas, itensPorLoja } from './lojasData'
 import ItemCard from '../ItemCard/ItemCard'
 import { Navigation, Page } from '../global'
@@ -203,14 +204,17 @@ export default function Loja() {
             </div>
 
             <div className="itens-grid">
-              {itensFiltrados.map(([id, item]) => (
-                <ItemCard
-                  key={id}
-                  item={{ id, ...item }}
-                  tipoItem={item.tipoLoja || item.tipo}
-                  onClick={() => adicionarAoCarrinho({ id, ...item })}
-                />
-              ))}
+              {itensFiltrados.map(([id, item]) => {
+                const itemAjustado = getItemAjustadoPorTamanho(item, personagem.race)
+                return (
+                  <ItemCard
+                    key={id}
+                    item={{ id, ...itemAjustado }}
+                    tipoItem={item.tipoLoja || item.tipo}
+                    onClick={() => adicionarAoCarrinho({ id, ...itemAjustado })}
+                  />
+                )
+              })}
             </div>
           </div>
 

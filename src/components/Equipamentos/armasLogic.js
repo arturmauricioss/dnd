@@ -1,16 +1,18 @@
 import { tabelaDanoPorTamanho } from './armasData'
 
 export function getDanoPorTamanho(dano, tamanho) {
+  const tam = tamanho === 'pequena' ? 'pequeno' : tamanho === 'media' ? 'medio' : tamanho
   if (!dano) return "";
-  return tabelaDanoPorTamanho[dano]?.[tamanho] || dano;
+  return tabelaDanoPorTamanho[dano]?.[tam] || dano;
 }
 
 export function getPesoPorTamanho(pesoNum, tamanho) {
-  if (!pesoNum || tamanho === 'medio') return pesoNum;
+  const tam = tamanho === 'pequena' ? 'pequeno' : tamanho === 'media' ? 'medio' : tamanho
+  if (!pesoNum || tam === 'medio') return pesoNum;
   
-  if (tamanho === 'pequeno') {
+  if (tam === 'pequeno') {
     return pesoNum / 2;
-  } else if (tamanho === 'grande') {
+  } else if (tam === 'grande') {
     return pesoNum * 2;
   }
   

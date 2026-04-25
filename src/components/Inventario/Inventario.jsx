@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { converterParaPO } from './dinheiroData'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
-import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga } from '../Carga/cargaLogic'
+import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
 import { montarias, transporte } from '../Equipamentos/montariasData'
@@ -49,13 +49,13 @@ export default function Inventario() {
 
   const armadura = useMemo(() => {
     const armorId = personagem.equipment?.armor
-    return armorId ? getItemPorId(armorId) : null
-  }, [personagem.equipment?.armor])
+    return armorId ? getItemAjustadoPorTamanho(getItemPorId(armorId), personagem.race) : null
+  }, [personagem.equipment?.armor, personagem.race])
 
   const escudo = useMemo(() => {
     const shieldId = personagem.equipment?.shield
-    return shieldId ? getItemPorId(shieldId) : null
-  }, [personagem.equipment?.shield])
+    return shieldId ? getItemAjustadoPorTamanho(getItemPorId(shieldId), personagem.race) : null
+  }, [personagem.equipment?.shield, personagem.race])
 
   const armas = useMemo(() => personagem.equipment?.weapons || [], [personagem.equipment?.weapons])
   const itens = useMemo(() => personagem.equipment?.itens || [], [personagem.equipment?.itens])
@@ -84,37 +84,41 @@ export default function Inventario() {
     return armas
       .filter(a => a.local === 'equipped')
       .reduce((total, a) => {
-        const item = getItemPorId(a.id)
-        return total + (getPesoItem(item) * (a.quantidade || 1))
+        const itemOriginal = getItemPorId(a.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+        return total + (getPesoItem(itemAjustado) * (a.quantidade || 1))
       }, 0)
-  }, [armas])
+  }, [armas, personagem.race])
 
   const pesoItensEquipped = useMemo(() => {
     return itens
       .filter(i => i.local === 'equipped')
       .reduce((total, i) => {
-        const item = getItemPorId(i.id)
-        return total + (getPesoItem(item) * (i.quantidade || 1))
+        const itemOriginal = getItemPorId(i.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+        return total + (getPesoItem(itemAjustado) * (i.quantidade || 1))
       }, 0)
-  }, [itens])
+  }, [itens, personagem.race])
 
   const pesoArmasCarregando = useMemo(() => {
     return armas
       .filter(a => a.local === 'carregando')
       .reduce((total, a) => {
-        const item = getItemPorId(a.id)
-        return total + (getPesoItem(item) * (a.quantidade || 1))
+        const itemOriginal = getItemPorId(a.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+        return total + (getPesoItem(itemAjustado) * (a.quantidade || 1))
       }, 0)
-  }, [armas])
+  }, [armas, personagem.race])
 
   const pesoItensCarregando = useMemo(() => {
     return itens
       .filter(i => i.local === 'carregando')
       .reduce((total, i) => {
-        const item = getItemPorId(i.id)
-        return total + (getPesoItem(item) * (i.quantidade || 1))
+        const itemOriginal = getItemPorId(i.id)
+        const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+        return total + (getPesoItem(itemAjustado) * (i.quantidade || 1))
       }, 0)
-  }, [itens])
+  }, [itens, personagem.race])
 
   const pesoTotalEquipamentos = pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando
 
@@ -298,14 +302,15 @@ export default function Inventario() {
   const renderItem = (item, tipo, quantidade = 1) => {
     const itemData = getItemPorId(item.id)
     if (!itemData) return null
-    const peso = getPesoItem(itemData) * quantidade
+    const itemAjustado = getItemAjustadoPorTamanho(itemData, personagem.race)
+    const peso = getPesoItem(itemAjustado) * quantidade
     const tipoItem = item.tipo || tipo
     const isMontariaItem = !!TODAS_MONTARIAS[item.id]
     const tipoItemCard = isMontariaItem ? 'montaria' : tipoItem
     return (
       <ItemCard 
         key={`${tipo}-${item.id}-${item.local}`} 
-        item={{ id: item.id, ...itemData, quantidade }} 
+        item={{ id: item.id, ...itemAjustado, quantidade }} 
         peso={peso}
         local={item.local}
         onLocalChange={(novoLocal, qtd) => mudarLocal(tipo, item.id, novoLocal, qtd, item.local)}
@@ -324,16 +329,18 @@ const renderSecao = (titulo, itensLista, tipo) => {
           {itensLista.map((item) => {
             const isMontariaItem = !!TODAS_MONTARIAS[item.id]
             const tipoItemCard = isMontariaItem ? 'montaria' : tipo
-            return (
-              <ItemCard 
-                key={`${tipo}-${item.id}-${item.local}`}
-                item={{ id: item.id, ...getItemPorId(item.id), quantidade: item.quantidade || 1 }}
-                peso={(getPesoItem(getItemPorId(item.id)) || 0) * (item.quantidade || 1)}
-                local={item.local}
-                onLocalChange={(novoLocal, qtd) => mudarLocal(tipo, item.id, novoLocal, qtd, item.local)}
-                onSell={(qtd) => venderItem(tipo, item.id, qtd)}
-                tipoItem={tipoItemCard}
-              />
+            const itemOriginal = getItemPorId(item.id)
+              const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+              return (
+                <ItemCard 
+                  key={`${tipo}-${item.id}-${item.local}`}
+                  item={{ id: item.id, ...itemAjustado, quantidade: item.quantidade || 1 }}
+                  peso={(getPesoItem(itemAjustado) || 0) * (item.quantidade || 1)}
+                  local={item.local}
+                  onLocalChange={(novoLocal, qtd) => mudarLocal(tipo, item.id, novoLocal, qtd, item.local)}
+                  onSell={(qtd) => venderItem(tipo, item.id, qtd)}
+                  tipoItem={tipoItemCard}
+                />
             )
           })}
         </div>
@@ -422,22 +429,26 @@ const renderSecao = (titulo, itensLista, tipo) => {
           <div className="inventario-aba">
             {montariasItens.length > 0 && (
               <div className="inventario-itens-grid">
-                {montariasItens.map((item) => (
-                  <ItemCard 
-                    key={item.id}
-                    item={{ id: item.id, ...getItemPorId(item.id), quantidade: item.quantidade || 1 }} 
-                    peso={(getPesoItem(getItemPorId(item.id)) || 0) * (item.quantidade || 1)}
-                    local={item.local}
-                    onLocalChange={(novoLocal, qtd) => mudarLocal('montaria', item.id, novoLocal, qtd, item.local)}
-                    onSell={(qtd) => venderItem('montaria', item.id, qtd)}
-                    tipoItem="montaria"
-                    extraBtn={
-                      <button className="extra-montar-btn" onClick={(e) => { e.stopPropagation(); equiparMontaria() }}>
-                        {montando ? '🚶' : '🐴'}
-                      </button>
-                    }
-                  />
-                ))}
+                {montariasItens.map((item) => {
+                  const itemOriginal = getItemPorId(item.id)
+                  const itemAjustado = getItemAjustadoPorTamanho(itemOriginal, personagem.race)
+                  return (
+                    <ItemCard 
+                      key={item.id}
+                      item={{ id: item.id, ...itemAjustado, quantidade: item.quantidade || 1 }} 
+                      peso={(getPesoItem(itemAjustado) || 0) * (item.quantidade || 1)}
+                      local={item.local}
+                      onLocalChange={(novoLocal, qtd) => mudarLocal('montaria', item.id, novoLocal, qtd, item.local)}
+                      onSell={(qtd) => venderItem('montaria', item.id, qtd)}
+                      tipoItem="montaria"
+                      extraBtn={
+                        <button className="extra-montar-btn" onClick={(e) => { e.stopPropagation(); equiparMontaria() }}>
+                          {montando ? '🚶' : '🐴'}
+                        </button>
+                      }
+                    />
+                  )
+                })}
               </div>
             )}
             {montando && montariasItens.length > 0 && (

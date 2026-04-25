@@ -126,6 +126,29 @@ export function CharacterProvider({ children }) {
 
       if (campo === 'classe' && valor !== 'selecione') {
         novoEstado.atributos = distribuirAtributosPorClasse(valor)
+        novoEstado.equipment = {
+          armor: null,
+          shield: null,
+          money: { po: 0, pl: 0, pp: 0, pc: 0 },
+          weapons: [],
+          itens: [],
+          montaria: null,
+          montando: false
+        }
+        novoEstado.talentos = []
+      }
+
+      if (campo === 'race') {
+        novoEstado.equipment = {
+          armor: null,
+          shield: null,
+          money: { po: 0, pl: 0, pp: 0, pc: 0 },
+          weapons: [],
+          itens: [],
+          montaria: null,
+          montando: false
+        }
+        novoEstado.talentos = []
       }
 
       return novoEstado
