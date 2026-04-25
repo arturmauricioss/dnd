@@ -1,3 +1,14 @@
+export const PESO_MOEDA = 0.01 // 10g por moeda = 0.01kg
+
+export function getPesoDinheiro(money = {}) {
+  const totalMoedas = 
+    (Number(money.po) || 0) + 
+    (Number(money.pl) || 0) + 
+    (Number(money.pp) || 0) + 
+    (Number(money.pc) || 0)
+  return totalMoedas * PESO_MOEDA
+}
+
 export function converterParaCobre(money = {}) {
   return (
     (Number(money.pl) || 0) * 1000 +

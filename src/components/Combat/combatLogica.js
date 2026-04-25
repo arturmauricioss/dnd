@@ -8,6 +8,7 @@ import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
 import { getPesoItem, getCapacidade, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
+import { getPesoDinheiro } from '../Inventario/dinheiroData'
 
 /* =========================
    UTILITÁRIOS
@@ -145,7 +146,8 @@ const deslocamentoBase = deslocamentoPorRaca[race] || 6
         return t + (getPesoItem(itemAjustado) || 0) * (i.quantidade || 1)
       },
       0
-    )
+    ) +
+    getPesoDinheiro(equipment?.money)
 
   const cargaAtual =
     pesoTotal <= capacidade.leve

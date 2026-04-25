@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
-import { converterParaPO } from './dinheiroData'
+import { converterParaPO, getPesoDinheiro } from './dinheiroData'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
 import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getItemAjustadoPorTamanho } from '../Carga/cargaLogic'
 import { getTamanhoPorRaca } from '../Racas/racasLogic'
@@ -120,7 +120,9 @@ export default function Inventario() {
       }, 0)
   }, [itens, personagem.race])
 
-  const pesoTotalEquipamentos = pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando
+  const pesoDinheiro = useMemo(() => getPesoDinheiro(money) || 0, [money])
+
+  const pesoTotalEquipamentos = pesoArmadura + pesoEscudo + pesoArmasEquipped + pesoItensEquipped + pesoArmasCarregando + pesoItensCarregando + pesoDinheiro
 
   const pesoTotal = montando 
     ? pesoPersonagem + pesoTotalEquipamentos 
