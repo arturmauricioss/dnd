@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useCharacter } from '../../context/CharacterContext'
 import { converterParaPO } from './dinheiroData'
-import { getItemPorId, getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga } from '../Equipamentos/equipamentosLogic'
+import { getItemPorId } from '../Equipamentos/equipamentosLogic'
+import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga } from '../Carga/cargaLogic'
+import { getTamanhoPorRaca } from '../Racas/racasLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
 import { montarias, transporte } from '../Equipamentos/montariasData'
 import ItemCard from '../ItemCard/ItemCard'
@@ -24,13 +26,14 @@ export default function Inventario() {
   }, [personagem.peso])
 
   const capacidadePersonagem = useMemo(() => {
-    const cap = getCapacidade(forca)
+    const tamanho = getTamanhoPorRaca(personagem.race)
+    const cap = getCapacidade(forca, tamanho)
     return {
-      leve: cap.leve || cap.light || 0,
-      media: cap.media || cap.medium || 0,
-      pesada: cap.pesada || cap.heavy || 0
+      leve: cap.leve || 0,
+      media: cap.media || 0,
+      pesada: cap.pesada || 0
     }
-  }, [forca])
+  }, [forca, personagem.race])
   
   const dinheiroInicial = useMemo(() => {
     return getDinheiroInicial(personagem.classe) || { po: 0, pl: 0, pp: 0, pc: 0 }
@@ -120,9 +123,9 @@ export default function Inventario() {
     : pesoTotalEquipamentos
 
   const cargaAtual = montando && montariasItens.length > 0
-    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : 'pesada')
-    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : 'pesada')
-  const dadosCarga = tabelaCarga[cargaAtual]
+    ? (pesoTotal <= capacidadeMontaria.leve ? 'leve' : pesoTotal <= capacidadeMontaria.media ? 'media' : pesoTotal <= capacidadeMontaria.pesada ? 'pesada' : 'excessiva')
+    : (pesoTotal <= capacidadeTotal.leve ? 'leve' : pesoTotal <= capacidadeTotal.media ? 'media' : pesoTotal <= capacidadeTotal.pesada ? 'pesada' : 'excessiva')
+  const dadosCarga = tabelaCarga()[cargaAtual]
 
   const mudarLocal = (tipo, id, novoLocal, qtdMover = null, localOrigem = null) => {
     if (tipo === 'armadura') {

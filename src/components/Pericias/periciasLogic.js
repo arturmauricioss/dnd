@@ -1,4 +1,4 @@
-import { getBonusPericiaRacial } from '../Classes/bonusPericias'
+import { getBonusPericiaRacial } from '../Racas/bonusPericias'
 import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 import { periciasConfig, periciasPorClasse } from './periciasData'
 import { podeUsarAlfabetizacao } from '../Classes/classesData'

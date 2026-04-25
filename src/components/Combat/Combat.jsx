@@ -121,7 +121,9 @@ export default function Combat() {
               <div className="stat-label">Corrida</div>
               <div className="stat-value">{combate.corrida?.metros || 0}m</div>
               <div className="stat-detail">
-                <span>x{combate.corrida?.multiplicador || 4}</span>
+                <span>Deslocamento x{combate.corrida?.multiplicador || 4}</span>
+                <br />
+                <span>Estamina x{personagem.atributos?.constituicao}</span>
               </div>
             </div>
           )}
@@ -150,7 +152,7 @@ export default function Combat() {
             {combate.caNormal > 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: '10', value: 0 },
+                  { label: 'Base', value: 10 },
                   { label: 'Arm', value: 0 },
                   { label: 'Esc', value: 0 },
                   { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
@@ -170,7 +172,7 @@ export default function Combat() {
             {combate.caToque > 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: '10', value: 0 },
+                  { label: 'Base', value: 10 },
                   { label: 'Des', value: Math.min(dexMod, combate.dexMaxFinal) },
                   { label: 'Tam', value: modTamanho.ca }
                 ])}
@@ -186,7 +188,7 @@ export default function Combat() {
             {combate.caSurpresa > 0 && (
               <div className="stat-detail">
                 {buildBreakdown([
-                  { label: '10', value: 0 },
+                  { label: 'Base', value: 10 },
                   { label: 'Arm', value: 0 },
                   { label: 'Esc', value: 0 },
                   { label: 'Tam', value: modTamanho.ca },
