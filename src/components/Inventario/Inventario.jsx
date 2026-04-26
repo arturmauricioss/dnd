@@ -312,8 +312,10 @@ const renderSecao = (titulo, itensLista, tipo) => {
     <div className="inventario-container">
       <div className="inventario-content">
         <div className="money-display">
-          <span className="money-label">Dinheiro:</span>
-          <span className="money-value">{totalPO.toFixed(2).replace(/\.?0+$/, '')} PO</span>
+          <div>
+            <span className="money-label">Dinheiro:</span>
+            <span className="money-value">{totalPO.toFixed(2).replace(/\.?0+$/, '')} PO</span>
+          </div>
           <span className="money-detail">
             ({money.pl} PL, {money.po} PO, {money.pp} PP, {money.pc} PC)
           </span>
@@ -324,18 +326,17 @@ const renderSecao = (titulo, itensLista, tipo) => {
             <span className="peso-label">Carga:</span>
             <span className="peso-value">{pesoTotal.toFixed(1)} kg</span>
             <span className="peso-capacidade">/ {capacidadeTotal[cargaAtual]?.toFixed(1) || '∞'} kg</span>
-          </div>
-          <div className="carga-info">
-            <span className={`carga-badge ${cargaAtual}`}>
-              {cargaAtual === 'leve' ? 'Leve' : cargaAtual === 'media' ? 'Média' : cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
-            </span>
-            {cargaAtual !== 'leve' && (
-              <span className="carga-penalidade">
-                Testes: {dadosCarga.checkPenalty} | Corrida: x{dadosCarga.corrida}
+            <div className="carga-info">
+              <span className={`carga-badge ${cargaAtual}`}>
+                {cargaAtual === 'leve' ? 'Leve' : cargaAtual === 'media' ? 'Média' : cargaAtual === 'pesada' ? 'Pesada' : 'Excessiva'}
               </span>
-            )}
+              {cargaAtual !== 'leve' && (
+                <span className="carga-penalidade">
+                  Testes: {dadosCarga.checkPenalty} | Corrida: x{dadosCarga.corrida}
+                </span>
+              )}
+            </div>
           </div>
-          
         </div>
 
         <div className="inventario-tabs">
@@ -353,13 +354,13 @@ const renderSecao = (titulo, itensLista, tipo) => {
             🎒 Carregando
             <span className="tab-count">{armasCarregando.length + itensCarregando.length}</span>
           </button>
-          <button 
+          {/* <button 
             className={`tab-btn ${abaSelecionada === 'montaria' ? 'active' : ''}`}
             onClick={() => setAbaSelecionada('montaria')}
           >
             🐴 Montaria
             <span className="tab-count">{montariasItens.length}</span>
-          </button>
+          </button> */}
           <button 
             className={`tab-btn ${abaSelecionada === 'tesoureiro' ? 'active' : ''}`}
             onClick={() => setAbaSelecionada('tesoureiro')}
