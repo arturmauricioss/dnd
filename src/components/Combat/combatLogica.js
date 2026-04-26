@@ -1,6 +1,6 @@
 import { getClasse, bonusDeslocamentoPorClasse } from '../Classes/classesData'
 import { getModificadoresTamanho } from './tamanhoData'
-import { getBBABase, getProgressaoBBA } from './bbaData'
+import { getBBABase, getProgressaoBBA, getBBATamanho } from './bbaData'
 import { deslocamentoPorRaca, bonusRacialResistencia } from '../Racas/racasData'
 import { caValoresIniciais } from './combatData'
 import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
@@ -103,8 +103,10 @@ export function getDadosCombate(personagem, getModificador) {
   const modTamanho = getModificadoresTamanho(getTamanhoPorRaca(race))
 
   const progressao = getProgressaoBBA(classeId)
+  const tamanho = getTamanhoPorRaca(race)
   const bbaBase = getBBABase(progressao, nivel)
-  const bba = calcularBBA(classeId, nivel)
+  const bbaTamanho = getBBATamanho(tamanho)
+  const bba = bbaBase + bbaTamanho
 
   const agarrar = bbaBase + forMod + modTamanho.agarrar
   const hpMax = calcularHP(classeId, nivel, conMod)
@@ -119,7 +121,6 @@ const deslocamentoBase = deslocamentoPorRaca[race] || 6
     (personagem.atributos?.forca || 10) +
     (personagem.atributosRacial?.forca || 0)
 
-  const tamanho = getTamanhoPorRaca(race)
   const cap = getCapacidade(forca, tamanho)
 
   const capacidade = {
@@ -192,6 +193,7 @@ const deslocamento = aplicarPenalidadeCargaDeslocamento(
   return {
     bba,
     bbaBase,
+    bbaTamanho,
     hpMax,
 
     deslocamento,
