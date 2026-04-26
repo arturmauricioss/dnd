@@ -15,10 +15,16 @@ export const bbaPorClasse = {
 }
 
 export function getBBABase(tipo, nivel) {
-  if (tipo === "bom") return nivel
-  if (tipo === "medio") return Math.floor(nivel * 0.75)
-  if (tipo === "ruim") return Math.floor(nivel * 0.5)
-  return 0
+  let base = 0
+  if (tipo === "bom") base = nivel
+  else if (tipo === "medio") base = Math.floor(nivel * 0.75)
+  else if (tipo === "ruim") base = Math.floor(nivel * 0.5)
+  
+  return base
+}
+
+export function getBBATamanho(tamanho = 'media') {
+  return tamanho === 'pequena' ? 1 : 0
 }
 
 export function getProgressaoBBA(classeId) {
