@@ -164,6 +164,19 @@ export default function Pericias() {
         </div>
       </div>
 
+      <div className="pericias-list-mobile">
+        <div className="pericias-header">
+          <span>Perícia</span>
+          <span>Total</span>
+            <span>Grad</span>
+            <span>Hab</span>
+            <span>Outros</span>
+        </div>
+        {[...habilidadesOrdenadas.primeira, ...habilidadesOrdenadas.segunda]
+          .sort((a, b) => b.total - a.total)
+          .map(renderPericia)}
+      </div>
+
       <div className="pericias-list">
         <div className="pericias-coluna">
           <div className="pericias-header">

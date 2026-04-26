@@ -185,3 +185,14 @@
     padding: 2px;
   }
 }
+@media (max-width:340px) {
+  .pericias-container{
+    padding: 10px 0;
+  }
+  .pericia-row, .pericias-header{
+    padding:5px 0px;
+  }
+  .pericias-info{
+    border-radius: 0px;
+  }
+}

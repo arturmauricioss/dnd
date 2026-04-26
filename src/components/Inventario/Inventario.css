@@ -251,32 +251,44 @@
   .inventario-itens-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .inventario-content {
-    padding: 12px;
-  }
-  .money-display {
-    flex-direction: column;
-    text-align: center;
-  }
-  .inventario-tabs {
-    flex-wrap: wrap;
-  }
-  .tab-btn {
-    flex: 1;
-    justify-content: center;
-    min-width: 100px;
-  }
 }
 @media (max-width: 560px) {
   .inventario-itens-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
+  .money-display {
+    flex-direction: column;
+    text-align: left;
+    gap: 0;
+    padding: 4px;
+  }
+  .peso-display{
+    padding: 4px;
 
+  }
+  .peso-info{
+    margin: 0;
+  }
+  button.tab-btn{
+    flex: 1;
+    justify-content: center;
+    min-width: 105px;
+  }
+}
+@media  (max-width:420px){
+  .tab-btn {
+    padding: 1px 2px;
+    font-size: 12px;
+  }
+  .inventario-tabs {
+    flex-wrap: wrap;
+  }
+}
 @media (max-width:340px) {
   .inventario-itens-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 4px;
   }
+  
 }
