@@ -17,34 +17,52 @@ export default function Habilidades() {
   
   const raciais = habilidades.filter(h => h.tipo === 'racial')
   const classeHabilidades = habilidades.filter(h => h.tipo === 'classe')
+  const nivelHabilidades = habilidades.filter(h => h.tipo === 'nivel')
   
   return (
     <div className="habilidades-container">
       
       <div className="habilidades-list">
+
+        {/* RACIAIS */}
         <div className="habilidades-section">
           <h3>Raciais</h3>
           {raciais.map((hab, i) => (
-            <div key={i} className={`habilidade-item ${hab.aplicado ? 'applied' : 'unlocked'}`}>
-              <span className="habilidade-nome">{hab.nome}{hab.aplicado && <span className="applied-tag"> (Aplicado)</span>}</span>
+            <div 
+              key={`${hab.nome}-${i}`} 
+              className={`habilidade-item ${hab.aplicado ? 'applied' : 'unlocked'}`}
+            >
+              <span className="habilidade-nome">
+                {hab.nome}
+                {hab.aplicado && (
+                  <span className="applied-tag"> (Aplicado)</span>
+                )}
+              </span>
               <span className="habilidade-desc">{hab.desc}</span>
             </div>
           ))}
         </div>
 
+        {/* CLASSE */}
         <div className="habilidades-section">
-          <h3>de Classe ({classe}) - Nível {nivel}</h3>
+          <h3>Classe ({classe}) - Nível {nivel}</h3>
           {classeHabilidades.map((hab, i) => {
-            const requerHab = hab.requer ? classeHabilidades.find(h => h.nome === hab.requer) : null
-            const nivelRequerido = requerHab ? requerHab.nivel : hab.nivel
+            const requerHab = hab.requer 
+              ? classeHabilidades.find(h => h.nome === hab.requer)
+              : null
+
+            const nivelRequerido = requerHab 
+              ? requerHab.nivel 
+              : hab.nivel
             
             return (
               <div 
-                key={i} 
+                key={`${hab.nome}-${hab.nivel}-${i}`} 
                 className={`habilidade-item ${hab.desbloqueado ? 'unlocked' : 'locked'}`}
               >
                 <span className="habilidade-nome">{hab.nome}</span>
                 <span className="habilidade-desc">{hab.desc}</span>
+
                 {!hab.desbloqueado && (
                   <span className="habilidade-requer">
                     {hab.requer 
@@ -56,6 +74,29 @@ export default function Habilidades() {
             )
           })}
         </div>
+
+        {/* PROGRESSÃO POR NÍVEL */}
+        <div className="habilidades-section">
+          <h3>Progressão por Nível</h3>
+          {nivelHabilidades.map((hab, i) => (
+            <div 
+              key={`${hab.nome}-${hab.nivel}-${i}`} 
+              className={`habilidade-item ${hab.desbloqueado ? 'unlocked' : 'locked'}`}
+            >
+              <span className="habilidade-nome">
+                {hab.nome} (Nível {hab.nivel})
+              </span>
+              <span className="habilidade-desc">{hab.desc}</span>
+
+              {!hab.desbloqueado && (
+                <span className="habilidade-requer">
+                  Nível {hab.nivel}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+
       </div>
 
       <Navigation prev="/idiomas" next="/combat" />

@@ -6,7 +6,7 @@ import { caValoresIniciais } from './combatData'
 import { getTotalArmorPenalty } from '../Equipamentos/armorLogic'
 
 import { getCapacidade, tabelaCarga, getPesoTotalEquipamentos } from '../Carga/cargaLogic'
-import { getTamanhoPorRaca } from '../Racas/racasLogic'
+import { getTamanhoPorRaca, getBonusRacial } from '../Racas/racasLogic'
 
 /* =========================
    UTILITÁRIOS
@@ -119,7 +119,7 @@ const deslocamentoBase = deslocamentoPorRaca[race] || 6
 
   const forca =
     (personagem.atributos?.forca || 10) +
-    (personagem.atributosRacial?.forca || 0)
+    (getBonusRacial(personagem.race)?.forca || 0)
 
   const cap = getCapacidade(forca, tamanho)
 
