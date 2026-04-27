@@ -190,6 +190,12 @@ const deslocamento = aplicarPenalidadeCargaDeslocamento(
     ? 5
     : dadosCarga?.corrida ?? 4
 
+  /* =========================
+     HABILIDADES
+   ========================= */
+
+  const habilidades = personagem.habilidadesEspeciais || [];
+
   return {
     bba,
     bbaBase,
@@ -251,6 +257,8 @@ const deslocamento = aplicarPenalidadeCargaDeslocamento(
     corrida: {
       multiplicador: multiplicadorCorrida,
       metros: deslocamento * multiplicadorCorrida
-    }
+    },
+
+    habilidades,
   }
 }

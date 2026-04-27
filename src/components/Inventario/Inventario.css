@@ -8,15 +8,21 @@
   padding: 16px;
 }
 
+/* =========================
+   GRID
+========================= */
 .inventario-itens-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
+/* =========================
+   DINHEIRO
+========================= */
 .money-display {
-  background: #3b82f6;
-  color: white;
+  background: var(--primary);
+  color: var(--card);
   padding: 12px 16px;
   border-radius: 6px;
   display: flex;
@@ -39,8 +45,11 @@
   opacity: 0.9;
 }
 
+/* =========================
+   PESO / CARGA
+========================= */
 .peso-display {
-  background: #f8fafc;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 16px;
@@ -76,6 +85,9 @@
   gap: 12px;
 }
 
+/* =========================
+   BADGES (mantém cores semânticas)
+========================= */
 .carga-badge {
   padding: 4px 10px;
   border-radius: 12px;
@@ -113,6 +125,9 @@
   font-weight: 600;
 }
 
+/* =========================
+   MONTARIA
+========================= */
 .montaria-section {
   margin-bottom: 16px;
 }
@@ -122,15 +137,14 @@
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: #f0fdf4;
+  background: var(--card);
   border: 2px solid #22c55e;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .montaria-card:hover {
-  background: #dcfce7;
+  border-color: #16a34a;
 }
 
 .montaria-icon {
@@ -140,6 +154,7 @@
 .montaria-nome {
   font-weight: 600;
   flex: 1;
+  color: var(--text);
 }
 
 .montaria-peso {
@@ -152,8 +167,8 @@
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 600;
-  background: #e2e8f0;
-  color: #64748b;
+  background: var(--border);
+  color: var(--text-light);
 }
 
 .montaria-status.montando {
@@ -164,7 +179,7 @@
 .montaria-info {
   margin-top: 8px;
   padding: 8px 12px;
-  background: #f1f5f9;
+  background: var(--bg);
   border-radius: 6px;
   font-size: 0.8rem;
   color: var(--text-light);
@@ -176,7 +191,6 @@
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -184,6 +198,9 @@
   background: #16a34a;
 }
 
+/* =========================
+   TABS
+========================= */
 .inventario-tabs {
   display: flex;
   gap: 8px;
@@ -195,25 +212,26 @@
 .tab-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 10px 16px;
-  background: #f1f5f9;
+  /* padding: 10px 16px; */
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px 8px 0 0;
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  color: var(--text);
 }
 
 .tab-btn:hover {
-  background: #e2e8f0;
+  border-color: var(--primary);
 }
 
 .tab-btn.active {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
+  background: var(--primary);
+  color: var(--card);
+  border-color: var(--primary);
 }
 
 .tab-count {
@@ -227,6 +245,9 @@
   background: rgba(255,255,255,0.2);
 }
 
+/* =========================
+   SEÇÕES
+========================= */
 .inventario-secao {
   margin-bottom: 20px;
 }
@@ -247,48 +268,56 @@
   color: var(--text-light);
 }
 
+/* =========================
+   RESPONSIVO
+========================= */
 @media (max-width: 680px) {
   .inventario-itens-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 @media (max-width: 560px) {
   .inventario-itens-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .money-display {
     flex-direction: column;
-    text-align: left;
-    gap: 0;
-    padding: 4px;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px;
   }
-  .peso-display{
-    padding: 4px;
 
+  .peso-display {
+    padding: 8px;
   }
-  .peso-info{
+
+  .peso-info {
     margin: 0;
   }
-  button.tab-btn{
+
+  .tab-btn {
     flex: 1;
     justify-content: center;
-    min-width: 105px;
+    /* min-width: 105px; */
   }
 }
-@media  (max-width:420px){
+
+@media (max-width: 420px) {
   .tab-btn {
-    padding: 1px 2px;
+    padding: 4px;
     font-size: 12px;
   }
+
   .inventario-tabs {
     flex-wrap: wrap;
   }
 }
-@media (max-width:340px) {
+
+@media (max-width: 340px) {
   .inventario-itens-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
     gap: 4px;
   }
-  
 }

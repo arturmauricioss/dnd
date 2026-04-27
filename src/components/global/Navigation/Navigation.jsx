@@ -10,13 +10,13 @@ export default function Navigation({ prev, next }) {
 
         {prev ? (
           <button className="btn-prev" onClick={() => navigate(prev)}>
-            ← Anterior
+            ←
           </button>
         ) : <div />}
 
         {next && (
           <button className="btn-next" onClick={() => navigate(next)}>
-            Próximo →
+            →
           </button>
         )}
 

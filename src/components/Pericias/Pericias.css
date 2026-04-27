@@ -1,15 +1,19 @@
 .pericias-container {
-  /* padding: 20px; */
   max-width: 800px;
   margin: 0 auto;
 }
 
+/* =========================
+   INFO (TOPO)
+========================= */
 .pericias-info {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
   padding: 15px;
-  background: #f5f5f5;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 8px;
 }
 
@@ -22,14 +26,17 @@
 
 .info-item span {
   font-size: 14px;
-  color: #666;
+  color: var(--text-light);
 }
 
 .info-item strong {
   font-size: 20px;
-  color: var(--primary)
+  color: var(--primary);
 }
 
+/* =========================
+   LISTAS
+========================= */
 .pericias-list {
   display: flex;
   gap: 20px;
@@ -43,89 +50,84 @@
   display: none;
 }
 
+/* =========================
+   HEADER
+========================= */
 .pericias-header {
   display: grid;
   grid-template-columns: 1fr 40px 50px 40px 40px;
   gap: 5px;
   padding: 10px;
-  background: #2c3e50;
+
+  background: var(--primary);
   color: white;
+
   border-radius: 4px 4px 0 0;
   font-weight: bold;
   font-size: 14px;
 }
 
+/* =========================
+   LINHAS
+========================= */
 .pericia-row {
   display: grid;
   grid-template-columns: 1fr 40px 50px 40px 40px;
   gap: 5px;
   padding: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   align-items: center;
 }
 
 .pericia-row:nth-child(even) {
-  background: #fafafa;
+  background: var(--bg);
 }
 
+/* =========================
+   TEXTOS
+========================= */
 .pericia-nome {
   font-weight: 500;
   font-size: 14px;
+  color: var(--text);
 }
 
 .pericia-classe {
-  color: #27ae60;
+  color: var(--success);
 }
 
 .pericia-treinada {
   font-style: italic;
+  color: var(--text-light);
 }
 
 .pericia-marcador {
-  color: #e74c3c;
+  color: var(--danger);
   margin-left: 4px;
   font-weight: bold;
 }
 
 .pericia-bonus {
-  color: #9b59b6;
+  color: var(--accent);
   margin-left: 6px;
   font-size: 12px;
   font-weight: bold;
 }
 
-.pericia-row input:disabled {
-  background: #f0f0f0;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.pericia-info.sem-pontos .info-item strong {
-  color: #e74c3c;
-}
-
-.pericia-total {
-  text-align: center;
-  font-weight: bold;
-  color: #2980b9;
-}
-
-.pericia-hab {
-  text-align: center;
-  color: #7f8c8d;
-}
-
-.pericia-outros {
-  text-align: center;
-  color: #7f8c8d;
-}
-
+/* =========================
+   INPUT
+========================= */
 .pericia-row input[type="number"] {
   width: 50px;
   padding: 5px;
   text-align: center;
-  border: 1px solid #ddd;
+
+  border: 1px solid var(--border);
   border-radius: 4px;
+
+  background: var(--card);
+  color: var(--text);
+
   -moz-appearance: textfield;
   appearance: textfield;
 }
@@ -136,6 +138,41 @@
   margin: 0;
 }
 
+.pericia-row input:disabled {
+  background: var(--bg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================
+   VALORES
+========================= */
+.pericia-total {
+  text-align: center;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.pericia-hab {
+  text-align: center;
+  color: var(--text-light);
+}
+
+.pericia-outros {
+  text-align: center;
+  color: var(--text-light);
+}
+
+/* =========================
+   ALERTA (SEM PONTOS)
+========================= */
+.pericia-info.sem-pontos .info-item strong {
+  color: var(--danger);
+}
+
+/* =========================
+   RESPONSIVIDADE (mantida)
+========================= */
 @media (max-width: 728px) {
   .pericias-container {
     padding: 10px;
@@ -155,10 +192,6 @@
     display: none;
   }
 
-  .pericias-list {
-    display: none;
-  }
-
   .pericias-list-mobile {
     display: block;
   }
@@ -169,30 +202,36 @@
     z-index: 10;
   }
 }
-@media (max-width:480px) {
+
+@media (max-width: 480px) {
   .pericia-nome,
   .pericia-row,
   .pericias-header {
     font-size: 12px;
   }
-  
-  .pericia-row, .pericias-header {
-    display: grid;
+
+  .pericia-row,
+  .pericias-header {
     grid-template-columns: 1fr 30px 40px 30px 30px;
   }
+
   .pericia-row input[type="number"] {
     width: 40px;
     padding: 2px;
   }
 }
-@media (max-width:340px) {
-  .pericias-container{
+
+@media (max-width: 340px) {
+  .pericias-container {
     padding: 10px 0;
   }
-  .pericia-row, .pericias-header{
-    padding:5px 0px;
+
+  .pericia-row,
+  .pericias-header {
+    padding: 5px 0px;
   }
-  .pericias-info{
+
+  .pericias-info {
     border-radius: 0px;
   }
 }

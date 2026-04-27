@@ -12,13 +12,6 @@ export default function Talentos() {
 
   return (
     <div className="talentos-container">
-      <div className="talentos-info">
-        <div className="info-item">
-          <span className="info-label">Total</span>
-          <span className="info-value">{talentos.length}</span>
-        </div>
-      </div>
-
       <div className="talentos-list">
         {talentos.length === 0 ? (
           <div className="empty-message">
