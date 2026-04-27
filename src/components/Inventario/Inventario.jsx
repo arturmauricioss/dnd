@@ -3,7 +3,7 @@ import { useCharacter } from '../../context/CharacterContext'
 import { converterParaPO } from './dinheiroData'
 import { getItemPorId } from '../Equipamentos/equipamentosLogic'
 import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getItemAjustadoPorTamanho, getPesoTotalEquipamentos } from '../Carga/cargaLogic'
-import { getTamanhoPorRaca } from '../Racas/racasLogic'
+import { getTamanhoPorRaca, getBonusRacial } from '../Racas/racasLogic'
 import { getDinheiroInicial } from '../Classes/classesData'
 import { montarias, transporte } from '../Equipamentos/montariasData'
 import ItemCard from '../ItemCard/ItemCard'
@@ -18,8 +18,8 @@ export default function Inventario() {
   const [montando, setMontando] = useState(personagem.equipment?.montando || false)
 
   const forca = useMemo(() => {
-    return (personagem.atributos?.forca || 10) + (personagem.atributosRacial?.forca || 0)
-  }, [personagem.atributos?.forca, personagem.atributosRacial?.forca])
+    return (personagem.atributos?.forca || 10) + (getBonusRacial(personagem.race)?.forca || 0)
+  }, [personagem.atributos?.forca, personagem.race])
 
   const pesoPersonagem = useMemo(() => {
     return parseFloat(personagem.peso) || 0
