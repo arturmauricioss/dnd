@@ -320,7 +320,7 @@ export default function Combat() {
         </div>
       )}
 
-      <Navigation prev="/atributos" next="/pericias" />
+      <Navigation prev="/habilidades" next="/inventario" />
     </div>
   )
 }

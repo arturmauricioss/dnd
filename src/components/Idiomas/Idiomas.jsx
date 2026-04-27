@@ -139,11 +139,8 @@ export default function Idiomas() {
                 ))}
             </select>
           </div>
-        
-
       </div>
-
-      <Navigation prev="/pericias" next="/loja" />
+      <Navigation prev="/pericias" next="/habilidades" />
     </div>
   )
 }

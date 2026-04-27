@@ -77,7 +77,7 @@ export default function Atributos() {
         })}
       </div>
 
-      <Navigation prev="/" next="/combat" />
+      <Navigation prev="/" next="/talentos" />
     </div>
   )
 }
