@@ -195,13 +195,33 @@ export const habilidadesClasse = {
     { nome: "Magia Expandida", nivel: 4, req: { nome: "Linhagem", nivel: 1 }, desc: "+1 feitiço por dia" }
   ]
 }
+export const progressaoNivel = [
+  { nome: "Talento", nivel: 1, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Talento", nivel: 3, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Aumento de Atributo", nivel: 4, tipo: "nivel", desc: "+1 em qualquer atributo" },
+  { nome: "Talento", nivel: 6, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Aumento de Atributo", nivel: 8, tipo: "nivel", desc: "+1 em qualquer atributo" },
+  { nome: "Talento", nivel: 9, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Talento", nivel: 12, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Aumento de Atributo", nivel: 12, tipo: "nivel", desc: "+1 em qualquer atributo" },
+  { nome: "Talento", nivel: 15, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Aumento de Atributo", nivel: 16, tipo: "nivel", desc: "+1 em qualquer atributo" },
+  { nome: "Talento", nivel: 18, tipo: "nivel", desc: "Ganha um talento adicional" },
+  { nome: "Aumento de Atributo", nivel: 20, tipo: "nivel", desc: "+1 em qualquer atributo" }
 
+]
 export function getHabilidadesDisponiveis(raca, classe, nivel = 1) {
   const result = []
   
   // Habilidades raciais (sempre ativas)
   if (raca && habilidadesRaciais[raca]) {
-    result.push(...habilidadesRaciais[raca].map(h => ({ ...h, tipo: 'racial', desbloqueado: true })))
+    result.push(
+      ...habilidadesRaciais[raca].map(h => ({
+        ...h,
+        tipo: 'racial',
+        desbloqueado: true
+      }))
+    )
   }
   
   // Habilidades de classe
@@ -211,11 +231,10 @@ export function getHabilidadesDisponiveis(raca, classe, nivel = 1) {
       
       if (h.nivel <= nivel) {
         if (h.req) {
-          // Verificar se tem o requisito
-          const temRequisito = result.some(r => r.nome === h.req.nome && r.tipo === 'classe' && r.desbloqueado)
-          if (temRequisito) {
-            desbloqueado = true
-          }
+          const temRequisito = result.some(
+            r => r.nome === h.req.nome && r.tipo === 'classe' && r.desbloqueado
+          )
+          if (temRequisito) desbloqueado = true
         } else {
           desbloqueado = true
         }
@@ -224,11 +243,20 @@ export function getHabilidadesDisponiveis(raca, classe, nivel = 1) {
       result.push({
         ...h,
         tipo: 'classe',
-        desbloqueado: desbloqueado,
+        desbloqueado,
         requer: h.req ? h.req.nome : null
       })
     })
   }
-  
+
+  // ✅ NOVO: Progressão por nível (geral)
+  progressaoNivel.forEach(p => {
+    result.push({
+      ...p,
+      tipo: 'nivel',
+      desbloqueado: p.nivel <= nivel
+    })
+  })
+
   return result
 }

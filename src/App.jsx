@@ -19,9 +19,7 @@ function App() {
       <HashRouter>
         <div className="app">
           <h1>Ficha D&D 3.5</h1>
-
           <Menu />
-
           <Routes>
             <Route path="/" element={<Personagem />} />
             <Route path="/atributos" element={<Atributos />} />

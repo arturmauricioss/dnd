@@ -82,6 +82,7 @@
   color: var(--info);
   font-size: 10px;
   font-style: italic;
+  color: var(--primary);
 }
 
 .habilidade-nome {
