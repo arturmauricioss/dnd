@@ -201,7 +201,7 @@ export default function Pericias() {
         </div>
       </div>
 
-      <Navigation prev="/combat" next="/idiomas" />
+      <Navigation prev="/talentos" next="/idiomas" />
     </div>
   )
 }

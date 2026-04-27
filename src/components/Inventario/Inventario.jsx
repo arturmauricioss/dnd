@@ -430,7 +430,7 @@ const renderSecao = (titulo, itensLista, tipo) => {
           </div>
         )}
       </div>
-      <Navigation prev="/loja"/>
+      <Navigation prev="/combat" next="/loja"/>
     </div>
   )
 }

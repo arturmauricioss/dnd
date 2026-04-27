@@ -154,12 +154,16 @@ export function getPesoTotalEquipamentos(equipment, raca, classe = 'guerreiro') 
   })()
   
   const pesoWeapons = (equipment.weapons || []).reduce((total, a) => {
+    const local = a.local
+    if (local && local !== 'carregando' && local !== 'equipped') return total
     const itemOriginal = getItemPorId(a.id)
     const item = getItemAjustadoPorTamanho(itemOriginal, raca)
     return total + (getPesoItem(item) || 0) * (a.quantidade || 1)
   }, 0)
   
   const pesoItens = (equipment.itens || []).reduce((total, i) => {
+    const local = i.local
+    if (local && local !== 'carregando' && local !== 'equipped') return total
     const itemOriginal = getItemPorId(i.id)
     const item = getItemAjustadoPorTamanho(itemOriginal, raca)
     return total + (getPesoItem(item) || 0) * (i.quantidade || 1)

@@ -4,6 +4,8 @@ import Atributos from './components/Atributos/Atributos'
 import Pericias from './components/Pericias/Pericias'
 import Idiomas from './components/Idiomas/Idiomas'
 import Combat from './components/Combat/Combat'
+import Habilidades from './components/Habilidades/Habilidades'
+import Talentos from './components/Talentos/Talentos'
 import Inventario from './components/Inventario/Inventario'
 import Loja from './components/Loja/Loja'
 import Menu from './components/Menu/Menu'
@@ -22,11 +24,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Personagem />} />
             <Route path="/atributos" element={<Atributos />} />
-            <Route path="/combat" element={<Combat />} />
+            <Route path="/talentos" element={<Talentos />} />
             <Route path="/pericias" element={<Pericias />} />
             <Route path="/idiomas" element={<Idiomas />} />
-            <Route path="/loja" element={<Loja />} />
+            <Route path="/habilidades" element={<Habilidades />} />
+            <Route path="/combat" element={<Combat />} />
             <Route path="/inventario" element={<Inventario />} />
+            <Route path="/loja" element={<Loja />} />
+            
           </Routes>
         </div>
       </BrowserRouter>

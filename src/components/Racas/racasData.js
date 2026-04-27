@@ -20,7 +20,7 @@ export const bonusRacialAtributos = {
   anao: { constituicao: 2, carisma: -2 },
   elfo: { destreza: 2, constituicao: -2 },
   gnomo: { constituicao: 2, forca: -2 },
-  "meio-elfo": { destreza: 1, constituicao: -1}, //regra própria de equilibrio entre a regra elfo/humano
+  "meio-elfo": { },
   "meio-orc": { forca: 2, inteligencia: -2, carisma: -2 },
   halfling: { destreza: 2, forca: -2 }
 }

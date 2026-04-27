@@ -303,7 +303,7 @@ const itensCombinados = [...itensAnteriores]
             </div>
           )}
         </div>
-        <Navigation prev="/idiomas" next="/inventario"/>
+        <Navigation prev="/inventario"/>
       </div>
   )
 }

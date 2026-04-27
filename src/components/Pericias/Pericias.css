@@ -27,7 +27,7 @@
 
 .info-item strong {
   font-size: 20px;
-  color: #333;
+  color: var(--primary)
 }
 
 .pericias-list {
