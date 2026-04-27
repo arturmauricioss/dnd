@@ -75,6 +75,37 @@
   padding: 20px;
 }
 
+.talento-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.talento-card.locked {
+  opacity: 0.5;
+}
+
+.talento-card.selected {
+  border-color: green;
+}
+
+.talento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.talento-desc {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.talento-req {
+  font-size: 12px;
+  color: #999;
+}
+
 /* =========================
    RESPONSIVO
 ========================= */
