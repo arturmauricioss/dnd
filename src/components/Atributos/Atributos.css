@@ -1,12 +1,17 @@
+/* =========================
+   CONTAINER
+========================= */
 .atributos-tabela {
   display: flex;
   flex-direction: column;
   gap: 6px;
   max-width: 800px;
-  margin:auto;
+  margin: auto;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 .atributos-header {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
@@ -16,52 +21,73 @@
   padding: 6px 10px;
   text-align: center;
 }
-.atributos-header>span:nth-child(1){
+
+.atributos-header > span:nth-child(1) {
   text-align: left;
 }
-.racial{
+
+.racial {
   text-align: center;
 }
 
-/* LINHAS */
+/* =========================
+   LINHAS
+========================= */
 .atributos-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   align-items: center;
+
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px;
+
   padding: 8px 10px;
   transition: 0.2s;
 }
 
+/* 🔥 corrigido (sem cor fixa) */
 .atributos-row:hover {
-  background: #f9fafb;
+  background: var(--bg);
 }
 
-/* NOME */
+/* =========================
+   NOME
+========================= */
 .atributos-row .nome {
   font-weight: 600;
+  color: var(--text);
 }
 
-/* INPUT */
+/* =========================
+   INPUT
+========================= */
 .atributos-row input {
   width: 60px;
   padding: 6px;
   text-align: center;
+
   border: 1px solid var(--border);
   border-radius: 6px;
+
+  background: var(--card);
+  color: var(--text);
+
   margin: auto;
 }
 
-/* TOTAL */
+/* =========================
+   TOTAL
+========================= */
 .total {
   font-weight: 800;
   color: var(--primary);
   text-align: center;
 }
 
-/* MOD */
+/* =========================
+   MOD
+========================= */
 .mod {
   font-weight: 700;
   text-align: center;
@@ -74,9 +100,14 @@
 .mod.negativo {
   color: var(--danger);
 }
+
+/* =========================
+   RESPONSIVO
+========================= */
 .nome-short {
   display: none;
 }
+
 @media (max-width: 440px) {
   .nome-full {
     display: none;
@@ -87,15 +118,18 @@
     padding-left: 8px;
   }
 }
+
 @media (max-width: 320px) {
-  .racial{
+  .racial {
     display: none;
   }
-  .atributos-header>span:nth-child(3){
+
+  .atributos-header > span:nth-child(3) {
     display: none;
   }
-  .atributos-row, .atributos-header{
+
+  .atributos-row,
+  .atributos-header {
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    
   }
 }

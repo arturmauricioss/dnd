@@ -1,4 +1,6 @@
-/* CONTAINER GERAL */
+/* =========================
+   CONTAINER GERAL
+========================= */
 .character-header {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,9 @@
   margin: auto;
 }
 
-/* GRID PRINCIPAL */
+/* =========================
+   GRID PRINCIPAL
+========================= */
 .header-row {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -19,7 +23,9 @@
   grid-column: span 2;
 }
 
-/* FIELD GROUP */
+/* =========================
+   FIELD GROUP
+========================= */
 .field-group {
   display: flex;
   flex-direction: column;
@@ -33,15 +39,20 @@
   color: var(--text-light);
 }
 
-/* INPUT / SELECT */
+/* =========================
+   INPUT / SELECT
+========================= */
 .field-group input,
 .field-group select {
   width: 100%;
   padding: 9px 10px;
+
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: white;
-  color: var(--text);
+
+  background: var(--card);   /* 🔥 importante */
+  color: var(--text);        /* 🔥 importante */
+
   font-size: 0.9rem;
   transition: 0.2s ease;
 }
@@ -56,20 +67,21 @@
 
 /* READONLY */
 .field-group input[readonly] {
-  background: var(--secondary);
+  background: var(--card);
   color: var(--text-light);
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
 /* PLACEHOLDER */
 .field-group input::placeholder {
-  color: #94a3b8;
+  color: var(--text-light);
   font-size: 0.8rem;
 }
 
 /* =========================
    RESPONSIVIDADE
-   ========================= */
+========================= */
 
 /* TABLET */
 @media (max-width: 620px) {

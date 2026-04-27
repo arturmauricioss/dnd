@@ -344,15 +344,13 @@ const renderSecao = (titulo, itensLista, tipo) => {
             className={`tab-btn ${abaSelecionada === 'equipado' ? 'active' : ''}`}
             onClick={() => setAbaSelecionada('equipado')}
           >
-            🧤 Equipado
-            <span className="tab-count">{armasEquipado.length + itensEquipado.length + (armadura ? 1 : 0) + (escudo ? 1 : 0)}</span>
+            🧤
           </button>
           <button 
             className={`tab-btn ${abaSelecionada === 'carregando' ? 'active' : ''}`}
             onClick={() => setAbaSelecionada('carregando')}
           >
-            🎒 Carregando
-            <span className="tab-count">{armasCarregando.length + itensCarregando.length}</span>
+            🎒
           </button>
           {/* <button 
             className={`tab-btn ${abaSelecionada === 'montaria' ? 'active' : ''}`}
@@ -365,8 +363,7 @@ const renderSecao = (titulo, itensLista, tipo) => {
             className={`tab-btn ${abaSelecionada === 'tesoureiro' ? 'active' : ''}`}
             onClick={() => setAbaSelecionada('tesoureiro')}
           >
-            🏠 Tesoureiro
-            <span className="tab-count">{armasTesoureiro.length + itensTesoureiro.length}</span>
+            🏠
           </button>
         </div>
 

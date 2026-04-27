@@ -194,7 +194,7 @@ const itensCombinados = [...itensAnteriores]
 
     setCarrinho([])
   }
-
+const lojaAtual = lojas.find(l => l.id === lojaSelecionada)
   return (
       <div className="loja-container">
         <div className="loja-layout">
@@ -207,12 +207,19 @@ const itensCombinados = [...itensAnteriores]
                   onClick={() => setLojaSelecionada(loja.id)}
                 >
                   <span className="loja-icone">{loja.icone}</span>
-                  <span className="loja-nome">{loja.nome}</span>
                 </button>
+                
               ))}
+              
             </div>
+            {lojaAtual && (
+              <div className="loja-header">
+                <span className="loja-nome">{lojaAtual.nome}</span>
+              </div>
+            )}
 
             <div className="carrinho-info">
+              
               <span>Carrinho: {(totalCarrinho / 100).toFixed(2)} PO</span>
               <span>Disponível: {(totalDisponivel / 100).toFixed(2)} PO</span>
               <span>Restante: {(restante / 100).toFixed(2)} PO</span>

@@ -1,9 +1,14 @@
+/* =========================
+   WRAPPER
+========================= */
 .nav-wrapper {
   width: 100%;
   margin-top: 24px;
 }
 
-/* mantém alinhado com atributos automaticamente */
+/* =========================
+   CONTAINER
+========================= */
 .nav-buttons {
   max-width: 800px;
   margin: 0 auto;
@@ -13,7 +18,9 @@
   align-items: center;
 }
 
-/* BOTÕES */
+/* =========================
+   BOTÕES BASE
+========================= */
 .btn-prev,
 .btn-next {
   padding: 10px 18px;
@@ -21,10 +28,16 @@
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border 0.25s ease;
 }
 
-/* VOLTAR */
+/* =========================
+   BOTÃO VOLTAR
+========================= */
 .btn-prev {
   border: 1px solid var(--border);
   background: transparent;
@@ -32,17 +45,19 @@
 }
 
 .btn-prev:hover {
-  background: var(--secondary);
+  background: var(--card); /* 🔥 corrigido */
   color: var(--text);
 }
 
-/* PRÓXIMO */
+/* =========================
+   BOTÃO PRÓXIMO
+========================= */
 .btn-next {
   border: none;
   background: var(--primary);
-  color: white;
+  color: var(--text-h); /* 🔥 melhor que white */
 }
 
 .btn-next:hover {
-  background: var(--primary-dark);
+  filter: brightness(1.1); /* 🔥 substitui primary-dark */
 }

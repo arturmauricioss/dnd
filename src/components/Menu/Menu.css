@@ -62,3 +62,11 @@
     white-space: nowrap;
   }
 }
+button{
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  box-shadow: 2px 2px 2px 2px var(--shadow);
+  border-radius: 50%;
+}
