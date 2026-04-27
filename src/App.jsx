@@ -9,13 +9,14 @@ import Talentos from './components/Talentos/Talentos'
 import Inventario from './components/Inventario/Inventario'
 import Loja from './components/Loja/Loja'
 import Menu from './components/Menu/Menu'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+
 import './App.css'
 
 function App() {
   return (
     <CharacterProvider>
-      <BrowserRouter basename="/dnd/">
+      <HashRouter>
         <div className="app">
           <h1>Ficha D&D 3.5</h1>
 
@@ -31,10 +32,9 @@ function App() {
             <Route path="/combat" element={<Combat />} />
             <Route path="/inventario" element={<Inventario />} />
             <Route path="/loja" element={<Loja />} />
-            
           </Routes>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </CharacterProvider>
   )
 }
