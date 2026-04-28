@@ -106,6 +106,9 @@
   margin-top: 4px;
   font-style: italic;
 }
+.btn-ativar{
+  color: var(--primary);
+}
 
 @media (max-width: 600px) {
   .habilidades-container {

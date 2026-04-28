@@ -82,8 +82,29 @@ export const habilidadesRaciais = {
 
 export const habilidadesClasse = {
   barbaro: [
-    { nome: "Furia", nivel: 1, req: null, desc: "Pode entrar em furia 1/dia - +4 for, +4 con, +2 will, -2 AC" },
-    { nome: "Movimento Rapido", nivel: 2, req: { nome: "Furia", nivel: 1 }, desc: "+3m de deslocamento" },
+    { 
+      nome: "Movimento Rapido", 
+      nivel: 1, 
+      req: null, 
+      desc: "O	deslocamento básico	do	bárbaro	é	3	m	superior	ao	deslocamento dos	outros	integrantes	da	sua	raça.	Esse benefício	somente	é	aplicado	quando	o	bárbaro	não	estiver	usando	armadura,	estiver	usando	uma	armadura	leve	ou	média	e	não	estiver	portando	uma	carga	pesada.	Aplique	esse	bônus	antes	de	alterar	o	deslocamento	do	bárbaro	em	função	da	sua	carga	ou	armadura. Por	exemplo,	um	bárbaro	humano	teria	12	m	de	deslocamento	em	vez	de	9	m,	somente quando	estiver	usando	armadura	leve	ou	não	estiver	usando	armadura.	Caso	esteja	usando	uma	armadura	média	ou	portando	uma	carga	média,	seu	deslocamento	será	reduzido	para	9	m.	Um	bárbaro	halfling	teria	9	m	de	deslocamento	em	vez	de	6	m,	novamente	apenas	com	uma	armadura	leve	ou	sem	armadura.	Caso	esteja	usando	uma	armadura	média	ou	portando	uma	carga	média,	seu	deslocamento	será	reduzido	para	6	m.	", 
+      aplicado: true},
+    {
+      nome: "Furia 1/dia",
+      nivel: 1,
+      req: null,
+      desc: "Pode entrar em furia 1/dia - +4 for, +4 con, +2 will, -2 AC",
+      aplicado: false,
+      ativavel: true,
+      duracao: 10,
+      efeitos: [
+        { tipo: 'atributo', alvo: 'forca', valor: 4 },
+        { tipo: 'atributo', alvo: 'constituicao', valor: 4 },
+        { tipo: 'resistencia', alvo: 'vontade', valor: 2 },
+        { tipo: 'ca', valor: -2 }
+      ]
+    },
+    { nome: "Furia", nivel: 1, req: null, desc: "Pode entrar em furia 1/dia - +4 for, +4 con, +2 will, -2 AC", aplicado: false },
+
     { nome: "Furia (+1/dia)", nivel: 5, req: { nome: "Furia", nivel: 1 }, desc: "+1 uso de furia por dia" },
     { nome: "Furia (+1/dia)", nivel: 8, req: { nome: "Furia (+1/dia)", nivel: 5 }, desc: "+1 uso de furia por dia" },
     { nome: "Furia (+1/dia)", nivel: 11, req: { nome: "Furia (+1/dia)", nivel: 8 }, desc: "+1 uso de furia por dia" },
@@ -244,6 +265,7 @@ export function getHabilidadesDisponiveis(raca, classe, nivel = 1) {
         ...h,
         tipo: 'classe',
         desbloqueado,
+        aplicado: h.aplicado ?? false,
         requer: h.req ? h.req.nome : null
       })
     })
@@ -254,7 +276,8 @@ export function getHabilidadesDisponiveis(raca, classe, nivel = 1) {
     result.push({
       ...p,
       tipo: 'nivel',
-      desbloqueado: p.nivel <= nivel
+      desbloqueado: p.nivel <= nivel,
+      aplicado: p.aplicado ?? false
     })
   })
 
