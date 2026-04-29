@@ -140,7 +140,7 @@ export default function Idiomas() {
             </select>
           </div>
       </div>
-      <Navigation prev="/pericias" next="/habilidades" />
+      <Navigation prev="/personagem/pericias" next="/personagem/habilidades" />
     </div>
   )
 }

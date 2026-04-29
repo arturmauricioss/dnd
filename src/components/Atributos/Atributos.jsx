@@ -77,7 +77,7 @@ export default function Atributos() {
         })}
       </div>
 
-      <Navigation prev="/" next="/talentos" />
+      <Navigation prev="/personagem" next="/personagem/talentos" />
     </div>
   )
 }

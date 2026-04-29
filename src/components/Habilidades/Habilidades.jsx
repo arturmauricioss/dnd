@@ -163,7 +163,7 @@ export default function Habilidades() {
 
       </div>
 
-      <Navigation prev="/idiomas" next="/combat" />
+      <Navigation prev="/personagem/idiomas" next="/personagem/combat" />
     </div>
   )
 }

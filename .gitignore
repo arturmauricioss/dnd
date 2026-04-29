@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Database config (private)
+src/lib/dbConfig.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

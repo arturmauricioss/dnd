@@ -178,7 +178,7 @@ export default function Personagem() {
           />
         </div>
       </div>
-      <Navigation next="/atributos"/>
+      <Navigation next="/personagem/atributos"/>
     </div>
   )
 }

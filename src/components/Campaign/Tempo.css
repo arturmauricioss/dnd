@@ -1,0 +1,75 @@
+.tempo-container {
+  max-width: 600px;
+}
+
+.tempo-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.tempo-card {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tempo-card p {
+  margin: 0 0 1rem;
+  color: var(--text-secondary, #666);
+}
+
+.tempo-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tempo-actions button {
+  padding: 0.5rem 1rem;
+  background: var(--primary, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tempo-actions button:hover {
+  background: var(--primary-dark, #357abd);
+}
+
+.tempo-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tempo-input input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.tempo-input button {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tempo-info {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.tempo-info p {
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+}
