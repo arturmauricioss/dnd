@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import './Menu.css'
 
 export default function Menu() {
-
   const temas = ['light', 'penumbra', 'dark']
   const [temaIndex, setTemaIndex] = useState(0)
 
@@ -22,7 +21,6 @@ export default function Menu() {
   useEffect(() => {
     const temaSalvo = localStorage.getItem('theme') || 'light'
     const index = temas.indexOf(temaSalvo)
-
     aplicarTema(index !== -1 ? index : 0)
   }, [])
 
@@ -34,21 +32,19 @@ export default function Menu() {
 
   return (
     <nav className="menu">
-
-      <NavLink to="/" end>Personagem</NavLink>
-      <NavLink to="/atributos">Atributos</NavLink>
-      <NavLink to="/talentos">Talentos</NavLink>
-      <NavLink to="/pericias">Perícias</NavLink>
-      <NavLink to="/idiomas">Idiomas</NavLink>
-      <NavLink to="/habilidades">Habilidades</NavLink>
-      <NavLink to="/combat">Combate</NavLink>
-      <NavLink to="/inventario">Inventário</NavLink>
+      <NavLink to="/personagem" end>Personagem</NavLink>
+      <NavLink to="/personagem/atributos">Atributos</NavLink>
+      <NavLink to="/personagem/talentos">Talentos</NavLink>
+      <NavLink to="/personagem/pericias">Perícias</NavLink>
+      <NavLink to="/personagem/idiomas">Idiomas</NavLink>
+      <NavLink to="/personagem/habilidades">Habilidades</NavLink>
+      <NavLink to="/personagem/combat">Combate</NavLink>
+      <NavLink to="/personagem/inventario">Inventário</NavLink>
       <NavLink to="/loja">Loja</NavLink>
 
       <button onClick={alternarTema} className="theme-toggle">
         {nomeTema[temas[temaIndex]]}
       </button>
-
     </nav>
   )
 }

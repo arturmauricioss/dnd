@@ -1,0 +1,67 @@
+.jogadores-container {
+  flex: 1;
+}
+
+.jogadores-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.jogadores-layout {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.no-players {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-secondary, #666);
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+}
+
+.player-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 8px;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.player-email {
+  color: var(--text-secondary, #666);
+  font-size: 0.9rem;
+}
+
+.player-actions button {
+  padding: 0.5rem 1rem;
+  background: var(--primary, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.player-actions button:hover {
+  background: var(--primary-dark, #357abd);
+}

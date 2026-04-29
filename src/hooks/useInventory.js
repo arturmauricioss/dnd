@@ -1,7 +1,7 @@
 import { useReducer, useMemo } from 'react'
 import { useCharacter } from '../context/CharacterContext'
 import { getItemPorId, getItemAjustadoPorTamanho } from '../components/Equipamentos/equipamentosLogic'
-import { getPesoItem, getCapacidade, getCapacidadeMontaria, tabelaCarga, getPesoTotalEquipamentos } from '../components/Carga/cargaLogic'
+import { getCapacidade, getCapacidadeMontaria, tabelaCarga, getPesoTotalEquipamentos } from '../components/Carga/cargaLogic'
 import { getTamanhoPorRaca, getBonusRacial } from '../components/Racas/racasLogic'
 
 const inventoryReducer = (state, action) => {

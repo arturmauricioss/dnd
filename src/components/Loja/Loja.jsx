@@ -310,7 +310,7 @@ const lojaAtual = lojas.find(l => l.id === lojaSelecionada)
             </div>
           )}
         </div>
-        <Navigation prev="/inventario"/>
+        <Navigation prev="/personagem/inventario"/>
       </div>
   )
 }

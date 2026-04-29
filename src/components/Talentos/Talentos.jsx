@@ -69,7 +69,7 @@ export default function Talentos() {
 
       </div>
 
-      <Navigation prev="/atributos" next="/pericias" />
+      <Navigation prev="/personagem/atributos" next="/personagem/pericias" />
     </div>
   )
 }
