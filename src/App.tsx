@@ -1,12 +1,26 @@
-import { CharacterProvider } from '@context/CharacterContext'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import './index.css'
+import Layout from './components/layout/Layout'
+import HomePage from './pages/HomePage'
+import HeroisPage from './pages/HeroisPage'
+import CampanhasPage from './pages/CampanhasPage'
+import InfoPage from './pages/InfoPage'
+import ConfigPage from './pages/ConfigPage'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'herois', element: <HeroisPage /> },
+      { path: 'campanhas', element: <CampanhasPage /> },
+      { path: 'info', element: <InfoPage /> },
+      { path: 'config', element: <ConfigPage /> },
+    ]
+  }
+], { basename: '/dnd' })
 
 export default function App() {
-  return (
-    <CharacterProvider>
-      <main style={{ padding: '1rem' }}>
-        <h1>AVALLON D&D</h1>
-        <p style={{ marginTop: '1rem', opacity: 0.5 }}>Em breve...</p>
-      </main>
-    </CharacterProvider>
-  )
+  return <RouterProvider router={router} />
 }

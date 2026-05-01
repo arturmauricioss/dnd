@@ -79,20 +79,25 @@
 
 | Nome | Valor |
 |------|-------|
-| Unit | 8px |
-| Container Padding | 24px |
-| Gutter | 16px |
-| Component Gap | 12px |
+| xs | 0.5rem (8px) |
+| sm | 0.75rem (12px) |
+| md | 1rem (16px) |
+| lg | 1.5rem (24px) |
+| xl | 2rem (32px) |
+| 2xl | 3rem (48px) |
+| Container Padding | 1.5rem |
+| Gutter | 1rem |
+| Component Gap | 0.75rem |
 
 ### Border Radius
 
 | Nome | Valor |
 |------|-------|
-| sm | 2px |
-| DEFAULT | 4px |
-| md | 6px |
-| lg | 8px |
-| xl | 12px |
+| sm | 0.125rem (2px) |
+| DEFAULT | 0.25rem (4px) |
+| md | 0.375rem (6px) |
+| lg | 0.5rem (8px) |
+| xl | 0.75rem (12px) |
 
 ---
 
@@ -174,6 +179,41 @@ src/
 - **RPG Medieval/Fantasy** - evitar UI genérica "corporate"
 - **Tátil e Místico** - texturas sutis, brilhos suaves
 - **Funcional** - apesar da estética, funcionar como ferramenta profissional
+
+---
+
+## 🌎 Idioma
+
+Todo o projeto deve ser escrito em **português (pt-BR)**:
+
+- **Funções, variáveis, nomes de arquivos** → português
+- **Comentários** → português
+- **Componentes React** → inglês (padrão)
+- **Types/Interfaces** → inglês (padrão TypeScript)
+
+### Exemplos
+
+```typescript
+// ✅ Função em português
+function calcularModificador(valor: number): number {
+  return Math.floor((valor - 10) / 2)
+}
+
+// ✅ Variável em português
+let pontosDeVida = 10
+
+// ✅ Arquivo em português
+// criar-personagem.ts
+// calcular-bba.ts
+// carregar-dados.ts
+
+// ❌ Evitar (mixado com inglês desnecessário)
+let hpValue = 10
+
+// ✅ Componentes React (padrão)
+function BotaoPrimario() { }
+function Card Personagem() { }
+```
 
 ---
 
