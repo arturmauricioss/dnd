@@ -14,6 +14,8 @@ dist-ssr
 
 # Database config (private)
 src/lib/dbConfig.js
+.env
+.env.local
 
 # Editor directories and files
 .vscode/*

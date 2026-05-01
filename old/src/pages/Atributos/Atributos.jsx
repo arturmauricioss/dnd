@@ -1,0 +1,78 @@
+import { useCharacter } from '@context/CharacterContext'
+import { atributos } from '@data/atributosData'
+import { calcularModificador, getTotalAtributo, formatModificador } from '@rules/atributos'
+import { getBonusRacial } from '@rules/racas'
+import { Navigation } from '@layout'
+import './Atributos.css'
+
+export default function Atributos() {
+  const { personagem, atualizarAtributo } = useCharacter()
+
+  const bonusRacial = getBonusRacial(personagem.race)
+
+  return (
+    <div className="atributos-container">
+
+      <div className="atributos-tabela">
+
+        {/* HEADER */}
+        <div className="atributos-header">
+          <span>Atributos</span>
+          <span>Base</span>
+          <span>Racial</span>
+          <span>Total</span>
+          <span>Mod</span>
+        </div>
+
+        {/* LINHAS */}
+        {atributos.map((attr) => {
+          const valorBase = getValorBase(personagem, attr.id)
+          const bonusRaca = bonusRacial[attr.id] || 0
+          const total = getTotalAtributo(valorBase, bonusRaca, attr.id)
+          const mod = calcularModificador(total)
+
+          return (
+            <div key={attr.id} className="atributos-row">
+
+              <span className="nome">
+                <span className="nome-full">{attr.nome}</span>
+                <span className="nome-short">{attr.curto}</span>
+              </span>
+
+              <input
+                type="number"
+                value={valorBase}
+                onChange={(e) => {
+                  const valor = parseInt(e.target.value)
+                  if (e.target.value === '') {
+                    atualizarAtributo(attr.id, 10)
+                  } else if (!isNaN(valor)) {
+                    atualizarAtributo(attr.id, valor)
+                  }
+                }}
+                onBlur={(e) => {
+                  const valor = parseInt(e.target.value)
+                  if (isNaN(valor) || valor < 3) atualizarAtributo(attr.id, 3)
+                  else if (valor > 18) atualizarAtributo(attr.id, 18)
+                }}
+              />
+
+              <span className="racial">
+                {formatModificador(bonusRaca)}
+              </span>
+
+              <span className="total">{total}</span>
+
+              <span className={`mod ${mod >= 0 ? 'positivo' : 'negativo'}`}>
+                {formatModificador(mod)}
+              </span>
+
+            </div>
+          )
+        })}
+      </div>
+
+      <Navigation prev="/personagem" next="/personagem/talentos" />
+    </div>
+  )
+}
