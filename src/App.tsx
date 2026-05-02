@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       { path: 'config', element: <ConfigPage /> },
     ]
   }
-], { basename: '/dnd' })
+], { basename: '/' })
 
 export default function App() {
   return <RouterProvider router={router} />
