@@ -935,3 +935,47 @@ button {
     font-size: 1.75rem;
   }
 }
+
+.novidades-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.novidade-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-container);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.novidade-card:hover {
+  background: var(--surface-container-high);
+  border-left: 2px solid var(--primary-amber);
+}
+
+.novidade-mensagem {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: var(--space-md);
+}
+
+.novidade-data {
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
