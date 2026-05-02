@@ -10,12 +10,12 @@ interface Campanha {
 }
 
 const campanhasComoJogador: Campanha[] = [
-  { id: '1', nome: 'A Taverna do Dragão', descricao: 'Aventureiros em uma taverna magical', jogadores: 4, imagem: '/dnd/campanhas/campanha1.png' },
-  { id: '2', nome: 'Shadows of Vallakia', descricao: 'Missões sombrias em Vallakia', jogadores: 3, imagem: '/dnd/campanhas/campanha2.png' },
+  { id: '1', nome: 'A Taverna do Dragão', descricao: 'Aventureiros em uma taverna magical', jogadores: 4, imagem: '/campanhas/campanha1.png' },
+  { id: '2', nome: 'Shadows of Vallakia', descricao: 'Missões sombrias em Vallakia', jogadores: 3, imagem: '/campanhas/campanha2.png' },
 ]
 
 const campanhasComoMestre: Campanha[] = [
-  { id: '3', nome: 'Reino de Aethoria', descricao: 'Guerra entre reinos', jogadores: 6, imagem: '/dnd/campanhas/campanha1.png' },
+  { id: '3', nome: 'Reino de Aethoria', descricao: 'Guerra entre reinos', jogadores: 6, imagem: '/campanhas/campanha1.png' },
 ]
 
 export default function CampanhasPage() {
