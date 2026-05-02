@@ -2,7 +2,7 @@
 
 :root {
   /* ============================================
-     COLORS - Modern Fantasy Artifact
+     COLORS - Modern Fantasy Artifact (Dark)
      ============================================ */
   
   /* Surface (Obsidiana) */
@@ -45,7 +45,7 @@
   --on-secondary-container: #FF9E99;
   
   /* Secondary Fixed */
-  --secondary-fixed: #FFDFAD7;
+  --secondary-fixed: #FFDFAD70;
   --secondary-fixed-dim: #FFB3AF;
   --on-secondary-fixed: #410005;
   --on-secondary-fixed-variant: #930017;
@@ -103,12 +103,12 @@
      SPACING (base 8px)
      ============================================ */
   --space-unit: 8px;
-  --space-xs: 0.5rem;   /* 4px */
-  --space-sm: 0.75rem;  /* 6px */
-  --space-md: 1rem;     /* 8px */
-  --space-lg: 1.5rem;  /* 12px */
-  --space-xl: 2rem;     /* 16px */
-  --space-2xl: 3rem;    /* 24px */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
   
   --container-padding: 1.5rem;
   --gutter: 1rem;
@@ -123,6 +123,72 @@
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
+}
+
+/* ============================================
+   LIGHT THEME (Parchment)
+   ============================================ */
+:root[data-theme="light"] {
+  --surface: #F5F0E6;
+  --surface-dim: #EBE4D8;
+  --surface-bright: #DDD5C5;
+  --surface-container-lowest: #F0EBE0;
+  --surface-container-low: #E8DFD0;
+  --surface-container: #E3DBCB;
+  --surface-container-high: #D8CFBE;
+  --surface-container-highest: #CCC3B2;
+  
+  --on-surface: #2A2520;
+  --on-surface-variant: #4A4035;
+  
+  --outline: #8B7355;
+  --outline-variant: #C9B896;
+  --surface-tint: #B8860B;
+  
+  --primary: #8B6914;
+  --primary-amber: #B8860B;
+  --on-primary: #FFF8DC;
+  --primary-container: #D4AF37;
+  --on-primary-container: #2A2520;
+  --inverse-primary: #FFE2AB;
+  
+  --primary-fixed: #C9A227;
+  --primary-fixed-dim: #D4AF37;
+  --on-primary-fixed: #FFF8DC;
+  --on-primary-fixed-variant: #2A2520;
+  
+  --secondary: #8B0000;
+  --on-secondary: #FFFAF0;
+  --secondary-container: #CD5C5C;
+  --on-secondary-container: #FFFAF0;
+  
+  --secondary-fixed: #B22222;
+  --secondary-fixed-dim: #CD5C5C;
+  --on-secondary-fixed: #FFFAF0;
+  --on-secondary-fixed-variant: #FFFAF0;
+  
+  --tertiary: #6B5B00;
+  --on-tertiary: #FFFACD;
+  --tertiary-container: #DAA520;
+  --on-tertiary-container: #2A2520;
+  
+  --tertiary-fixed: #B8860B;
+  --tertiary-fixed-dim: #DAA520;
+  --on-tertiary-fixed: #FFFACD;
+  --on-tertiary-fixed-variant: #2A2520;
+  
+  --accent: #8B7355;
+  
+  --error: #B22222;
+  --on-error: #FFF8DC;
+  --error-container: #CD5C5C;
+  --on-error-container: #FFF8DC;
+  
+  --background: #F5F0E6;
+  --on-background: #2A2520;
+  --surface-variant: #D8CFBE;
+  --inverse-surface: #2A2520;
+  --inverse-on-surface: #F5F0E6;
 }
 
 /* ============================================
@@ -148,15 +214,19 @@ body {
   min-height: 100dvh;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headline);
   font-weight: 600;
 }
 
-h1 { font-size: var(--headline-xl); line-height: 1.1; }
+h1 {
+  font-family: var(--font-headline);
+  font-size: var(--headline-xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: #B8860B;
+}
 h2 { font-size: var(--headline-lg); line-height: 1.2; }
 h3 { font-size: var(--headline-md); line-height: 1.3; }
 
@@ -178,9 +248,6 @@ h3 { font-size: var(--headline-md); line-height: 1.3; }
   letter-spacing: 0.1em;
 }
 
-/* ============================================
-   LINKS & BUTTONS
-   ============================================ */
 a { color: inherit; text-decoration: none; }
 
 button {
@@ -194,7 +261,6 @@ button {
   transition: all 0.2s ease;
 }
 
-/* Primary Button */
 .btn-primary {
   background: var(--secondary-container);
   color: var(--on-secondary-container);
@@ -205,7 +271,6 @@ button {
   box-shadow: 0 0 15px 2px var(--primary-amber);
 }
 
-/* Secondary Button */
 .btn-secondary {
   background: transparent;
   color: var(--on-surface);
@@ -218,23 +283,16 @@ button {
   border-color: var(--primary-amber);
 }
 
-/* ============================================
-   COMPONENTS
-   ============================================ */
-
-/* Card - "Artifact Container" */
 .card {
   background: var(--surface-container);
   border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   border-radius: var(--radius);
-  /* Inner glow simulation */
   box-shadow: 
     inset 1px 1px 0 color-mix(in srgb, var(--surface) 50%, transparent),
     inset -1px -1px 0 var(--surface-container-high);
   padding: var(--space-md);
 }
 
-/* Input Fields - "Engravings" */
 .input {
   background: transparent;
   border: none;
@@ -253,7 +311,6 @@ button {
   color: var(--on-surface-variant);
 }
 
-/* Status Bars - "Mana-Bars" */
 .mana-bar {
   background: var(--surface-container-low);
   border: 1px solid var(--outline-variant);
@@ -269,7 +326,6 @@ button {
   box-shadow: 0 0 8px 1px var(--primary-amber);
 }
 
-/* Chips & Tags - "Wax Seal" */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -283,9 +339,6 @@ button {
   opacity: 0.8;
 }
 
-/* ============================================
-   UTILITIES
-   ============================================ */
 .container {
   padding: var(--container-padding);
 }
@@ -309,7 +362,6 @@ button {
 .gap-md { gap: var(--space-md); }
 .gap-lg { gap: var(--space-lg); }
 
-/* Spacing utilities */
 .p-xs { padding: var(--space-xs); }
 .p-sm { padding: var(--space-sm); }
 .p-md { padding: var(--space-md); }
@@ -333,11 +385,9 @@ button {
 .opacity-50 { opacity: 0.5; }
 .opacity-70 { opacity: 0.7; }
 
-/* Border utilities */
 .border { border: 1px solid var(--outline-variant); }
 .border-accent { border-color: var(--accent); }
 
-/* Radius utilities */
 .rounded-sm { border-radius: var(--radius-sm); }
 .rounded { border-radius: var(--radius); }
 .rounded-lg { border-radius: var(--radius-lg); }
@@ -418,7 +468,6 @@ button {
   text-overflow: ellipsis;
 }
 
-/* Mobile small (< 360px) */
 @media screen and (max-width: 360px) {
   .bottom-nav {
     padding: var(--space-xs) 2px;
@@ -428,5 +477,299 @@ button {
   .bottom-nav-label {
     font-size: 0.5625rem;
     letter-spacing: 0.02em;
+  }
+}
+
+/* ============================================
+   CONFIG PAGE
+   ============================================ */
+.config-section {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.config-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.config-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.config-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.config-title {
+  font-family: var(--font-body);
+  font-size: var(--body-md);
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.config-desc {
+  font-family: var(--font-body);
+  font-size: var(--label-caps);
+  color: var(--on-surface-variant);
+  margin-top: 2px;
+}
+
+.theme-toggle {
+  width: 3.5rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  padding: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle.light {
+  background: var(--primary-fixed);
+  border-color: var(--primary-fixed);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--surface);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.theme-toggle.light .toggle-thumb {
+  transform: translateX(1.5rem);
+  background: var(--on-primary);
+}
+
+/* ============================================
+   HERO CARDS
+   ============================================ */
+.page {
+  padding: var(--container-padding);
+}
+
+.page h1 {
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--outline-variant);
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.page h1::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 4rem;
+  height: 2px;
+  background: #B8860B;
+}
+
+.herois-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.hero-card {
+  background: var(--surface-container);
+  border: 2px solid var(--outline-variant);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px 2px var(--primary-amber);
+}
+
+.hero-card-image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--surface-container-low);
+  position: relative;
+}
+
+.hero-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-card-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.85)
+  );
+  pointer-events: none;
+}
+
+.hero-card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.hero-card-name {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #E5E2E3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.hero-card-level {
+  font-family: var(--font-stats);
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #FFBF00;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Herói morto - Memorial */
+.hero-card.dead {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.hero-card.dead:hover {
+  filter: grayscale(70%);
+  opacity: 0.9;
+}
+
+.new-hero-card {
+  background: var(--surface-container-low);
+  border: 2px dashed var(--outline-variant);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  aspect-ratio: 1;
+}
+
+.new-hero-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-container);
+}
+
+.new-hero-card-icon {
+  font-size: 2rem;
+  color: var(--on-surface-variant);
+}
+
+.new-hero-card-label {
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-variant);
+}
+
+.memorial {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-headline);
+  font-size: var(--body-md);
+  font-weight: 600;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.section-title.active {
+  color: var(--primary);
+}
+
+.section-title.active .section-icon {
+  fill: currentColor;
+}
+
+.section-title.dead {
+  color: var(--secondary);
+  margin-top: 3rem;
+}
+
+.section-title.dead .section-icon {
+  fill: var(--secondary);
+}
+
+.section-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+/* Tablet */
+@media screen and (min-width: 640px) {
+  .herois-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px) {
+  .herois-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+
+/* Mobile pequeno */
+@media screen and (max-width: 380px) {
+  .herois-grid {
+    gap: var(--space-sm);
+  }
+  h1 {
+    font-size: 1.75rem;
   }
 }
