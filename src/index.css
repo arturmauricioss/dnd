@@ -590,6 +590,132 @@ button {
   border-top: 1px solid var(--outline-variant);
 }
 
+.campanhas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.new-campanha-card {
+  background: var(--surface-container-low);
+  border: 2px dashed var(--outline-variant);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg) var(--space-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.new-campanha-card:hover {
+  border-color: var(--primary-amber);
+  background: var(--surface-container);
+  box-shadow: 0 0 12px rgba(184, 134, 11, 0.3);
+}
+
+.new-campanha-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--primary-amber);
+}
+
+.new-campanha-label {
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.new-campanha-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  text-align: center;
+}
+
+.campanhas-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.campanha-card {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.campanha-card:hover {
+  border-color: var(--primary-amber);
+  background: var(--surface-container-high);
+}
+
+.campanha-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.campanha-info {
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.campanha-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.campanha-nome {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.campanha-jogadores {
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+}
+
+.campanha-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.campanha-jogadores {
+  font-family: var(--font-label);
+  font-size: 0.625rem;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+}
+
 .hero-card {
   background: var(--surface-container);
   border: 2px solid var(--outline-variant);
@@ -612,10 +738,44 @@ button {
   position: relative;
 }
 
-.hero-card-image img {
+.hero-card-image-blur {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: blur(6px);
+  transform: scale(1.15);
+  z-index: 0;
+}
+
+.hero-card-image-sharp {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  clip-path: inset(8px round 6px);
+}
+
+.hero-card-frame {
+  position: absolute;
+  inset: 8px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 15;
+  border: 2px solid #B8860B;
+  box-shadow: 
+    0 0 10px rgba(184, 134, 11, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .hero-card-gradient {
@@ -630,6 +790,7 @@ button {
     rgba(0, 0, 0, 0.85)
   );
   pointer-events: none;
+  z-index: 5;
 }
 
 .hero-card-info {
@@ -641,6 +802,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-sm) var(--space-md);
+  z-index: 10;
 }
 
 .hero-card-name {
@@ -715,7 +877,7 @@ button {
   font-family: var(--font-headline);
   font-size: var(--body-md);
   font-weight: 600;
-  margin-top: var(--space-lg);
+  margin-top: 3rem;
   margin-bottom: var(--space-sm);
 }
 
