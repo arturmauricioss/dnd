@@ -4,9 +4,24 @@ export interface Commit {
   autor: string
 }
 
+function getApiBaseUrl(): string {
+  if (typeof window === 'undefined') return '/api'
+  
+  const hostname = window.location.hostname
+  
+  // Desenvolvimento local (localhost)
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:3000/api'
+  }
+  
+  // Produção (Vercel) - usa caminho relativo
+  return '/api'
+}
+
 export async function buscarCommits(): Promise<Commit[]> {
   try {
-    const response = await fetch('/api/commits')
+    const baseUrl = getApiBaseUrl()
+    const response = await fetch(`${baseUrl}/commits`)
     if (!response.ok) {
       throw new Error('Erro ao buscar commits')
     }

@@ -36,7 +36,7 @@ export default function Novidades() {
   return (
     <div className="novidades">
       <h3 className="section-title active">
-        <SVG name="add" className="section-icon" />
+        <SVG name="git" className="section-icon" />
         Novidades
       </h3>
 
