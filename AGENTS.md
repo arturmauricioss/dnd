@@ -268,3 +268,13 @@ function Card Personagem() { }
 - `refactor:` reorganização
 - `docs:` documentação
 - `chore:` configuração
+
+---
+
+## 📌 Pendências Técnicas
+
+### Imagens de Raças (script automática)
+
+Ao adicionar novas imagens de raças em `public/racas/`, atualizar manualmente `totalImagensPorRaca` em `src/data/racasData.ts` com a quantidade de imagens por raça.
+
+**Futuro**: Criar script para detectar automaticamente a quantidade de imagens e gerar o arquivo (existe `scripts/gerar-racas.ts` como base).

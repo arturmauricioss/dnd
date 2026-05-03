@@ -1034,8 +1034,6 @@ button {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xs);
   margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--outline-variant);
 }
 
 @media screen and (max-width: 640px) {
@@ -1317,4 +1315,262 @@ button {
   background: var(--primary-container);
   border-color: var(--primary-amber);
   color: var(--on-primary-container);
+}
+
+.genero-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.raca-section {
+  margin: 0;
+}
+
+.raca-section .raca-title {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+  display: block;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.raca-section .btn {
+  display: block;
+  margin: var(--space-md) auto 0;
+}
+
+.raca-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+@media (max-width: 640px) {
+  .raca-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.raca-btn {
+  padding: var(--space-xs) var(--space-xs);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-sm);
+  color: var(--on-surface);
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 32px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.raca-btn:hover {
+  background: var(--surface-container-high);
+  border-color: var(--primary);
+}
+
+.raca-btn.active {
+  background: var(--primary-container);
+  border-color: var(--primary-amber);
+  color: var(--on-primary-container);
+}
+
+.raca-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.raca-imagem {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--outline);
+  background: var(--surface-container);
+}
+
+.raca-img-btn {
+  padding: var(--space-xs);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.raca-img-btn:hover {
+  border-color: var(--primary);
+}
+
+.raca-img-btn.active {
+  border-color: var(--primary-amber);
+  border-width: 2px;
+}
+
+.raca-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.raca-confirmada {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+}
+
+.raca-confirmada-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.raca-confirmada-info span:first-child {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+.raca-nome {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.personagem-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.personagem-info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.personagem-nome {
+  font-family: var(--font-headline);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.personagem-detalhes {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+
+.personagem-body {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.personagem-foto {
+  flex-shrink: 0;
+}
+
+.personagem-atributos {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 639px) {
+  .personagem-body .personagem-foto {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.personagem-foto {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--outline);
+  background: var(--surface-container);
+}
+
+
+
+.personagem-atributos {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  margin-top: var(--space-xs);
+  min-width: 0;
+}
+
+.personagem-atributo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px;
+  background: var(--surface-container-low);
+  border-radius: var(--radius-sm);
+}
+
+.personagem-atributo .atributo-label {
+  font-family: var(--font-label);
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+}
+
+.personagem-atributo .atributo-valor {
+  font-family: var(--font-stats);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.personagem-atributo .atributo-mod {
+  font-family: var(--font-label);
+  font-size: 0.5rem;
+  color: var(--primary-amber);
+}
+
+.raca-imagem-grande {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--outline);
+  background: var(--surface-container);
 }

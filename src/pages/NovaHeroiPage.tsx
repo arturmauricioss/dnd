@@ -2,10 +2,15 @@ import { useState, useEffect, useRef, useMemo } from 'react'
 import { MetodoAtributos, metodoLabel, gerarAtributos4d6, pontosCompraMax, calcularCusto } from '../engine/atributos'
 import { valoresDefinidos } from '../data/atributosData'
 import { executarRegras } from '../rules/atributos'
+import { racas, totalImagensPorRaca, getImagemPath } from '../data/racasData'
 
 export default function NovaHeroiPage() {
   const [nome, setNome] = useState('')
-  const [genero, setGenero] = useState<'m' | 'f' | null>('m')
+  const [genero, setGenero] = useState<'m' | 'f'>('m')
+  const [raca, setRaca] = useState<string | null>(null)
+  const [racaConfirmada, setRacaConfirmada] = useState(false)
+  const [aparenciaConfirmada, setAparenciaConfirmada] = useState(false)
+  const [variacaoImagem, setVariacaoImagem] = useState(1)
   const [metodo, setMetodo] = useState<MetodoAtributos | null>(null)
   const [metodoConfirmado, setMetodoConfirmado] = useState(false)
   const [valoresConfirmados, setValoresConfirmados] = useState(false)
@@ -147,7 +152,36 @@ function aplicarMetodo4d6() {
     <div className="page container">
       <h1 className="mt-md">Novo Herói</h1>
 
+      {aparenciaConfirmada && (
+        <div className="personagem-card">
+          <div className="personagem-info">
+            <span className="personagem-nome">{nome}</span>
+            <span className="personagem-detalhes">{racas.find(r => r.id === raca)?.nome} {genero === 'm' ? '♂' : '♀'}</span>
+          </div>
+          <div className="personagem-body">
+            <img 
+              src={getImagemPath(raca!, genero, variacaoImagem)} 
+              alt={nome}
+              className="personagem-foto"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none'
+              }}
+            />
+            <div className="personagem-atributos">
+              {Object.entries(atributos).map(([key, value]) => (
+                <div key={key} className="personagem-atributo">
+                  <span className="atributo-label">{key.toUpperCase().slice(0,3)}</span>
+                  <span className="atributo-valor">{value}</span>
+                  <span className="atributo-mod">{Math.floor((value - 10) / 2)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="form-heroi">
+        {!racaConfirmada && (
         <div className="form-row">
           <div className="form-group" style={{ flex: 3 }}>
             <label className="form-label">Nome</label>
@@ -165,21 +199,23 @@ function aplicarMetodo4d6() {
               <button 
                 type="button" 
                 className={`genero-btn ${genero === 'm' ? 'active' : ''}`}
-                onClick={() => setGenero(genero === 'm' ? null : 'm')}
+                onClick={() => setGenero('m')}
               >
                 ♂
               </button>
               <button 
                 type="button" 
                 className={`genero-btn ${genero === 'f' ? 'active' : ''}`}
-                onClick={() => setGenero(genero === 'f' ? null : 'f')}
+                onClick={() => setGenero('f')}
               >
                 ♀
               </button>
             </div>
           </div>
         </div>
+        )}
 
+        {!valoresConfirmados && (
         <div className="form-group">
           <label className="form-label">Método de Atributos</label>
           <div className="metodos-grid">
@@ -199,7 +235,7 @@ function aplicarMetodo4d6() {
             ))}
           </div>
           
-          {metodo && !valoresConfirmados && (
+          {metodo && (
             <p className="metodo-dica">
               {metodo === '4d6-baixo' || metodo === 'definido' ? 'Clique em dois atributos para trocar os valores de posição' : 
                metodo === 'compra' ? 'Custo 1 de 9-14. Custo 2 de 15-16. Custo 3 de 17-18' : 
@@ -221,6 +257,7 @@ function aplicarMetodo4d6() {
             </button>
           )}
         </div>
+        )}
 
         {metodoConfirmado && metodo === 'compra' && (
           <div className="pontos-compra">
@@ -228,7 +265,7 @@ function aplicarMetodo4d6() {
           </div>
         )}
 
-        {metodoConfirmado && (
+        {metodoConfirmado && !valoresConfirmados && (
         <div className="atributos-grid">
           {Object.entries(atributos).map(([key, value]) => {
             const podeTrocar = valoresConfirmados || metodo === '4d6-baixo' || metodo === 'definido'
@@ -269,9 +306,7 @@ function aplicarMetodo4d6() {
         </div>
         )}
 
-        {valoresConfirmados && (
-          <p className="metodo-dica">Clique em dois atributos para trocar os valores de posição</p>
-        )}
+        
 
         {metodoConfirmado && !valoresConfirmados && (
           <div className="reroll-inline">
@@ -296,6 +331,76 @@ function aplicarMetodo4d6() {
                 </button>
               </>
             )}
+          </div>
+        )}
+
+        {valoresConfirmados && !racaConfirmada && !aparenciaConfirmada && (
+          <div className="raca-section">
+            <h2 className="section-title raca-title">Raças</h2>
+            <div className="raca-grid">
+              {racas.map(r => (
+                <button
+                  key={r.id}
+                  type="button"
+                  className={`raca-btn ${raca === r.id ? 'active' : ''}`}
+                  onClick={() => {
+                    setRaca(r.id)
+                    setVariacaoImagem(1)
+                  }}
+                >
+                  {r.nome}
+                </button>
+              ))}
+            </div>
+            
+            {raca && (
+              <button 
+                type="button" 
+                className="btn btn-primary mt-sm"
+onClick={() => {
+                    if (!nome.trim()) {
+                      alert('Por favor, insira um nome para o herói')
+                      return
+                    }
+                    setRacaConfirmada(true)
+                  }}
+                >
+                  Confirmar Nome, Raça e Gênero
+              </button>
+            )}
+          </div>
+        )}
+
+        {racaConfirmada && !aparenciaConfirmada && (
+          <div className="raca-section">
+            <h3 className="section-title">Selecione a Aparência</h3>
+            <div className="raca-grid">
+              {Array.from({ length: totalImagensPorRaca[raca || ''] || 1 }, (_, i) => i + 1).map(num => (
+                <button
+                  key={num}
+                  type="button"
+                  className={`raca-img-btn ${variacaoImagem === num ? 'active' : ''}`}
+                  onClick={() => setVariacaoImagem(num)}
+                >
+                  <img 
+                    src={getImagemPath(raca!, genero, num)} 
+                    alt={`Opção ${num}`}
+                    className="raca-thumbnail"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none'
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+            <button 
+              type="button" 
+              className="btn btn-primary mt-sm"
+              style={{ display: 'block', margin: 'var(--space-md) auto 0' }}
+              onClick={() => setAparenciaConfirmada(true)}
+            >
+              Confirmar Aparência
+            </button>
           </div>
         )}
       </div>
