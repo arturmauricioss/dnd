@@ -16,7 +16,7 @@ export const sexos = [
 ]
 
 export const bonusRacialAtributos = {
-  humano: { forca: 0, destreza: 0, constituicao: 0, inteligencia: 0, sabedoria: 0, carisma: 0 },
+  humano: { },
   anao: { constituicao: 2, carisma: -2 },
   elfo: { destreza: 2, constituicao: -2 },
   gnomo: { constituicao: 2, forca: -2 },

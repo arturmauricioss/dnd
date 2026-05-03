@@ -48,7 +48,7 @@ export default function Novidades() {
       </h3>
 
       <div className="novidades-list">
-        {commits.slice(0, 3).map((commit, index) => (
+        {commits.slice(0, 10).map((commit, index) => (
           <div key={index} className="novidade-card">
             <span className="novidade-mensagem">{commit.mensagem}</span>
             <span className="novidade-data">{formatarData(commit.data)}</span>

@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import { createServer } from 'http'
@@ -27,7 +28,7 @@ app.get('/api/commits', async (req, res) => {
 
   try {
     const response = await fetch(
-      'https://api.github.com/repos/arturmauricioss/dnd/commits?per_page=5',
+      'https://api.github.com/repos/arturmauricioss/dnd/commits?per_page=10',
       {
         headers: {
           Authorization: `Bearer ${token}`,

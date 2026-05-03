@@ -1020,9 +1020,13 @@ button {
 }
 
 .form-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: var(--space-md);
+  align-items: flex-end;
+}
+
+.form-row > .form-group {
+  flex: 1;
 }
 
 .atributos-grid {
@@ -1182,6 +1186,34 @@ button {
   background: var(--surface-container-high);
 }
 
+.modal-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+.btn-secondary {
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+  border: 1px solid var(--outline);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-container-highest);
+}
+
 .metodos-grid {
   display: flex;
   gap: var(--space-xs);
@@ -1216,6 +1248,16 @@ button {
   color: var(--on-primary-container);
 }
 
+.metodo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.metodo-btn:disabled:hover {
+  background: var(--surface-container-low);
+  border-color: var(--outline-variant);
+}
+
 .metodo-dica {
   font-family: var(--font-label);
   font-size: 0.7rem;
@@ -1223,4 +1265,56 @@ button {
   font-style: italic;
   text-align: center;
   margin-top: var(--space-xs);
+}
+
+.reroll-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.reroll-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  text-align: center;
+}
+
+.reroll-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.reroll-actions .btn {
+  min-width: 100px;
+}
+
+.form-row .genero-buttons {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.genero-btn {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genero-btn:hover {
+  background: var(--surface-container-high);
+  border-color: var(--primary);
+}
+
+.genero-btn.active {
+  background: var(--primary-container);
+  border-color: var(--primary-amber);
+  color: var(--on-primary-container);
 }

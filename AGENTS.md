@@ -136,6 +136,50 @@
 3. Rules isoladas em `/rules`
 4. Mobile como base
 5. Cores via CSS variables
+6. **Data-Driven + Rules Engine**: dados puros em `/data`, lógica em `/engine` ou `/rules`
+
+---
+
+## 🎯 Padrão Data-Driven + Rules Engine
+
+### Estrutura
+
+```
+src/
+├── data/           → dados puros (JSON, constantes, tipos)
+│   └── atributosData.ts
+├── engine/         → lógica de regras puras (sem UI)
+│   └── atributos.ts
+└── rules/          → regras de negócio específicas
+```
+
+### Regras
+
+- **`/data`**: apenas dados (constantes, tipos, labels, configurações)
+  - ❌ sem lógica/funções
+  - ✅ constantes, enums, tipos, dados estáticos
+
+- **`/engine`**: funções puras de lógica (roll, calcular, gerar)
+  - ❌ sem dependências de UI/React
+  - ✅ só matemática/lógica de negócio
+  - ✅ importa de `@data/*`
+
+- **`/rules`**: regras específicas de domínio (D&D rules)
+  - pode usar tanto `/data` quanto `/engine`
+  - executa múltiplas regras em sequência
+
+### Exemplo
+
+```typescript
+// ✅ src/data/atributosData.ts (só dados)
+export const custoPontos = { 8: 0, 9: 1, 10: 2, ... }
+
+// ✅ src/engine/atributos.ts (lógica pura)
+import { custoPontos } from '@data/atributosData'
+export function calcularCusto(valor: number): number {
+  return custoPontos[valor] || 0
+}
+```
 
 ---
 
