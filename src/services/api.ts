@@ -9,9 +9,9 @@ function getApiBaseUrl(): string {
   
   const hostname = window.location.hostname
   
-  // Desenvolvimento local (localhost)
-  if (hostname === 'localhost' || hostname === '127.0.0.1') {
-    return 'http://localhost:3000/api'
+  // Desenvolvimento local (localhost ou IP da rede local)
+  if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.')) {
+    return 'http://192.168.3.12:3000/api'
   }
   
   // Produção (Vercel) - usa caminho relativo

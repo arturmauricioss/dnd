@@ -9,6 +9,13 @@ app.use(cors())
 let cache = null
 const CACHE_TIME = 15 * 60 * 1000
 
+// Dados mock para fallback
+const MOCK_DATA = [
+  { mensagem: 'feat: adiciona feed de novidades', data: new Date().toISOString(), autor: 'Desenvolvedor' },
+  { mensagem: 'feat: cria página de campanhas', data: new Date().toISOString(), autor: 'Desenvolvedor' },
+  { mensagem: 'fix: corrige border do H1', data: new Date().toISOString(), autor: 'Desenvolvedor' }
+]
+
 // API route /api/commits
 app.get('/api/commits', async (req, res) => {
   const now = Date.now()
@@ -20,12 +27,7 @@ app.get('/api/commits', async (req, res) => {
   const token = process.env.GITHUB_TOKEN
 
   if (!token) {
-    // Se não tem token, retorna dados mock para teste local
-    return res.json([
-      { mensagem: 'feat: adiciona feed de novidades', data: new Date().toISOString(), autor: 'Desenvolvedor' },
-      { mensagem: 'feat: cria página de campanhas', data: new Date().toISOString(), autor: 'Desenvolvedor' },
-      { mensagem: 'fix: corrige border do H1', data: new Date().toISOString(), autor: 'Desenvolvedor' }
-    ])
+    return res.json(MOCK_DATA)
   }
 
   try {
@@ -39,6 +41,10 @@ app.get('/api/commits', async (req, res) => {
       }
     )
 
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status}`)
+    }
+
     const commits = await response.json()
 
     const data = commits.map((c) => ({
@@ -50,12 +56,13 @@ app.get('/api/commits', async (req, res) => {
     cache = { data, timestamp: now }
     res.json(data)
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar commits' })
+    console.error('Erro ao buscar commits do GitHub:', error)
+    return res.json(MOCK_DATA)
   }
 })
 
 const PORT = 3000
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`API rodando em http://localhost:${PORT}/api/commits`)
   console.log(`\nPara testar o frontend completo:`)
   console.log(`1. Execute 'npm run dev' em outro terminal`)

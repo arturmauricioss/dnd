@@ -3,6 +3,7 @@ import './index.css'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
 import HeroisPage from './pages/HeroisPage'
+import NovaHeroiPage from './pages/NovaHeroiPage'
 import CampanhasPage from './pages/CampanhasPage'
 import InfoPage from './pages/InfoPage'
 import ConfigPage from './pages/ConfigPage'
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'herois', element: <HeroisPage /> },
+      { path: 'herois/novo', element: <NovaHeroiPage /> },
       { path: 'campanhas', element: <CampanhasPage /> },
       { path: 'info', element: <InfoPage /> },
       { path: 'config', element: <ConfigPage /> },

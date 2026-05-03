@@ -5,12 +5,19 @@ import SVG from '../ui/SVG'
 export default function Novidades() {
   const [commits, setCommits] = useState<Commit[]>([])
   const [loading, setLoading] = useState(true)
+  const [erro, setErro] = useState(false)
 
   useEffect(() => {
-    buscarCommits().then((data) => {
-      setCommits(data)
-      setLoading(false)
-    })
+    buscarCommits()
+      .then((data) => {
+        setCommits(data)
+      })
+      .catch(() => {
+        setErro(true)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   if (loading) {
@@ -37,7 +44,7 @@ export default function Novidades() {
     <div className="novidades">
       <h3 className="section-title active">
         <SVG name="git" className="section-icon" />
-        Novidades
+        Novidades {erro && <span style={{ fontSize: '0.625rem', color: 'var(--on-surface-variant)' }}>(modo offline)</span>}
       </h3>
 
       <div className="novidades-list">
