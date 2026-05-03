@@ -1,5 +1,6 @@
 import type { MetodoAtributos } from '@data/atributosData'
 import { custoPontos, pontosCompraMax, limiteModificadorMinimo } from '@data/atributosData'
+import { modificadoresRaciais } from '@data/racasData'
 
 export interface Atributos {
   forca: number
@@ -20,6 +21,7 @@ export interface Regra {
 export interface RegraContexto {
   atributos: Atributos
   metodo: MetodoAtributos | null
+  raca?: string | null
 }
 
 export interface ResultadoRegra {
@@ -118,6 +120,72 @@ export const regrasAtributos: Regra[] = [
       const temDireito = soma <= limiteModificadorMinimo
       
       return { sucesso: true, dados: { temDireito, soma } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-forca',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de força',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.forca === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'forca', modificador: mods.forca, modificado: true } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-destreza',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de destreza',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.destreza === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'destreza', modificador: mods.destreza, modificado: true } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-constituicao',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de constituição',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.constituicao === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'constituicao', modificador: mods.constituicao, modificado: true } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-inteligencia',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de inteligência',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.inteligencia === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'inteligencia', modificador: mods.inteligencia, modificado: true } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-sabedoria',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de sabedoria',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.sabedoria === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'sabedoria', modificador: mods.sabedoria, modificado: true } }
+    }
+  },
+  {
+    nome: 'aplicar-modificador-racial-carisma',
+    tipo: 'calculo',
+    descricao: 'Aplica modificador racial de carisma',
+    executar: ({ raca }) => {
+      if (!raca) return { sucesso: true, dados: { modificado: false } }
+      const mods = modificadoresRaciais[raca]
+      if (!mods || mods.carisma === undefined) return { sucesso: true, dados: { modificado: false } }
+      return { sucesso: true, dados: { atributo: 'carisma', modificador: mods.carisma, modificado: true } }
     }
   }
 ]
