@@ -1479,6 +1479,13 @@ button {
 .personagem-info {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.personagem-info .personagem-detalhes {
+  display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
 }
@@ -1573,4 +1580,38 @@ button {
   border-radius: var(--radius-md);
   border: 2px solid var(--outline);
   background: var(--surface-container);
+}
+
+.nivel-selector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.nivel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline);
+  background: var(--surface-container);
+  color: var(--on-surface);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nivel-btn:hover {
+  background: var(--surface-container-high);
+}
+
+.nivel-valor {
+  font-family: var(--font-stats);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  min-width: 40px;
+  text-align: center;
 }

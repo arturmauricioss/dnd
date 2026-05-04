@@ -3,6 +3,7 @@ import { MetodoAtributos, metodoLabel, gerarAtributos4d6, pontosCompraMax, calcu
 import { valoresDefinidos } from '../data/atributosData'
 import { executarRegras } from '../rules/atributos'
 import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/racasData'
+import { classes } from '../data/classesData'
 
 export default function NovaHeroiPage() {
   const [nome, setNome] = useState('')
@@ -11,6 +12,9 @@ export default function NovaHeroiPage() {
   const [racaConfirmada, setRacaConfirmada] = useState(false)
   const [aparenciaConfirmada, setAparenciaConfirmada] = useState(false)
   const [variacaoImagem, setVariacaoImagem] = useState(1)
+  const [classe, setClasse] = useState<string | null>(null)
+  const [nivel, setNivel] = useState(1)
+  const [classeConfirmada, setClasseConfirmada] = useState(false)
   const [metodo, setMetodo] = useState<MetodoAtributos | null>(null)
   const [metodoConfirmado, setMetodoConfirmado] = useState(false)
   const [valoresConfirmados, setValoresConfirmados] = useState(false)
@@ -91,7 +95,6 @@ function aplicarMetodo4d6() {
 
   function manterValores() {
     setValoresConfirmados(true)
-    console.log({ nome, metodo, atributos })
   }
 
   const pressTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -154,12 +157,15 @@ function aplicarMetodo4d6() {
     <div className="page container">
       <h1 className="mt-md">Novo Herói</h1>
 
-      {aparenciaConfirmada && (
+      {classeConfirmada && (
         <div className="personagem-card">
           <div className="personagem-info">
             <span className="personagem-nome">{nome}</span>
-            <span className="personagem-detalhes">{racas.find(r => r.id === raca)?.nome} {genero === 'm' ? '♂' : '♀'}</span>
-            <span className="personagem-detalhes">{tamanhos[raca!]} • {deslocamentos[raca!]}m</span>
+            <div className="personagem-detalhes">
+              <span>{racas.find(r => r.id === raca)?.nome} {genero === 'm' ? '♂' : '♀'}</span>
+              <span>{tamanhos[raca!]} • {deslocamentos[raca!]}m</span>
+              <span>{classes.find(c => c.id === classe)?.nome} {nivel}</span>
+            </div>
           </div>
           <div className="personagem-body">
             <img 
@@ -184,9 +190,9 @@ function aplicarMetodo4d6() {
       )}
 
       <div className="form-heroi">
-        {!racaConfirmada && (
+        {!valoresConfirmados && (
         <div className="form-row">
-          <div className="form-group" style={{ flex: 3 }}>
+          <div className="form-group" style={{ flex: 3, marginTop: '2rem' }}>
             <label className="form-label">Nome</label>
             <input
               type="text"
@@ -251,6 +257,10 @@ function aplicarMetodo4d6() {
               type="button" 
               className="btn btn-primary mt-sm"
               onClick={() => {
+                if (!nome.trim()) {
+                  alert('Por favor, insira um nome para o herói')
+                  return
+                }
                 setMetodoConfirmado(true)
                 if (metodo === '4d6-baixo') aplicarMetodo4d6()
                 else if (metodo === 'definido') aplicarMetodoDefinido()
@@ -321,16 +331,16 @@ function aplicarMetodo4d6() {
                     Re-roll
                   </button>
                   <button type="button" className="btn btn-primary" onClick={manterValores}>
-                    Manter
+                    Salvar Nome, Gênero e Atributos
                   </button>
                 </div>
               </>
             )}
             {!podeReroll() && (
               <>
-                <p className="reroll-text">Clique em manter para fixar os valores</p>
+                <p className="reroll-text">Clique em salvar para continuar</p>
                 <button type="button" className="btn btn-primary" onClick={manterValores}>
-                  Manter
+                  Salvar Nome, Gênero e Atributos
                 </button>
               </>
             )}
@@ -356,54 +366,89 @@ function aplicarMetodo4d6() {
               ))}
             </div>
             
-            {raca && (
-              <button 
-                type="button" 
-                className="btn btn-primary mt-sm"
-onClick={() => {
-                    if (!nome.trim()) {
-                      alert('Por favor, insira um nome para o herói')
-                      return
-                    }
+{raca && (
+              <>
+                <h3 className="section-title">Selecione a Aparência</h3>
+                <div className="raca-grid" key={raca}>
+                  {Array.from({ length: totalImagensPorRaca[raca || ''] || 1 }, (_, i) => i + 1).map(num => (
+                    <button
+                      key={`${raca}-${num}`}
+                      type="button"
+                      className={`raca-img-btn ${variacaoImagem === num ? 'active' : ''}`}
+                      onClick={() => setVariacaoImagem(num)}
+                    >
+                      <img 
+                        src={getImagemPath(raca!, genero, num)} 
+                        alt={`Opção ${num}`}
+                        className="raca-thumbnail"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <button 
+                  type="button" 
+                  className="btn btn-primary mt-sm"
+                  style={{ display: 'block', margin: 'var(--space-md) auto 0' }}
+                  onClick={() => {
                     setRacaConfirmada(true)
+                    setAparenciaConfirmada(true)
                   }}
                 >
-                  Confirmar Nome, Raça e Gênero
-              </button>
+                  Confirmar Raça e Aparência
+                </button>
+              </>
             )}
           </div>
         )}
 
-        {racaConfirmada && !aparenciaConfirmada && (
+        {aparenciaConfirmada && !classeConfirmada && (
           <div className="raca-section">
-            <h3 className="section-title">Selecione a Aparência</h3>
+            <h2 className="section-title raca-title">Classe</h2>
             <div className="raca-grid">
-              {Array.from({ length: totalImagensPorRaca[raca || ''] || 1 }, (_, i) => i + 1).map(num => (
+              {classes.map(c => (
                 <button
-                  key={num}
+                  key={c.id}
                   type="button"
-                  className={`raca-img-btn ${variacaoImagem === num ? 'active' : ''}`}
-                  onClick={() => setVariacaoImagem(num)}
+                  className={`raca-btn ${classe === c.id ? 'active' : ''}`}
+                  onClick={() => setClasse(c.id)}
                 >
-                  <img 
-                    src={getImagemPath(raca!, genero, num)} 
-                    alt={`Opção ${num}`}
-                    className="raca-thumbnail"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none'
-                    }}
-                  />
+                  {c.nome}
                 </button>
               ))}
             </div>
-            <button 
-              type="button" 
-              className="btn btn-primary mt-sm"
-              style={{ display: 'block', margin: 'var(--space-md) auto 0' }}
-              onClick={() => setAparenciaConfirmada(true)}
-            >
-              Confirmar Aparência
-            </button>
+            
+            {classe && (
+              <div className="form-group mt-md">
+                <label className="form-label">Nível</label>
+                <div className="nivel-selector">
+                  <button 
+                    type="button" 
+                    className="nivel-btn"
+                    onClick={() => setNivel(Math.max(1, nivel - 1))}
+                  >
+                    -
+                  </button>
+                  <span className="nivel-valor">{nivel}</span>
+                  <button 
+                    type="button" 
+                    className="nivel-btn"
+                    onClick={() => setNivel(Math.min(20, nivel + 1))}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {classe && (
+              <button 
+                type="button" 
+                className="btn btn-primary mt-sm"
+                onClick={() => setClasseConfirmada(true)}
+              >
+                Confirmar Classe e Nível
+              </button>
+            )}
           </div>
         )}
       </div>
