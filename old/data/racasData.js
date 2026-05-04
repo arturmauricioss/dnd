@@ -1,52 +1,5 @@
-export const racas = [
-  { id: 'selecione', nome: 'SELECIONE...', bonus: {} },
-  { id: 'humano', nome: 'HUMANO' },
-  { id: 'elfo', nome: 'ELFO' },
-  { id: 'anao', nome: 'ANÃO' },
-  { id: 'gnomo', nome: 'GNOMO' },
-  { id: 'meio-elfo', nome: 'MEIO-ELFO' },
-  { id: 'meio-orc', nome: 'MEIO-ORC' },
-  { id: 'halfling', nome: 'HALFLING' },
-]
-
-export const sexos = [
-  { id: 'selecione', nome: 'SELECIONE...' },
-  { id: 'masculino', nome: 'MASCULINO' },
-  { id: 'feminino', nome: 'FEMININO' },
-]
-
-export const bonusRacialAtributos = {
-  humano: { },
-  anao: { constituicao: 2, carisma: -2 },
-  elfo: { destreza: 2, constituicao: -2 },
-  gnomo: { constituicao: 2, forca: -2 },
-  "meio-elfo": { },
-  "meio-orc": { forca: 2, inteligencia: -2, carisma: -2 },
-  halfling: { destreza: 2, forca: -2 }
-}
-
 export const bonusRacialResistencia = {
   halfling: { fort: 1, ref: 1, von: 1 }
-}
-
-export const tamanhoPorRaca = {
-  humano: 'media',
-  elfo: 'media',
-  anao: 'media',
-  gnomo: 'pequena',
-  'meio-elfo': 'media',
-  'meio-orc': 'media',
-  halfling: 'pequena',
-}
-
-export const deslocamentoPorRaca = {
-  humano: 9,
-  elfo: 9,
-  anao: 6,
-  gnomo: 6,
-  'meio-elfo': 9,
-  'meio-orc': 9,
-  halfling: 6,
 }
 
 export const idiomasRaciais = {

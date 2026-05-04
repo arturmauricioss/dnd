@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react'
 import { MetodoAtributos, metodoLabel, gerarAtributos4d6, pontosCompraMax, calcularCusto } from '../engine/atributos'
 import { valoresDefinidos } from '../data/atributosData'
 import { executarRegras } from '../rules/atributos'
-import { racas, totalImagensPorRaca, getImagemPath, modificadoresRaciais } from '../data/racasData'
+import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/racasData'
 
 export default function NovaHeroiPage() {
   const [nome, setNome] = useState('')
@@ -35,18 +35,7 @@ export default function NovaHeroiPage() {
     [atributos, metodo, raca]
   )
 
-  const atributosComModificador = useMemo(() => {
-    if (!raca) return atributos
-    const mods = modificadoresRaciais[raca] || {}
-    return {
-      forca: atributos.forca + (mods.forca || 0),
-      destreza: atributos.destreza + (mods.destreza || 0),
-      constituicao: atributos.constituicao + (mods.constituicao || 0),
-      inteligencia: atributos.inteligencia + (mods.inteligencia || 0),
-      sabedoria: atributos.sabedoria + (mods.sabedoria || 0),
-      carisma: atributos.carisma + (mods.carisma || 0)
-    }
-  }, [atributos, raca])
+  const atributosComModificador = resultadoRegras.atributosFinais
   const pontosUsados = resultadoRegras.custoPontos
 
   function podeReroll(): boolean {
@@ -170,6 +159,7 @@ function aplicarMetodo4d6() {
           <div className="personagem-info">
             <span className="personagem-nome">{nome}</span>
             <span className="personagem-detalhes">{racas.find(r => r.id === raca)?.nome} {genero === 'm' ? '♂' : '♀'}</span>
+            <span className="personagem-detalhes">{tamanhos[raca!]} • {deslocamentos[raca!]}m</span>
           </div>
           <div className="personagem-body">
             <img 

@@ -187,6 +187,25 @@ export const regrasAtributos: Regra[] = [
       if (!mods || mods.carisma === undefined) return { sucesso: true, dados: { modificado: false } }
       return { sucesso: true, dados: { atributo: 'carisma', modificador: mods.carisma, modificado: true } }
     }
+  },
+  {
+    nome: 'aplicar-modificadores-raciais-minimo-int',
+    tipo: 'calculo',
+    descricao: 'Aplica modificadores raciais com mínimo de 3 apenas para inteligência',
+    executar: ({ atributos, raca }) => {
+      if (!raca) return { sucesso: true, dados: { atributosFinais: atributos } }
+      
+      const mods = modificadoresRaciais[raca] || {}
+      const atributosFinais: Atributos = { ...atributos }
+      
+      for (const chave of Object.keys(atributosFinais) as (keyof Atributos)[]) {
+        const mod = mods[chave] || 0
+        const valorComMod = atributosFinais[chave] + mod
+        atributosFinais[chave] = chave === 'inteligencia' ? Math.max(3, valorComMod) : valorComMod
+      }
+      
+      return { sucesso: true, dados: { atributosFinais } }
+    }
   }
 ]
 
@@ -198,6 +217,7 @@ export function executarRegras(contexto: RegraContexto): {
   custoPontos: number
   pontosRestantes: number
   temDireitoReroll: boolean
+  atributosFinais: Atributos
 } {
   const erros: string[] = []
   let modificadores: Record<string, number> = {}
@@ -205,6 +225,7 @@ export function executarRegras(contexto: RegraContexto): {
   let custoPontos = 0
   let pontosRestantes = pontosCompraMax
   let temDireitoReroll = false
+  let atributosFinais = contexto.atributos
   
   for (const regra of regrasAtributos) {
     const resultado = regra.executar(contexto)
@@ -230,6 +251,11 @@ export function executarRegras(contexto: RegraContexto): {
       const dados = resultado.dados as { temDireito: boolean; soma: number }
       temDireitoReroll = dados.temDireito
     }
+
+    if (regra.nome === 'aplicar-modificadores-raciais-minimo-int' && resultado.dados) {
+      const dados = resultado.dados as { atributosFinais: Atributos }
+      atributosFinais = dados.atributosFinais
+    }
   }
   
   return {
@@ -239,6 +265,7 @@ export function executarRegras(contexto: RegraContexto): {
     somaModificadores,
     custoPontos,
     pontosRestantes,
-    temDireitoReroll
+    temDireitoReroll,
+    atributosFinais
   }
 }
