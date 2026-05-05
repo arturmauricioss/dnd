@@ -278,3 +278,37 @@ function Card Personagem() { }
 Ao adicionar novas imagens de raças em `public/racas/`, atualizar manualmente `totalImagensPorRaca` em `src/data/racasData.ts` com a quantidade de imagens por raça.
 
 **Futuro**: Criar script para detectar automaticamente a quantidade de imagens e gerar o arquivo (existe `scripts/gerar-racas.ts` como base).
+
+---
+
+## 📋 Visão do Projeto - Arcane Sheet Vault
+
+### Fase 1: App de Criação de Fichas
+- Criar ficha (nome, raça, classe, atributos, nível, aparência)
+- Usuário mantém suas fichas localmente
+- Login com múltiplos provedores (Google, Discord, email, etc.)
+
+### Fase 2: Campanhas e Interação Social
+- Usuário pode criar campanhas (vira "Mestre")
+- Jogadores aplicam com suas fichas
+- Mestre aprova/rejeita entrada
+- Ficha "trava" ao entrar na campanha (só muda com permissão do mestre, incluindo XP)
+
+### Mecânicas de Jogo
+- **Atributos**: Imutáveis após entrada na campanha (salvo permissão do mestre)
+- **PV/CA/etc**: vários campos da ficha
+- **Nível/XP**: XP concedido pelo mestre. Ao alcançar níveis específicos (ex: 4, 8, 12, 16, 20), ganha +1 atributo (após aprovação do mestre)
+- **Efeitos temporários**: Ativados/desativados por tempo (ex: Fúria 10 rodadas)
+- **Cooldowns**: Habilidades 1/dia recarregam (00:00 ou 24h - ainda indefinido)
+- **Tempo de jogo**: Mestre controla tempo (ex: "passou 4 horas" = efeitos expiram)
+- **Turnos**: 1 round = 6 segundos (para regras de efeitos)
+
+### Sistema de Morte
+- **Morte em campanha**: Personagem vai para "Memorial dos Caídos"
+- **Morte natural**: Cada personagem tem "Ativo Obscuro" - momento em que morrerá de causas naturais
+- Homebrew: Causas naturais (ex: infarto) entre campanhas
+
+### Aspectos Técnicos
+- **Backend**: Supabase (Vercel) - Auth + Database
+- **Frontend**: React + TypeScript + Vite
+- **Hospedagem**: Vercel
