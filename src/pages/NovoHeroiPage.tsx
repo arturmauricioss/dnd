@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { MetodoAtributos, metodoLabel, gerarAtributos4d6, pontosCompraMax, calcularCusto } from '../engine/atributos'
+import { tendenciaPermitida } from '../data/tendenciasClassesData'
 import { valoresDefinidos } from '../data/atributosData'
 import { executarRegras } from '../rules/atributos'
 import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/racasData'
 import { classes } from '../data/classesData'
+import { alinhamentos, divindades, getDivindadesOrdenadas, getPontuacaoDeus } from '../data/tendenciasData'
 
-export default function NovaHeroiPage() {
+export default function NovoHeroiPage() {
   const [nome, setNome] = useState('')
   const [genero, setGenero] = useState<'m' | 'f'>('m')
   const [raca, setRaca] = useState<string | null>(null)
@@ -15,6 +17,9 @@ export default function NovaHeroiPage() {
   const [classe, setClasse] = useState<string | null>(null)
   const [nivel, setNivel] = useState(1)
   const [classeConfirmada, setClasseConfirmada] = useState(false)
+  const [tendincia, setTendincia] = useState<string | null>(null)
+  const [divindade, setDivindade] = useState<string | null>(null)
+  const [tendinciaConfirmada, setTendinciaConfirmada] = useState(false)
   const [metodo, setMetodo] = useState<MetodoAtributos | null>(null)
   const [metodoConfirmado, setMetodoConfirmado] = useState(false)
   const [valoresConfirmados, setValoresConfirmados] = useState(false)
@@ -27,6 +32,11 @@ export default function NovaHeroiPage() {
     sabedoria: 10,
     carisma: 10
   })
+
+  const divindadesOrdenadas = useMemo(() => {
+    if (!tendincia) return []
+    return getDivindadesOrdenadas(tendincia, raca, classe)
+  }, [tendincia, raca, classe])
 
   useEffect(() => {
     if (metodoConfirmado && metodo === 'compra') {
@@ -46,7 +56,7 @@ export default function NovaHeroiPage() {
     return resultadoRegras.temDireitoReroll
   }
 
-function aplicarMetodo4d6() {
+  function aplicarMetodo4d6() {
     const valores = gerarAtributos4d6()
     setAtributos({
       forca: valores[0],
@@ -157,7 +167,7 @@ function aplicarMetodo4d6() {
     <div className="page container">
       <h1 className="mt-md">Novo Herói</h1>
 
-      {classeConfirmada && (
+      {tendinciaConfirmada && (
         <div className="personagem-card">
           <div className="personagem-info">
             <span className="personagem-nome">{nome}</span>
@@ -165,6 +175,8 @@ function aplicarMetodo4d6() {
               <span>{racas.find(r => r.id === raca)?.nome} {genero === 'm' ? '♂' : '♀'}</span>
               <span>{tamanhos[raca!]} • {deslocamentos[raca!]}m</span>
               <span>{classes.find(c => c.id === classe)?.nome} {nivel}</span>
+              <span>{alinhamentos.find(a => a.id === tendincia)?.nome}</span>
+              <span>{divindades.find(d => d.id === divindade)?.nome}</span>
             </div>
           </div>
           <div className="personagem-body">
@@ -190,7 +202,7 @@ function aplicarMetodo4d6() {
       )}
 
       <div className="form-heroi">
-        {!valoresConfirmados && (
+        {!metodoConfirmado && (
         <div className="form-row">
           <div className="form-group" style={{ flex: 3, marginTop: '2rem' }}>
             <label className="form-label">Nome</label>
@@ -225,7 +237,7 @@ function aplicarMetodo4d6() {
         )}
 
         {!valoresConfirmados && (
-        <div className="form-group">
+        <div className="form-group" style={{ marginTop: '2rem' }}>
           <label className="form-label">Método de Atributos</label>
           <div className="metodos-grid">
             {(['4d6-baixo', 'definido', 'compra', 'livre'] as MetodoAtributos[]).map(m => (
@@ -319,8 +331,6 @@ function aplicarMetodo4d6() {
         </div>
         )}
 
-        
-
         {metodoConfirmado && !valoresConfirmados && (
           <div className="reroll-inline">
             {podeReroll() && (
@@ -331,7 +341,7 @@ function aplicarMetodo4d6() {
                     Re-roll
                   </button>
                   <button type="button" className="btn btn-primary" onClick={manterValores}>
-                    Salvar Nome, Gênero e Atributos
+                    Salvar Atributos
                   </button>
                 </div>
               </>
@@ -340,7 +350,7 @@ function aplicarMetodo4d6() {
               <>
                 <p className="reroll-text">Clique em salvar para continuar</p>
                 <button type="button" className="btn btn-primary" onClick={manterValores}>
-                  Salvar Nome, Gênero e Atributos
+                  Salvar Atributos
                 </button>
               </>
             )}
@@ -366,7 +376,7 @@ function aplicarMetodo4d6() {
               ))}
             </div>
             
-{raca && (
+            {raca && (
               <>
                 <h3 className="section-title">Selecione a Aparência</h3>
                 <div className="raca-grid" key={raca}>
@@ -447,6 +457,66 @@ function aplicarMetodo4d6() {
                 onClick={() => setClasseConfirmada(true)}
               >
                 Confirmar Classe e Nível
+              </button>
+            )}
+          </div>
+        )}
+
+        {classeConfirmada && !tendinciaConfirmada && (
+          <div className="raca-section">
+            <h2 className="section-title raca-title">Tendência</h2>
+            <div className="tendencia-grid">
+              {alinhamentos.map(a => {
+                const permitir = tendenciaPermitida(classe!, a.id)
+                return (
+                  <button
+                    key={a.id}
+                    type="button"
+                    className={`raca-btn ${!permitir ? 'disabled' : ''} ${tendincia === a.id ? 'active' : ''}`}
+                    disabled={!permitir}
+                    onClick={() => {
+                      setTendincia(a.id)
+                      setDivindade(null)
+                    }}
+                    title={!permitir ? `Classe ${classes.find(c => c.id === classe)?.nome} não permite esta tendência` : undefined}
+                  >
+                    {a.nome}
+                  </button>
+                )
+              })}
+            </div>
+            
+            {tendincia && (
+              <>
+                <h3 className="section-title">Divindade</h3>
+                <div className="raca-grid">
+                  {divindadesOrdenadas.map(d => {
+                    const pontos = getPontuacaoDeus(d.id, raca, tendincia, classe)
+                    const Destaque = pontos >= 2
+                    const estrelas = '★'.repeat(pontos)
+                    return (
+                      <button
+                        key={d.id}
+                        type="button"
+                        className={`raca-btn ${divindade === d.id ? 'active' : ''} ${Destaque ? 'destaque' : ''}`}
+                        onClick={() => setDivindade(d.id)}
+                      >
+                        {d.nome}
+                        {pontos > 0 && <span className="estrelas-badge">{estrelas}</span>}
+                      </button>
+                    )
+                  })}
+                </div>
+              </>
+            )}
+
+            {tendincia && divindade && (
+              <button 
+                type="button" 
+                className="btn btn-primary mt-sm"
+                onClick={() => setTendinciaConfirmada(true)}
+              >
+                Confirmar Tendência e Divindade
               </button>
             )}
           </div>

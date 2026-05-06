@@ -271,6 +271,20 @@ function Card Personagem() { }
 
 ---
 
+## ⚠️ Boas Práticas
+
+### Antes de criar arquivos
+**SEMPRE verificar se o arquivo já existe** usando:
+- `glob` para encontrar arquivos
+- `ls` ou `grep` para verificar existência
+
+Isso evita duplicação ou sobrescrita de arquivos existentes (ex: vercel.json, package.json, etc.)
+
+### Arquivos de Configuração
+Arquivos como `vercel.json`, `package.json`, `tsconfig.json`, etc. **NUNCA devem ser sobrescritos** sem antes ler o conteúdo existente. Sempre usar `glob` ou `read` para verificar antes de escrever.
+
+---
+
 ## 📌 Pendências Técnicas
 
 ### Imagens de Raças (script automática)

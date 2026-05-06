@@ -33,27 +33,6 @@ export const bonusDeslocamentoPorClasse = {
   barbaro: 3
 }
 
-export const alinhamentosPorClasse = {
-  paladino: ["lawful_good"],
-  monge: ["lawful_good", "lawful_neutral", "lawful_evil"],
-  barbaro: ["non_lawful"],
-  bardo: ["non_lawful"],
-  druida: ["true_neutral", "neutral_good", "neutral_evil", "lawful_neutral", "chaotic_neutral"]
-}
-
-export const deusesPorClasse = {
-  barbaro: ['kord', 'obad_hai', 'erythnul'],
-  bardo: ['pelor', 'fharlanghn', 'olidammara'],
-  clerigo: [],
-  druida: ['obad_hai'],
-  guerreiro: ['heironeous', 'kord', 'st_cuthbert', 'hextor', 'erythnul'],
-  ladino: ['olidammara', 'nerull', 'vecna', 'erythnul'],
-  mago: ['wee_jas', 'boccob', 'vecna'],
-  monge: ['heironeous', 'st_cuthbert', 'hextor'],
-  paladino: ['heironeous'],
-  ranger: ['ehlonna', 'obad_hai'],
-  feiticeiro: ['wee_jas', 'boccob', 'vecna'],
-}
 
 export function getClasse(id) {
   return classes.find(c => c.id === id) || classes[0]

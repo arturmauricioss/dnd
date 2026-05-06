@@ -1346,10 +1346,17 @@ button {
 }
 
 .raca-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xs);
-  margin-top: var(--space-xs);
+}
+
+.tendencia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
@@ -1386,6 +1393,30 @@ button {
   background: var(--primary-container);
   border-color: var(--primary-amber);
   color: var(--on-primary-container);
+}
+
+.raca-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.raca-btn.destaque {
+  border-color: var(--primary-amber);
+  background: var(--surface-container-high);
+}
+
+.raca-btn .estrelas-badge {
+  display: inline;
+  margin-left: var(--space-xs);
+  font-size: 0.75rem;
+  color: var(--primary-amber);
+}
+
+.raca-btn .pontos-badge {
+  display: block;
+  font-size: 0.625rem;
+  color: var(--primary-amber);
+  margin-top: 2px;
 }
 
 .raca-preview {
