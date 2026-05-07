@@ -6,6 +6,7 @@ import { executarRegras } from '../rules/atributos'
 import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/racasData'
 import { classes } from '../data/classesData'
 import { alinhamentos, divindades, getDivindadesOrdenadas, getPontuacaoDeus } from '../data/tendenciasData'
+import { gerarNomeAleatorio } from '../data/nomesData'
 
 export default function NovoHeroiPage() {
   const [nome, setNome] = useState('')
@@ -269,9 +270,10 @@ export default function NovoHeroiPage() {
               type="button" 
               className="btn btn-primary mt-sm"
               onClick={() => {
-                if (!nome.trim()) {
-                  alert('Por favor, insira um nome para o herói')
-                  return
+                let nomeFinal = nome.trim()
+                if (!nomeFinal) {
+                  nomeFinal = gerarNomeAleatorio(genero)
+                  setNome(nomeFinal)
                 }
                 setMetodoConfirmado(true)
                 if (metodo === '4d6-baixo') aplicarMetodo4d6()

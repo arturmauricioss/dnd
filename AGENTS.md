@@ -129,7 +129,7 @@
 
 ---
 
-## ✅ Obligatório
+## ✅ Obrigatório
 
 1. Types para tudo (TypeScript strict)
 2. Components small e focados
@@ -137,6 +137,7 @@
 4. Mobile como base
 5. Cores via CSS variables
 6. **Data-Driven + Rules Engine**: dados puros em `/data`, lógica em `/engine` ou `/rules`
+7. Design System
 
 ---
 

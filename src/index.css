@@ -1346,8 +1346,8 @@ button {
 }
 
 .raca-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: var(--space-xs);
 }
 
@@ -1355,7 +1355,6 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xs);
-  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -1382,6 +1381,8 @@ button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
+  /* min-height: 40px; */
 }
 
 .raca-btn:hover {
