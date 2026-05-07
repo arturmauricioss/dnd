@@ -492,13 +492,12 @@ export default function NovoHeroiPage() {
                 <div className="raca-grid">
                   {divindadesOrdenadas.map(d => {
                     const pontos = getPontuacaoDeus(d.id, raca, tendincia, classe)
-                    const Destaque = pontos >= 2
                     const estrelas = '★'.repeat(pontos)
                     return (
                       <button
                         key={d.id}
                         type="button"
-                        className={`raca-btn ${divindade === d.id ? 'active' : ''} ${Destaque ? 'destaque' : ''}`}
+                        className={`raca-btn ${divindade === d.id ? 'active' : ''}`}
                         onClick={() => setDivindade(d.id)}
                       >
                         {d.nome}

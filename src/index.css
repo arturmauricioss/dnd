@@ -1393,16 +1393,12 @@ button {
   background: var(--primary-container);
   border-color: var(--primary-amber);
   color: var(--on-primary-container);
+  box-shadow: 0 0 8px var(--primary-amber);
 }
 
 .raca-btn.disabled {
   opacity: 0.3;
   cursor: not-allowed;
-}
-
-.raca-btn.destaque {
-  border-color: var(--primary-amber);
-  background: var(--surface-container-high);
 }
 
 .raca-btn .estrelas-badge {
@@ -1412,10 +1408,14 @@ button {
   color: var(--primary-amber);
 }
 
+.raca-btn.active .estrelas-badge {
+  color: inherit;
+}
+
 .raca-btn .pontos-badge {
   display: block;
   font-size: 0.625rem;
-  color: var(--primary-amber);
+  color: var(--on-surface);
   margin-top: 2px;
 }
 
