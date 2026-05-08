@@ -1,5 +1,5 @@
 import Button from '@components/ui/atoms/Button/Button'
-import type { MetodoSelectorProps } from '@types'
+import type { MetodoSelectorProps, MetodoAtributos } from '@types'
 import './MetodoSelector.css'
 
 const metodos: MetodoAtributos[] = ['4d6-baixo', 'definido', 'compra', 'livre']
