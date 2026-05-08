@@ -6,7 +6,7 @@ import './Novidades.css'
 export default function NovidadesContent({ commits, erro }: NovidadesContentProps) {
   return (
     <div className="novidades">
-      <h3 className="section-title active">
+      <h3 className="section-header active">
         <Git className="section-icon" />
         Novidades {erro && <span className="novidades-offline">(modo offline)</span>}
       </h3>
