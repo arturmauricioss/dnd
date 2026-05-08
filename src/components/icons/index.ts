@@ -1,0 +1,10 @@
+export { default as Swords } from './Swords'
+export { default as Skull } from './Skull'
+export { default as Add } from './Add'
+export { default as Group } from './Group'
+export { default as Master } from './Master'
+export { default as Graph } from './Graph'
+export { default as ChessKnight } from './ChessKnight'
+export { default as Git } from './Git'
+
+export type IconName = 'swords' | 'skull' | 'add' | 'group' | 'master' | 'graph' | 'chess-knight' | 'git'

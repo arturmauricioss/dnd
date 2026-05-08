@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import HeroCard from '../components/ui/HeroCard'
 import NewHeroCard from '../components/ui/NewHeroCard'
-import SVG from '../components/ui/SVG'
+import { Swords, Skull } from '../components/icons'
 
 interface Heroi {
   id: string
@@ -30,7 +30,7 @@ export default function HeroisPage() {
       <h1 className="mt-md">Salão de Heróis</h1>
       
       <h3 className="section-title active">
-        <SVG name="swords" className="section-icon" />
+        <Swords className="section-icon" />
         Heróis Ativos
       </h3>
       
@@ -49,7 +49,7 @@ export default function HeroisPage() {
       {heroisMortos.length > 0 && (
         <>
           <h3 className="section-title dead mt-lg">
-          <SVG name="skull" className="section-icon" />
+          <Skull className="section-icon" />
           Memorial dos Caídos
         </h3>
           <div className="herois-grid memorial">

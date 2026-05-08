@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SVG from '../components/ui/SVG'
+import { Add, Group, Master, ChessKnight, Graph } from '../components/icons'
 
 interface Campanha {
   id: string
@@ -27,19 +27,19 @@ export default function CampanhasPage() {
       <h1 className="mt-md">Campanhas</h1>
 
       <h3 className="section-title active">
-        <SVG name="add" className="section-icon" />
+        <Add className="section-icon" />
         Iniciar
       </h3>
 
       <div className="campanhas-grid">
         <button className="new-campanha-card">
-          <SVG name="group" className="new-campanha-icon" />
+          <Group className="new-campanha-icon" />
           <span className="new-campanha-label">Jogar</span>
           <span className="new-campanha-desc">Entrar em uma aventura</span>
         </button>
 
         <button className="new-campanha-card">
-          <SVG name="master" className="new-campanha-icon" />
+          <Master className="new-campanha-icon" />
           <span className="new-campanha-label">Mestrar</span>
           <span className="new-campanha-desc">Criar eadirigir campanhas</span>
         </button>
@@ -48,7 +48,7 @@ export default function CampanhasPage() {
       {jogando.length > 0 && (
         <>
           <h3 className="section-title active mt-lg">
-            <SVG name="chess-knight" className="section-icon" />
+            <ChessKnight className="section-icon" />
             Jogando
           </h3>
           <div className="campanhas-list">
@@ -71,7 +71,7 @@ export default function CampanhasPage() {
       {mestrando.length > 0 && (
         <>
           <h3 className="section-title active mt-lg">
-            <SVG name="graph" className="section-icon" />
+            <Graph className="section-icon" />
             Mestrando
           </h3>
           <div className="campanhas-list">

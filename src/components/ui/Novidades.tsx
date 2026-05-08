@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { buscarCommits, Commit } from '../../services/api'
-import SVG from '../ui/SVG'
+import { Git } from '../icons'
 
 export default function Novidades() {
   const [commits, setCommits] = useState<Commit[]>([])
@@ -43,7 +43,7 @@ export default function Novidades() {
   return (
     <div className="novidades">
       <h3 className="section-title active">
-        <SVG name="git" className="section-icon" />
+        <Git className="section-icon" />
         Novidades {erro && <span style={{ fontSize: '0.625rem', color: 'var(--on-surface-variant)' }}>(modo offline)</span>}
       </h3>
 
