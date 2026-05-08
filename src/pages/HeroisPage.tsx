@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import HeroCard from '../components/ui/HeroCard'
-import NewHeroCard from '../components/ui/NewHeroCard'
+import HeroCard from '../components/ui/HeroCard/HeroCard'
+import NewHeroCard from '../components/ui/NewHeroCard/NewHeroCard'
 import { Swords, Skull } from '../components/icons'
 
 interface Heroi {

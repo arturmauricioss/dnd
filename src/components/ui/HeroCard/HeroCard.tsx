@@ -1,3 +1,5 @@
+import './HeroCard.css'
+
 interface HeroCardProps {
   nome: string
   level: number

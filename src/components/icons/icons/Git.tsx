@@ -1,8 +1,6 @@
-interface GitProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Git({ className }: GitProps) {
+export default function Git({ className }: IconProps) {
   return (
     <svg
       className={className}

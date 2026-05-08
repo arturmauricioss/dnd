@@ -1,8 +1,6 @@
-interface AddProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Add({ className }: AddProps) {
+export default function Add({ className }: IconProps) {
   return (
     <svg
       className={className}

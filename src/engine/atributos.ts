@@ -1,5 +1,5 @@
-import { metodoLabels, custoPontos, pontosCompraMax, valoresDefinidos } from '@data/atributosData'
-import type { MetodoAtributos } from '@data/atributosData'
+import { metodoLabels, custoPontos, pontosCompraMax, valoresDefinidos } from '@data/dnd/atributosData'
+import type { MetodoAtributos } from '@data/dnd/atributosData'
 
 export { metodoLabels, pontosCompraMax, valoresDefinidos }
 export type { MetodoAtributos }

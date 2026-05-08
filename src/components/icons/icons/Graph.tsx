@@ -1,8 +1,6 @@
-interface GraphProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Graph({ className }: GraphProps) {
+export default function Graph({ className }: IconProps) {
   return (
     <svg
       className={className}

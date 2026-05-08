@@ -1,8 +1,6 @@
-interface MasterProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Master({ className }: MasterProps) {
+export default function Master({ className }: IconProps) {
   return (
     <svg
       className={className}

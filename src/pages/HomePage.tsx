@@ -1,4 +1,4 @@
-import Novidades from '../components/ui/Novidades'
+import Novidades from '../components/ui/Novidades/Novidades'
 
 export default function HomePage() {
   return (

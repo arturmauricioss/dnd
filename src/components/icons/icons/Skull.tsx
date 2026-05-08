@@ -1,8 +1,6 @@
-interface SkullProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Skull({ className }: SkullProps) {
+export default function Skull({ className }: IconProps) {
   return (
     <svg
       className={className}

@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { MetodoAtributos, metodoLabel, gerarAtributos4d6, pontosCompraMax, calcularCusto } from '../engine/atributos'
-import { tendenciaPermitida } from '../data/tendenciasClassesData'
-import { valoresDefinidos } from '../data/atributosData'
+import { tendenciaPermitida } from '../data/dnd/tendenciasClassesData'
+import { valoresDefinidos } from '../data/dnd/atributosData'
 import { executarRegras } from '../rules/atributos'
-import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/racasData'
-import { classes } from '../data/classesData'
-import { alinhamentos, divindades, getDivindadesOrdenadas, getPontuacaoDeus } from '../data/tendenciasData'
-import { gerarNomeAleatorio } from '../data/nomesData'
+import { racas, totalImagensPorRaca, getImagemPath, tamanhos, deslocamentos } from '../data/dnd/racasData'
+import { classes } from '../data/dnd/classesData'
+import { alinhamentos, divindades, getDivindadesOrdenadas, getPontuacaoDeus } from '../data/dnd/tendenciasData'
+import { gerarNomeAleatorio } from '../data/dnd/nomesData'
 
 export default function NovoHeroiPage() {
   const [nome, setNome] = useState('')

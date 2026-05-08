@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import './NewHeroCard.css'
 
 export default function NewHeroCard() {
   const navigate = useNavigate()

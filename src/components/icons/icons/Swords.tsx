@@ -1,8 +1,6 @@
-interface SwordsProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Swords({ className }: SwordsProps) {
+export default function Swords({ className }: IconProps) {
   return (
     <svg
       className={className}

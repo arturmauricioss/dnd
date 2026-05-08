@@ -1,8 +1,6 @@
-interface ChessKnightProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function ChessKnight({ className }: ChessKnightProps) {
+export default function ChessKnight({ className }: IconProps) {
   return (
     <svg
       className={className}

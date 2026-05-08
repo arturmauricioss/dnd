@@ -1,8 +1,6 @@
-interface GroupProps {
-  className?: string
-}
+import { IconProps } from '@types'
 
-export default function Group({ className }: GroupProps) {
+export default function Group({ className }: IconProps) {
   return (
     <svg
       className={className}

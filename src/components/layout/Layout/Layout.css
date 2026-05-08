@@ -1,0 +1,11 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.app-main {
+  flex: 1;
+  padding-bottom: 4.5rem;
+}

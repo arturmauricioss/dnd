@@ -1,6 +1,6 @@
-import type { MetodoAtributos } from '@data/atributosData'
-import { custoPontos, pontosCompraMax, limiteModificadorMinimo } from '@data/atributosData'
-import { modificadoresRaciais } from '@data/racasData'
+import type { MetodoAtributos } from '@data/dnd/atributosData'
+import { custoPontos, pontosCompraMax, limiteModificadorMinimo } from '@data/dnd/atributosData'
+import { modificadoresRaciais } from '@data/dnd/racasData'
 
 export interface Atributos {
   forca: number

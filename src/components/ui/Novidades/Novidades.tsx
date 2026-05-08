@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { buscarCommits, Commit } from '../../services/api'
-import { Git } from '../icons'
+import { buscarCommits, Commit } from '../../../services/api'
+import { Git } from '../../icons'
+import './Novidades.css'
 
 export default function Novidades() {
   const [commits, setCommits] = useState<Commit[]>([])
