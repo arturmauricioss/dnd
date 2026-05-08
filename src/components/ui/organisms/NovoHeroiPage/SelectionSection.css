@@ -94,36 +94,4 @@
   display: block;
 }
 
-.estrelas-badge {
-  display: inline;
-  margin-left: var(--space-xs);
-  font-size: 0.75rem;
-  color: var(--primary-amber);
-}
-
-.option-card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  background: var(--surface-container-low);
-  border: 1px solid var(--outline-variant);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s ease;
-  font-family: var(--font-body);
-  color: var(--on-surface);
-}
-
-.option-card:hover {
-  background: var(--surface-container-high);
-  border-color: var(--primary);
-}
-
-.option-card.active {
-  background: var(--primary-container);
-  border-color: var(--primary-amber);
-}
+/* .estrelas-badge and .option-card moved to OptionCard.css */

@@ -12,6 +12,13 @@
   color: #B8860B;
 }
 
+@media (max-width: 640px) {
+  .title-xl {
+    font-size: 2rem;
+    word-break: break-word;
+  }
+}
+
 .title-lg {
   font-size: var(--headline-lg);
   line-height: 1.2;

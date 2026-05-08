@@ -1,8 +1,10 @@
 .heroes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
+  gap: var(--space-sm);
   margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--outline-variant);
 }
 
 @media (max-width: 360px) {

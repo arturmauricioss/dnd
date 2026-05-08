@@ -10,8 +10,8 @@
 }
 
 .toggle.active {
-  background: var(--primary-container);
-  border-color: var(--primary-amber);
+  background: var(--surface-container);
+  border-color: var(--primary);
 }
 
 .toggle-thumb {
@@ -20,9 +20,10 @@
   left: 2px;
   width: 18px;
   height: 18px;
-  background: var(--on-surface-variant);
+  background: var(--primary);
   border-radius: 50%;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .toggle.active .toggle-thumb {
