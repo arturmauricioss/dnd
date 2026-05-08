@@ -1,4 +1,6 @@
-export type MetodoAtributos = 'livre' | '4d6-baixo' | 'definido' | 'compra'
+import type { MetodoAtributos } from '@types'
+
+export type { MetodoAtributos }
 
 export const METODOS: MetodoAtributos[] = ['4d6-baixo', 'definido', 'compra', 'livre']
 

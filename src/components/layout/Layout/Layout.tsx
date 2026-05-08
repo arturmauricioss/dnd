@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import BottomNav from '../../ui/BottomNav/BottomNav'
+import BottomNav from '@components/ui/organisms/BottomNav/BottomNav'
 import './Layout.css'
 
 export default function Layout() {

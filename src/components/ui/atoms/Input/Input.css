@@ -1,0 +1,19 @@
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--outline);
+  color: var(--on-surface);
+  padding: var(--space-xs) 0;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: var(--primary-amber);
+}
+
+.input::placeholder {
+  color: var(--on-surface-variant);
+}

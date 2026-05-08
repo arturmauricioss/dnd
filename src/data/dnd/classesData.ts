@@ -1,7 +1,6 @@
-export interface Classe {
-  id: string
-  nome: string
-}
+import type { Classe } from '@types'
+
+export type { Classe }
 
 export const classes: Classe[] = [
   { id: 'barbaro', nome: 'BÁRBARO' },

@@ -1,0 +1,23 @@
+.title {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.title-xl {
+  font-size: var(--headline-xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: #B8860B;
+}
+
+.title-lg {
+  font-size: var(--headline-lg);
+  line-height: 1.2;
+}
+
+.title-md {
+  font-size: var(--headline-md);
+  line-height: 1.3;
+}

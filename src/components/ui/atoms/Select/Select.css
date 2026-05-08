@@ -1,0 +1,16 @@
+.select {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  color: var(--on-surface);
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-amber);
+}

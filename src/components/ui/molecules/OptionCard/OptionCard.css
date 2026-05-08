@@ -1,0 +1,179 @@
+/* Selection Section */
+.selection-section {
+  margin: 0;
+}
+
+.section-label {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+  display: block;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.selection-section .btn {
+  display: block;
+  margin: var(--space-md) auto 0;
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: var(--space-xs);
+}
+
+.tendencia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .options-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Option Card */
+.option-card {
+  padding: var(--space-xs) var(--space-xs);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-sm);
+  color: var(--on-surface);
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 32px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.option-card:hover {
+  background: var(--surface-container-high);
+  border-color: var(--primary);
+}
+
+.option-card.active {
+  background: var(--primary-container);
+  border-color: var(--primary-amber);
+  color: var(--on-primary-container);
+  box-shadow: 0 0 8px var(--primary-amber);
+}
+
+.option-card.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.option-card .estrelas-badge {
+  display: inline;
+  margin-left: var(--space-xs);
+  font-size: 0.75rem;
+  color: var(--primary-amber);
+}
+
+.option-card.active .estrelas-badge {
+  color: inherit;
+}
+
+.option-card .pontos-badge {
+  display: block;
+  font-size: 0.625rem;
+  color: var(--on-surface);
+  margin-top: 2px;
+}
+
+/* Option Preview */
+.option-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-md);
+}
+
+.option-preview-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--outline);
+  background: var(--surface-container);
+}
+
+/* Option Image Buttons */
+.option-image-btn {
+  padding: var(--space-xs);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-image-btn:hover {
+  border-color: var(--primary);
+}
+
+.option-image-btn.active {
+  border-color: var(--primary-amber);
+  border-width: 2px;
+}
+
+.option-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+/* Selection Confirmed */
+.selection-confirmed {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+}
+
+.selection-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.selection-info span:first-child {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+.selection-name {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--on-surface);
+}

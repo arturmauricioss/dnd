@@ -1,8 +1,6 @@
-export interface Commit {
-  mensagem: string
-  data: string
-  autor: string
-}
+import type { Commit } from '@types'
+
+export { Commit }
 
 function getApiBaseUrl(): string {
   if (typeof window === 'undefined') return '/api'

@@ -1,0 +1,51 @@
+.metodo-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.metodos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.metodo-btn {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.metodo-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+}
+
+.metodo-btn.active {
+  background: var(--primary-container);
+  border-color: var(--primary);
+  color: var(--on-primary-container);
+}
+
+.metodo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.metodo-dica {
+  font-family: var(--font-body);
+  font-size: var(--body-md);
+  color: var(--on-surface-variant);
+  margin-top: var(--space-sm);
+}
+
+@media (max-width: 640px) {
+  .metodos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

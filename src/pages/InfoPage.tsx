@@ -1,8 +1,11 @@
+import Page from '@components/ui/atoms/Page/Page'
+import Title from '@components/ui/atoms/Title/Title'
+
 export default function InfoPage() {
   return (
-    <div className="page container">
-      <h1 className="mt-md">Info</h1>
+    <Page>
+      <Title size="xl" className="mt-md">Info</Title>
       <p className="text-secondary mt-sm">Página de informações em construção...</p>
-    </div>
+    </Page>
   )
 }

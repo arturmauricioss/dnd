@@ -1,10 +1,12 @@
-import Novidades from '../components/ui/Novidades/Novidades'
+import Page from '@components/ui/atoms/Page/Page'
+import Title from '@components/ui/atoms/Title/Title'
+import Novidades from '@components/ui/organisms/Novidades/Novidades'
 
 export default function HomePage() {
   return (
-    <div className="page container">
-      <h1 className="mt-md">Home</h1>
+    <Page>
+      <Title size="xl" className="mt-md">Home</Title>
       <Novidades />
-    </div>
+    </Page>
   )
 }

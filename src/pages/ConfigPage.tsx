@@ -1,30 +1,30 @@
-import { useTheme } from '../context/ThemeContext'
+import { useTheme } from '@context/ThemeContext'
+import Page from '@components/ui/atoms/Page/Page'
+import Title from '@components/ui/atoms/Title/Title'
+import ConfigSection, { ConfigRow, ConfigLabel } from '@components/ui/molecules/ConfigSection/ConfigSection'
+import Toggle from '@components/ui/atoms/Toggle/Toggle'
 
 export default function ConfigPage() {
   const { theme, toggleTheme } = useTheme()
 
   return (
-    <div className="page container">
-      <h1 className="mt-md">Configurações</h1>
+    <Page>
+      <Title size="xl" className="mt-md">Configurações</Title>
       
-      <div className="config-section mt-lg">
-        <div className="config-row">
-          <div className="config-label">
-            <span className="config-emoji">{theme === 'dark' ? '🌙' : '☀️'}</span>
-            <div>
-              <p className="config-title">Tema</p>
-              <p className="config-desc">{theme === 'dark' ? 'Escuro' : 'Claro'}</p>
-            </div>
-          </div>
-          <button 
-            className={`theme-toggle ${theme}`}
+      <ConfigSection>
+        <ConfigRow>
+          <ConfigLabel
+            emoji={theme === 'dark' ? '🌙' : '☀️'}
+            title="Tema"
+            description={theme === 'dark' ? 'Escuro' : 'Claro'}
+          />
+          <Toggle
+            active={theme === 'dark'}
             onClick={toggleTheme}
-            aria-label="Alternar tema"
-          >
-            <span className="toggle-thumb" />
-          </button>
-        </div>
-      </div>
-    </div>
+            label="Alternar tema"
+          />
+        </ConfigRow>
+      </ConfigSection>
+    </Page>
   )
 }

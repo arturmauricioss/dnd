@@ -1,0 +1,92 @@
+.personagem-card {
+  background: var(--surface-container);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.personagem-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.personagem-nome {
+  font-family: var(--font-headline);
+  font-size: var(--headline-lg);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.personagem-detalhes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--body-md);
+  color: var(--on-surface-variant);
+}
+
+.personagem-body {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.personagem-foto {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 2px solid var(--outline);
+}
+
+.personagem-atributos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.personagem-atributo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-xs);
+  background: var(--surface-container-low);
+  border-radius: var(--radius-sm);
+}
+
+.atributo-label {
+  font-family: var(--font-label);
+  font-size: var(--label-caps);
+  color: var(--on-surface-variant);
+}
+
+.atributo-valor {
+  font-family: var(--font-stats);
+  font-size: var(--body-lg);
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.atributo-mod {
+  font-family: var(--font-stats);
+  font-size: var(--body-md);
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .personagem-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .personagem-atributos {
+    width: 100%;
+  }
+}

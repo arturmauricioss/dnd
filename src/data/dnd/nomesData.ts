@@ -1,5 +1,3 @@
-// data/nomesData.ts
-
 export const nomesMasculinos = [
   'Thorin',
   'Arthas',
@@ -19,11 +17,3 @@ export const nomesFemininos = [
   'Elora',
   'Ygritte'
 ]
-
-export function gerarNomeAleatorio(genero: 'm' | 'f') {
-  const lista = genero === 'm'
-    ? nomesMasculinos
-    : nomesFemininos
-
-  return lista[Math.floor(Math.random() * lista.length)]
-}

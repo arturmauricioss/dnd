@@ -1,32 +1,12 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-
-type Theme = 'dark' | 'light'
-
-interface ThemeContextType {
-  theme: Theme
-  toggleTheme: () => void
-}
+import { createContext, useContext } from 'react'
+import type { ThemeContextType } from '@types'
+import { useThemeState, useThemeSync } from '@hooks/useTheme'
 
 const ThemeContext = createContext<ThemeContextType | null>(null)
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme') as Theme
-      if (saved) return saved
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-    }
-    return 'dark'
-  })
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
-  }
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { theme, toggleTheme } = useThemeState()
+  useThemeSync(theme)
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

@@ -1,0 +1,8 @@
+export { default as NomeForm } from './NomeForm'
+export { default as MetodoSelector } from './MetodoSelector'
+export { default as AtributosGrid } from './AtributosGrid'
+export { default as RacaSelection } from './RacaSelection'
+export { default as AparenciaSelection } from './AparenciaSelection'
+export { default as ClasseSelection } from './ClasseSelection'
+export { default as TendenciaSelection } from './TendenciaSelection'
+export { default as PersonagemCard } from './PersonagemCard'

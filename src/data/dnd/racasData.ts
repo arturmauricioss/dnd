@@ -1,3 +1,7 @@
+import type { AtributoNome, Tamanho } from '@types'
+
+export type { AtributoNome, Tamanho }
+
 export const racas = [
   { id: 'humano', nome: 'Humano', prefixo: 'humano' },
   { id: 'anao', nome: 'Anão', prefixo: 'anao' },
@@ -8,8 +12,6 @@ export const racas = [
   { id: 'meio-orc', nome: 'Meio-Orc', prefixo: 'meio-orc' }
 ]
 
-export type AtributoNome = 'forca' | 'destreza' | 'constituicao' | 'inteligencia' | 'sabedoria' | 'carisma'
-
 export const modificadoresRaciais: Record<string, Partial<Record<AtributoNome, number>>> = {
   'humano': {},
   'anao': { constituicao: 2, carisma: -2 },
@@ -19,8 +21,6 @@ export const modificadoresRaciais: Record<string, Partial<Record<AtributoNome, n
   'meio-orc': { forca: 2, inteligencia: -2, carisma: -2 },
   'halfling': { destreza: 2, forca: -2 }
 }
-
-export type Tamanho = 'pequeno' | 'medio'
 
 export const tamanhos: Record<string, Tamanho> = {
   'humano': 'medio',
@@ -51,11 +51,4 @@ export const totalImagensPorRaca: Record<string, number> = {
   'meio-elfo': 1,
   'meio-orc': 1,
   'halfling': 1
-}
-
-export function getImagemPath(racaId: string, genero: 'm' | 'f', numero: number): string {
-  const raca = racas.find(r => r.id === racaId)
-  const prefixo = raca?.prefixo || racaId
-  const generoStr = genero === 'm' ? 'm' : 'f'
-  return `/racas/${prefixo}_${generoStr}${String(numero).padStart(2, '0')}.png`
 }

@@ -1,0 +1,80 @@
+.atributos-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.pontos-compra {
+  font-family: var(--font-stats);
+  font-size: var(--body-lg);
+  color: var(--primary);
+  text-align: center;
+  padding: var(--space-sm);
+  background: var(--surface-container);
+  border-radius: var(--radius);
+}
+
+.atributos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.atributo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.atributo:hover {
+  border-color: var(--primary);
+}
+
+.atributo.selected {
+  border-color: var(--primary);
+  background: var(--surface-container-high);
+}
+
+.atributo .input {
+  width: 60px;
+  text-align: center;
+  font-family: var(--font-stats);
+  font-size: var(--stat-display);
+  font-weight: 800;
+}
+
+.atributo .form-label {
+  font-size: var(--body-md);
+}
+
+.reroll-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.reroll-text {
+  font-family: var(--font-body);
+  font-size: var(--body-lg);
+  color: var(--on-surface-variant);
+}
+
+.reroll-actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .atributos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

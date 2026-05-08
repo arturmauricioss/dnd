@@ -1,0 +1,129 @@
+.selection-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.section-title.section-label {
+  font-family: var(--font-label);
+  font-size: var(--label-caps);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.05em;
+  margin-top: var(--space-lg);
+}
+
+.section-title {
+  margin-bottom: var(--space-sm);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+@media (max-width: 640px) {
+  .options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.nivel-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.nivel-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.nivel-btn {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: var(--on-surface);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nivel-btn:hover {
+  border-color: var(--primary);
+}
+
+.nivel-valor {
+  font-family: var(--font-stats);
+  font-size: var(--stat-display);
+  font-weight: 800;
+  color: var(--primary);
+  min-width: 40px;
+  text-align: center;
+}
+
+.option-image-btn {
+  padding: var(--space-xs);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-image-btn:hover {
+  border-color: var(--primary);
+}
+
+.option-image-btn.active {
+  border-color: var(--primary-amber);
+  border-width: 2px;
+}
+
+.option-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.estrelas-badge {
+  display: inline;
+  margin-left: var(--space-xs);
+  font-size: 0.75rem;
+  color: var(--primary-amber);
+}
+
+.option-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  color: var(--on-surface);
+}
+
+.option-card:hover {
+  background: var(--surface-container-high);
+  border-color: var(--primary);
+}
+
+.option-card.active {
+  background: var(--primary-container);
+  border-color: var(--primary-amber);
+}

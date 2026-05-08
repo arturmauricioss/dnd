@@ -137,6 +137,11 @@
 4. Mobile como base
 5. Cores via CSS variables
 6. **Data-Driven + Rules Engine**: dados puros em `/data`, lógica em `/engine` ou `/rules`
+7. **Types centralizados**: Todo tipo/interface deve estar em `src/types/index.ts` - nunca definir interface dentro de componentes
+8. **Atomic Design**: Componentes organizados em:
+   - `atoms/` - Button, Input, Title, Toggle, etc (menores unidades)
+   - `molecules/` - ActionCard, ConfigSection, SectionHeader (combinação de atoms)
+   - `organisms/` - HeroCard, CampaignCard, BottomNav (combinação de molecules)
 7. Design System
 
 ---

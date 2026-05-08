@@ -1,0 +1,52 @@
+.nome-form {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.nome-input {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.genero-selector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.genero-buttons {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.genero-btn {
+  flex: 1;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius);
+  padding: var(--space-sm);
+  font-size: 1.5rem;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.genero-btn:hover {
+  border-color: var(--primary);
+}
+
+.genero-btn.active {
+  background: var(--primary-container);
+  border-color: var(--primary);
+  color: var(--on-primary-container);
+}
+
+@media (max-width: 640px) {
+  .nome-form {
+    flex-direction: column;
+  }
+}

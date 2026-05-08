@@ -1,40 +1,24 @@
-import { useState } from 'react'
-import HeroCard from '../components/ui/HeroCard/HeroCard'
-import NewHeroCard from '../components/ui/NewHeroCard/NewHeroCard'
-import { Swords, Skull } from '../components/icons'
+import { useHeroes } from '@hooks/useHeroes'
+import Page from '@components/ui/atoms/Page/Page'
+import Title from '@components/ui/atoms/Title/Title'
+import HeroCard from '@components/ui/organisms/Card/HeroCard/HeroCard'
+import NewHeroCard from '@components/ui/organisms/Card/NewHeroCard/NewHeroCard'
+import SectionHeader from '@components/ui/molecules/SectionHeader/SectionHeader'
+import HeroesGrid from '@components/ui/molecules/HeroesGrid/HeroesGrid'
+import { Swords, Skull } from '@components/icons'
 
-interface Heroi {
-  id: string
-  nome: string
-  level: number
-  imagem: string
-  status: 'alive' | 'dead'
-}
-
-const heroisIniciais: Heroi[] = [
-  { id: '1', nome: 'Aragorn', level: 5, imagem: '/perfil/aragorn.jpg', status: 'alive' },
-  { id: '2', nome: 'Gandalf', level: 12, imagem: '/perfil/gandalf.jpeg', status: 'alive' },
-  { id: '3', nome: 'Legolas', level: 8, imagem: '/perfil/legolas.jpg', status: 'alive' },
-  { id: '4', nome: 'Boromir', level: 7, imagem: '/perfil/aragorn.jpg', status: 'dead' },
-  { id: '5', nome: 'Gimli', level: 6, imagem: '/perfil/aragorn.jpg', status: 'dead' },
-]
-
-export default function HeroisPage() {
-  const [herois] = useState<Heroi[]>(heroisIniciais)
-
-  const heroisVivos = herois.filter(h => h.status === 'alive')
-  const heroisMortos = herois.filter(h => h.status === 'dead')
+export default function HeroesPage() {
+  const { heroisVivos, heroisMortos } = useHeroes()
 
   return (
-    <div className="page container">
-      <h1 className="mt-md">Salão de Heróis</h1>
+    <Page>
+      <Title size="xl" className="mt-md">Salão de Heróis</Title>
       
-      <h3 className="section-title active">
-        <Swords className="section-icon" />
+      <SectionHeader icon={Swords} active>
         Heróis Ativos
-      </h3>
+      </SectionHeader>
       
-      <div className="herois-grid">
+      <HeroesGrid>
         <NewHeroCard />
         {heroisVivos.map(heroi => (
           <HeroCard 
@@ -44,15 +28,14 @@ export default function HeroisPage() {
             imagem={heroi.imagem}
           />
         ))}
-      </div>
+      </HeroesGrid>
 
       {heroisMortos.length > 0 && (
         <>
-          <h3 className="section-title dead mt-lg">
-          <Skull className="section-icon" />
-          Memorial dos Caídos
-        </h3>
-          <div className="herois-grid memorial">
+          <SectionHeader icon={Skull} active className="mt-lg">
+            Memorial dos Caídos
+          </SectionHeader>
+          <HeroesGrid className="memorial">
             {heroisMortos.map(heroi => (
               <HeroCard 
                 key={heroi.id}
@@ -62,9 +45,9 @@ export default function HeroisPage() {
                 isDead
               />
             ))}
-          </div>
+          </HeroesGrid>
         </>
       )}
-    </div>
+    </Page>
   )
 }

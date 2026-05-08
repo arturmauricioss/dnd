@@ -1,0 +1,18 @@
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-headline);
+  font-size: var(--body-md);
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-top: var(--space-lg);
+}
+
+.section-header.active {
+  color: var(--primary-amber);
+}
+
+.section-header .section-icon {
+  color: var(--primary-amber);
+}

@@ -1,0 +1,35 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+  border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 15px 2px var(--primary-amber);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--on-surface);
+  border: 1px solid var(--accent);
+  opacity: 0.7;
+}
+
+.btn-secondary:hover {
+  opacity: 1;
+  border-color: var(--primary-amber);
+}
