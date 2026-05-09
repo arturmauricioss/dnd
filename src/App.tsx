@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
-import Layout from '@components/layout/Layout/Layout'
+import Layout from '@components/shell/Layout/Layout'
 import HomePage from '@pages/HomePage'
 import HeroisPage from '@pages/HeroisPage'
 import NovoHeroiPage from '@pages/NovoHeroiPage'

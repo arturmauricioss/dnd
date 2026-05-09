@@ -1,5 +1,5 @@
-import Page from '@components/ui/atoms/Page/Page'
-import Title from '@components/ui/atoms/Title/Title'
+import Page from '@components/shell/Page/Page'
+import Title from '@components/ui/basic/Title/Title'
 
 export default function InfoPage() {
   return (

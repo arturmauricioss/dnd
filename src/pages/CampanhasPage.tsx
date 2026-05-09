@@ -1,12 +1,12 @@
-import { Add, Group, Master, ChessKnight, Graph } from '@components/icons'
-import { useCampanhas } from '@hooks/useCampanhas'
-import Page from '@components/ui/atoms/Page/Page'
-import Title from '@components/ui/atoms/Title/Title'
-import Grid from '@components/ui/atoms/Grid/Grid'
-import ActionCard from '@components/ui/molecules/ActionCard/ActionCard'
-import SectionHeader from '@components/ui/molecules/SectionHeader/SectionHeader'
-import CampaignCard from '@components/ui/organisms/CampaignCard/CampaignCard'
-import CampaignList from '@components/ui/molecules/CampaignList/CampaignList'
+import { Add, Group, Master, ChessKnight, Graph } from '@components/ui/icons'
+import { useCampanhas } from '@features/campaigns/hooks/useCampanhas'
+import Page from '@components/shell/Page/Page'
+import Title from '@components/ui/basic/Title/Title'
+import Grid from '@components/ui/basic/Grid/Grid'
+import ActionCard from '@features/campaigns/components/ActionCard/ActionCard'
+import SectionHeader from '@features/home/components/SectionHeader/SectionHeader'
+import CampaignCard from '@features/campaigns/components/CampaignCard/CampaignCard'
+import CampaignList from '@features/campaigns/components/CampaignList/CampaignList'
 
 export default function CampanhasPage() {
   const { jogando, mestrando } = useCampanhas()
@@ -26,7 +26,7 @@ export default function CampanhasPage() {
         <ActionCard
           icon={Master}
           label="Mestrar"
-          description="Criar eadirigir campanhas"
+          description="Criar e dirigir campanhas"
         />
       </Grid>
 

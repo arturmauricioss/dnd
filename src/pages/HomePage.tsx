@@ -1,6 +1,6 @@
-import Page from '@components/ui/atoms/Page/Page'
-import Title from '@components/ui/atoms/Title/Title'
-import Novidades from '@components/ui/organisms/Novidades/Novidades'
+import Page from '@components/shell/Page/Page'
+import Title from '@components/ui/basic/Title/Title'
+import Novidades from '@features/home/components/Novidades/Novidades'
 
 export default function HomePage() {
   return (

@@ -1,4 +1,4 @@
-import type { Commit } from '@types'
+import type { Commit } from './types'
 
 export { Commit }
 

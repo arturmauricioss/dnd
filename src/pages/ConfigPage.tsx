@@ -1,11 +1,11 @@
-import { useTheme } from '@context/ThemeContext'
-import Page from '@components/ui/atoms/Page/Page'
-import Title from '@components/ui/atoms/Title/Title'
-import ConfigSection, { ConfigRow, ConfigLabel } from '@components/ui/molecules/ConfigSection/ConfigSection'
-import Toggle from '@components/ui/atoms/Toggle/Toggle'
+import { useThemeContext } from '@features/settings/hooks/useThemeContext'
+import Page from '@components/shell/Page/Page'
+import Title from '@components/ui/basic/Title/Title'
+import ConfigSection, { ConfigRow, ConfigLabel } from '@features/settings/components/ConfigSection/ConfigSection'
+import Toggle from '@components/ui/basic/Toggle/Toggle'
 
 export default function ConfigPage() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme } = useThemeContext()
 
   return (
     <Page>

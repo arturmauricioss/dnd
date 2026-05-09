@@ -1,11 +1,11 @@
-import { useHeroes } from '@hooks/useHeroes'
-import Page from '@components/ui/atoms/Page/Page'
-import Title from '@components/ui/atoms/Title/Title'
-import HeroCard from '@components/ui/organisms/Card/HeroCard/HeroCard'
-import NewHeroCard from '@components/ui/organisms/Card/NewHeroCard/NewHeroCard'
-import SectionHeader from '@components/ui/molecules/SectionHeader/SectionHeader'
-import HeroesGrid from '@components/ui/molecules/HeroesGrid/HeroesGrid'
-import { Swords, Skull } from '@components/icons'
+import { useHeroes } from '@features/heroes/hooks/useHeroes'
+import Page from '@components/shell/Page/Page'
+import Title from '@components/ui/basic/Title/Title'
+import HeroCard from '@features/heroes/components/Card/HeroCard/HeroCard'
+import NewHeroCard from '@features/heroes/components/Card/NewHeroCard/NewHeroCard'
+import SectionHeader from '@features/home/components/SectionHeader/SectionHeader'
+import HeroesGrid from '@features/heroes/components/HeroesGrid/HeroesGrid'
+import { Swords, Skull } from '@components/ui/icons'
 
 export default function HeroesPage() {
   const { heroisVivos, heroisMortos } = useHeroes()

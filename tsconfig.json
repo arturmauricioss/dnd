@@ -18,17 +18,15 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@features/*": ["./src/features/*"],
+      "@systems/*": ["./src/systems/*"],
       "@data/*": ["./src/data/*"],
       "@rules/*": ["./src/rules/*"],
       "@engine/*": ["./src/engine/*"],
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
-      "@context/*": ["./src/context/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@services/*": ["./src/services/*"],
-      "@types": ["./src/types/index"],
-      "@types/*": ["./src/types/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@services/*": ["./src/services/*"]
     }
   },
   "include": ["src"]
