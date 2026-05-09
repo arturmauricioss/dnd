@@ -1,7 +1,7 @@
-import { useThemeContext } from '@features/settings/hooks/useThemeContext'
+import { useThemeContext } from '@features/theme/hooks/useThemeContext'
 import Page from '@components/shell/Page/Page'
 import Title from '@components/ui/basic/Title/Title'
-import ConfigSection, { ConfigRow, ConfigLabel } from '@features/settings/components/ConfigSection/ConfigSection'
+import ConfigSection, { ConfigRow, ConfigLabel } from '@features/theme/components/ConfigSection/ConfigSection'
 import Toggle from '@components/ui/basic/Toggle/Toggle'
 
 export default function ConfigPage() {
