@@ -1,0 +1,100 @@
+.race-select {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.heptagram {
+  width: 300px;
+  height: 300px;
+}
+
+.heptagram path {
+  fill: transparent;
+  stroke: var(--primary-amber);
+  stroke-width: 1;
+}
+
+.heptagram-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--surface-container);
+  border: 1px solid var(--primary-amber);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.heptagram-line {
+  stroke: var(--outline-variant);
+  stroke-width: 1;
+}
+
+.race-point {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-container);
+  border: 1px solid var(--primary-amber);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.race-point:active {
+  outline: none;
+}
+
+.race-point .text {
+  font-size: 0.6rem;
+  text-align: center;
+  padding: 2px;
+}
+
+.race-point:hover {
+  background: var(--surface-container-high);
+  border-color: var(--primary-amber);
+}
+
+.race-point.selected {
+  border-color: var(--primary-amber);
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary-amber);
+}
+
+.race-point.selected .text {
+  color: var(--on-primary);
+}
+
+.race-point.selected {
+  animation: pulse 0.15s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.race-select.animating .race-point {
+  pointer-events: none;
+}
+
+.random-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

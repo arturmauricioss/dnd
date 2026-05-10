@@ -1,10 +1,10 @@
 import Page from '@components/shell/Page/Page'
-import Title from '@components/ui/basic/Title/Title'
+import NewHeroContent from '@features/newHero/components/NewHeroContent/NewHeroContent'
 
 export default function NewHeroPage() {
   return (
     <Page>
-      <Title size="xl" className="mt-md">Novo Personagem</Title>
+      <NewHeroContent />
     </Page>
   )
 }

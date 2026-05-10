@@ -1,0 +1,19 @@
+.random-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-weight: bold;
+  color: var(--primary-amber);
+}
+
+.random-button:active {
+  transform: scale(0.95);
+}
+
+.gender-toggle.selected {
+  color: var(--on-primary);
+}
