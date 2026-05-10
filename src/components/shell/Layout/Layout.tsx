@@ -1,14 +1,15 @@
 import { Outlet } from 'react-router-dom'
-import BottomNav from '@components/shell/BottomNav/BottomNav'
+import Box from '@components/ui/basic/Box/Box'
+import PageNavigation from '@features/pageNavigation/components/PageNavigation'
 import './Layout.css'
 
 export default function Layout() {
   return (
-    <div className="app-layout">
+    <Box className="app-layout">
       <main className="app-main">
         <Outlet />
       </main>
-      <BottomNav />
-    </div>
+      <PageNavigation />
+    </Box>
   )
 }
