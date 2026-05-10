@@ -18,16 +18,14 @@ export default function HomePage() {
         Atualizações
       </RowHeader>
       {!loading && commits.length > 0 && (
-        <Box className="recent-updates">
-          <Box className="recent-updates-list">
-            {commits.slice(0, 10).map((commit, index) => (
-              <RowMessage
-                key={index}
-                message={commit.mensagem}
-                date={formatarData(commit.data)}
-              />
-            ))}
-          </Box>
+        <Box className="recent-updates-list">
+          {commits.slice(0, 10).map((commit, index) => (
+            <RowMessage
+              key={index}
+              message={commit.mensagem}
+              date={formatarData(commit.data)}
+            />
+          ))}
         </Box>
       )}
     </Page>

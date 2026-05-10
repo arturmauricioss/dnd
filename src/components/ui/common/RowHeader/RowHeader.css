@@ -15,6 +15,10 @@
   color: var(--primary-amber);
 }
 
+.row-header.secondary {
+  color: var(--secondary);
+}
+
 .row-header .row-header-icon {
-  color: var(--primary-amber);
+  color: currentColor;
 }

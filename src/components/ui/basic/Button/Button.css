@@ -13,9 +13,9 @@
 }
 
 .btn-primary {
-  background: var(--secondary-container);
-  color: var(--on-secondary-container);
-  border: 1px solid var(--accent);
+  background: var(--primary);
+  color: var(--on-primary);
+  border: 1px solid var(--primary-amber);
 }
 
 .btn-primary:hover {
