@@ -1,0 +1,50 @@
+.row-input-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.row-input-button-input {
+  flex: 1;
+  min-width: 100px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--outline);
+  color: var(--on-surface);
+  padding: var(--space-xs) 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border-radius: 0;
+}
+
+.row-input-button-input:focus {
+  outline: none;
+  border-bottom-color: var(--primary-amber);
+}
+
+.row-input-button-input::placeholder {
+  color: var(--on-surface-variant);
+}
+
+.row-input-button-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  width: fit-content;
+}
+
+.row-input-button-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

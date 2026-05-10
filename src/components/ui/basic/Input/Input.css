@@ -4,7 +4,6 @@
   border-bottom: 1px solid var(--outline);
   color: var(--on-surface);
   padding: var(--space-xs) 0;
-  width: 100%;
   font-family: var(--font-body);
   font-size: 1rem;
 }
