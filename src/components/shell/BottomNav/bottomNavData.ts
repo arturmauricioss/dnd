@@ -5,6 +5,5 @@ export interface BottomNavItem {
 
 export const bottomNavItems: BottomNavItem[] = [
   { to: '/', label: 'Home' },
-  { to: '/info', label: 'Info' },
   { to: '/config', label: 'Config' },
 ]

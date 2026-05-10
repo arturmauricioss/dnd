@@ -1,4 +1,4 @@
-import { bottomNavItems } from '@components/ui/icons/bottomNavData'
+import { bottomNavItems } from './bottomNavData'
 import BottomNavItem from './BottomNavItem'
 import './BottomNav.css'
 

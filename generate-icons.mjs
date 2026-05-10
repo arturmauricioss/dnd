@@ -13,11 +13,11 @@ mkdirSync('public', { recursive: true })
 await sharp(Buffer.from(swordsSvg))
   .resize(192, 192)
   .png()
-  .toFile('public/pwa-192x192.png')
+  .toFile('public/pwa/pwa-192x192.png')
 
 await sharp(Buffer.from(swordsSvg))
   .resize(512, 512)
   .png()
-  .toFile('public/pwa-512x512.png')
+  .toFile('public/pwa/pwa-512x512.png')
 
 console.log('Icons generated with Swords!')

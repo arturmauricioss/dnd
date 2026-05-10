@@ -2,7 +2,7 @@ export interface IconProps {
   className?: string
 }
 
-export interface SectionHeaderProps {
+export interface RowHeaderProps {
   icon: (props: IconProps) => React.ReactNode
   children: React.ReactNode
   active?: boolean

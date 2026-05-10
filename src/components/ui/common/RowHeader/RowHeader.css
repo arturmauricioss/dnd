@@ -1,4 +1,4 @@
-.section-header {
+.row-header {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -7,12 +7,14 @@
   font-weight: 600;
   color: var(--on-surface);
   margin-top: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--outline-variant);
 }
 
-.section-header.active {
+.row-header.active {
   color: var(--primary-amber);
 }
 
-.section-header .section-icon {
+.row-header .row-header-icon {
   color: var(--primary-amber);
 }

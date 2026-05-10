@@ -1,0 +1,16 @@
+.text {
+  font-family: var(--font-body);
+  color: var(--on-surface);
+}
+
+.text-sm {
+  font-size: var(--body-sm);
+}
+
+.text-md {
+  font-size: var(--body-md);
+}
+
+.text-lg {
+  font-size: var(--body-lg);
+}

@@ -9,7 +9,7 @@
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.02em;
-  color: #B8860B;
+  color: var(--primary);
 }
 
 @media (max-width: 640px) {

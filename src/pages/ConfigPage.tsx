@@ -1,30 +1,28 @@
 import { useThemeContext } from '@features/theme/hooks/useThemeContext'
 import Page from '@components/shell/Page/Page'
 import Title from '@components/ui/basic/Title/Title'
-import ConfigSection, { ConfigRow, ConfigLabel } from '@features/theme/components/ConfigSection/ConfigSection'
-import Toggle from '@components/ui/basic/Toggle/Toggle'
+import RowHeader from '@components/ui/common/RowHeader/RowHeader'
+import RowToggle from '@components/ui/common/RowToggle/RowToggle'
+import { LightMode, DarkMode } from '@components/ui/icons'
 
 export default function ConfigPage() {
   const { theme, toggleTheme } = useThemeContext()
+
+  const ThemeIcon = theme === 'dark' ? DarkMode : LightMode
 
   return (
     <Page>
       <Title size="xl" className="mt-md">Configurações</Title>
       
-      <ConfigSection>
-        <ConfigRow>
-          <ConfigLabel
-            emoji={theme === 'dark' ? '🌙' : '☀️'}
-            title="Tema"
-            description={theme === 'dark' ? 'Escuro' : 'Claro'}
-          />
-          <Toggle
-            active={theme === 'dark'}
-            onClick={toggleTheme}
-            label="Alternar tema"
-          />
-        </ConfigRow>
-      </ConfigSection>
+      <RowHeader icon={ThemeIcon} active>
+        Tema
+      </RowHeader>
+      
+      <RowToggle
+        label={theme === 'dark' ? 'Modo escuro' : 'Modo claro'}
+        active={theme === 'dark'}
+        onClick={toggleTheme}
+      />
     </Page>
   )
 }
