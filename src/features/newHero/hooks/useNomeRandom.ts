@@ -19,7 +19,7 @@ export default function useNomeRandom({ raca, genero, setNome }: UseNomeRandomPr
         )
       } else if (racaSelecionada.name === 'Meio-Orc') {
         filtrados = filtrados.filter(n =>
-          n.racas.includes('Humano') || n.racas.length === 0
+          n.racas.includes('Humano') || n.racas.includes('Orc') || n.racas.length === 0
         )
       } else {
         filtrados = filtrados.filter(n =>

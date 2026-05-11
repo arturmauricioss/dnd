@@ -1,0 +1,19 @@
+{
+  "name": "nomes-editor",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"node --import tsx server.js\" \"vite\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.0.1",
+    "vite": "^5.4.8"
+  }
+}
