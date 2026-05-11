@@ -21,9 +21,5 @@ export const nomesFemininos = [
 export const nomesNeutros = [
   'Ariel',
   'Dominick',
-  'Selene',
-  'Freya',
-  'Morgana',
-  'Elora',
-  'Ygritte'
+  'Robin',
 ]

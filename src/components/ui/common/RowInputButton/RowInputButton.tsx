@@ -6,6 +6,7 @@ import './RowInputButton.css'
 interface ButtonConfig {
   label: string
   onClick: () => void
+  disabled?: boolean
 }
 
 interface RowInputButtonProps {
@@ -19,7 +20,12 @@ export default function RowInputButton({ inputProps, buttons = [] }: RowInputBut
       <Input className="row-input-button-input" {...inputProps} />
       <Box className="row-input-button-buttons">
         {buttons.map((btn, index) => (
-          <Button key={index} className="row-input-button-btn" onClick={btn.onClick}>
+          <Button
+            key={index}
+            className="row-input-button-btn"
+            onClick={btn.disabled ? undefined : btn.onClick}
+            disabled={btn.disabled}
+          >
             {btn.label}
           </Button>
         ))}
