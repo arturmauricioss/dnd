@@ -4,7 +4,7 @@ import Text from '@components/ui/basic/Text/Text'
 import Heptagram from '@components/ui/icons/icons/Heptagram'
 import { raceList } from '@systems/race/data/raceData'
 import type { Race } from '@systems/race/types'
-import RaceRandom from './RaceRandom/RaceRandom'
+import RaceRandom from './RaceRandom'
 import './RaceSelect.css'
 
 interface RaceSelectProps {

@@ -3,23 +3,23 @@ import Title from '@components/ui/basic/Title/Title'
 import RowHeader from '@components/ui/common/RowHeader/RowHeader'
 import RowSelect from '@components/ui/common/RowSelect/RowSelect'
 import RowInputButton from '@components/ui/common/RowInputButton/RowInputButton'
-import RaceSelect from '@features/raceSelect/RaceSelect'
-import useNomeRandom from '@systems/names/hooks/useNomeRandom'
+import RaceSelect from '@features/raceSelection/RaceSelect'
+import { useNewHero } from '@features/newHero/hooks/useNewHero'
 import { Spawn } from '@components/ui/icons'
-import { useState } from 'react'
-import type { Race } from '@systems/race/types'
-import '@features/raceSelect/RaceSelect.css'
+import '@features/raceSelection/RaceSelect.css'
 
 export default function NewHeroPage() {
-  const [nome, setNome] = useState('')
-  const [raca, setRaca] = useState<Race | null>(null)
-  const [genero, setGenero] = useState('')
-
-  const { gerarNome, gerarNomeRaca, isBotaoRacaDisabled } = useNomeRandom({
-    raca,
-    genero,
+  const {
+    nome,
     setNome,
-  })
+    raca,
+    setRaca,
+    genero,
+    setGenero,
+    gerarNome,
+    gerarNomeRaca,
+    isBotaoRacaDisabled,
+  } = useNewHero()
 
   return (
     <Page>
