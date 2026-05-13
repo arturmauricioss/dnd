@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "nomes": "concurrently \"node --import tsx src/tools/nomes-editor/server.js\" \"vite --config src/tools/nomes-editor/vite.config.ts\"",
+    "names": "concurrently \"node --import tsx src/tools/nameGenerator/server.js\" \"vite --config src/tools/nameGenerator/vite.config.ts\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"

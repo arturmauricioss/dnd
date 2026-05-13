@@ -1,8 +1,4 @@
-export interface Race {
-  name: string
-}
-
-export type RaceName = 
+export type RaceKey =
   | 'human'
   | 'dwarf'
   | 'elf'
@@ -10,3 +6,8 @@ export type RaceName =
   | 'halfling'
   | 'half-elf'
   | 'half-orc'
+
+export interface Race {
+  key: RaceKey
+  label: string
+}

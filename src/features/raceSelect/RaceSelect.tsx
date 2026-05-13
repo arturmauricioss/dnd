@@ -4,7 +4,7 @@ import Text from '@components/ui/basic/Text/Text'
 import Heptagram from '@components/ui/icons/icons/Heptagram'
 import { raceList } from '@systems/race/data/raceData'
 import type { Race } from '@systems/race/types'
-import RaceRandom from '../RaceRandom/RaceRandom'
+import RaceRandom from './RaceRandom/RaceRandom'
 import './RaceSelect.css'
 
 interface RaceSelectProps {
@@ -67,16 +67,16 @@ export default function RaceSelect({ value, onChange }: RaceSelectProps) {
         const angle = (index * 360 / 7) - 90
         return (
           <Box
-            key={race.name}
-            className={`race-point ${displayRace?.name === race.name ? 'selected' : ''}`}
+            key={race.label}
+            className={`race-point ${displayRace?.label === race.label ? 'selected' : ''}`}
             style={{
               position: 'absolute',
               left: `calc(50% + ${140 * Math.cos(angle * Math.PI / 180)}px - 35px)`,
               top: `calc(50% + ${140 * Math.sin(angle * Math.PI / 180)}px - 35px)`,
             }}
-            onClick={() => !animating && (displayRace?.name === race.name ? onChange(null) : onChange(race))}
+            onClick={() => !animating && (displayRace?.label === race.label ? onChange(null) : onChange(race))}
           >
-            <Text size="sm">{race.name}</Text>
+            <Text size="sm">{race.label}</Text>
           </Box>
         )
       })}

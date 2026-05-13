@@ -10,7 +10,7 @@ app.use(express.json())
 
 const DATA_PATH = path.resolve(
   __dirname,
-  '../../features/newHero/data/nomesData.ts'
+  '../../systems/names/data/namesData.ts'
 )
 
 app.get('/nomes', (_, res) => {
@@ -41,19 +41,7 @@ app.post('/nomes', (req, res) => {
   try {
     const nomes = req.body
 
-    const content = `// import type { Race } from '@systems/race/types'
-
-type Race = {
-  name: string
-}
-
-export type Genero = 'masculino' | 'feminino' | 'unissex'
-
-export interface Nome {
-  nome: string
-  racas: Race['name'][]
-  genero: Genero
-}
+    const content = `import type { Nome } from '../types'
 
 export const nomes: Nome[] = ${JSON.stringify(nomes, null, 2)}
 `

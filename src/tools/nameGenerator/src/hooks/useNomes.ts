@@ -1,0 +1,118 @@
+import { useEffect, useMemo, useState } from 'react'
+import type { Nome, SortField } from '../types'
+
+export function useNomes() {
+  const [nomes, setNomes] = useState<Nome[]>([])
+  const [busca, setBusca] = useState('')
+  const [generoFiltro, setGeneroFiltro] = useState<Nome['genero'] | null>(null)
+  const [culturaFiltro, setCulturaFiltro] = useState<string[]>([])
+  const [sortStack, setSortStack] = useState<SortField[]>([])
+
+  useEffect(() => {
+    fetch('http://localhost:3002/nomes')
+      .then(res => res.json())
+      .then(data => setNomes(data))
+  }, [])
+
+  const nomesFiltrados = useMemo(() => {
+    return [...nomes]
+      .filter(item => {
+        const matchBusca = item.nome.toLowerCase().includes(busca.toLowerCase())
+        const matchGenero = !generoFiltro || item.genero === generoFiltro
+        const matchCultura =
+          culturaFiltro.length === 0 ||
+          culturaFiltro.some(c => item.culturas.includes(c))
+        return matchBusca && matchGenero && matchCultura
+      })
+      .sort((a, b) => {
+        for (const campo of sortStack) {
+          let result = 0
+          if (campo === 'nome') {
+            result = a.nome.localeCompare(b.nome)
+          } else if (campo === 'genero') {
+            result = a.genero.localeCompare(b.genero)
+          } else {
+            const aHas = a.culturas.includes(campo)
+            const bHas = b.culturas.includes(campo)
+            if (aHas !== bHas) result = aHas ? -1 : 1
+          }
+          if (result !== 0) return result
+        }
+        return a.nome.localeCompare(b.nome)
+      })
+  }, [nomes, busca, generoFiltro, culturaFiltro, sortStack])
+
+  function updateNome<K extends keyof Nome>(id: string, field: K, value: Nome[K]) {
+    setNomes(prev =>
+      prev.map(item => (item.id === id ? { ...item, [field]: value } : item))
+    )
+  }
+
+  function toggleCultura(id: string, cultura: string) {
+    setNomes(prev =>
+      prev.map(item => {
+        if (item.id !== id) return item
+        const hasCultura = item.culturas.includes(cultura)
+        return {
+          ...item,
+          culturas: hasCultura
+            ? item.culturas.filter(c => c !== cultura)
+            : [...item.culturas, cultura],
+        }
+      })
+    )
+  }
+
+  function remover(id: string) {
+    setNomes(prev => prev.filter(item => item.id !== id))
+  }
+
+  function adicionar(nome: string) {
+    setNomes(prev => [
+      { id: crypto.randomUUID(), nome, culturas: [], genero: 'masculino' },
+      ...prev,
+    ])
+  }
+
+  function ordenar(campo: SortField) {
+    setSortStack(prev =>
+      prev.includes(campo)
+        ? [campo, ...prev.filter(c => c !== campo)]
+        : [campo, ...prev]
+    )
+  }
+
+  async function salvar() {
+    const dadosOrdenados = [...nomes]
+      .map(n => ({
+        id: n.id,
+        nome: n.nome,
+        culturas: n.culturas,
+        genero: n.genero,
+      }))
+      .sort((a, b) => a.nome.localeCompare(b.nome))
+
+    await fetch('http://localhost:3002/nomes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dadosOrdenados),
+    })
+  }
+
+  return {
+    nomes,
+    nomesFiltrados,
+    busca,
+    setBusca,
+    generoFiltro,
+    setGeneroFiltro,
+    culturaFiltro,
+    setCulturaFiltro,
+    updateNome,
+    toggleCultura,
+    remover,
+    adicionar,
+    ordenar,
+    salvar,
+  }
+}

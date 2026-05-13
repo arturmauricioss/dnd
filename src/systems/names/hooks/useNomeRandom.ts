@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { nomes } from '../data/nomesData'
+import { nomes } from '../data/namesData'
 import type { Race } from '@systems/race/types'
 
 interface UseNomeRandomProps {
@@ -13,17 +13,17 @@ export default function useNomeRandom({ raca, genero, setNome }: UseNomeRandomPr
     let filtrados = [...nomes]
 
     if (racaSelecionada) {
-      if (racaSelecionada.name === 'Meio-Elfo') {
+      if (racaSelecionada.label === 'Meio-Elfo') {
         filtrados = filtrados.filter(n =>
-          n.racas.includes('Humano') || n.racas.includes('Elfo') || n.racas.length === 0
+          n.culturas.includes('Humano') || n.culturas.includes('Elfo') || n.culturas.length === 0
         )
-      } else if (racaSelecionada.name === 'Meio-Orc') {
+      } else if (racaSelecionada.label === 'Meio-Orc') {
         filtrados = filtrados.filter(n =>
-          n.racas.includes('Humano') || n.racas.includes('Orc') || n.racas.length === 0
+          n.culturas.includes('Humano') || n.culturas.includes('Orc') || n.culturas.length === 0
         )
       } else {
         filtrados = filtrados.filter(n =>
-          n.racas.length === 0 || n.racas.includes(racaSelecionada.name)
+          n.culturas.length === 0 || n.culturas.includes(racaSelecionada.label)
         )
       }
     }
