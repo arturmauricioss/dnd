@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import Page from '@components/shell/Page/Page'
 import Title from '@components/ui/basic/Title/Title'
 import RowHeader from '@components/ui/common/RowHeader/RowHeader'
 import RowSelect from '@components/ui/common/RowSelect/RowSelect'
 import RowInputButton from '@components/ui/common/RowInputButton/RowInputButton'
+import RowButton from '@components/ui/common/RowButton'
 import RaceSelect from '@features/raceSelection/RaceSelect'
 import { useNewHero } from '@features/newHero/hooks/useNewHero'
 import { Spawn } from '@components/ui/icons'
 import '@features/raceSelection/RaceSelect.css'
 
 export default function NewHeroPage() {
+  const navigate = useNavigate()
   const {
     nome,
     setNome,
@@ -43,6 +46,12 @@ export default function NewHeroPage() {
         buttons={[
           { label: 'Raça', onClick: gerarNomeRaca, disabled: isBotaoRacaDisabled },
           { label: '?', onClick: gerarNome },
+        ]}
+      />
+<RowButton
+        buttons={[
+          { label: 'Cancelar', onClick: () => navigate('/heroes'), variant: 'secondary' },
+          { label: 'Salvar', onClick: () => {}, variant: 'primary' },
         ]}
       />
     </Page>

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import Page from '@components/shell/Page/Page'
 import Title from '@components/ui/basic/Title/Title'
-import Button from '@components/ui/basic/Button/Button'
 import RowHeader from '@components/ui/common/RowHeader/RowHeader'
+import RowButton from '@components/ui/common/RowButton'
 import { ChessKnight, Skull } from '@components/ui/icons'
 
 export default function HeroPage() {
@@ -12,7 +12,11 @@ export default function HeroPage() {
     <Page>
       <Title size="xl" className="mt-md">Salão dos Heróis</Title>
       <RowHeader icon={ChessKnight} active>Meus Heróis</RowHeader>
-      <Button onClick={() => navigate('/heroes/new')}>Novo Personagem</Button>
+      <RowButton
+        buttons={[
+          { label: 'Novo Personagem', onClick: () => navigate('/heroes/new'), variant: 'primary' },
+        ]}
+      />
       <RowHeader icon={Skull} variant="secondary">Memorial dos Caídos</RowHeader>
     </Page>
   )

@@ -45,7 +45,8 @@ export const nomes: Nome[] = [
     "culturas": [
       "Gnomo",
       "Halfling",
-      "Orc"
+      "Orc",
+      "Humano"
     ],
     "genero": "masculino"
   },
@@ -185,6 +186,15 @@ export const nomes: Nome[] = [
     "nome": "Dana",
     "culturas": [],
     "genero": "unissex"
+  },
+  {
+    "id": "78622bfe-e881-4a38-97bc-b863ddf54095",
+    "nome": "Daniela",
+    "culturas": [
+      "Elfo",
+      "Humano"
+    ],
+    "genero": "masculino"
   },
   {
     "id": "bfd6b95d-8f52-487f-9098-e43bad12050b",
