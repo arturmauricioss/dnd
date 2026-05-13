@@ -6,7 +6,8 @@ export const nomes: Nome[] = [
     "nome": "Adalardo",
     "culturas": [
       "Halfling",
-      "Elfo"
+      "Elfo",
+      "Orc"
     ],
     "genero": "masculino"
   },
