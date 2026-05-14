@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { nomes } from '../data/namesData'
-import type { Race } from '@systems/race/types'
+import type { Race, RaceKey } from '@systems/race/types'
+import type { NameCultureKey } from '../data/namesCultureData'
 
 interface UseNomeRandomProps {
   raca: Race | null
@@ -8,48 +9,74 @@ interface UseNomeRandomProps {
   setNome: (nome: string) => void
 }
 
-export default function useNomeRandom({ raca, genero, setNome }: UseNomeRandomProps) {
-  const filtrarNomes = useCallback((racaSelecionada: Race | null, generoSelecionado: string) => {
-    let filtrados = [...nomes]
+const raceCulturesMap: Record<RaceKey, NameCultureKey[]> = {
+  human: ['human'],
+  dwarf: ['dwarf'],
+  elf: ['elf'],
+  gnome: ['gnome'],
+  halfling: ['halfling'],
 
-    if (racaSelecionada) {
-      if (racaSelecionada.label === 'Meio-Elfo') {
-        filtrados = filtrados.filter(n =>
-          n.culturas.includes('Humano') || n.culturas.includes('Elfo') || n.culturas.length === 0
-        )
-      } else if (racaSelecionada.label === 'Meio-Orc') {
-        filtrados = filtrados.filter(n =>
-          n.culturas.includes('Humano') || n.culturas.includes('Orc') || n.culturas.length === 0
-        )
-      } else {
-        filtrados = filtrados.filter(n =>
-          n.culturas.length === 0 || n.culturas.includes(racaSelecionada.label)
+  'half-elf': ['human', 'elf'],
+  'half-orc': ['human', 'orc'],
+}
+
+export default function useNomeRandom({
+  raca,
+  genero,
+  setNome,
+}: UseNomeRandomProps) {
+  const filtrarNomes = useCallback(
+    (racaSelecionada: Race | null, generoSelecionado: string) => {
+      let filtrados = [...nomes]
+
+      if (racaSelecionada) {
+        const culturasPermitidas =
+          raceCulturesMap[racaSelecionada.key]
+
+        filtrados = filtrados.filter(nome => {
+          // universal
+          if (nome.culturas.length === 0) {
+            return true
+          }
+
+          return nome.culturas.some(cultura =>
+            culturasPermitidas.includes(
+              cultura as NameCultureKey
+            )
+          )
+        })
+      }
+
+      if (generoSelecionado) {
+        filtrados = filtrados.filter(
+          nome =>
+            nome.genero === generoSelecionado ||
+            nome.genero === 'unissex'
         )
       }
-    }
 
-    if (generoSelecionado) {
-      filtrados = filtrados.filter(n =>
-        n.genero === generoSelecionado || n.genero === 'unissex'
-      )
-    }
-
-    return filtrados
-  }, [])
+      return filtrados
+    },
+    []
+  )
 
   const gerarNome = useCallback(() => {
-    // ? só leva em consideração o gênero, não a raça
     let filtrados = [...nomes]
 
     if (genero) {
-      filtrados = filtrados.filter(n =>
-        n.genero === genero || n.genero === 'unissex'
+      filtrados = filtrados.filter(
+        nome =>
+          nome.genero === genero ||
+          nome.genero === 'unissex'
       )
     }
 
     if (filtrados.length === 0) return
 
-    const randomIndex = Math.floor(Math.random() * filtrados.length)
+    const randomIndex = Math.floor(
+      Math.random() * filtrados.length
+    )
+
     setNome(filtrados[randomIndex].nome)
   }, [genero, setNome])
 
@@ -60,7 +87,10 @@ export default function useNomeRandom({ raca, genero, setNome }: UseNomeRandomPr
 
     if (filtrados.length === 0) return
 
-    const randomIndex = Math.floor(Math.random() * filtrados.length)
+    const randomIndex = Math.floor(
+      Math.random() * filtrados.length
+    )
+
     setNome(filtrados[randomIndex].nome)
   }, [raca, genero, filtrarNomes, setNome])
 

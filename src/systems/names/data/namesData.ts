@@ -2,734 +2,3770 @@ import type { Nome } from '../types'
 
 export const nomes: Nome[] = [
   {
-    "id": "c6671d59-d4d9-4fc9-85b4-e921c03187ee",
-    "nome": "Adalardo",
+    "id": "85dc8f64-ea01-4a08-8d2f-4b31106e8b2b",
+    "nome": "Adran",
     "culturas": [
-      "Halfling",
-      "Elfo",
-      "Orc"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "5669fb6d-34a2-41d2-a721-c2dbbc507fb6",
-    "nome": "Adalinda",
+    "id": "a827ad0b-a689-4c48-a667-6de958f1651b",
+    "nome": "Aelar",
     "culturas": [
-      "Orc"
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "aacfe446-c432-45a9-a54e-5437bdd1724d",
+    "nome": "Aelene",
+    "culturas": [
+      "elf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "cba70c48-240d-4f81-b6ac-2eafe27d64c4",
-    "nome": "Adelard",
-    "culturas": [],
+    "id": "bfa2aeb1-4f92-4e32-ab25-04f8b5ed9110",
+    "nome": "Agatha",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7b64f225-d07d-4ac3-b0e3-81672da45d8d",
+    "nome": "Alan",
+    "culturas": [
+      "human"
+    ],
     "genero": "masculino"
   },
   {
-    "id": "cba0a379-8373-4668-aea3-3b8ac5890355",
-    "nome": "Alex",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "53845e9c-b711-4d27-b495-36319bab0b39",
+    "nome": "Alanian",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
   },
   {
-    "id": "0c27a3dc-539b-41b6-953c-8e9eeb9b280b",
+    "id": "0b12008e-d18b-4a85-9119-201d102a9369",
+    "nome": "Alexandre",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "7d0afed6-395f-45c6-9d32-396f6606f7ed",
+    "nome": "Alice",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7ad58b6f-37db-4cc8-8f56-fa3cd286c6da",
+    "nome": "Alston",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "1d5ad435-b9ca-4307-959e-ce2f28058eb1",
+    "nome": "Alton",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2b83c796-b792-4173-af10-06b50cd45f9d",
+    "nome": "Amanda",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7a286140-3cb2-4f85-9568-8bb4455faf80",
+    "nome": "Amaryllis",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "93b96e97-9a86-4f3d-9781-89ecb52c5f3a",
+    "nome": "Amber",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "57f71658-22a0-41de-a4dc-2dbb64e2f045",
+    "nome": "Ana",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "aea2c0d8-84e8-4086-aee4-c1ab6a2c6c09",
+    "nome": "Anastrianna",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a865ea92-9542-4855-b155-de32a8cad843",
+    "nome": "Ander",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d2450147-58e4-4f5b-9784-4125386d9732",
+    "nome": "André",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "249c4782-1953-4f68-80ed-f7f235b803a3",
+    "nome": "Andreth",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "23747c6a-08ef-410a-b242-5575c06bd118",
+    "nome": "Angelica",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1e2e618a-4262-49d7-8869-60f6b84b8f1e",
+    "nome": "Antinua",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9347f55a-f526-4f3d-bd37-416e80a74905",
     "nome": "Aragorn",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "bea815d6-99cf-4d2a-800e-2fc60abf56fe",
+    "id": "9a16485a-7528-44f3-8f15-a1375e9147f5",
+    "nome": "Aramil",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "85e126f9-7840-43bb-aff4-6aff840504c4",
+    "nome": "Arannis",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "11fe52cc-982d-405e-9dbe-6bd1d2ea6432",
+    "nome": "Aredhel",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "e6c84570-98a5-49ce-b1a8-18701349f46a",
+    "nome": "Arha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "55b80de6-1d0e-4639-84dd-59172da7f715",
+    "nome": "Artin",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9fb68874-bab4-4ca2-a77d-62f4fd174c98",
     "nome": "Artur",
     "culturas": [
-      "Gnomo",
-      "Halfling",
-      "Orc",
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "e2473a1a-67e4-480b-9a6c-52e641472db4",
+    "id": "1f3b91b1-d740-4f6e-95d4-ec316202e73e",
     "nome": "Arwen",
     "culturas": [
-      "Humano",
-      "Orc"
+      "elf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "b3c4e3d1-c39c-43b4-b9b3-8dba5b467c03",
-    "nome": "Ash",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "f40444bf-a2d4-4993-a7b6-c9896fd839e4",
+    "nome": "Audhild",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
   },
   {
-    "id": "5edc3897-ca16-4697-95a7-7c894dea4963",
+    "id": "35d74013-bd9b-460c-92c9-cae6a5681b8c",
+    "nome": "Aurora",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c0302a32-382e-4886-be30-fc76f5c9fe5a",
+    "nome": "Aust",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2a1a2198-3155-4b1e-9aa5-43aaaebddc46",
+    "nome": "Azog",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "beacb42f-ac33-4e02-8287-cfbed56a9f7d",
+    "nome": "Babbra",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f94ac20a-f679-485a-8b49-ce50885eeaf4",
+    "nome": "Baern",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a50e366a-5f66-439e-9c54-405a486951ad",
+    "nome": "Baggi",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "35116a2a-88ef-453b-9ba2-563cd2af35a5",
+    "nome": "Bagra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1187f355-cd75-4277-a9b3-cde05dba8fa4",
     "nome": "Balin",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "f5b2a1a8-0d11-46bb-847c-3ba57443bcf2",
-    "nome": "Beren",
-    "culturas": [],
+    "id": "031c3049-6879-41da-b928-9ce53aa9206d",
+    "nome": "Barbara",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "df7c60b2-6c50-4d5d-a3ec-69d2c85a15dd",
+    "nome": "Bardryn",
+    "culturas": [
+      "dwarf"
+    ],
     "genero": "masculino"
   },
   {
-    "id": "e5e361c3-4e90-4bf4-82a3-b34934a463f4",
+    "id": "6cad905f-f401-4e6f-88f9-ca70ed83ea30",
+    "nome": "Barendd",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "843594e9-6f39-4410-9c1b-f2ea61f04e35",
+    "nome": "Beatriz",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "84521491-5816-4778-b2ba-18b5c41ed2ba",
+    "nome": "Beau",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ddd6d300-7bf3-48a4-833e-1dda81d7b0ac",
+    "nome": "Beiro",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "9ba5000b-2d85-4419-bac0-1f6d4e9f37b7",
+    "nome": "Belladonna",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5fd83712-bb39-4630-bf52-042371b320aa",
+    "nome": "Benjamin",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c73b86f1-0e61-49f2-8eb7-c53c562fda2b",
+    "nome": "Bennet",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a59c5d96-228e-4b1c-9cde-730dc2d86c00",
+    "nome": "Beregond",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a2c7bd5c-d694-40f6-9ecf-ea9b29b4abd9",
+    "nome": "Berrian",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a76ba362-195a-445c-9270-4b77383fa51e",
     "nome": "Bifur",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "ae1fe028-9205-4e82-be9e-6238a2e65288",
+    "id": "9a9a3599-f644-495e-923f-de49d8d4087b",
     "nome": "Bilbo",
     "culturas": [
-      "Humano",
-      "Gnomo",
-      "Orc"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "c61042b8-9a89-48b8-87d7-0586bd3661ba",
+    "id": "a1e10608-d340-4668-9c01-9aa165354444",
+    "nome": "Bimpi",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "79838bd8-3f84-4ec2-97dc-42831821a5ac",
     "nome": "Bimpnottin",
     "culturas": [
-      "Gnomo"
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "152ad8b0-13d8-4b3e-92f9-f3e94c2dd2f8",
+    "nome": "Boddynock",
+    "culturas": [
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "514a61b2-fb25-48c3-98ed-89458b0b592e",
-    "nome": "Bingo",
-    "culturas": [],
+    "id": "8cb610a6-d2ba-45da-bd44-9fe7f5533e69",
+    "nome": "Bofur",
+    "culturas": [
+      "dwarf"
+    ],
     "genero": "masculino"
   },
   {
-    "id": "f84e2ac8-0e10-46d2-ab57-c8659df30093",
-    "nome": "Blair",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "30d84e92-455b-430f-a18e-1f36b697af7b",
+    "nome": "Bolg",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
   },
   {
-    "id": "557c59eb-1c6d-4a3d-952c-6237d248ced9",
+    "id": "ee08dc97-e292-466d-bbea-b64cadf2f74b",
     "nome": "Bombur",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b3133a13-cd06-4ccc-bcc5-894705f5df91",
-    "nome": "Borin",
+    "id": "4aefdb8f-b767-4fbf-9e67-46f121f9beea",
+    "nome": "Boondiggles",
     "culturas": [
-      "Anão"
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "5c555f70-9c06-4216-9735-886f88ee8115",
+    "id": "9cbd3ac6-ec09-4ade-aae4-bc85e209f567",
     "nome": "Boromir",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "1266cba5-f873-4481-9aa6-dbc8cff84729",
-    "nome": "Bruno",
-    "culturas": [],
-    "genero": "masculino"
-  },
-  {
-    "id": "6a3da46a-85c4-4b4d-ab21-96260c6bdcc5",
-    "nome": "Cameron",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "cbe6716d-61d0-4e8c-ac1a-e87fdb54790c",
-    "nome": "Casey",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "fbd3b1ae-2221-4362-bf6f-1780940aa838",
-    "nome": "Celebrian",
+    "id": "23635b99-1e60-4cef-8f78-03e22ed95a6c",
+    "nome": "Brandir",
     "culturas": [
-      "Elfo"
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e3fdf1b9-d83e-408a-af57-9ec60b10e3ed",
+    "nome": "Brayan",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4ab3ebcb-943e-4067-a18f-0f25be1e2d6e",
+    "nome": "Bree",
+    "culturas": [
+      "halfling"
     ],
     "genero": "feminino"
   },
   {
-    "id": "8f6354c3-795b-4cb7-a732-28c8de59cfcf",
-    "nome": "Cora",
-    "culturas": [],
+    "id": "df8c4a2e-a664-46a3-b70f-42be9dfa36e1",
+    "nome": "Breewick",
+    "culturas": [
+      "gnome"
+    ],
     "genero": "feminino"
   },
   {
-    "id": "94e2dabd-7b78-4a09-919a-d2869fe01bd5",
+    "id": "ee884ec6-1829-4c18-afab-e6bb7b43b8a4",
+    "nome": "Brina",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "4eafa3d7-a339-44fc-a31e-5e0c962f24a1",
+    "nome": "Brottor",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "1f270712-babe-4ba1-b7f4-538080ee7396",
+    "nome": "Bruenor",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "54cc2564-59bf-4196-9ef1-9968385a819c",
+    "nome": "Brug",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c93f5218-56a9-47f7-88a2-af9ef4c1e938",
+    "nome": "Bruno",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d6b71bf8-e169-4758-9245-66445c6bf0e1",
+    "nome": "Burgell",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "edc1616d-7b1c-46ff-aca6-a8697b05dccd",
+    "nome": "Cade",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a42f3c7f-741b-4683-9b09-1bf32cb56753",
+    "nome": "Caelynn",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6157c191-4fb3-4986-9cbe-8a7db531fca7",
+    "nome": "Callie",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "09c099c2-d555-4442-bf99-d1e49fa3ce4d",
+    "nome": "Camila",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "163abd77-7b8c-4b37-8454-479ade236479",
+    "nome": "Caramip",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d4918d8a-9b8b-4908-a31c-22dfcee7e197",
+    "nome": "Carlos",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2ad3dc76-8990-492e-a5df-c717d36d0085",
+    "nome": "Carolina",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5eca4eab-7f66-4d5f-9fdc-80cda8ece0af",
+    "nome": "Carret",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3ffdb3d7-197e-429d-b7b4-1b8331e8ca27",
+    "nome": "Carric",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5af224ce-bdc4-4e64-9be5-2204b792ff5f",
+    "nome": "Cecilia",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9d8fb3f0-9256-4c6d-91b6-758312e87b75",
+    "nome": "Celeborn",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e9459797-9a79-4ecf-8f4b-722933d32c2c",
+    "nome": "Celebrían",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "3531d450-6e46-4074-9124-08af852b6023",
+    "nome": "Charmaine",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7c8684e1-a218-465d-856d-9346372497f6",
+    "nome": "Clarice",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "32d38847-ce73-419c-bfe2-c8311d0b530c",
+    "nome": "Cora",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0e4e2e51-1ec8-429a-96fd-efbf5428b11d",
+    "nome": "Corrin",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "81040525-800a-49eb-a9ed-9ff69aaf5c7e",
+    "nome": "Crampernap",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "df353e50-55f6-4e31-a9c1-76d821179819",
+    "nome": "Cristiane",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "555ef7ed-56b9-420d-96d0-92707136ba7c",
+    "nome": "Daergel",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "cf50705a-667c-4ba3-978b-76a4afdf1d11",
+    "nome": "Dagnal",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ed2fd648-e391-4a64-96ca-6fc751a2d93e",
     "nome": "Dain",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "96d232eb-4313-44d1-ac45-caa1efe69108",
-    "nome": "Dana",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "fbd853c0-e731-47e7-97d7-8414573fe938",
+    "nome": "Dak",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
   },
   {
-    "id": "78622bfe-e881-4a38-97bc-b863ddf54095",
+    "id": "bfc58ec4-74d3-48ee-a932-e868913eb798",
+    "nome": "Daniel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "aa797cad-444d-4d8a-9187-25f30856f963",
     "nome": "Daniela",
     "culturas": [
-      "Elfo",
-      "Humano"
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "123e8cf8-cf2c-4ee7-a58b-b74d97a052a1",
+    "nome": "Dannadoc",
+    "culturas": [
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "bfd6b95d-8f52-487f-9098-e43bad12050b",
+    "id": "8804b0dd-e16a-4d09-a57f-e39240b6c075",
+    "nome": "Daphne",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ffca0a44-2fb7-48ad-9c6d-740d86b0e075",
+    "nome": "Dara",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "90f1ed40-2f31-4ad7-b438-65bb3ae89a15",
+    "nome": "Davi",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "f0affd12-9ab5-4635-a509-38e0aea4df33",
+    "nome": "Dayereth",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "fd160878-8a07-4254-b193-16ed84834892",
+    "nome": "Debora",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "95aacd7b-553c-49bc-8e62-03daf5a5fa9e",
+    "nome": "Dench",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "947a8db2-55e6-47c6-925f-d9903aa223da",
     "nome": "Denethor",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "64f73fac-ecb8-4384-b2fe-c15548421def",
+    "id": "487bec30-00e0-4d72-a074-f6116cba8dc0",
+    "nome": "Denilson",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5641ad40-1702-4b2e-9d69-65541bd3a5cf",
+    "nome": "Diana",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d732e5f0-6890-4653-8b16-26ea09c56574",
+    "nome": "Diesa",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "96226f65-fde1-4f74-beec-bc38e4e895ad",
+    "nome": "Diesea",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5a71b2ed-66bb-464c-88b4-d5cea4312d69",
+    "nome": "Dimble",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e0275108-f6c0-4978-8d04-a0c2131ff0f7",
+    "nome": "Diogenes",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "30c749b9-8cd1-4432-9150-055db4d2fac9",
     "nome": "Dis",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "49552ec3-dd2f-4040-ac2a-dc8eb4ef77eb",
-    "nome": "Dora",
-    "culturas": [],
+    "id": "a6280e24-545e-4925-b282-a4a490826fd7",
+    "nome": "Dobora",
+    "culturas": [
+      "human"
+    ],
     "genero": "feminino"
   },
   {
-    "id": "17824def-fed2-43bd-8250-e4f0bbfd5f91",
-    "nome": "Dori",
+    "id": "96f3571c-1c37-4220-8d8d-b4d019b468bb",
+    "nome": "Donella",
     "culturas": [
-      "Anão"
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "72144e85-4f27-4396-ae03-6b82a1329e26",
+    "nome": "Dorn",
+    "culturas": [
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "715ff71b-1e9d-43f7-91e9-1c4c2686d3ef",
+    "id": "68ee8cb6-f369-49bb-ba64-3cc1bbab10ab",
+    "nome": "Drakk",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "84bb23c4-0607-4ef6-a52c-9d1f85a5ccec",
+    "nome": "Druga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5471a303-c376-484c-8562-01a47da92827",
+    "nome": "Drushna",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0a34f0da-5cdf-40e7-a93a-02c761bcd63f",
+    "nome": "Drusilia",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0b1c16c7-c037-4626-8062-dc8dcbf580ff",
     "nome": "Durin",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "60de1e35-a831-4691-9c7b-c5e6545a3418",
-    "nome": "Elanor",
+    "id": "248d9c09-a663-43c6-8b46-8581854cd5a6",
+    "nome": "Duvamil",
     "culturas": [
-      "Halfling"
+      "gnome"
     ],
     "genero": "feminino"
   },
   {
-    "id": "671c8c8d-f71f-4d17-969c-86c9dc0b4d57",
+    "id": "d6c8c783-0583-4764-97e8-3dc8f60d545c",
+    "nome": "Duvra",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b17135ac-f290-4d89-9571-ef478746222c",
+    "nome": "Dwalin",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3d8ac064-4519-4ac0-8056-985b5d448473",
+    "nome": "Eberk",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "abe7a2f5-200b-41fc-b9bb-fdad24b1ecf8",
+    "nome": "Eduardo",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "dd9d25a3-e03d-4742-8273-361797df2604",
+    "nome": "Eerendil",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a3edb22d-6f85-429d-b7e1-504d07ca0278",
+    "nome": "Einkil",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "66a9b184-81f7-41c9-a7a6-6f674d11533d",
+    "nome": "Ekkra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0053affa-4502-48b1-8a44-c0ce0963c8ca",
+    "nome": "Elaine",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5a68bdb4-ad24-41a3-8617-f09b31dd7f50",
+    "nome": "Eldeth",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d09605c6-59ae-4ae5-957d-9927d78418fc",
+    "nome": "Eldon",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "53f89723-1934-4c66-b77c-415175282276",
+    "nome": "Eleanor",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0b39a022-bb89-4987-be72-147825ad85c0",
+    "nome": "Elendil",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "8db25fe1-5c76-4093-a77d-3e30e5ff181f",
+    "nome": "Eleth",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "dcc62f55-4309-4878-b717-82d5cb5179b3",
+    "nome": "Elisa",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7a3c67e9-00d4-47db-a93e-11a9dae400f9",
+    "nome": "Ella",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "447b0d30-46c0-48a5-b747-c5a21c295665",
+    "nome": "Ellyjobell",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7bea1d1d-22d3-4811-8ae5-9f75f2dee767",
+    "nome": "Ellywick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5d9d101c-3800-4209-a7fb-1eecc98eaf89",
     "nome": "Elrond",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "c6d32218-23f3-4cda-94e0-443ab1761bdc",
-    "nome": "Elros",
+    "id": "dc467714-8d0a-4cb6-b134-c7f6bcd5b463",
+    "nome": "Elwing",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
-    "genero": "masculino"
+    "genero": "feminino"
   },
   {
-    "id": "273eff1e-28a1-487f-ac60-8630310ed243",
-    "nome": "Enoque",
+    "id": "08d09b6c-fd06-4330-a675-d77e3fd14113",
+    "nome": "Emen",
     "culturas": [
-      "Humano"
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6a739e4e-ead7-4d9e-a868-a69a191c35b8",
+    "nome": "Emerson",
+    "culturas": [
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "14784c04-b260-4f94-88f4-05037b5af618",
+    "id": "9318b5a0-5d9a-40e4-85f8-dfd6395b5a6b",
+    "nome": "Engong",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "29e4324d-95ec-449d-be29-72d96776574b",
+    "nome": "Enialis",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "41c0a6b0-f0de-4fc5-b103-9067605309e7",
+    "nome": "Enna",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c6d4d167-56b5-4c52-9979-f38310ab242e",
     "nome": "Eowyn",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "feminino"
   },
   {
-    "id": "018e2849-8fe0-4970-8a66-4f8e62d5c4c9",
-    "nome": "Erak",
+    "id": "7a09a048-4f7c-44a3-b4fa-3501299a9530",
+    "nome": "Erendis",
     "culturas": [
-      "Halfling"
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d1c7ec16-04fd-47ae-b35f-5f4d0c6d1a51",
+    "nome": "Erevan",
+    "culturas": [
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "5d8136ff-a534-427b-ba26-3e62292805ff",
+    "id": "44a92c23-6722-403a-84c2-522734e505f0",
+    "nome": "Errich",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "eb8f3c22-9d3a-4d3b-9da3-30fe5be993be",
+    "nome": "Esmeralda",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b2dcc8bc-a522-446e-aafd-38995c3689fa",
+    "nome": "Euphemia",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "e48b9997-76c6-4ea0-a496-6b88e2da320c",
+    "nome": "Fabblestabble",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "598aa373-178a-4a16-8006-4e42240138f9",
+    "nome": "Fabio",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "6f653fbc-43f2-4711-aec1-7adc9367956a",
+    "nome": "Faralyn",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "493d2d06-25af-4f41-85c1-9b97336c645a",
     "nome": "Faramir",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "6a65fbd4-9601-4273-90d4-3c02e116894c",
-    "nome": "Farin",
+    "id": "e4d0221e-250a-4d23-8b94-881ee23dc0c4",
+    "nome": "Fargrim",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "78cd948a-51bc-4789-9cfd-01664784ca99",
-    "nome": "Fimbril",
+    "id": "0af3f5f9-4db7-4322-8ad4-875f036800e6",
+    "nome": "Feanor",
     "culturas": [
-      "Anão"
-    ],
-    "genero": "feminino"
-  },
-  {
-    "id": "29c5348d-2c68-4c9d-bac4-921de2bebf0e",
-    "nome": "Fizwick",
-    "culturas": [
-      "Gnomo"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "ec24bca2-caaf-4a75-88c6-04e2188ffea3",
-    "nome": "Floi",
+    "id": "e358b3df-fa8f-40f1-b2f3-23eaf8f2aa96",
+    "nome": "Felipe",
     "culturas": [
-      "Anão"
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d20fc11d-5892-4c4b-b3b5-fffef4083461",
+    "nome": "Felosial",
+    "culturas": [
+      "elf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "cd9faf05-9040-4679-a5fd-4cb29df58fd5",
-    "nome": "Fosca",
+    "id": "d0d9625b-24f7-4028-ba03-2d57f03a51a5",
+    "nome": "Feng",
     "culturas": [
-      "Halfling",
-      "Gnomo"
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "998342d0-c342-42ef-b28d-87255eb2245a",
+    "nome": "Fern",
+    "culturas": [
+      "halfling"
     ],
     "genero": "feminino"
   },
   {
-    "id": "b57cee90-b4a3-467a-a78a-127eb92f644b",
+    "id": "6e88ba8b-c1fd-4c9b-945f-ed6e5475f9de",
+    "nome": "Fiffet",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "8af46aa7-a658-47e3-9374-234e205198d5",
+    "nome": "Fili",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "f9b753fb-bb6b-43b5-a070-c211cd835b79",
+    "nome": "Fimwick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "584c7993-498a-4ee4-a351-7d227ab9dc9a",
+    "nome": "Finduilas",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6f3d5736-9825-4742-81b8-03294292caf6",
+    "nome": "Finellen",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7f57fcd9-b0f5-4cb0-9fd6-9ffa92c133a3",
+    "nome": "Fingolfin",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "bde0ddb2-6c43-47e1-85dd-f0c043e204bf",
+    "nome": "Finnan",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "b2790382-f98d-4775-8d77-66c15d4e51c9",
+    "nome": "Finrod",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "00f11582-9dea-4a87-b608-47c81762811f",
+    "nome": "Fivin",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "7ae24ea2-2c66-4b94-aa09-ddd729a49a43",
+    "nome": "Fizzlewick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "2934ee10-4c26-4d68-8028-b20d4043189d",
+    "nome": "Folco",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "615f1ac1-f24d-4afd-bc02-bdb56041eb61",
+    "nome": "Fonble",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4f61ed8f-9fda-4a61-b986-362ced02fccd",
+    "nome": "Fonkin",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "055eee0c-7bcf-4b9c-b492-054065b1390a",
+    "nome": "Fredegar",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "36a60d27-f65b-4305-a43d-992684ce38d4",
+    "nome": "Frederico",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "bc419a8b-fbfb-4836-9fcf-bbc51e8a28f6",
+    "nome": "Frida",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "8d9eab9e-de80-42b0-aa2b-73d916b2e8e7",
     "nome": "Frodo",
     "culturas": [
-      "Halfling",
-      "Gnomo",
-      "Orc"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "987f0bb3-993f-4771-9018-0306d053acf9",
-    "nome": "Fundin",
+    "id": "83f571a7-3afb-4c10-9e69-d6bd0d49f8f5",
+    "nome": "Frug",
     "culturas": [
-      "Anão"
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b34a60db-8087-4940-a1da-e592426cad15",
+    "id": "f9b7b005-8f37-431f-8f28-6ccc5f04b276",
+    "nome": "Gabriel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3e6febe4-cac8-4f2a-9a18-b570ce36fb1d",
+    "nome": "Gabriela",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f8abff17-2b5c-4857-a79a-af6c4738005b",
     "nome": "Galadriel",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "455dc845-356f-437c-a64a-b45213f48cb6",
-    "nome": "Gandalf",
+    "id": "b822d11c-ef53-4974-a5b5-09886131e1a5",
+    "nome": "Galinndan",
     "culturas": [
-      "Humano"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "eee965b7-b421-4426-81df-16135ca1879b",
+    "id": "26c668b7-2b51-4697-87cb-710a2f98f0d9",
     "nome": "Garret",
     "culturas": [
-      "Halfling",
-      "Gnomo"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "dae2ebd1-719b-41c0-88d8-84f61bd6ffd6",
+    "id": "fcd2eaf0-a1c4-45c1-815a-73c3f1150f49",
+    "nome": "Garrick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "bd17e945-a530-492b-a2da-117ca84ff8d8",
+    "nome": "Gell",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "867b38d7-afe3-46f6-8fb8-2209146cfc93",
+    "nome": "Gerbo",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3c702f11-1936-4c54-b734-972775b6f919",
+    "nome": "Gilgalad",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "377bee76-ee2b-4b1f-b474-ca6fae83502a",
+    "nome": "Gilraen",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "df0bec03-3a38-47d7-8856-ee9305660bd9",
     "nome": "Gimble",
     "culturas": [
-      "Gnomo"
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "a07940dd-2ec4-437e-a916-0a7f60d11ab1",
+    "id": "084940e7-79ab-431c-b8f4-9bf2e812e86c",
     "nome": "Gimli",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b0b1d711-7a03-4a69-bb47-dfd09d90e893",
-    "nome": "Glint",
+    "id": "f539ba15-b203-4131-8d99-dc54df7cd829",
+    "nome": "Giovana",
     "culturas": [
-      "Gnomo"
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7b7bc162-4c27-4782-bde5-ac3b51805e56",
+    "nome": "Gisele",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5e88cfaa-7713-49ea-8fb0-628e03935e65",
+    "nome": "Glim",
+    "culturas": [
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "44eac925-e790-4a6d-807b-464cff10a485",
+    "id": "d85e638d-33a3-4dac-9700-e038ffdbb887",
+    "nome": "Gloin",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e263e3ce-b6b3-46d4-a0f4-f2be338a92b2",
     "nome": "Glorfindel",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "150ef4d1-c287-4e60-8676-c9a84df47f52",
-    "nome": "Glorin",
+    "id": "46491dd9-6e90-402e-a1c5-82b97ef7f834",
+    "nome": "Golfimbul",
     "culturas": [
-      "Anão"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "cc76a9ee-962e-4702-809e-9b79cbd26ea8",
-    "nome": "Gror",
+    "id": "ad252ad5-4387-49ca-bff0-85ade679dc1c",
+    "nome": "Gorbag",
     "culturas": [
-      "Anão"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "e5fe9244-6f79-476e-9cfc-38120367f876",
-    "nome": "Guilherme",
+    "id": "d3140b35-cf45-49b1-ad4d-7f2b8324e1e1",
+    "nome": "Gothmog",
     "culturas": [
-      "Halfling",
-      "Gnomo"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "89b2a9a5-19cf-4888-912c-6c24901fae85",
-    "nome": "Gumna",
+    "id": "16aba938-a037-4b6a-9296-30e0e489fe7b",
+    "nome": "Graza",
     "culturas": [
-      "Anão"
+      "orc"
     ],
     "genero": "feminino"
   },
   {
-    "id": "61c2329b-d2d0-4afb-916f-b11e2b62ccd3",
-    "nome": "Haldir",
+    "id": "b8e64ac9-84e3-4a14-b1f4-47476e51b148",
+    "nome": "Grima",
     "culturas": [
-      "Anão"
-    ],
-    "genero": "masculino"
-  },
-  {
-    "id": "dc4c974b-5444-4544-b42c-f835461b4367",
-    "nome": "Hellen",
-    "culturas": [
-      "Humano"
+      "orc"
     ],
     "genero": "feminino"
   },
   {
-    "id": "0ca7f840-36c8-4c11-915c-62213ab56bfe",
-    "nome": "Immer",
+    "id": "7fc28852-a1e0-408d-b89b-6d63a69c8d3e",
+    "nome": "Grishnakh",
     "culturas": [
-      "Gnomo"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b1099963-65e5-4ba8-86dc-1119680d1301",
-    "nome": "Isembardo",
+    "id": "a3f84963-37ea-4c7a-ba22-f7e777ad065e",
+    "nome": "Grom",
     "culturas": [
-      "Halfling"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "10944279-12f0-4945-ae93-87b3906c8b14",
+    "id": "063186c3-8d01-42f5-b48c-3b49f0ad41cd",
+    "nome": "Gunnloda",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "32b58966-29ba-469b-9490-b38f9505779a",
+    "nome": "Gurdis",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "17946339-9244-4c75-b211-cadcaa8673da",
+    "nome": "Gustavo",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "030a4bbc-e658-49ec-86c0-cf920839c0e8",
+    "nome": "Hadarai",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5c0f22fb-d64f-4e86-bcda-1967ca23b803",
+    "nome": "Halbarad",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ab212f3f-a363-469f-a59d-4d79dc5a771a",
+    "nome": "Haleth",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c217b443-641d-4185-b904-45b88c4545fd",
+    "nome": "Hamfast",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "23427d41-98ac-40e2-a086-e2a5e15507de",
+    "nome": "Harbek",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "78881d41-9987-4e37-bb36-0e35589961b0",
+    "nome": "Harg",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "135fdcc4-02fc-4a59-9bb4-e0f5a734c2d5",
+    "nome": "Heian",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a2fb2dce-80df-4815-bb1f-a1aa0a1dd273",
+    "nome": "Heitor",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "94810395-1de7-4a8f-af9c-3a683b9e9a31",
+    "nome": "Helena",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c3d5bd14-0131-4ac1-a2a5-3ae0c6b17229",
+    "nome": "Helja",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0cccebb5-9a2a-4dcd-9951-3e5ec5e0bbd3",
+    "nome": "Heljaer",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5af1f7cc-e23f-4279-9468-b10b59dbee45",
+    "nome": "Henk",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "6eb4c925-8208-454f-b770-90db006de754",
+    "nome": "Henrique",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "f37aa892-cac0-4518-a340-2ea248ed7755",
+    "nome": "Higor",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3c6e5468-b309-44d0-8392-1f2145db7571",
+    "nome": "Hilda",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0caefaac-6318-4950-8e2e-768956bdc6b6",
+    "nome": "Himo",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a04856a4-69f6-4124-9ba0-91902f28de51",
+    "nome": "Hlin",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "235ed416-6815-41d1-a435-e7e74011264d",
+    "nome": "Holg",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4de49d5c-1ac9-4c8c-aacc-4511d4f447e1",
+    "nome": "Holly",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9184aeca-229e-4349-b36b-40f3f5a6bea0",
+    "nome": "Hurin",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "52142230-4c86-41b8-b7df-18b50c8305a0",
+    "nome": "Huru",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "65d2be38-d9fa-4e98-9d13-5a1222a0b75b",
+    "nome": "Idril",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7a26d727-252f-4006-866a-98be8d385066",
+    "nome": "Ielenia",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "57c90ca7-6e9a-41e3-9f7e-4e17da3049ab",
+    "nome": "Immeral",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d573f2d8-9b14-49d4-ba09-5d9d0fd51a39",
+    "nome": "Imsh",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c27bfc63-5d06-40d9-a05d-ce441dd5a553",
+    "nome": "Ioreth",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c9483720-07ca-42bd-ae4c-39a4a1fce631",
+    "nome": "Isabela",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b460fd8b-d2e6-47d4-9c4f-b2c6663bc0b9",
+    "nome": "Isaque",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4e00f5ad-9e7b-4218-9c33-50c8da18102e",
     "nome": "Isildur",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "c3638bc5-194d-4422-b0e7-f5366cd96d01",
-    "nome": "Jessie",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "c2de6239-311e-4cb2-90d4-3e0914014d93",
-    "nome": "Jordan",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "0580606e-7a24-4a02-88e7-ba8f436e0202",
-    "nome": "Jorge",
+    "id": "90794e12-6561-46e8-8174-47dfb43a29b6",
+    "nome": "Ivan",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "00f0a134-2ac5-475d-bb18-e14a2610bfdf",
+    "id": "a8767cb1-004a-4487-90de-7af41d71225d",
+    "nome": "Ivellios",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "556f704c-cc63-408c-accd-68ff4b946456",
+    "nome": "Jalder",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "33049ac2-be0d-4420-82a0-c15be056f488",
+    "nome": "Jebeddo",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "9fe05410-c2a1-432e-ae87-cfbce3a50802",
+    "nome": "Jessica",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "31a9af9f-1a13-42bd-b772-552e3118add2",
+    "nome": "Jillian",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a2407767-c0ce-40db-b8e0-bb218069a736",
+    "nome": "Jinglemug",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d81c709a-79c9-46eb-ae83-898fda1266ff",
+    "nome": "Judite",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "475a93d5-f01a-4cce-bb0d-9ea7bbc89340",
+    "nome": "Juliana",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "80863688-785d-4d62-9f56-02cdf5a71fd7",
+    "nome": "Juliano",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a3f017b2-541b-45e3-a922-229baa665507",
+    "nome": "Karzug",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "77535570-623b-4d45-94cd-753fdd71aa3d",
+    "nome": "Kathra",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "e9747284-34bb-445a-9257-854a65892e33",
+    "nome": "Kazrik",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e5f7d1a8-04e1-4385-8013-4f6f93ebe0bd",
+    "nome": "Kellen",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ac2f5415-9c65-4676-8a2a-bac90d114263",
+    "nome": "Keth",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5f74ddb5-a7ea-494f-8ad2-8d5946bfeac4",
+    "nome": "Keyleth",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "77b093c3-1e37-4125-9dce-5a34071a267a",
+    "nome": "Kildrak",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "589f6cd9-8ba3-4347-8304-f2811fe5b6ae",
     "nome": "Kili",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "5bf38a37-e8ff-4b9f-bb22-fd78ab71127f",
+    "id": "d6eb8a47-d74c-4a62-b3f8-a39890be082b",
+    "nome": "Kithri",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "35416a04-62b4-4de3-95b1-26357af7a72a",
+    "nome": "Krash",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "f1970fb1-a7c5-44d0-92c9-88e84957bd96",
+    "nome": "Kristryd",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a0ab4019-3669-467b-8370-ceb17c8c8a04",
+    "nome": "Krulga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "becef4a8-ee84-4061-8965-e78f08cd22b8",
+    "nome": "Lagduf",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5a9f0dde-2cb5-46e1-be12-00ca3a03eb12",
+    "nome": "Lagga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "016f3569-a037-476c-a1ba-412f116e9da8",
+    "nome": "Laucian",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ecc001cd-13f7-48be-8607-7f8108265d1a",
+    "nome": "Lavinia",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b5659791-cdb6-4397-b362-b316c13c8d77",
     "nome": "Legolas",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "3a3f6fbc-32b4-4d79-933c-6550270b296d",
+    "id": "dfcda8e5-bf2c-409b-9dda-fd71286c1960",
+    "nome": "Leonardo",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e2ad5178-f0a9-4875-b967-6c135c82f0c8",
+    "nome": "Lia",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b25b9779-62a6-47ed-90f5-d7fed0431871",
+    "nome": "Lide",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d70376c7-55b1-4557-ac70-cbd82d890863",
+    "nome": "Liftrasa",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9c306830-405c-4ccf-bd82-21c7cd8ed714",
+    "nome": "Linden",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "dc784d2b-c840-4d50-a50a-9813dce0b081",
+    "nome": "Liz",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "bfeeee4d-7942-4cd2-89b4-8fd8ee73e9d6",
+    "nome": "Lobelia",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "92a7d8c0-9a79-48bb-baad-e90de637556d",
+    "nome": "Loopmottin",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f2ce92e7-d00b-4942-91a0-86c3885da158",
+    "nome": "Lothiriel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "20337e47-e34f-476a-940b-c58fa3d6b6c5",
+    "nome": "Lotho",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a2809080-ae28-4f30-807c-0a0d39893957",
     "nome": "Lucas",
     "culturas": [
-      "Orc"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "ff11776c-319d-49d9-9d11-ddcb22b4f349",
+    "id": "089dec23-d85c-4d6a-bce1-d66deae0217e",
+    "nome": "Luis",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e3d33757-2fbd-4e6d-a461-58054e6bae48",
+    "nome": "Lurtz",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "9e3366e9-24c0-4300-a5a4-0a1e6b3800d6",
     "nome": "Luthien",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "feminino"
   },
   {
-    "id": "8a267777-6112-4e18-b538-790a3018a382",
-    "nome": "Mardin",
+    "id": "5a4d5e1a-2175-4455-9834-9af3a6f51c1e",
+    "nome": "Lyle",
     "culturas": [
-      "Anão"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "d9b937ef-556a-42f8-9905-7c886a2310b3",
+    "id": "cd42d8a4-df59-49c7-a6fa-61820ed79c58",
+    "nome": "Maedhros",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4f6b33e1-48b3-4547-8140-25c5b4380d9d",
+    "nome": "Marcia",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d179291d-de70-4526-af62-a5ff5c0640d2",
+    "nome": "Marcos",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "156b2d30-1855-44cd-9c20-5d8a1787541b",
+    "nome": "Mardnab",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6f98267a-ac3b-4d64-8309-c340a84f05d3",
+    "nome": "Mardred",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "3d7c031e-f900-45fe-95bd-96e4090b7cd6",
     "nome": "Maria",
-    "culturas": [],
-    "genero": "feminino"
-  },
-  {
-    "id": "ffb88633-7d76-4bc2-aa15-7ef05a300f2f",
-    "nome": "Marilene",
     "culturas": [
-      "Halfling",
-      "Gnomo"
+      "human"
     ],
     "genero": "feminino"
   },
   {
-    "id": "f3ff9af0-cbe2-4dd9-b631-bd215439f7b7",
-    "nome": "Merry",
-    "culturas": [],
-    "genero": "masculino"
-  },
-  {
-    "id": "71e97f06-c746-4786-bd00-e01212f05fb2",
-    "nome": "Morgan",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "9d9ae2db-8947-4b56-90c2-db374edfee6a",
-    "nome": "Nain",
+    "id": "d81d37d2-e8ce-445e-a356-007e3935aefc",
+    "nome": "Marigold",
     "culturas": [
-      "Anão"
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6f31e7b5-b21f-43eb-bcf4-f4eedeb1f525",
+    "nome": "Mateus",
+    "culturas": [
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b9765b6c-c51d-48c8-b2eb-cb59485b3785",
-    "nome": "Nameless",
+    "id": "08bd7a06-a6c1-4eb3-b2bd-457580e8a78e",
+    "nome": "Mauhur",
     "culturas": [
-      "Gnomo"
+      "orc"
     ],
     "genero": "masculino"
   },
   {
-    "id": "99cff068-2b58-4c5f-b158-713febdc81ef",
-    "nome": "Narvi",
+    "id": "807ac7ad-d474-494f-b255-44cec8201b62",
+    "nome": "Melian",
     "culturas": [
-      "Anão"
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a7b859c8-9be4-4ffa-bed4-fb7de85c4d78",
+    "nome": "Melilot",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "12d6faf5-1531-4961-943e-ddd71b776b0c",
+    "nome": "Meriadoc",
+    "culturas": [
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "bb8fa6e9-5c51-4d87-b207-dcb6db8c5d04",
-    "nome": "Norin",
+    "id": "71e3061e-505e-4921-bd76-e711d193cd55",
+    "nome": "Meriele",
     "culturas": [
-      "Anão"
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ea269779-25eb-4fb6-a0ab-7e26debc5966",
+    "nome": "Merla",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5d2e3f42-f389-47a3-9a71-78ed00f34c54",
+    "nome": "Merric",
+    "culturas": [
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "1407bc8e-1a11-4e53-929d-72b3cd63430d",
+    "id": "70f97b14-9a42-4c9d-b75b-aedaaea34c03",
+    "nome": "Mialee",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "97510933-8803-41b1-b939-50a6ef1c9df8",
+    "nome": "Michel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "76504db9-89d2-4aba-9780-3c879a93c224",
+    "nome": "Milo",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "308d084b-18de-4fbe-9afa-9ce925c10dc5",
+    "nome": "Mindartis",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "984bf7a5-75a3-4add-b830-fcfcd5b07d67",
+    "nome": "Miriel",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "2bfd5f1f-df8c-4904-9fcb-2a8da5f5a0ce",
+    "nome": "Mogra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5318bdf1-f8bc-40ad-a082-652a18692b10",
+    "nome": "Mogruk",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ceac19cb-a66b-4ea3-bcfe-1ab67ceffb5c",
+    "nome": "Moppet",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9402de6c-28c7-4431-900c-9c9596fdd116",
+    "nome": "Mordag",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a0d9dbfc-4029-42ef-8f04-da6bca84432f",
+    "nome": "Morfydd",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1a951c38-6505-4d35-b43c-c3e5a1ed31f9",
+    "nome": "Morga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a1185dc8-2708-42b2-a8ff-54e013dfa655",
+    "nome": "Morgran",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "ae9086e0-1f79-410d-b1c5-aba73f4168df",
+    "nome": "Morwen",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f623fc6e-cff7-4e7a-bb78-821495980d0f",
+    "nome": "Murnig",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "21549a44-6d7a-4688-8326-fa0a3a5c7fc7",
+    "nome": "Myev",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "da613408-1430-43f7-816d-5f06f239c3d1",
+    "nome": "Nackle",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4655a096-8b80-4b8a-819e-eb4842e2a07f",
+    "nome": "Nacklea",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a5915726-9f6d-4c2e-84f4-2fb403b7c448",
+    "nome": "Nagrod",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "686d0d55-fc6f-49a2-8a0e-8ff5eba56b8e",
+    "nome": "Naivara",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "336907bb-2b7c-4189-b3b5-6e9bc552afed",
+    "nome": "Namfoodle",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a53e3ba9-c459-4e2c-b8d0-739f3c8bb68e",
+    "nome": "Narsha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "12c7f7a6-cf4b-47ce-9b4a-34ce1f9e1541",
+    "nome": "Natalia",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "4d3b77bd-9651-446d-bbeb-38cd163ba0d0",
+    "nome": "Neega",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "aa92104b-8254-43a2-8f89-b3a8c877ac00",
+    "nome": "Nerdanel",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "bef139a9-28c5-4e32-8c36-533e26b1cb7c",
+    "nome": "Nerewen",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a7c9d144-4767-4369-9a06-80d499a79408",
+    "nome": "Nezha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9924c9ae-ff9a-4693-82f9-3ecbb820a227",
+    "nome": "Nicolas",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5115069f-d34a-468a-9fe1-9d95bb38a2fc",
+    "nome": "Nimrodel",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5b357244-9eda-4f27-8a06-399f3f040174",
+    "nome": "Ningel",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5a3befa2-adb2-42d3-831f-7d4dc56cbd82",
+    "nome": "Nissa",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ae075cea-7ed3-46a2-a2b6-56c47e2564b4",
+    "nome": "Nora",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7ad08ea2-f88b-44c9-9a3e-fd05e3aaad23",
+    "nome": "Norbin",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "90725d19-ed7f-445f-96e0-402217067b6d",
+    "nome": "Nyx",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5ed28e39-661b-4276-948a-a8c917fedb90",
+    "nome": "Odhig",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "476e7b03-bd39-4261-8a77-a79fccc1d2b8",
+    "nome": "Ogrim",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "8ae98a99-5106-47e8-93f5-abc7992e869c",
     "nome": "Oin",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "c346beb8-f22a-416d-b716-379e83830c70",
-    "nome": "Optim",
+    "id": "15ad1b55-b7eb-4856-8f14-cbcbf7d807bd",
+    "nome": "Olive",
     "culturas": [
-      "Gnomo"
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "fb4b23b6-778e-4161-ac39-e9ba7f10bfbb",
+    "nome": "Olivia",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9c0527c4-78cc-425e-a03a-f8a7d3588e1f",
+    "nome": "Oriwyn",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "79f077a0-6829-42cd-bc96-4cf5c5cf9ebf",
+    "nome": "Orsik",
+    "culturas": [
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "9704548c-ccc9-4a1b-b189-fa324a7dd1d3",
+    "id": "8c9dd1ed-3fec-40e3-a1c7-6ae305474705",
+    "nome": "Osborn",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c9a948ec-6d52-49c5-9dd0-faa8b978c755",
+    "nome": "Oskar",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "96d6b7b6-e3e3-429d-860a-a35c3ff046ba",
+    "nome": "Otho",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5b29f408-ec24-44fb-ba81-13b899418d38",
+    "nome": "Othra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1a480197-5ff4-4ed2-98a8-d075220be3b4",
+    "nome": "Ovak",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0f2f75dd-e87f-43d8-b762-4254e7f30b56",
+    "nome": "Ownka",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "71772c50-13ea-4891-9d82-bb330a5163ab",
+    "nome": "Paelias",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "f284faa8-569b-4762-86dd-766a2b5e8044",
+    "nome": "Paladin",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2280d838-17e4-41f2-a117-b9c30f8c1c16",
+    "nome": "Pearl",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "cc5d818a-9797-445a-a50b-30916f5a3783",
+    "nome": "Pebbletop",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "7530778a-6452-45b0-8554-5f6e8f577de0",
     "nome": "Pedro",
     "culturas": [
-      "Humano"
+      "human"
     ],
     "genero": "masculino"
   },
   {
-    "id": "e8f78c77-518b-49f5-8f1c-8898790c876c",
-    "nome": "Pippin",
+    "id": "ec78eb90-eacc-47bd-b05c-f70b65c4a827",
+    "nome": "Peregrin",
     "culturas": [
-      "Halfling",
-      "Orc"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "1eb99a69-b4b9-4ef3-a990-1a36323a940c",
+    "id": "94a1b189-bf54-4360-9889-3064edd98f1c",
+    "nome": "Perran",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "242e9cb8-edc4-4afb-acc7-01485df95ce6",
     "nome": "Pock",
     "culturas": [
-      "Gnomo"
+      "gnome"
     ],
     "genero": "masculino"
   },
   {
-    "id": "a8816a44-5911-4db2-933c-b3f1fda016c0",
-    "nome": "Porto",
+    "id": "72584c6d-5578-478f-aef5-06332f19cd90",
+    "nome": "Poppy",
     "culturas": [
-      "Halfling"
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "699bb349-c669-4188-9d80-35911baafa81",
+    "nome": "Portia",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "dd6a20e4-a9f1-414e-bcfd-e67183c5a60f",
+    "nome": "Primula",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "be2e01db-46db-416b-8b4b-6ba5a4bac059",
+    "nome": "Prisca",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "4fc66783-680b-4b7c-82aa-c4d8872dad07",
+    "nome": "Priscila",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "cd9abfc8-cde0-4ce7-b99b-cfde857efc79",
+    "nome": "Qillthe",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "2e93026f-78c7-42d4-85b1-7c952668ec72",
+    "nome": "Quarion",
+    "culturas": [
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "cb33580b-e208-4bd4-904d-9c493016fbe7",
-    "nome": "Riley",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "d7a1b164-cc6d-47ef-a955-b6563e2afe5f",
+    "nome": "Quelenna",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
   },
   {
-    "id": "7d51ead1-56fc-4208-8647-6f045696f473",
-    "nome": "Robin",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "68a3cb8b-e6b2-4e97-accc-2de25de1f29b",
+    "nome": "Quilla",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
   },
   {
-    "id": "a06b4761-2398-4146-9c49-77a6d42d4c0b",
+    "id": "08c7985d-b286-4ba5-a60f-35054236211d",
+    "nome": "Rafaela",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ca0449a3-9f8d-4a9d-afab-b680f7ff99df",
+    "nome": "Rangrim",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "1f810d79-1684-4a12-923f-9969ce507cde",
+    "nome": "Raquel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f69b6a22-c0ca-463f-be39-0f88c071cc1c",
+    "nome": "Rasha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5214aa35-d23d-44a2-b255-55684910fa30",
+    "nome": "Reed",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5d97de8b-039d-4740-af26-558cf457cdff",
+    "nome": "Renata",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ca4b8c03-ce12-4454-8468-7998accbc1e5",
+    "nome": "Riardon",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "b75eb838-e2ef-4e0f-800e-a6f16234ec3f",
+    "nome": "Rimple",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "97adefee-2a64-4e9d-8795-18165cad1798",
+    "nome": "Rinnia",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "55b0d687-317e-4e71-b915-d1c97ba9a17d",
+    "nome": "Riswynn",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1d4983ac-5283-475e-8720-d3f688ed4226",
+    "nome": "Roberto",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4a59f37b-4756-450f-8582-858d989b96b6",
+    "nome": "Rok",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "77f85b1b-0d07-480d-906f-6c1e693ee0fe",
+    "nome": "Ront",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "e2d61ff1-99a3-4512-8260-7e053e323de9",
+    "nome": "Roondar",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a478f3e7-9e04-4969-98b1-7248d2b52f3b",
     "nome": "Rosa",
     "culturas": [
-      "Halfling"
+      "human"
     ],
     "genero": "feminino"
   },
   {
-    "id": "4fdecdf6-5924-4ca4-b2c6-6cdf836cd600",
-    "nome": "Sage",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "b9263ded-a058-4829-ac83-8b094e6d5a3d",
-    "nome": "Sam",
+    "id": "1984b140-df2e-4881-a68d-dd78cbd18cb3",
+    "nome": "Roscoe",
     "culturas": [
-      "Halfling"
+      "halfling"
     ],
     "genero": "masculino"
   },
   {
-    "id": "170213ed-3ead-462f-ae66-59208c03a796",
-    "nome": "Skylar",
-    "culturas": [],
-    "genero": "unissex"
-  },
-  {
-    "id": "e6d277d4-e485-44d8-b02c-7b4eb14ac67d",
-    "nome": "Tansy",
+    "id": "aae308e9-97fb-4192-b8ca-2ab4819e30fe",
+    "nome": "Rose",
     "culturas": [
-      "Halfling"
+      "halfling"
     ],
     "genero": "feminino"
   },
   {
-    "id": "3203029d-9767-4f58-8ace-ea1b97a01792",
-    "nome": "Taylor",
-    "culturas": [],
-    "genero": "unissex"
+    "id": "322bf319-24c2-4940-a6b8-646a4e43ef9d",
+    "nome": "Rosie",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
   },
   {
-    "id": "15d6913d-28ac-4d4e-b8d4-3dc140cd5000",
+    "id": "b9c83337-9053-4d0f-9cdb-e8d1570e9292",
+    "nome": "Roywyn",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d111c11d-efd5-4fd8-8d4a-1c76f0ae8a86",
+    "nome": "Ruby",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "e662b422-bc9b-474c-8ac2-19d75913c875",
+    "nome": "Rurik",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "cd2805e3-e13f-42f6-922d-995887db041a",
+    "nome": "Samuel",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a6e368dc-a465-4265-8a60-51dce360ef84",
+    "nome": "Samwise",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "7163de01-dabf-493b-9401-d7f09c3510c0",
+    "nome": "Sannl",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "8e1ec619-580f-40d8-bc27-50d1e56d22db",
+    "nome": "Sariel",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c0fed933-c1d7-4adc-8102-53f8c8095239",
+    "nome": "Seebo",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "bec9492c-69e4-4344-908d-4e7f36e0c3cd",
+    "nome": "Seraphina",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ed3be686-e393-4eba-8300-559328a6525d",
+    "nome": "Shaena",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0bb0236a-acb8-4364-a97e-1705338d3c20",
+    "nome": "Shagrat",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "328ec05b-47e8-461f-8e1a-6ff5d7b4203e",
+    "nome": "Shamil",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6ffd679e-0890-4faf-99de-bf6fce9f8a7e",
+    "nome": "Shanairra",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "28d79fa4-c75b-48f7-a6be-b983dbcee6ec",
+    "nome": "Shautha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "cc60d829-6ba6-4398-b019-ceb821741a85",
+    "nome": "Shump",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "8e1dd4c3-a42e-4377-aaeb-fde110e464a0",
+    "nome": "Shura",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "215fe8ed-62af-4691-b110-3a75fe820a1a",
+    "nome": "Silaqui",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "80354509-d012-4245-aa73-171ba57e403d",
+    "nome": "Snaga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "32027212-8010-49b2-a3d0-32eaa174bbfa",
+    "nome": "Soveliss",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "78e0c0e6-058f-4241-8770-7309d6de35dc",
+    "nome": "Sparklegem",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "9cb7d018-36fe-4876-845e-51f0fd3bf7ba",
+    "nome": "Tais",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "69eeb84a-0f5d-45d0-a86e-5d21785cfac0",
+    "nome": "Taklinn",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5610d4ad-f398-43de-b071-f636e8b9d7a6",
+    "nome": "Tamires",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a897d8c0-b764-4e28-a300-e1ddf5c54d1b",
+    "nome": "Tana",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c91f9719-dcfd-4257-82c8-b6140123abfa",
+    "nome": "Tarnick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a2d6f8a1-5300-4604-9061-c58463099b4d",
+    "nome": "Tatiane",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b4bd3207-511b-4d21-9c27-aae676744dc0",
+    "nome": "Teodoro",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "fb7fa698-12c7-46af-9f51-1bb90772f9e7",
+    "nome": "Teresa",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f21b4815-097e-4c6f-8fc9-643076760dff",
+    "nome": "Thamior",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "70e6606f-7926-49ce-9120-d1c291594203",
+    "nome": "Tharivol",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "6eb82557-c322-4a7d-845c-d45ad99a0f42",
+    "nome": "Theoden",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2e338790-0147-40a6-8442-a660d2c8f58c",
+    "nome": "Thia",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b55fc23c-15b7-4b7d-8340-1c56e244d6d1",
+    "nome": "Thingol",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5599cc09-88e5-4342-9284-41403b875266",
+    "nome": "Thokk",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "13a3f391-a602-4b05-be20-ad3942a3b688",
+    "nome": "Thokka",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "bc159d86-48d2-4523-b26e-d60585d80e6c",
+    "nome": "Thoradin",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "9d97307a-f181-45db-93b3-ccfd9c8f1c2f",
     "nome": "Thorin",
     "culturas": [
-      "Anão"
+      "dwarf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "981d8712-d205-4eb6-859d-06e331ce830d",
-    "nome": "Thrain",
-    "culturas": [
-      "Anão"
-    ],
-    "genero": "masculino"
-  },
-  {
-    "id": "f86a424c-252d-4e9d-8397-e780b0c94405",
+    "id": "da6ad0e7-1046-4680-8734-47b70b8be73b",
     "nome": "Thranduil",
     "culturas": [
-      "Elfo"
+      "elf"
     ],
     "genero": "masculino"
   },
   {
-    "id": "b8ceee63-deac-4b15-8bdd-ba5408adc24e",
+    "id": "330a7eeb-db5b-435b-ab18-b554f2b58a79",
+    "nome": "Thurg",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "adba539f-3a46-4d86-9adf-af7563c18000",
+    "nome": "Tiago",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "05d0d4ef-b2fc-44f9-8733-be821f6ca509",
+    "nome": "Tilly",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "e066e4a3-19a8-4ac8-943a-f939b33e2964",
+    "nome": "Tinksy",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1c01413c-ff7b-490e-b19c-57615f31c7fc",
+    "nome": "Tobold",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "cf9a24dc-c193-4814-86f8-1921d9758c21",
+    "nome": "Torbera",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "4877026d-dcf1-449c-94ab-03452e65373d",
+    "nome": "Tordek",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "2359b37f-705c-469a-9025-a079f45d2a34",
+    "nome": "Torgga",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ea21d1ea-23ef-4862-b151-bf1f3442f41c",
+    "nome": "Trafnar",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4adf1d70-21bf-4280-8a14-77bc81b3914a",
+    "nome": "Traubon",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "5efaec22-83d2-4a3a-8c7f-9032f6e20eed",
+    "nome": "Travok",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "10929410-aa32-4ece-a2ea-006902621383",
+    "nome": "Tuor",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "df7f0b33-059b-4ec2-86c7-e4589fb7d6fe",
+    "nome": "Tye",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "acd1bba9-7246-4f93-8711-8f63c62995c4",
+    "nome": "Ugar",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "6aa8ebbc-9b10-461f-ba24-2239b57f45f7",
+    "nome": "Ugluk",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c052972f-f85c-4831-9645-8c197c2ef429",
+    "nome": "Ulfgar",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "03f12046-f35b-4bd8-add0-1db785600acf",
+    "nome": "Ulfram",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "22cb1d88-4475-46cf-a80c-76cade579dd2",
+    "nome": "Ulmo",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "93073b07-bdb4-4841-9112-72ef0bb3ddbd",
+    "nome": "Ulsha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "0107b426-9a08-49ce-a461-f32137d34173",
+    "nome": "Urga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "34e7b824-e86c-452a-bdd2-72d88106ec98",
+    "nome": "Urzha",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "1a4bc5f4-56b4-49f4-9e81-28225de8848e",
+    "nome": "Valanthe",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "db69707c-2be4-4a2c-9305-c42d48eb4092",
+    "nome": "Valindra",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "aa14dbb6-7e2b-435b-9d7f-1fb3d05ba5f2",
+    "nome": "Vanessa",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a8655390-523f-4b32-93b5-dcaeae568e3b",
+    "nome": "Vannic",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "fa248142-e56c-4a08-b7cc-576a86f5ceb0",
+    "nome": "Varis",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c3c149a4-546b-4a55-bce5-30dad0799f76",
+    "nome": "Vedania",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f58c8494-9d19-4dd0-9c7d-c7c67ec7e988",
+    "nome": "Veit",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "93276704-d1ee-4571-83be-da732d6618c9",
+    "nome": "Vellywick",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ff4c091e-cc89-4306-b0ef-96cc1cea433e",
+    "nome": "Verna",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "b04df15d-9533-4a15-a5f2-92f708512ff4",
+    "nome": "Vilma",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ce5b3b59-4361-472b-bcc4-93a6c96950ed",
+    "nome": "Vinicius",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "d6dce898-29f0-4288-bdb1-b1941434755b",
+    "nome": "Vistra",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f5f3f288-13d9-4abe-a781-d8f8e82bba0f",
+    "nome": "Vitor",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "4ed9470b-c202-4948-b05c-a651c6b7aa05",
+    "nome": "Vola",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "09862b7c-8db2-4c23-97d6-d07f58f6d954",
+    "nome": "Volen",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "c5865327-ac3d-42dc-90d0-b0ffa7e34714",
+    "nome": "Volgra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f3f0ffba-d7bf-40b1-95cc-974fec93a046",
+    "nome": "Vondal",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "0f048df6-c670-4dd9-bc6a-61f268ad23b4",
+    "nome": "Vorga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "63c7696a-c75c-4266-a762-465d2056c1e8",
+    "nome": "Vorgak",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "3f79e235-a203-41ed-ac6e-726ad0c35909",
+    "nome": "Vrakka",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "2c7ddc05-60ac-45fe-a0ce-47d5655a40f7",
+    "nome": "Waywocket",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "5c90e6ce-c5de-4404-9f87-ced07f23b807",
+    "nome": "Wella",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "2bf22ff6-a504-4cda-85f1-5a77ce6bbc88",
+    "nome": "Wellby",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "b5a5eab6-87d6-47cf-a90e-9627d30bf364",
+    "nome": "Wesley",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "01dee1b6-fb19-48d2-aa59-d7c03eab31d8",
+    "nome": "Wiggens",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "680ec031-0cc1-45fe-8456-3eb3c29057d7",
+    "nome": "William",
+    "culturas": [
+      "human"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "fa8d3125-c0d5-424e-ab6d-2de4f68ad6d6",
+    "nome": "Willick",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "c8f70472-00b3-478c-a732-8d482e3f5727",
+    "nome": "Wrenn",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "41b45838-b056-48f8-a560-1a1ece3cabe6",
+    "nome": "Wrenna",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "d37825f1-54cc-43c5-b659-866524b34cc0",
+    "nome": "Wynna",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "bb460464-4579-4d90-85a9-8c1351eff102",
+    "nome": "Xanaphia",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9ffebee1-a3af-4f53-b7c4-daec06e315a7",
+    "nome": "Yasmin",
+    "culturas": [
+      "human"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "ce8bb661-12e5-4f34-954a-d4110d59586a",
+    "nome": "Yebin",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "957461fd-11c0-4fcf-a379-8bc0d9a6a1ba",
+    "nome": "Yeshe",
+    "culturas": [
+      "elf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "83e63d80-4895-4441-a13f-198689f92d3e",
+    "nome": "Ygra",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "9b41bb05-18fe-48eb-8bcd-8d41bfca3fd8",
+    "nome": "Yllerie",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "6b54df1b-ba0d-4744-ac3b-80a63029de03",
+    "nome": "Yondor",
+    "culturas": [
+      "halfling"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "6ed633b8-9791-4d80-8c84-f83916b9fbac",
+    "nome": "Yurgunn",
+    "culturas": [
+      "dwarf"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "10cd0f7f-1a14-4753-acbd-7f7a94081459",
+    "nome": "Zaffrab",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "1c1c8223-6492-486e-b03e-64c9111759cd",
+    "nome": "Zagra",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a4637c7c-c32a-4986-8ec8-3fcb8d670777",
+    "nome": "Zanna",
+    "culturas": [
+      "gnome"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "a81110a7-d1a2-4015-8585-0aa3ad60d32d",
     "nome": "Zook",
     "culturas": [
-      "Gnomo"
+      "gnome"
+    ],
+    "genero": "masculino"
+  },
+  {
+    "id": "a65176fe-eca7-4e54-af7e-19a10fed4f68",
+    "nome": "Zugga",
+    "culturas": [
+      "orc"
+    ],
+    "genero": "feminino"
+  },
+  {
+    "id": "f4ed866e-d8de-4a1d-93f6-2ab3b848bb90",
+    "nome": "Zugor",
+    "culturas": [
+      "orc"
     ],
     "genero": "masculino"
   }

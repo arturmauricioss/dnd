@@ -6,7 +6,11 @@ import { namesCultures } from '@systems/names'
 import type { Nome } from './types'
 import { cultureColumns } from './types'
 
+
 export default function App() {
+  const culturaLabels = Object.fromEntries(
+    namesCultures.map(c => [c.key, c.label])
+  )
   const {
     nomesFiltrados,
     busca,
@@ -21,6 +25,7 @@ export default function App() {
     adicionar,
     ordenar,
     salvar,
+    estatisticas,
   } = useNomes()
 
   return (
@@ -62,7 +67,10 @@ export default function App() {
           {
             value: culturaFiltro.join(','),
             onChange: v => setCulturaFiltro(v ? v.split(',') : []),
-            options: namesCultures.map(c => ({ value: c.label, label: c.label })),
+            options: namesCultures.map(c => ({
+              value: c.key,
+              label: c.label,
+            })),
           },
         ]}
       />
@@ -121,7 +129,62 @@ export default function App() {
           </tbody>
         </table>
       </div>
+      <div className="table-wrapper">
+        <table className="sheet">
+          <thead>
+            <tr>
+              <th rowSpan={2}>Raça</th>
 
+              <th colSpan={3}>Universais</th>
+              <th colSpan={3}>Compart.</th>
+              <th colSpan={3}>Únicos</th>
+              <th colSpan={3}>Total</th>
+            </tr>
+
+            <tr>
+              <th>M</th>
+              <th>F</th>
+              <th>U</th>
+
+              <th>M</th>
+              <th>F</th>
+              <th>U</th>
+
+              <th>M</th>
+              <th>F</th>
+              <th>U</th>
+
+              <th>M</th>
+              <th>F</th>
+              <th>U</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {Object.entries(estatisticas.culturas).map(([cultura, dados]) => (
+              <tr key={cultura}>
+                <td>{culturaLabels[cultura] || cultura}</td>
+
+                <td>{dados.universais.masc}</td>
+                <td>{dados.universais.fem}</td>
+                <td>{dados.universais.uni}</td>
+
+                <td>{dados.compartilhados.masc}</td>
+                <td>{dados.compartilhados.fem}</td>
+                <td>{dados.compartilhados.uni}</td>
+
+                <td>{dados.unicos.masc}</td>
+                <td>{dados.unicos.fem}</td>
+                <td>{dados.unicos.uni}</td>
+
+                <td>{dados.total.masc}</td>
+                <td>{dados.total.fem}</td>
+                <td>{dados.total.uni}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <button className="save-button" onClick={salvar}>
         Salvar
       </button>
