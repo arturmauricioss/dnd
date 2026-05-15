@@ -7,11 +7,13 @@ import RowInputButton from '@components/ui/common/RowInputButton/RowInputButton'
 import RowButton from '@components/ui/common/RowButton'
 import RaceSelect from '@features/raceSelection/RaceSelect'
 import { useNewHero } from '@features/newHero/hooks/useNewHero'
+import { usePersonagens } from '@features/newHero/hooks/usePersonagens'
 import { Spawn } from '@components/ui/icons'
 import '@features/raceSelection/RaceSelect.css'
 
 export default function NewHeroPage() {
   const navigate = useNavigate()
+  const { salvarPersonagem } = usePersonagens()
   const {
     nome,
     setNome,
@@ -23,6 +25,22 @@ export default function NewHeroPage() {
     gerarNomeRaca,
     isBotaoRacaDisabled,
   } = useNewHero()
+
+  const handleSalvar = () => {
+    if (!nome || !raca || !genero) {
+      alert('Preencha nome, raça e gênero!')
+      return
+    }
+    
+    salvarPersonagem({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2),
+      name: nome,
+      race: raca,
+      gender: genero,
+      createdAt: new Date().toISOString(),
+    })
+    navigate('/heroes')
+  }
 
   return (
     <Page>
@@ -51,7 +69,7 @@ export default function NewHeroPage() {
 <RowButton
         buttons={[
           { label: 'Cancelar', onClick: () => navigate('/heroes'), variant: 'secondary' },
-          { label: 'Salvar', onClick: () => {}, variant: 'primary' },
+          { label: 'Salvar', onClick: handleSalvar, variant: 'primary' },
         ]}
       />
     </Page>

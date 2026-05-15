@@ -1,0 +1,35 @@
+.row-span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.row-span-main {
+  flex: 1;
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.row-span-right {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+}
+
+.row-span-item {
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+
+.row-span-item.hero-race {
+  color: var(--primary);
+}
