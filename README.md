@@ -4,23 +4,24 @@ Este projeto está sendo desenvolvido para o melhor Gerenciamento de Fichas de D
 
 O objetivo de usabilidade é tornar possível acesso rápido a informações de cada jogador pelo mestre, convergencia de dados em tempo real. 
 
-A ideia é um RPG assistido focado no Metre onde
-Mestre
--compartilha a tela
--controla iniciativa
--controla rounds
--move combate
--vê tudo
--faz administração geral
+## A ideia é um RPG assistido focado no Metre onde:
 
-Jogadores 
--podem agir ou pedir para o mestre agir por eles
--veem apenas a própria ficha
--apertam/ativam habilidades
--acompanha HP
--ativa efeitos
--rola ações
--sem precisar navegar interface gigante
+### Mestre
+- compartilha a tela
+- controla iniciativa
+- controla rounds
+- move combate
+- vê tudo
+- faz administração geral
+
+### Jogadores 
+- podem agir ou pedir para o mestre agir por eles
+- veem apenas a própria ficha
+- apertam/ativam habilidades
+- acompanha HP
+- ativa efeitos
+- rola ações
+- sem precisar navegar interface gigante
 
 ## Home
 
