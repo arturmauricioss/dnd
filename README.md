@@ -1,257 +1,48 @@
-# BRPG - Virtual Tabletop
+# BRPG
 
-Um assistente virtual de mesa para criação de personagens e gerenciamento de campanhas de D&D.
+Este projeto está sendo desenvolvido para o melhor Gerenciamento de Fichas de D&D, seu desenvolvimento está sendo focado na versão 3.5 e no público brasileiro.
 
-## 🎨 Sistema de Design
+O objetivo de usabilidade é tornar possível acesso rápido a informações de cada jogador pelo mestre, convergencia de dados em tempo real. 
 
-### Cores (CSS Custom Properties)
+## Home
 
-```css
-:root {
-  /* Surface (Obsidiana) */
-  --surface: #131314;
-  --surface-dim: #131314;
-  --surface-bright: #39393A;
-  --surface-container-lowest: #0E0E0F;
-  --surface-container-low: #1C1B1C;
-  --surface-container: #201F20;
-  --surface-container-high: #2A2A2B;
-  --surface-container-highest: #353436;
+A tela Home atualmente tem as atualizações puxadas diretamente dos commits do projeto no github.
 
-  /* On Surface */
-  --on-surface: #E5E2E3;
-  --on-surface-variant: #D4C5AB;
+## Página de Heróis
 
-  /* Outline */
-  --outline: #9C8F78;
-  --outline-variant: #504532;
+Essa página serve para exibir todos os personagens do jogador. existem duas sessões nela, sempre que um personagem terminar uma campanha morto (ambas features que ainda nao foram implementadas) o jogador verá seu personagem no Memorial dos Caidos.
 
-  /* Primary (Tocha Amber) */
-  --primary: #FFE2AB;
-  --primary-amber: #FFBF00;
-  --on-primary: #402D00;
-  --primary-container: #FFBF00;
-  --on-primary-container: #6D5000;
+## Página de Novo Herói ~foco do desenvolvimento atual
 
-  /* Secondary (Dragão Crimson) */
-  --secondary: #FFB3AF;
-  --on-secondary: #68000D;
-  --secondary-container: #9D0018;
-  --on-secondary-container: #FF9E99;
+Aqui o jogador pode começar a desenvolver seu personagem com escolhas de Raça, Gênero e Nome. Algumas features randomicas também auxiliam o processo. 
 
-  /* Tertiary (Ouro) */
-  --tertiary: #FAE685;
-  --on-tertiary: #393000;
-  --tertiary-container: #DDCA6C;
-  --on-tertiary-container: #615400;
+## Campanhas
 
-  /* Accent (Metal Bronze) */
-  --accent: #C5B358;
-}
-```
+Essa feature ainda não foi implementada mas servirá para unir fichas de vários usuários em uma mesma campanha, o usuário que criar a campanha será denominado o mestre, e os usuários que jogarem serão os jogadores.
 
-### Tipografia
+## Configurações
 
-| Estilo | Fonte | Tamanho | Weight |
-|--------|-------|---------|--------|
-| Headline XL | Newsreader | 3rem (48px) | 700 |
-| Headline LG | Newsreader | 2rem (32px) | 600 |
-| Headline MD | Newsreader | 1.5rem (24px) | 600 |
-| Stat Display | Manrope | 2.25rem (36px) | 800 |
-| Body LG | Manrope | 1.125rem (18px) | 400 |
-| Body MD | Manrope | 1rem (16px) | 400 |
-| Label Caps | Inter | 0.75rem (12px) | 700 |
+Aqui podemos atualmente mudar o tema, mas também adicionarei aqui padrões de configuração para que o player possa escolher metodo padrao de criação de ficha ao inves de ser perguntado sempre qual metodo usar
 
-### Espaçamento (base 8px)
+## NameGenerator
 
-| Nome | Valor |
-|------|-------|
-| xs | 0.5rem (8px) |
-| sm | 0.75rem (12px) |
-| md | 1rem (16px) |
-| lg | 1.5rem (24px) |
-| xl | 2rem (32px) |
-| 2xl | 3rem (48px) |
+Essa Tool foi desenvolvida para gerenciamente de nomes randomicos, poderá futuramente ser integrada a uma feature para desenvolvimento de npcs mais rapidamente pelo mestre, mas ainda não foi implementada
 
-### Border Radius
 
-| Nome | Valor |
-|------|-------|
-| sm | 0.125rem (2px) |
-| DEFAULT | 0.25rem (4px) |
-| md | 0.375rem (6px) |
-| lg | 0.5rem (8px) |
-| xl | 0.75rem (12px) |
+# Futuras Atualizações
 
----
-
-## 📁 Estrutura do Projeto
-
-```
-src/
-├── components/
-│   ├── ui/
-│   │   ├── basic/           # Primitivos (Box, Text, Title, Toggle...)
-│   │   ├── common/          # Compostos de basic (RowHeader, RowMessage, RowToggle)
-│   │   └── icons/           # Ícones SVG
-│   └── shell/               # Estrutura de rotas (Page, Layout)
-├── features/                # Domínios (DDD)
-│   ├── theme/               # Context, hooks, types do tema
-│   ├── updates/             # Hooks e utils de atualizações
-│   └── navigation/          # BottomNav (navegação)
-├── pages/                   # Páginas (HomePage, ConfigPage)
-├── services/                # Chamadas API
-└── index.css               # Design System (variáveis globais)
-```
-
----
-
-## 🔗 Aliases (Vite)
-
-```typescript
-'@/'             → ./src
-'@components/*'  → ./src/components
-'@features/*'    → ./src/features
-'@pages/*'       → ./src/pages
-'@services/*'    → ./src/services
-```
-
----
-
-## 🚫 Proibido
-
-1. `px` para tamanhos (usar `rem`)
-2. Cores hardcoded (usar `var(--cor)`)
-3. Desktop-first
-4. `any` em TypeScript
-5. Lógica de negócio em componentes
-6. Imports relativos (usar aliases)
-
----
-
-## ✅ Obrigatório
-
-1. **Types para tudo** - TypeScript strict
-2. **Components small e focados**
-3. **Mobile-first** - começar do menor, expandir para desktop
-4. **Cores via CSS variables**
-5. **Atomic Design**: basic → common → shell
-6. **Design System** - usar variáveis do `index.css`
-
----
-
-## 🏗️ Arquitetura: DDD + Engine Pattern
-
-### Estrutura por Domínio (DDD)
-
-```
-src/features/
-├── theme/           # Domínio: Tema
-│   ├── context/     # Estado global (React Context)
-│   ├── hooks/       # Hooks específicos do domínio
-│   └── types/       # Tipos do domínio
-└── updates/        # Domínio: Atualizações
-    ├── hooks/       # Hooks específicos do domínio
-    └── utils/      # Funções utilitárias
-```
-
-### Dentro de Cada Domínio: Engine Pattern
-
-Quando necessário, cada feature pode seguir:
-
-```
-src/features/[dominio]/
-├── data/            → dados puros (constantes, tipos)
-├── engine/          → lógica de regras puras (sem UI)
-└── rules/           → regras de negócio específicas
-```
-
-### Atomic Design (UI)
-
-```
-src/components/ui/
-├── basic/           # Primitivos (atoms) - Box, Text, Title, Toggle...
-├── common/          # Compostos de basic (molecules) - RowHeader, RowMessage, RowToggle
-└── icons/           # Ícones
-```
-
-**Shell** (estrutura de rotas):
-- Page, Layout
-
-**Features** (domínios DDD):
-- theme, updates, navigation
-
----
-
-## 🌎 Idioma
-
-Todo o projeto em **português (pt-BR)**:
-
-- **Funções, variáveis, nomes de arquivos** → português
-- **Comentários** → português
-- **Componentes React** → inglês (padrão)
-- **Types/Interfaces** → inglês (padrão TypeScript)
-
----
-
-## 🎭 Temática
-
-- **RPG Medieval/Fantasy** - evitar UI genérica "corporate"
-- **Tátil e Místico** - texturas sutis, brilhos suaves
-- **Funcional** - apesar da estética, funcionar como ferramenta profissional
-
----
-
-## 🎯 Visão do Projeto
-
-### Fase 1: App de Criação de Fichas
-- Criar ficha (nome, raça, classe, atributos, nível, aparência)
-- Usuário mantém suas fichas localmente
-- Login com múltiplos provedores (Google, Discord, email, etc.)
-
-### Fase 2: Campanhas e Interação Social
-- Usuário pode criar campanhas (vira "Mestre")
-- Jogadores aplicam com suas fichas
-- Mestre aprova/rejeita entrada
-- Ficha "trava" ao entrar na campanha (só muda com permissão do mestre)
-
-### Fase 3: Mecânicas de Jogo
-- **Atributos**: Imutáveis após entrada na campanha
-- **Nível/XP**: XP concedido pelo mestre, níveis específicos dão +1 atributo
-- **Efeitos temporários**: Ativados/desativados por tempo
-- **Cooldowns**: Habilidades 1/dia recarregam
-
-### Fase 4: Sistema de Morte
-- Morte em campanha → Memorial dos Caídos
-- Morte natural entre campanhas (Ativo Obscuro)
-
----
-
-## 🔧 Comandos
-
-```bash
-# Instalar dependências
-npm install
-
-# Executar desenvolvimento
-npm run dev
-
-# Build para produção
-npm run build
-```
-
----
-
-## 📱 PWA
-
-O app funciona offline como PWA com ícones em `public/icones/`.
-
----
-
-## 📝 Commits
-
-- `feat:` nova funcionalidade
-- `fix:` correção
-- `refactor:` reorganização
-- `docs:` documentação
-- `chore:` configuração
+- salvar ficha local
+- login/logout
+- salvar ficha na conta
+- criar campanha
+- submeter ficha para campanha
+- criar validação para aceitar ficha na campanha
+- gerenciamento simultaneo de fichas pelo jogador e mestre.
+- inbutir rolagem de dados
+- gerenciar dados como engine.
+- adicionar habilidades e com engine coisas como raça bonus força +2
+- adicionar outros atributos como deslocamento, visao, dano etc...
+- adicionar efeitos
+- adicionar controle de tempo/rounds como avançar 10 rodadas seria o equivalente a avançar 1 minuto.. desativar efeitos temporários dessa forma, coisas como iniciativa terão outro estilo de calculo, habilidades com cargas de 1x dia, terão coldown de 24horas
+- adicionar sistema de criaçao de NPCs, Lojas, Monstros rapidamente para o mestre.
+- adicionar malha de batalha e token de personagem.
