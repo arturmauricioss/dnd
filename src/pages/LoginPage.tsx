@@ -4,8 +4,8 @@ import Page from '@components/shell/Page/Page';
 import Title from '@components/ui/basic/Title/Title';
 import Input from '@components/ui/basic/Input/Input';
 import RowButton from '@components/ui/common/RowButton/RowButton';
+import AuthForm from '@components/ui/common/AuthForm/AuthForm';
 import { useAuth } from '@hooks/useAuth';
-import './Auth.css';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -38,11 +38,11 @@ export default function LoginPage() {
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">
+      <Title size="xl" className="">
         Entrar
       </Title>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <AuthForm onSubmit={handleSubmit}>
         <Input
           type="email"
           placeholder="Email"
@@ -72,7 +72,7 @@ export default function LoginPage() {
         <p className="auth-link">
           Não tem conta? <Link to="/register">Criar conta</Link>
         </p>
-      </form>
+      </AuthForm>
     </Page>
   );
 }

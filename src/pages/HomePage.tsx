@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">
+      <Title size="xl" className="">
         Brasil RPG
       </Title>
       <RowHeader icon={Git} active>

@@ -6,8 +6,8 @@
   font-size: var(--body-md);
   font-weight: 600;
   color: var(--on-surface);
-  margin-top: var(--space-lg);
-  padding-bottom: var(--space-md);
+  margin-block: var(--space-sm);
+  padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--outline-variant);
 }
 

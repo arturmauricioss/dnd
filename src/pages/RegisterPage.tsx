@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Page from '@components/shell/Page/Page';
 import Title from '@components/ui/basic/Title/Title';
-import Box from '@components/ui/basic/Box/Box';
 import Input from '@components/ui/basic/Input/Input';
 import RowButton from '@components/ui/common/RowButton/RowButton';
+import AuthForm from '@components/ui/common/AuthForm/AuthForm';
 import { useAuth } from '@hooks/useAuth';
-import './Auth.css';
 
 export default function RegisterPage() {
   const { signUp } = useAuth();
@@ -17,7 +16,9 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  async function handleSubmit() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
     if (!email || !password || !confirmPassword) {
       setError('Preencha todos os campos');
       return;
@@ -52,7 +53,7 @@ export default function RegisterPage() {
         <Title size="xl" className="mt-md">
           Verifique seu email
         </Title>
-        <Box className="auth-form">
+        <AuthForm>
           <p className="auth-success">
             Enviamos um link de confirmação para <strong>{email}</strong>.
             Clique no link para ativar sua conta.
@@ -60,18 +61,18 @@ export default function RegisterPage() {
           <p className="auth-link">
             <Link to="/login">Voltar para login</Link>
           </p>
-        </Box>
+        </AuthForm>
       </Page>
     );
   }
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">
+      <Title size="xl" className="">
         Criar Conta
       </Title>
 
-      <Box className="auth-form">
+      <AuthForm onSubmit={handleSubmit}>
         <Input
           type="email"
           placeholder="Email"
@@ -97,8 +98,9 @@ export default function RegisterPage() {
           buttons={[
             {
               label: loading ? 'Criando...' : 'Criar Conta',
-              onClick: handleSubmit,
+              onClick: () => {},
               disabled: loading,
+              type: 'submit',
             },
           ]}
         />
@@ -106,7 +108,7 @@ export default function RegisterPage() {
         <p className="auth-link">
           Já tem conta? <Link to="/login">Entrar</Link>
         </p>
-      </Box>
+      </AuthForm>
     </Page>
   );
 }

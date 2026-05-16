@@ -46,7 +46,7 @@ export default function NewHeroPage() {
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">
+      <Title size="xl" className="">
         Novo Personagem
       </Title>
       <RowHeader icon={Spawn} active>

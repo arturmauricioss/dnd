@@ -1,0 +1,27 @@
+.auth-error {
+  color: var(--error);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.auth-success {
+  color: var(--primary);
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.auth-link {
+  text-align: center;
+  color: var(--on-surface-variant);
+  font-size: 0.875rem;
+}
+
+.auth-link a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}

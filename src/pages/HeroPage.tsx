@@ -13,7 +13,7 @@ export default function HeroPage() {
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">
+      <Title size="xl" className="">
         Salão dos Heróis
       </Title>
       <RowHeader icon={ChessKnight} active>
