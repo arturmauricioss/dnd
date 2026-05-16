@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import './index.css'
 import Layout from '@components/shell/Layout/Layout'
 import ProtectedRoute from '@components/shell/ProtectedRoute/ProtectedRoute'
+import HomePage from '@pages/HomePage'
 import HeroPage from '@pages/HeroPage'
 import NewHeroPage from '@pages/NewHeroPage'
 import ConfigPage from '@pages/ConfigPage'
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Navigate to="/heroes" replace /> },
+      { 
+        path: 'home', 
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ) 
+      },
       { 
         path: 'login', 
         element: (

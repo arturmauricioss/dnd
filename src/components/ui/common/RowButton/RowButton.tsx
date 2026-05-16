@@ -8,6 +8,7 @@ interface ButtonConfig {
   disabled?: boolean
   selected?: boolean
   variant?: 'primary' | 'secondary'
+  type?: 'button' | 'submit' | 'reset'
 }
 
 interface RowButtonProps {
@@ -21,6 +22,7 @@ export default function RowButton({ buttons = [] }: RowButtonProps) {
         {buttons.map((btn, index) => (
           <Button
             key={index}
+            type={btn.type || 'button'}
             className={`row-button-btn ${btn.selected ? 'selected' : ''} ${btn.variant || ''}`}
             onClick={btn.disabled ? undefined : btn.onClick}
             disabled={btn.disabled}

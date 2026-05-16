@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Page from '@components/shell/Page/Page'
 import Title from '@components/ui/basic/Title/Title'
-import Box from '@components/ui/basic/Box/Box'
 import Input from '@components/ui/basic/Input/Input'
 import RowButton from '@components/ui/common/RowButton/RowButton'
 import { useAuth } from '@hooks/useAuth'
@@ -16,7 +15,9 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    
     if (!email || !password) {
       setError('Preencha email e senha')
       return
@@ -39,7 +40,7 @@ export default function LoginPage() {
     <Page>
       <Title size="xl" className="mt-md">Entrar</Title>
       
-      <Box className="auth-form">
+      <form className="auth-form" onSubmit={handleSubmit}>
         <Input
           type="email"
           placeholder="Email"
@@ -59,8 +60,9 @@ export default function LoginPage() {
           buttons={[
             { 
               label: loading ? 'Entrando...' : 'Entrar', 
-              onClick: handleSubmit,
-              disabled: loading 
+              onClick: () => {},
+              disabled: loading,
+              type: 'submit'
             },
           ]}
         />
@@ -68,7 +70,7 @@ export default function LoginPage() {
         <p className="auth-link">
           Não tem conta? <Link to="/register">Criar conta</Link>
         </p>
-      </Box>
+      </form>
     </Page>
   )
 }
