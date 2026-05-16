@@ -5,11 +5,18 @@ import RowHeader from '@components/ui/common/RowHeader/RowHeader'
 import RowButton from '@components/ui/common/RowButton/RowButton'
 import RowSpan from '@components/ui/common/RowSpan/RowSpan'
 import { usePersonagens } from '@features/newHero/hooks/usePersonagens'
+import { useAuth } from '@hooks/useAuth'
 import { ChessKnight, Skull } from '@components/ui/icons'
 
 export default function HeroPage() {
   const navigate = useNavigate()
   const { personagens } = usePersonagens()
+  const { signOut } = useAuth()
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/login')
+  }
 
   return (
     <Page>
@@ -18,10 +25,10 @@ export default function HeroPage() {
       {personagens.map(p => (
         <RowSpan
           key={p.id}
-          main={p.name}
+          main={p.nome}
           rightSpans={[
-            { content: p.race?.label || p.race?.key, className: 'hero-race' },
-            { content: p.gender === 'masculino' ? 'M' : p.gender === 'feminino' ? 'F' : 'U' }
+            { content: p.raca?.label || p.raca?.key || '', className: 'hero-race' },
+            { content: p.genero === 'masculino' ? 'M' : p.genero === 'feminino' ? 'F' : 'U' }
           ]}
         />
       ))}
@@ -31,6 +38,11 @@ export default function HeroPage() {
         ]}
       />
       <RowHeader icon={Skull} variant="secondary">Memorial dos Caídos</RowHeader>
+      <RowButton
+        buttons={[
+          { label: 'Sair', onClick: handleLogout, variant: 'secondary' },
+        ]}
+      />
     </Page>
   )
 }

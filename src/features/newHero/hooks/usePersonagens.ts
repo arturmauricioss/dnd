@@ -1,33 +1,83 @@
-import { useState, useEffect } from 'react'
-import type { Character } from '@systems/character'
+import { useState, useEffect, useCallback } from 'react'
+import { supabase } from '@lib/supabase'
+import { useAuth } from '@hooks/useAuth'
 
-const STORAGE_KEY = 'personagens'
+interface Personagem {
+  id: string
+  nome: string
+  raca: { key: string; label: string } | null
+  genero: string
+  created_at: string
+}
 
 export function usePersonagens() {
-  const [personagens, setPersonagens] = useState<Character[]>([])
+  const { user } = useAuth()
+  const [personagens, setPersonagens] = useState<Personagem[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const fetchPersonagens = useCallback(async () => {
+    if (!user) {
+      setPersonagens([])
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
+    const { data, error } = await supabase
+      .from('personagens')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching personagens:', error)
+      setPersonagens([])
+    } else {
+      setPersonagens(data || [])
+    }
+    setLoading(false)
+  }, [user])
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved) {
-      try {
-        setPersonagens(JSON.parse(saved))
-      } catch {
-        setPersonagens([])
-      }
+    fetchPersonagens()
+  }, [fetchPersonagens])
+
+  async function salvarPersonagem(personagem: Omit<Personagem, 'id' | 'created_at'>) {
+    if (!user) return
+
+    const { data, error } = await supabase
+      .from('personagens')
+      .insert({
+        user_id: user.id,
+        nome: personagem.nome,
+        raca: personagem.raca,
+        genero: personagem.genero,
+      })
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Error saving personagem:', error)
+      throw error
     }
-  }, [])
 
-  function salvarPersonagem(personagem: Character) {
-    const updated = [personagem, ...personagens]
-    setPersonagens(updated)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+    if (data) {
+      setPersonagens(prev => [data, ...prev])
+    }
   }
 
-  function removerPersonagem(id: string) {
-    const updated = personagens.filter(p => p.id !== id)
-    setPersonagens(updated)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+  async function removerPersonagem(id: string) {
+    const { error } = await supabase
+      .from('personagens')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      console.error('Error removing personagem:', error)
+      throw error
+    }
+
+    setPersonagens(prev => prev.filter(p => p.id !== id))
   }
 
-  return { personagens, salvarPersonagem, removerPersonagem }
+  return { personagens, loading, salvarPersonagem, removerPersonagem }
 }

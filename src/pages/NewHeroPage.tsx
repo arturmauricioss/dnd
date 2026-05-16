@@ -26,20 +26,22 @@ export default function NewHeroPage() {
     isBotaoRacaDisabled,
   } = useNewHero()
 
-  const handleSalvar = () => {
+  const handleSalvar = async () => {
     if (!nome || !raca || !genero) {
       alert('Preencha nome, raça e gênero!')
       return
     }
     
-    salvarPersonagem({
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2),
-      name: nome,
-      race: raca,
-      gender: genero,
-      createdAt: new Date().toISOString(),
-    })
-    navigate('/heroes')
+    try {
+      await salvarPersonagem({
+        nome,
+        raca,
+        genero,
+      })
+      navigate('/heroes')
+    } catch (error) {
+      alert('Erro ao salvar personagem')
+    }
   }
 
   return (
