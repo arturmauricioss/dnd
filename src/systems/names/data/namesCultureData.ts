@@ -4,12 +4,12 @@ export type NameCultureKey =
   | 'dwarf'
   | 'orc'
   | 'gnome'
-  | 'halfling'
+  | 'halfling';
 
 export type NameCulture = {
-  key: NameCultureKey
-  label: string
-}
+  key: NameCultureKey;
+  label: string;
+};
 
 export const namesCultures: NameCulture[] = [
   { key: 'human', label: 'Humano' },
@@ -18,4 +18,4 @@ export const namesCultures: NameCulture[] = [
   { key: 'orc', label: 'Orc' },
   { key: 'gnome', label: 'Gnomo' },
   { key: 'halfling', label: 'Halfling' },
-]
+];

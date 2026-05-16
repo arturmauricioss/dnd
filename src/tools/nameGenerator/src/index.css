@@ -18,7 +18,6 @@
   color: var(--on-surface-variant);
 }
 
-
 .filter-box {
   display: flex;
   align-items: center;
@@ -217,7 +216,7 @@
 }
 
 .sheet tr:hover {
-  background: rgba(255,255,255,0.025);
+  background: rgba(255, 255, 255, 0.025);
 }
 
 .sheet input,
@@ -234,13 +233,11 @@
 
 .sheet input:focus,
 .sheet select:focus {
-  background: rgba(255,255,255,0.04);
-  
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .checkbox-cell {
   text-align: center;
-  
 }
 
 .checkbox-cell input {
@@ -248,7 +245,6 @@
   height: 16px;
   display: flex;
   margin: auto;
-  
 }
 
 .remove-button {
@@ -280,24 +276,21 @@
 .save-button:hover {
   background: var(--secondary-container);
 }
-div.box.row-input-button{
+div.box.row-input-button {
   margin: var(--space-sm) auto;
   width: 800px;
   max-width: 100%;
-
 }
 .row-input-button-content {
   width: 600px;
   max-width: 100%;
   margin: 0 auto;
-  
 }
 
-div.box.row-select{
+div.box.row-select {
   margin: var(--space-sm) auto;
   width: 800px;
   max-width: 100%;
-  
 }
 .checkbox-cell input {
   /* Aparência geral */
@@ -311,13 +304,11 @@ div.box.row-select{
   cursor: pointer;
   display: flex;
   margin: auto;
-
 }
 
 .checkbox-cell input:checked {
   background: var(--on-primary);
   border-color: var(--on-primary);
-  
 }
 
 /* Check branco quando marcado */
@@ -329,8 +320,8 @@ div.box.row-select{
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
-div.box.row-select-option, input.input.row-input-button-input{
-  color: var(--primary-amber)
+div.box.row-select-option,
+input.input.row-input-button-input {
+  color: var(--primary-amber);
 }

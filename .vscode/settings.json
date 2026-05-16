@@ -1,6 +1,6 @@
 {
-  "chat.tools.terminal.outputLocation": "chat",
-  "chat.fontSize": 18,
+  // "chat.tools.terminal.outputLocation": "chat",
+  // "chat.fontSize": 18,
   "editor.fontSize": 16,
   "terminal.integrated.fontSize": 16,
   "editor.lineHeight": 1.6,
@@ -15,12 +15,12 @@
   "zenMode.hideActivityBar": true,
   "zenMode.hideLineNumbers": true,
   "zenMode.silentNotifications": true,
-  "github.copilot": {
-    "enable": false,
-    "inlineSuggest": {
-      "enable": false
-    }
-  },
-  "editor.inlineSuggest.enabled": false,
-  "liveServer.settings.donotShowInfoMsg": true
+  // "github.copilot": {
+  //   "enable": false,
+  //   "inlineSuggest": {
+  //     "enable": false
+  //   }
+  // },
+  // "editor.inlineSuggest.enabled": false,
+  // "liveServer.settings.donotShowInfoMsg": true
 }

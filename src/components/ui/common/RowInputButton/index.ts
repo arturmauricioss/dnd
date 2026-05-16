@@ -1,1 +1,1 @@
-export { default } from './RowInputButton'
+export { default } from './RowInputButton';

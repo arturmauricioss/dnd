@@ -1,49 +1,52 @@
-import Box from '@components/ui/basic/Box/Box'
-import './RowSelect.css'
+import Box from '@components/ui/basic/Box/Box';
+import './RowSelect.css';
 
 interface SelectOption {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 interface SelectConfig {
-  value: string
-  onChange: (value: string) => void
-  options: SelectOption[]
+  value: string;
+  onChange: (value: string) => void;
+  options: SelectOption[];
 }
 
 interface RowSelectProps {
-  selects?: SelectConfig[]
-  multi?: boolean
+  selects?: SelectConfig[];
+  multi?: boolean;
 }
 
-export default function RowSelect({ selects = [], multi = false }: RowSelectProps) {
+export default function RowSelect({
+  selects = [],
+  multi = false,
+}: RowSelectProps) {
   const handleClick = (select: SelectConfig, option: SelectOption) => {
     if (multi) {
       // Multi-select: toggle no array
-      const currentValues = select.value ? select.value.split(',') : []
-      const isSelected = currentValues.includes(option.value)
-      
-      let newValue: string
+      const currentValues = select.value ? select.value.split(',') : [];
+      const isSelected = currentValues.includes(option.value);
+
+      let newValue: string;
       if (isSelected) {
-        newValue = currentValues.filter(v => v !== option.value).join(',')
+        newValue = currentValues.filter((v) => v !== option.value).join(',');
       } else {
-        newValue = [...currentValues, option.value].join(',')
+        newValue = [...currentValues, option.value].join(',');
       }
-      select.onChange(newValue)
+      select.onChange(newValue);
     } else {
       // Single-select: replace
-      select.onChange(option.value)
+      select.onChange(option.value);
     }
-  }
+  };
 
   const isSelected = (select: SelectConfig, option: SelectOption): boolean => {
     if (multi) {
-      const currentValues = select.value ? select.value.split(',') : []
-      return currentValues.includes(option.value)
+      const currentValues = select.value ? select.value.split(',') : [];
+      return currentValues.includes(option.value);
     }
-    return select.value === option.value
-  }
+    return select.value === option.value;
+  };
 
   return (
     <Box className="row-select">
@@ -63,5 +66,5 @@ export default function RowSelect({ selects = [], multi = false }: RowSelectProp
         ))}
       </Box>
     </Box>
-  )
+  );
 }

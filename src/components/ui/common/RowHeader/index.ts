@@ -1,11 +1,11 @@
 export interface IconProps {
-  className?: string
+  className?: string;
 }
 
 export interface RowHeaderProps {
-  icon: (props: IconProps) => React.ReactNode
-  children: React.ReactNode
-  active?: boolean
-  variant?: 'default' | 'secondary'
-  className?: string
+  icon: (props: IconProps) => React.ReactNode;
+  children: React.ReactNode;
+  active?: boolean;
+  variant?: 'default' | 'secondary';
+  className?: string;
 }

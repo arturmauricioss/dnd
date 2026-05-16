@@ -1,1 +1,1 @@
-export { default } from './RowSelect'
+export { default } from './RowSelect';

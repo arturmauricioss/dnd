@@ -1,14 +1,14 @@
-import Box from '@components/ui/basic/Box/Box'
-import './RowSpan.css'
+import Box from '@components/ui/basic/Box/Box';
+import './RowSpan.css';
 
 interface SpanConfig {
-  content: string
-  className?: string
+  content: string;
+  className?: string;
 }
 
 interface RowSpanProps {
-  main: string
-  rightSpans?: SpanConfig[]
+  main: string;
+  rightSpans?: SpanConfig[];
 }
 
 export default function RowSpan({ main, rightSpans = [] }: RowSpanProps) {
@@ -18,12 +18,15 @@ export default function RowSpan({ main, rightSpans = [] }: RowSpanProps) {
       {rightSpans.length > 0 && (
         <Box className="row-span-right">
           {rightSpans.map((span, index) => (
-            <span key={index} className={`row-span-item ${span.className || ''}`}>
+            <span
+              key={index}
+              className={`row-span-item ${span.className || ''}`}
+            >
               {span.content}
             </span>
           ))}
         </Box>
       )}
     </Box>
-  )
+  );
 }

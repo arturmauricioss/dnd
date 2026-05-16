@@ -1,18 +1,18 @@
-import Box from '@components/ui/basic/Box/Box'
-import Button from '@components/ui/basic/Button/Button'
-import './RowButton.css'
+import Box from '@components/ui/basic/Box/Box';
+import Button from '@components/ui/basic/Button/Button';
+import './RowButton.css';
 
 interface ButtonConfig {
-  label: string
-  onClick: () => void
-  disabled?: boolean
-  selected?: boolean
-  variant?: 'primary' | 'secondary'
-  type?: 'button' | 'submit' | 'reset'
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+  selected?: boolean;
+  variant?: 'primary' | 'secondary';
+  type?: 'button' | 'submit' | 'reset';
 }
 
 interface RowButtonProps {
-  buttons: ButtonConfig[]
+  buttons: ButtonConfig[];
 }
 
 export default function RowButton({ buttons = [] }: RowButtonProps) {
@@ -33,5 +33,5 @@ export default function RowButton({ buttons = [] }: RowButtonProps) {
         ))}
       </Box>
     </Box>
-  )
+  );
 }

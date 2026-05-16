@@ -1,32 +1,37 @@
-import type { Commit } from './types'
+import type { Commit } from './types';
 
-export { Commit }
+export { Commit };
 
 function getApiBaseUrl(): string {
-  if (typeof window === 'undefined') return '/api'
-  
-  const hostname = window.location.hostname
-  
+  if (typeof window === 'undefined') return '/api';
+
+  const hostname = window.location.hostname;
+
   // Desenvolvimento local - usa a mesma porta do server.js ou proxy
-  if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.')) {
-    return '/api' // proxy via vite.config
+  if (
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname.startsWith('192.168.') ||
+    hostname.startsWith('10.')
+  ) {
+    return '/api'; // proxy via vite.config
   }
-  
+
   // Produção (Vercel)
-  return '/api'
+  return '/api';
 }
 
 export async function buscarCommits(): Promise<Commit[]> {
   try {
-    const baseUrl = getApiBaseUrl()
-    const response = await fetch(`${baseUrl}/commits`)
+    const baseUrl = getApiBaseUrl();
+    const response = await fetch(`${baseUrl}/commits`);
     if (!response.ok) {
-      throw new Error('Erro ao buscar commits')
+      throw new Error('Erro ao buscar commits');
     }
-    const data = await response.json()
-    return data
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error('Erro ao buscar commits:', error)
-    return []
+    console.error('Erro ao buscar commits:', error);
+    return [];
   }
 }

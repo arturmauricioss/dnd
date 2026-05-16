@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
-import Box from '@components/ui/basic/Box/Box'
-import PageNavigation from '@features/pageNavigation/components/PageNavigation'
-import './Layout.css'
+import { Outlet } from 'react-router-dom';
+import Box from '@components/ui/basic/Box/Box';
+import PageNavigation from '@features/pageNavigation/components/PageNavigation';
+import './Layout.css';
 
 export default function Layout() {
   return (
@@ -11,5 +11,5 @@ export default function Layout() {
       </main>
       <PageNavigation />
     </Box>
-  )
+  );
 }

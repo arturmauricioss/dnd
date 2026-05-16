@@ -1,12 +1,12 @@
-import { useCallback } from 'react'
-import { nomes } from '../data/namesData'
-import type { Race, RaceKey } from '@systems/race/types'
-import type { NameCultureKey } from '../data/namesCultureData'
+import { useCallback } from 'react';
+import { nomes } from '../data/namesData';
+import type { Race, RaceKey } from '@systems/race/types';
+import type { NameCultureKey } from '../data/namesCultureData';
 
 interface UseNomeRandomProps {
-  raca: Race | null
-  genero: string
-  setNome: (nome: string) => void
+  raca: Race | null;
+  genero: string;
+  setNome: (nome: string) => void;
 }
 
 const raceCulturesMap: Record<RaceKey, NameCultureKey[]> = {
@@ -18,7 +18,7 @@ const raceCulturesMap: Record<RaceKey, NameCultureKey[]> = {
 
   'half-elf': ['human', 'elf'],
   'half-orc': ['human', 'orc'],
-}
+};
 
 export default function useNomeRandom({
   raca,
@@ -27,78 +27,68 @@ export default function useNomeRandom({
 }: UseNomeRandomProps) {
   const filtrarNomes = useCallback(
     (racaSelecionada: Race | null, generoSelecionado: string) => {
-      let filtrados = [...nomes]
+      let filtrados = [...nomes];
 
       if (racaSelecionada) {
-        const culturasPermitidas =
-          raceCulturesMap[racaSelecionada.key]
+        const culturasPermitidas = raceCulturesMap[racaSelecionada.key];
 
-        filtrados = filtrados.filter(nome => {
+        filtrados = filtrados.filter((nome) => {
           // universal
           if (nome.culturas.length === 0) {
-            return true
+            return true;
           }
 
-          return nome.culturas.some(cultura =>
-            culturasPermitidas.includes(
-              cultura as NameCultureKey
-            )
-          )
-        })
+          return nome.culturas.some((cultura) =>
+            culturasPermitidas.includes(cultura as NameCultureKey)
+          );
+        });
       }
 
       if (generoSelecionado) {
         filtrados = filtrados.filter(
-          nome =>
-            nome.genero === generoSelecionado ||
-            nome.genero === 'unissex'
-        )
+          (nome) =>
+            nome.genero === generoSelecionado || nome.genero === 'unissex'
+        );
       }
 
-      return filtrados
+      return filtrados;
     },
     []
-  )
+  );
 
   const gerarNome = useCallback(() => {
-    let filtrados = [...nomes]
+    let filtrados = [...nomes];
 
     if (genero) {
       filtrados = filtrados.filter(
-        nome =>
-          nome.genero === genero ||
-          nome.genero === 'unissex'
-      )
+        (nome) => nome.genero === genero || nome.genero === 'unissex'
+      );
     }
 
-    if (filtrados.length === 0) return
+    if (filtrados.length === 0) return;
 
-    const randomIndex = Math.floor(
-      Math.random() * filtrados.length
-    )
+    const randomIndex = Math.floor(Math.random() * filtrados.length);
 
-    setNome(filtrados[randomIndex].nome)
-  }, [genero, setNome])
+    setNome(filtrados[randomIndex].nome);
+  }, [genero, setNome]);
 
   const gerarNomeRaca = useCallback(() => {
-    if (!raca) return
+    if (!raca) return;
 
-    const filtrados = filtrarNomes(raca, genero)
+    const filtrados = filtrarNomes(raca, genero);
 
-    if (filtrados.length === 0) return
+    if (filtrados.length === 0) return;
 
-    const randomIndex = Math.floor(
-      Math.random() * filtrados.length
-    )
+    const randomIndex = Math.floor(Math.random() * filtrados.length);
 
-    setNome(filtrados[randomIndex].nome)
-  }, [raca, genero, filtrarNomes, setNome])
+    setNome(filtrados[randomIndex].nome);
+  }, [raca, genero, filtrarNomes, setNome]);
 
-  const isBotaoRacaDisabled = !raca
+  const isBotaoRacaDisabled = !raca;
 
   return {
     gerarNome,
     gerarNomeRaca,
     isBotaoRacaDisabled,
-  }
+  };
 }

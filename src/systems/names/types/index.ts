@@ -1,10 +1,10 @@
-export type Name = string
+export type Name = string;
 
-export type Genero = 'masculino' | 'feminino' | 'unissex'
+export type Genero = 'masculino' | 'feminino' | 'unissex';
 
 export interface Nome {
-  id: string
-  nome: string
-  culturas: string[]
-  genero: Genero
+  id: string;
+  nome: string;
+  culturas: string[];
+  genero: Genero;
 }

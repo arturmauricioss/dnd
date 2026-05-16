@@ -1,20 +1,23 @@
-import Box from '@components/ui/basic/Box/Box'
-import Input from '@components/ui/basic/Input/Input'
-import Button from '@components/ui/basic/Button/Button'
-import './RowInputButton.css'
+import Box from '@components/ui/basic/Box/Box';
+import Input from '@components/ui/basic/Input/Input';
+import Button from '@components/ui/basic/Button/Button';
+import './RowInputButton.css';
 
 interface ButtonConfig {
-  label: string
-  onClick: () => void
-  disabled?: boolean
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
 }
 
 interface RowInputButtonProps {
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  buttons?: ButtonConfig[]
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  buttons?: ButtonConfig[];
 }
 
-export default function RowInputButton({ inputProps, buttons = [] }: RowInputButtonProps) {
+export default function RowInputButton({
+  inputProps,
+  buttons = [],
+}: RowInputButtonProps) {
   return (
     <Box className="row-input-button">
       <Input className="row-input-button-input" {...inputProps} />
@@ -31,5 +34,5 @@ export default function RowInputButton({ inputProps, buttons = [] }: RowInputBut
         ))}
       </Box>
     </Box>
-  )
+  );
 }

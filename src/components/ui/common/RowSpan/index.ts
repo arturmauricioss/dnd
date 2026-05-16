@@ -1,1 +1,1 @@
-export { default } from './RowSpan'
+export { default } from './RowSpan';

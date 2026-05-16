@@ -1,16 +1,15 @@
-import Title from '@components/ui/basic/Title/Title'
-import RowInputButton from '@components/ui/common/RowInputButton/RowInputButton'
-import RowSelect from '@components/ui/common/RowSelect/RowSelect'
-import { useNomes } from './hooks/useNomes'
-import { namesCultures } from '@systems/names'
-import type { Nome } from './types'
-import { cultureColumns } from './types'
-
+import Title from '@components/ui/basic/Title/Title';
+import RowInputButton from '@components/ui/common/RowInputButton/RowInputButton';
+import RowSelect from '@components/ui/common/RowSelect/RowSelect';
+import { useNomes } from './hooks/useNomes';
+import { namesCultures } from '@systems/names';
+import type { Nome } from './types';
+import { cultureColumns } from './types';
 
 export default function App() {
   const culturaLabels = Object.fromEntries(
-    namesCultures.map(c => [c.key, c.label])
-  )
+    namesCultures.map((c) => [c.key, c.label])
+  );
   const {
     nomesFiltrados,
     busca,
@@ -26,7 +25,7 @@ export default function App() {
     ordenar,
     salvar,
     estatisticas,
-  } = useNomes()
+  } = useNomes();
 
   return (
     <main className="app">
@@ -38,21 +37,26 @@ export default function App() {
         inputProps={{
           placeholder: 'Pesquisar ou adicionar nome...',
           value: busca,
-          onChange: e => setBusca(e.target.value),
+          onChange: (e) => setBusca(e.target.value),
         }}
-        buttons={[{ label: '+', onClick: () => {
-          if (busca.trim()) {
-            adicionar(busca.trim())
-            setBusca('')
-          }
-        }}]}
+        buttons={[
+          {
+            label: '+',
+            onClick: () => {
+              if (busca.trim()) {
+                adicionar(busca.trim());
+                setBusca('');
+              }
+            },
+          },
+        ]}
       />
 
       <RowSelect
         selects={[
           {
             value: generoFiltro || '',
-            onChange: v => setGeneroFiltro((v as Nome['genero']) || null),
+            onChange: (v) => setGeneroFiltro((v as Nome['genero']) || null),
             options: [
               { value: 'masculino', label: 'Masculino' },
               { value: 'feminino', label: 'Feminino' },
@@ -66,8 +70,8 @@ export default function App() {
         selects={[
           {
             value: culturaFiltro.join(','),
-            onChange: v => setCulturaFiltro(v ? v.split(',') : []),
-            options: namesCultures.map(c => ({
+            onChange: (v) => setCulturaFiltro(v ? v.split(',') : []),
+            options: namesCultures.map((c) => ({
               value: c.key,
               label: c.label,
             })),
@@ -81,7 +85,7 @@ export default function App() {
             <tr>
               <th onClick={() => ordenar('nome')}>Nome</th>
               <th onClick={() => ordenar('genero')}>G</th>
-              {cultureColumns.map(cultura => (
+              {cultureColumns.map((cultura) => (
                 <th key={cultura.value} onClick={() => ordenar(cultura.value)}>
                   {cultura.label}
                 </th>
@@ -90,19 +94,25 @@ export default function App() {
             </tr>
           </thead>
           <tbody>
-            {nomesFiltrados.map(item => (
+            {nomesFiltrados.map((item) => (
               <tr key={item.id}>
                 <td>
                   <input
                     value={item.nome}
-                    onChange={e => updateNome(item.id, 'nome', e.target.value)}
+                    onChange={(e) =>
+                      updateNome(item.id, 'nome', e.target.value)
+                    }
                   />
                 </td>
                 <td>
                   <select
                     value={item.genero}
-                    onChange={e =>
-                      updateNome(item.id, 'genero', e.target.value as Nome['genero'])
+                    onChange={(e) =>
+                      updateNome(
+                        item.id,
+                        'genero',
+                        e.target.value as Nome['genero']
+                      )
                     }
                   >
                     <option value="masculino">M</option>
@@ -110,7 +120,7 @@ export default function App() {
                     <option value="unissex">U</option>
                   </select>
                 </td>
-                {cultureColumns.map(cultura => (
+                {cultureColumns.map((cultura) => (
                   <td key={cultura.value} className="checkbox-cell">
                     <input
                       type="checkbox"
@@ -120,7 +130,10 @@ export default function App() {
                   </td>
                 ))}
                 <td>
-                  <button className="remove-button" onClick={() => remover(item.id)}>
+                  <button
+                    className="remove-button"
+                    onClick={() => remover(item.id)}
+                  >
                     ×
                   </button>
                 </td>
@@ -189,5 +202,5 @@ export default function App() {
         Salvar
       </button>
     </main>
-  )
+  );
 }

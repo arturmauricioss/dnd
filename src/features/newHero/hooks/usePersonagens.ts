@@ -1,48 +1,50 @@
-import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@lib/supabase'
-import { useAuth } from '@hooks/useAuth'
+import { useState, useEffect, useCallback } from 'react';
+import { supabase } from '@lib/supabase';
+import { useAuth } from '@hooks/useAuth';
 
 interface Personagem {
-  id: string
-  nome: string
-  raca: { key: string; label: string } | null
-  genero: string
-  created_at: string
+  id: string;
+  nome: string;
+  raca: { key: string; label: string } | null;
+  genero: string;
+  created_at: string;
 }
 
 export function usePersonagens() {
-  const { user } = useAuth()
-  const [personagens, setPersonagens] = useState<Personagem[]>([])
-  const [loading, setLoading] = useState(true)
+  const { user } = useAuth();
+  const [personagens, setPersonagens] = useState<Personagem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPersonagens = useCallback(async () => {
     if (!user) {
-      setPersonagens([])
-      setLoading(false)
-      return
+      setPersonagens([]);
+      setLoading(false);
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
     const { data, error } = await supabase
       .from('personagens')
       .select('*')
-      .order('created_at', { ascending: false })
+      .order('created_at', { ascending: false });
 
     if (error) {
-      console.error('Error fetching personagens:', error)
-      setPersonagens([])
+      console.error('Error fetching personagens:', error);
+      setPersonagens([]);
     } else {
-      setPersonagens(data || [])
+      setPersonagens(data || []);
     }
-    setLoading(false)
-  }, [user])
+    setLoading(false);
+  }, [user]);
 
   useEffect(() => {
-    fetchPersonagens()
-  }, [fetchPersonagens])
+    fetchPersonagens();
+  }, [fetchPersonagens]);
 
-  async function salvarPersonagem(personagem: Omit<Personagem, 'id' | 'created_at'>) {
-    if (!user) return
+  async function salvarPersonagem(
+    personagem: Omit<Personagem, 'id' | 'created_at'>
+  ) {
+    if (!user) return;
 
     const { data, error } = await supabase
       .from('personagens')
@@ -53,31 +55,28 @@ export function usePersonagens() {
         genero: personagem.genero,
       })
       .select()
-      .single()
+      .single();
 
     if (error) {
-      console.error('Error saving personagem:', error)
-      throw error
+      console.error('Error saving personagem:', error);
+      throw error;
     }
 
     if (data) {
-      setPersonagens(prev => [data, ...prev])
+      setPersonagens((prev) => [data, ...prev]);
     }
   }
 
   async function removerPersonagem(id: string) {
-    const { error } = await supabase
-      .from('personagens')
-      .delete()
-      .eq('id', id)
+    const { error } = await supabase.from('personagens').delete().eq('id', id);
 
     if (error) {
-      console.error('Error removing personagem:', error)
-      throw error
+      console.error('Error removing personagem:', error);
+      throw error;
     }
 
-    setPersonagens(prev => prev.filter(p => p.id !== id))
+    setPersonagens((prev) => prev.filter((p) => p.id !== id));
   }
 
-  return { personagens, loading, salvarPersonagem, removerPersonagem }
+  return { personagens, loading, salvarPersonagem, removerPersonagem };
 }

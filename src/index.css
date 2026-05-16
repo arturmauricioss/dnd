@@ -4,78 +4,78 @@
   /* ============================================
      COLORS - Modern Fantasy Artifact (Dark)
      ============================================ */
-  
+
   /* Surface (Obsidiana) */
   --surface: #131314;
   --surface-dim: #131314;
-  --surface-bright: #39393A;
-  --surface-container-lowest: #0E0E0F;
-  --surface-container-low: #1C1B1C;
-  --surface-container: #201F20;
-  --surface-container-high: #2A2A2B;
+  --surface-bright: #39393a;
+  --surface-container-lowest: #0e0e0f;
+  --surface-container-low: #1c1b1c;
+  --surface-container: #201f20;
+  --surface-container-high: #2a2a2b;
   --surface-container-highest: #353436;
-  
+
   /* On Surface */
-  --on-surface: #E5E2E3;
-  --on-surface-variant: #D4C5AB;
-  
+  --on-surface: #e5e2e3;
+  --on-surface-variant: #d4c5ab;
+
   /* Outline */
-  --outline: #9C8F78;
+  --outline: #9c8f78;
   --outline-variant: #504532;
-  --surface-tint: #FBBC00;
-  
+  --surface-tint: #fbbc00;
+
   /* Primary (Torchlight Amber) */
-  --primary: #FFE2AB;
-  --primary-amber: #FFBF00;
-  --on-primary: #402D00;
-  --primary-container: #FFBF00;
-  --on-primary-container: #6D5000;
+  --primary: #ffe2ab;
+  --primary-amber: #ffbf00;
+  --on-primary: #402d00;
+  --primary-container: #ffbf00;
+  --on-primary-container: #6d5000;
   --inverse-primary: #795900;
-  
+
   /* Primary Fixed */
-  --primary-fixed: #FFDFA0;
-  --primary-fixed-dim: #FBBC00;
-  --on-primary-fixed: #261A00;
-  --on-primary-fixed-variant: #5C4300;
-  
+  --primary-fixed: #ffdfa0;
+  --primary-fixed-dim: #fbbc00;
+  --on-primary-fixed: #261a00;
+  --on-primary-fixed-variant: #5c4300;
+
   /* Secondary (Dragon-Scale Crimson) */
-  --secondary: #FFB3AF;
-  --on-secondary: #68000D;
+  --secondary: #ffb3af;
+  --on-secondary: #68000d;
   --secondary-container: #970118;
-  --on-secondary-container: #FF9E99;
-  
+  --on-secondary-container: #ff9e99;
+
   /* Secondary Fixed */
-  --secondary-fixed: #FFDFAD70;
-  --secondary-fixed-dim: #FFB3AF;
+  --secondary-fixed: #ffdfad70;
+  --secondary-fixed-dim: #ffb3af;
   --on-secondary-fixed: #410005;
   --on-secondary-fixed-variant: #930017;
-  
+
   /* Tertiary (Ouro) */
-  --tertiary: #FAE685;
+  --tertiary: #fae685;
   --on-tertiary: #393000;
-  --tertiary-container: #DDCA6C;
+  --tertiary-container: #ddca6c;
   --on-tertiary-container: #615400;
-  
+
   /* Tertiary Fixed */
-  --tertiary-fixed: #F7E382;
-  --tertiary-fixed-dim: #DAC769;
-  --on-tertiary-fixed: #211B00;
+  --tertiary-fixed: #f7e382;
+  --tertiary-fixed-dim: #dac769;
+  --on-tertiary-fixed: #211b00;
   --on-tertiary-fixed-variant: #524700;
-  
+
   /* Accent (Metallic Gold/Bronze) */
-  --accent: #C5B358;
-  
+  --accent: #c5b358;
+
   /* Error */
-  --error: #FFB4AB;
+  --error: #ffb4ab;
   --on-error: #690005;
-  --error-container: #93000A;
-  --on-error-container: #FFDAD6;
-  
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
   /* Background & Inverse */
   --background: #131314;
-  --on-background: #E5E2E3;
+  --on-background: #e5e2e3;
   --surface-variant: #353436;
-  --inverse-surface: #E5E2E3;
+  --inverse-surface: #e5e2e3;
   --inverse-on-surface: #313031;
 
   /* ============================================
@@ -85,17 +85,17 @@
   --font-stats: 'Manrope', sans-serif;
   --font-body: 'Manrope', sans-serif;
   --font-label: 'Inter', sans-serif;
-  
+
   /* Headlines */
   --headline-xl: 3rem;
   --headline-lg: 2rem;
   --headline-md: 1.5rem;
-  
+
   /* Stats & Body */
   --stat-display: 2.25rem;
   --body-lg: 1.125rem;
   --body-md: 1rem;
-  
+
   /* Labels */
   --label-caps: 0.75rem;
 
@@ -109,7 +109,7 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  
+
   --container-padding: 1.5rem;
   --gutter: 1rem;
   --component-gap: 0.75rem;
@@ -128,73 +128,75 @@
 /* ============================================
    LIGHT THEME (Parchment)
    ============================================ */
-:root[data-theme="light"] {
-  --surface: #F5F0E6;
-  --surface-dim: #EBE4D8;
-  --surface-bright: #DDD5C5;
-  --surface-container-lowest: #F0EBE0;
-  --surface-container-low: #E8DFD0;
-  --surface-container: #E3DBCB;
-  --surface-container-high: #D8CFBE;
-  --surface-container-highest: #CCC3B2;
-  
-  --on-surface: #2A2520;
-  --on-surface-variant: #4A4035;
-  
-  --outline: #8B7355;
-  --outline-variant: #C9B896;
-  --surface-tint: #B8860B;
-  
-  --primary: #8B6914;
-  --primary-amber: #B8860B;
-  --on-primary: #FFF8DC;
-  --primary-container: #D4AF37;
-  --on-primary-container: #2A2520;
-  --inverse-primary: #FFE2AB;
-  
-  --primary-fixed: #C9A227;
-  --primary-fixed-dim: #D4AF37;
-  --on-primary-fixed: #FFF8DC;
-  --on-primary-fixed-variant: #2A2520;
-  
-  --secondary: #8B0000;
-  --on-secondary: #FFFAF0;
-  --secondary-container: #CD5C5C;
-  --on-secondary-container: #FFFAF0;
-  
-  --secondary-fixed: #B22222;
-  --secondary-fixed-dim: #CD5C5C;
-  --on-secondary-fixed: #FFFAF0;
-  --on-secondary-fixed-variant: #FFFAF0;
-  
-  --tertiary: #6B5B00;
-  --on-tertiary: #FFFACD;
-  --tertiary-container: #DAA520;
-  --on-tertiary-container: #2A2520;
-  
-  --tertiary-fixed: #B8860B;
-  --tertiary-fixed-dim: #DAA520;
-  --on-tertiary-fixed: #FFFACD;
-  --on-tertiary-fixed-variant: #2A2520;
-  
-  --accent: #8B7355;
-  
-  --error: #B22222;
-  --on-error: #FFF8DC;
-  --error-container: #CD5C5C;
-  --on-error-container: #FFF8DC;
-  
-  --background: #F5F0E6;
-  --on-background: #2A2520;
-  --surface-variant: #D8CFBE;
-  --inverse-surface: #2A2520;
-  --inverse-on-surface: #F5F0E6;
+:root[data-theme='light'] {
+  --surface: #f5f0e6;
+  --surface-dim: #ebe4d8;
+  --surface-bright: #ddd5c5;
+  --surface-container-lowest: #f0ebe0;
+  --surface-container-low: #e8dfd0;
+  --surface-container: #e3dbcb;
+  --surface-container-high: #d8cfbe;
+  --surface-container-highest: #ccc3b2;
+
+  --on-surface: #2a2520;
+  --on-surface-variant: #4a4035;
+
+  --outline: #8b7355;
+  --outline-variant: #c9b896;
+  --surface-tint: #b8860b;
+
+  --primary: #8b6914;
+  --primary-amber: #b8860b;
+  --on-primary: #fff8dc;
+  --primary-container: #d4af37;
+  --on-primary-container: #2a2520;
+  --inverse-primary: #ffe2ab;
+
+  --primary-fixed: #c9a227;
+  --primary-fixed-dim: #d4af37;
+  --on-primary-fixed: #fff8dc;
+  --on-primary-fixed-variant: #2a2520;
+
+  --secondary: #8b0000;
+  --on-secondary: #fffaf0;
+  --secondary-container: #cd5c5c;
+  --on-secondary-container: #fffaf0;
+
+  --secondary-fixed: #b22222;
+  --secondary-fixed-dim: #cd5c5c;
+  --on-secondary-fixed: #fffaf0;
+  --on-secondary-fixed-variant: #fffaf0;
+
+  --tertiary: #6b5b00;
+  --on-tertiary: #fffacd;
+  --tertiary-container: #daa520;
+  --on-tertiary-container: #2a2520;
+
+  --tertiary-fixed: #b8860b;
+  --tertiary-fixed-dim: #daa520;
+  --on-tertiary-fixed: #fffacd;
+  --on-tertiary-fixed-variant: #2a2520;
+
+  --accent: #8b7355;
+
+  --error: #b22222;
+  --on-error: #fff8dc;
+  --error-container: #cd5c5c;
+  --on-error-container: #fff8dc;
+
+  --background: #f5f0e6;
+  --on-background: #2a2520;
+  --surface-variant: #d8cfbe;
+  --inverse-surface: #2a2520;
+  --inverse-on-surface: #f5f0e6;
 }
 
 /* ============================================
    RESET & BASE
    ============================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -214,43 +216,100 @@ body {
   min-height: 100dvh;
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .container {
   padding: var(--container-padding);
 }
 
-.gap-sm { gap: var(--space-sm); }
-.gap-md { gap: var(--space-md); }
-.gap-lg { gap: var(--space-lg); }
+.gap-sm {
+  gap: var(--space-sm);
+}
+.gap-md {
+  gap: var(--space-md);
+}
+.gap-lg {
+  gap: var(--space-lg);
+}
 
-.p-xs { padding: var(--space-xs); }
-.p-sm { padding: var(--space-sm); }
-.p-md { padding: var(--space-md); }
-.p-lg { padding: var(--space-lg); }
+.p-xs {
+  padding: var(--space-xs);
+}
+.p-sm {
+  padding: var(--space-sm);
+}
+.p-md {
+  padding: var(--space-md);
+}
+.p-lg {
+  padding: var(--space-lg);
+}
 
-.m-xs { margin: var(--space-xs); }
-.m-sm { margin: var(--space-sm); }
-.m-md { margin: var(--space-md); }
-.m-lg { margin: var(--space-lg); }
+.m-xs {
+  margin: var(--space-xs);
+}
+.m-sm {
+  margin: var(--space-sm);
+}
+.m-md {
+  margin: var(--space-md);
+}
+.m-lg {
+  margin: var(--space-lg);
+}
 
-.mt-xs { margin-top: var(--space-xs); }
-.mt-sm { margin-top: var(--space-sm); }
-.mt-md { margin-top: var(--space-md); }
-.mt-lg { margin-top: var(--space-lg); }
+.mt-xs {
+  margin-top: var(--space-xs);
+}
+.mt-sm {
+  margin-top: var(--space-sm);
+}
+.mt-md {
+  margin-top: var(--space-md);
+}
+.mt-lg {
+  margin-top: var(--space-lg);
+}
 
-.text-center { text-align: center; }
-.text-primary { color: var(--primary); }
-.text-secondary { color: var(--on-surface-variant); }
-.text-accent { color: var(--accent); }
+.text-center {
+  text-align: center;
+}
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--on-surface-variant);
+}
+.text-accent {
+  color: var(--accent);
+}
 
-.opacity-50 { opacity: 0.5; }
-.opacity-70 { opacity: 0.7; }
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-70 {
+  opacity: 0.7;
+}
 
-.border { border: 1px solid var(--outline-variant); }
-.border-accent { border-color: var(--accent); }
+.border {
+  border: 1px solid var(--outline-variant);
+}
+.border-accent {
+  border-color: var(--accent);
+}
 
-.rounded-sm { border-radius: var(--radius-sm); }
-.rounded { border-radius: var(--radius); }
-.rounded-lg { border-radius: var(--radius-lg); }
-.rounded-full { border-radius: var(--radius-full); }
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.rounded {
+  border-radius: var(--radius);
+}
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+.rounded-full {
+  border-radius: var(--radius-full);
+}

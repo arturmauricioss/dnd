@@ -1,76 +1,78 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import Page from '@components/shell/Page/Page'
-import Title from '@components/ui/basic/Title/Title'
-import Input from '@components/ui/basic/Input/Input'
-import RowButton from '@components/ui/common/RowButton/RowButton'
-import { useAuth } from '@hooks/useAuth'
-import './Auth.css'
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import Page from '@components/shell/Page/Page';
+import Title from '@components/ui/basic/Title/Title';
+import Input from '@components/ui/basic/Input/Input';
+import RowButton from '@components/ui/common/RowButton/RowButton';
+import { useAuth } from '@hooks/useAuth';
+import './Auth.css';
 
 export default function LoginPage() {
-  const navigate = useNavigate()
-  const { signIn } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (!email || !password) {
-      setError('Preencha email e senha')
-      return
+      setError('Preencha email e senha');
+      return;
     }
 
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError('');
 
     try {
-      await signIn(email, password)
-      navigate('/heroes')
+      await signIn(email, password);
+      navigate('/heroes');
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Erro ao fazer login')
+      setError(err instanceof Error ? err.message : 'Erro ao fazer login');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   return (
     <Page>
-      <Title size="xl" className="mt-md">Entrar</Title>
-      
+      <Title size="xl" className="mt-md">
+        Entrar
+      </Title>
+
       <form className="auth-form" onSubmit={handleSubmit}>
         <Input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           type="password"
           placeholder="Senha"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        
+
         {error && <p className="auth-error">{error}</p>}
-        
+
         <RowButton
           buttons={[
-            { 
-              label: loading ? 'Entrando...' : 'Entrar', 
+            {
+              label: loading ? 'Entrando...' : 'Entrar',
               onClick: () => {},
               disabled: loading,
-              type: 'submit'
+              type: 'submit',
             },
           ]}
         />
-        
+
         <p className="auth-link">
           Não tem conta? <Link to="/register">Criar conta</Link>
         </p>
       </form>
     </Page>
-  )
+  );
 }

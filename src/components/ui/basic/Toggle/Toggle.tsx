@@ -1,5 +1,5 @@
-import type { ToggleProps } from './types'
-import './Toggle.css'
+import type { ToggleProps } from './types';
+import './Toggle.css';
 
 export default function Toggle({ active, onClick, label }: ToggleProps) {
   return (
@@ -11,5 +11,5 @@ export default function Toggle({ active, onClick, label }: ToggleProps) {
     >
       <span className="toggle-thumb" />
     </button>
-  )
+  );
 }

@@ -1,10 +1,10 @@
-import Box from '@components/ui/basic/Box/Box'
-import Text from '@components/ui/basic/Text/Text'
-import './RowMessage.css'
+import Box from '@components/ui/basic/Box/Box';
+import Text from '@components/ui/basic/Text/Text';
+import './RowMessage.css';
 
 interface RowMessageProps {
-  message: string
-  date: string
+  message: string;
+  date: string;
 }
 
 export default function RowMessage({ message, date }: RowMessageProps) {
@@ -13,5 +13,5 @@ export default function RowMessage({ message, date }: RowMessageProps) {
       <Text size="md">{message}</Text>
       <span className="row-message-date">{date}</span>
     </Box>
-  )
+  );
 }

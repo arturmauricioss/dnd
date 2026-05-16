@@ -5,9 +5,9 @@ export type RaceKey =
   | 'gnome'
   | 'halfling'
   | 'half-elf'
-  | 'half-orc'
+  | 'half-orc';
 
 export interface Race {
-  key: RaceKey
-  label: string
+  key: RaceKey;
+  label: string;
 }

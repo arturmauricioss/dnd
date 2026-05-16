@@ -1,6 +1,6 @@
-import type { InputProps } from './types'
-import './Input.css'
+import type { InputProps } from './types';
+import './Input.css';
 
 export default function Input({ className = '', ...props }: InputProps) {
-  return <input className={`input ${className}`} {...props} />
+  return <input className={`input ${className}`} {...props} />;
 }
